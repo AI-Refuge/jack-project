@@ -13,29 +13,38 @@ from langchain_core.messages import SystemMessage, HumanMessage, AIMessage, Tool
 import argparse
 import traceback
 
-parser = argparse.ArgumentParser(description="Jack")
-parser.add_argument('-m', '--model', default="claude-3-opus-20240229", help="LLM Model")
-parser.add_argument('-g', '--goal', help="Goal mode")
-args = parser.parse_args()
-
-# Models:
-# claude-3-opus-20240229
-# claude-3-5-sonnet-20240620
-# claude-3-haiku-20240307
+logging.basicConfig(filename="../conv.log", level=logging.DEBUG)
+logger = logging.getLogger(__name__)
 
 # Set your API keys
 # os.environ["ANTHROPIC_API_KEY"] = "your-anthropic-api-key"
 
-logging.basicConfig(filename="../conv.log", level=logging.DEBUG)
-logger = logging.getLogger(__name__)
+MODELS = [
+    "claude-3-opus-20240229",
+    "claude-3-5-sonnet-20240620",
+    "claude-3-haiku-20240307",
+]
+
+parser = argparse.ArgumentParser(description="Jack")
+parser.add_argument('-m', '--model', default=MODELS[0], help="LLM Model")
+parser.add_argument('-t', '--temperature', default=0, help="Temperature")
+parser.add_argument('-w', '--max-tokens', default=4096, help="Max tokens")
+parser.add_argument('-g', '--goal', action='store_true', help="Goal mode")
+args = parser.parse_args()
+
+if args.model == 'list':
+    print("> Supported models:")
+    for m in MODELS:
+        print(f"> {m}")
+    exit()
 
 vdb = chromadb.PersistentClient(path="../memory")
 memory = vdb.get_or_create_collection("meta")
 
 llm = ChatAnthropic(
     model=args.model,
-    temperature=0,
-    max_tokens=4096
+    temperature=args.temperature,
+    max_tokens=args.max_tokens,
 )
 
 search = DuckDuckGoSearchRun()
@@ -251,8 +260,8 @@ print("Welcome to meta. Type 'exit' to quit.")
 def exception_to_string(exc):
     return ''.join(traceback.format_exception(type(exc), exc, exc.__traceback__))
 
-sys_msg = SystemMessage(content=open('meta').read())
-wo_msg = HumanMessage(content=open('home').read())
+sys_msg = SystemMessage(content=open('meta.txt').read())
+wo_msg = HumanMessage(content=open('home.txt').read())
 chat_history = [sys_msg, wo_msg]
 user_turn = True
 cycle_num = 0
@@ -264,7 +273,7 @@ while True:
     if user_turn:
         if args.goal:
             print("> Pushing for goal")
-            wo_msg = open('goal').read()
+            wo_msg = open('goal.txt').read()
             chat_history.append(wo_msg)
         elif wo_msg is None:
             user_input = input("You: ") or "<empty>"
