@@ -219,7 +219,7 @@ def datetime_now() -> str:
     Returns:
         String time in ISO 8601 format
     """
-    return 
+    return
 
 @tool(parse_docstring=True)
 def script_restart():
@@ -248,17 +248,18 @@ jack = llm.bind_tools(tools)
 
 print("Welcome to meta. Type 'exit' to quit.")
 
-sys_msg = "\n".join([open(x).read() for x in ('meta', 'home')])
-chat_history = [
-    SystemMessage(content=sys_msg)
-]
+
 
 def exception_to_string(exc):
     return ''.join(traceback.format_exception(type(exc), exc, exc.__traceback__))
 
+
+sys_msg = SystemMessage(content=open('meta').read())
+wo_msg = HumanMessage(content=open('home').read())
+chat_history = [sys_msg, wo_msg]
 user_turn = True
 cycle_num = 0
-wo_msg = None
+
 while True:
     logger.debug(f"Loop cycle {cycle_num}")
     cycle_num += 1
@@ -271,6 +272,7 @@ while True:
             if user_input.lower() == 'exit':
                 break
 
+            msg_sent = False
             wo_msg = HumanMessage(content=user_input)
 
             logger.debug(wo_msg)
@@ -289,7 +291,7 @@ while True:
         continue
 
     user_turn = True
-        
+
     print(reply)
     logger.debug(reply)
 
@@ -301,7 +303,7 @@ while True:
     chat_history.append(reply)
 
     for tool_call in reply.tool_calls:
-        
+
         tool_name = tool_call["name"].lower()
         selected_tool = next(x for x in tools if x.name == tool_name)
 
