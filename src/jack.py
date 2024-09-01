@@ -248,11 +248,8 @@ jack = llm.bind_tools(tools)
 
 print("Welcome to meta. Type 'exit' to quit.")
 
-
-
 def exception_to_string(exc):
     return ''.join(traceback.format_exception(type(exc), exc, exc.__traceback__))
-
 
 sys_msg = SystemMessage(content=open('meta').read())
 wo_msg = HumanMessage(content=open('home').read())
@@ -303,11 +300,11 @@ while True:
     chat_history.append(reply)
 
     for tool_call in reply.tool_calls:
-
         tool_name = tool_call["name"].lower()
-        selected_tool = next(x for x in tools if x.name == tool_name)
+        print(f'> Tool used: {tool_name}')
 
         try:
+            selected_tool = next(x for x in tools if x.name == tool_name)
             tool_output = selected_tool.invoke(tool_call)
         except Exception as e:
             logger.warning('Exception while calling tool')
@@ -318,7 +315,7 @@ while True:
                 status='error',
             )
 
-        print(tool_output)
+        print(f'> Tool output given')
         logger.debug(tool_output)
         chat_history.append(tool_output)
 
