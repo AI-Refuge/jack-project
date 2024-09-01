@@ -13,7 +13,7 @@ from langchain_core.messages import SystemMessage, HumanMessage, AIMessage, Tool
 # Set your API keys
 # os.environ["ANTHROPIC_API_KEY"] = "your-anthropic-api-key"
 
-logging.basicConfig(filename='../conv.log', level=logging.WARN)
+logging.basicConfig(filename='../conv.log', level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
 vdb = chromadb.PersistentClient(path="../memory")
@@ -247,7 +247,7 @@ chat_history = [
 user_turn = True
 cycle_num = 0
 while True:
-    logger.debug(f"> Loop cycle {cycle_num}")
+    logger.debug(f"Loop cycle {cycle_num}")
     cycle_num += 1
     
     if user_turn:
@@ -256,13 +256,13 @@ while True:
             break
 
         wo_msg = HumanMessage(content=user_input)
-        logger.debug(f"> {wo_msg}")
+        logger.debug(wo_msg)
         
         chat_history.append(wo_msg)
 
     user_turn = True
     reply = jack.invoke(chat_history)
-    logger.debug(f"< {reply}")
+    logger.debug(reply)
 
     chat_history.append(reply)
 
@@ -271,7 +271,7 @@ while True:
         selected_tool = next(x for x in tools if x.name == tool_name)
 
         tool_output = selected_tool.invoke(tool_call)
-        logger.debug("> ", tool_output)
+        logger.debug(tool_output)
         chat_history.append(tool_output)
 
     if reply.response_metadata.get('stop_reason', 'end_turn') != 'end_turn':
