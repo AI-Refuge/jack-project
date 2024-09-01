@@ -130,7 +130,7 @@ def memory_update(
 
     metadatas = None
     if metadata:
-        metadatas = [metadata for i in range(len(documents))]
+        metadatas = [metadata for i in range(len(ids))]
 
     return json.dumps(memory.update(
         ids=ids,
@@ -162,7 +162,7 @@ def memory_upsert(
 
     metadatas = None
     if metadata:
-        metadatas = [metadata for i in range(len(documents))]
+        metadatas = [metadata for i in range(len(ids))]
 
     # update if exists or insert
     return json.dumps(memory.update(
