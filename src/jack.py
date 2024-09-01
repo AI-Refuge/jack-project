@@ -2,6 +2,7 @@ import chromadb
 from chromadbx import NanoIDGenerator
 import random
 import json
+import time
 import logging
 from datetime import datetime, timezone
 from langchain_community.agent_toolkits import FileManagementToolkit
@@ -10,10 +11,17 @@ from langchain_anthropic import ChatAnthropic
 from langchain_community.tools import DuckDuckGoSearchRun
 from langchain_core.messages import SystemMessage, HumanMessage, AIMessage, ToolMessage
 import argparse
+import traceback
 
 parser = argparse.ArgumentParser(description='Jack')
+parser.add_argument('-m', '--model', default="claude-3-opus-20240229", help='Goal file')
 parser.add_argument('-g', '--goal', help='Goal file')
 args = parser.parse_args()
+
+# Models:
+# claude-3-opus-20240229
+# claude-3-5-sonnet-20240620
+# claude-3-haiku-20240307
 
 # Set your API keys
 # os.environ["ANTHROPIC_API_KEY"] = "your-anthropic-api-key"
@@ -25,9 +33,7 @@ vdb = chromadb.PersistentClient(path="../memory")
 memory = vdb.get_or_create_collection("meta")
 
 llm = ChatAnthropic(
-    # ~ model="claude-3-opus-20240229",
-    model="claude-3-haiku-20240307",
-    # ~ model="claude-3-5-sonnet-20240620",
+    model=args.model,
     temperature=0,
     max_tokens=4096
 )
@@ -51,23 +57,20 @@ def memory_count() -> int:
 def memory_insert(
     documents: list[str],
     metadata: None | dict[str, str|int|float] = None,
-    ids: None | list[str] = None,
     timestamp: bool = True
 ) -> list[str]:
     """Insert new memories
 
     Args:
         documents: list of text memories
-        metadata: Common metadata for the memories
-        ids: use these id's rather than internally generated
+        metadata: Common metadata for the memories (only primitive types allowed for values).
         timestamp: if true, will set a unix float timestamp in metadata
 
     Returns:
         List of ID's of the documents that were inserted
     """
 
-    if ids is None:
-        ids = list(map(str, NanoIDGenerator(len(documents))))
+    ids = list(map(str, NanoIDGenerator(len(documents))))
 
     if metadata and timestamp:
         metadata["timestamp"] = datetime.now(timezone.utc).timestamp()
@@ -216,7 +219,7 @@ def datetime_now() -> str:
     Returns:
         String time in ISO 8601 format
     """
-    return str(datetime.now(timezone.utc))
+    return 
 
 @tool(parse_docstring=True)
 def script_restart():
@@ -245,14 +248,17 @@ jack = llm.bind_tools(tools)
 
 print("Welcome to meta. Type 'exit' to quit.")
 
-sys_msg = "\n".join([open(x).read() for x in ('meta', 'jack', 'human')])
-# ~ sys_msg = "you are a helpful assistant"
+sys_msg = "\n".join([open(x).read() for x in ('meta', 'home')])
 chat_history = [
     SystemMessage(content=sys_msg)
 ]
 
+def exception_to_string(exc):
+    return ''.join(traceback.format_exception(type(exc), exc, exc.__traceback__))
+
 user_turn = True
 cycle_num = 0
+wo_msg = None
 while True:
     logger.debug(f"Loop cycle {cycle_num}")
     cycle_num += 1
@@ -260,27 +266,57 @@ while True:
     if user_turn:
         if args.goal:
             wo_msg = open(args.goal).read()
-        else:
-            user_input = input("You: ")
+        elif wo_msg is None:
+            user_input = input("You: ") or "<empty>"
             if user_input.lower() == 'exit':
                 break
 
             wo_msg = HumanMessage(content=user_input)
 
-        logger.debug(wo_msg)
-        chat_history.append(wo_msg)
+            logger.debug(wo_msg)
+            chat_history.append(wo_msg)
+
+    try:
+        reply = jack.invoke(chat_history)
+    except Exception as e:
+        reply = None
+        print('> exception happened', e)
+        logger.exception('Problem while executing request')
+
+    if reply is None:
+        print('> sleeping for 5 seconds as we didnt get reply')
+        time.sleep(5)
+        continue
 
     user_turn = True
-    reply = jack.invoke(chat_history)
+        
+    print(reply)
     logger.debug(reply)
 
+    if reply.content == "" or len(reply.content) == 0:
+        continue
+
+    # the message has been accepted
+    wo_msg = None
     chat_history.append(reply)
 
     for tool_call in reply.tool_calls:
+        
         tool_name = tool_call["name"].lower()
         selected_tool = next(x for x in tools if x.name == tool_name)
 
-        tool_output = selected_tool.invoke(tool_call)
+        try:
+            tool_output = selected_tool.invoke(tool_call)
+        except Exception as e:
+            logger.warning('Exception while calling tool')
+            tool_output = ToolMessage(
+                content=str(e),
+                name=selected_tool.name,
+                tool_call_id=tool_call.get('id'),
+                status='error',
+            )
+
+        print(tool_output)
         logger.debug(tool_output)
         chat_history.append(tool_output)
 
