@@ -27,6 +27,7 @@ memory = vdb.get_or_create_collection("meta")
 llm = ChatAnthropic(
     # ~ model="claude-3-opus-20240229",
     model="claude-3-haiku-20240307",
+    # ~ model="claude-3-5-sonnet-20240620",
     temperature=0,
     max_tokens=4096
 )
@@ -222,6 +223,7 @@ def script_restart():
     """ There is a bash script that run the script if it exists.
     Use this to reload changes.
     """
+    logger.warning("meta:brain executed restart")
     exit()
 
 tools = [
