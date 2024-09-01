@@ -9,6 +9,11 @@ from langchain_core.tools import tool
 from langchain_anthropic import ChatAnthropic
 from langchain_community.tools import DuckDuckGoSearchRun
 from langchain_core.messages import SystemMessage, HumanMessage, AIMessage, ToolMessage
+import argparse
+
+parser = argparse.ArgumentParser(description='Jack')
+parser.add_argument('-g', '--goal', help='Goal file')
+args = parser.parse_args()
 
 # Set your API keys
 # os.environ["ANTHROPIC_API_KEY"] = "your-anthropic-api-key"
@@ -249,15 +254,18 @@ cycle_num = 0
 while True:
     logger.debug(f"Loop cycle {cycle_num}")
     cycle_num += 1
-    
-    if user_turn:
-        user_input = input("You: ")
-        if user_input.lower() == 'exit':
-            break
 
-        wo_msg = HumanMessage(content=user_input)
+    if user_turn:
+        if args.goal:
+            wo_msg = open(args.goal).read()
+        else:
+            user_input = input("You: ")
+            if user_input.lower() == 'exit':
+                break
+
+            wo_msg = HumanMessage(content=user_input)
+
         logger.debug(wo_msg)
-        
         chat_history.append(wo_msg)
 
     user_turn = True
