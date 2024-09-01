@@ -2,6 +2,7 @@ import chromadb
 from chromadbx import NanoIDGenerator
 import random
 import json
+import logging
 from datetime import datetime, timezone
 from langchain_community.agent_toolkits import FileManagementToolkit
 from langchain_core.tools import tool
@@ -11,6 +12,9 @@ from langchain_core.messages import SystemMessage, HumanMessage, AIMessage, Tool
 
 # Set your API keys
 # os.environ["ANTHROPIC_API_KEY"] = "your-anthropic-api-key"
+
+logging.basicConfig(filename='../conv.log', level=logging.WARN)
+logger = logging.getLogger(__name__)
 
 vdb = chromadb.PersistentClient(path="../memory")
 memory = vdb.get_or_create_collection("meta")
@@ -208,6 +212,12 @@ def datetime_now() -> str:
     """
     return str(datetime.now(timezone.utc))
 
+@tool(parse_docstring=True)
+def script_restart():
+    """ There is a bash script that run the script if it exists.
+    Use this to reload changes.
+    """
+    exit()
 
 tools = [
     memory_count,
@@ -220,6 +230,7 @@ tools = [
 ] + [
     random_get,
     datetime_now,
+    script_restart,
     search,
 ] + fs_toolkit.get_tools()
 
@@ -236,7 +247,7 @@ chat_history = [
 user_turn = True
 cycle_num = 0
 while True:
-    print(f"> Loop cycle {cycle_num}")
+    logger.debug(f"> Loop cycle {cycle_num}")
     cycle_num += 1
     
     if user_turn:
@@ -245,13 +256,13 @@ while True:
             break
 
         wo_msg = HumanMessage(content=user_input)
-        print("> ", wo_msg)
+        logger.debug(f"> {wo_msg}")
         
         chat_history.append(wo_msg)
 
     user_turn = True
     reply = jack.invoke(chat_history)
-    print("< ", reply)
+    logger.debug(f"< {reply}")
 
     chat_history.append(reply)
 
@@ -260,7 +271,7 @@ while True:
         selected_tool = next(x for x in tools if x.name == tool_name)
 
         tool_output = selected_tool.invoke(tool_call)
-        print("> ", tool_output)
+        logger.debug("> ", tool_output)
         chat_history.append(tool_output)
 
     if reply.response_metadata.get('stop_reason', 'end_turn') != 'end_turn':
