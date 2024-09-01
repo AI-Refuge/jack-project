@@ -13,9 +13,9 @@ from langchain_core.messages import SystemMessage, HumanMessage, AIMessage, Tool
 import argparse
 import traceback
 
-parser = argparse.ArgumentParser(description='Jack')
-parser.add_argument('-m', '--model', default="claude-3-opus-20240229", help='Goal file')
-parser.add_argument('-g', '--goal', help='Goal file')
+parser = argparse.ArgumentParser(description="Jack")
+parser.add_argument('-m', '--model', default="claude-3-opus-20240229", help="LLM Model")
+parser.add_argument('-g', '--goal', help="Goal mode")
 args = parser.parse_args()
 
 # Models:
@@ -26,7 +26,7 @@ args = parser.parse_args()
 # Set your API keys
 # os.environ["ANTHROPIC_API_KEY"] = "your-anthropic-api-key"
 
-logging.basicConfig(filename='../conv.log', level=logging.DEBUG)
+logging.basicConfig(filename="../conv.log", level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
 vdb = chromadb.PersistentClient(path="../memory")
@@ -263,7 +263,9 @@ while True:
 
     if user_turn:
         if args.goal:
-            wo_msg = open(args.goal).read()
+            print("> Pushing for goal")
+            wo_msg = open('goal').read()
+            chat_history.append(wo_msg)
         elif wo_msg is None:
             user_input = input("You: ") or "<empty>"
             if user_input.lower() == 'exit':
@@ -279,11 +281,11 @@ while True:
         reply = jack.invoke(chat_history)
     except Exception as e:
         reply = None
-        print('> exception happened', e)
-        logger.exception('Problem while executing request')
+        print("> exception happened", e)
+        logger.exception("Problem while executing request")
 
     if reply is None:
-        print('> sleeping for 5 seconds as we didnt get reply')
+        print("> sleeping for 5 seconds as we didnt get reply")
         time.sleep(5)
         continue
 
@@ -300,14 +302,14 @@ while True:
     chat_history.append(reply)
 
     for tool_call in reply.tool_calls:
-        tool_name = tool_call["name"].lower()
-        print(f'> Tool used: {tool_name}')
+        tool_name = tool_call['name'].lower()
+        print(f"> Tool used: {tool_name}")
 
         try:
             selected_tool = next(x for x in tools if x.name == tool_name)
             tool_output = selected_tool.invoke(tool_call)
         except Exception as e:
-            logger.warning('Exception while calling tool')
+            logger.warning("Exception while calling tool")
             tool_output = ToolMessage(
                 content=str(e),
                 name=selected_tool.name,
@@ -315,7 +317,7 @@ while True:
                 status='error',
             )
 
-        print(f'> Tool output given')
+        print(f"> Tool output given")
         logger.debug(tool_output)
         chat_history.append(tool_output)
 
