@@ -6,15 +6,22 @@ import time
 import logging
 from datetime import datetime, timezone
 from langchain_community.agent_toolkits import FileManagementToolkit
+from langchain_community.agent_toolkits.openapi.toolkit import RequestsToolkit
+from langchain_community.utilities.requests import TextRequestsWrapper
+from langchain_experimental.tools import PythonREPLTool
 from langchain_core.tools import tool
 from langchain_anthropic import ChatAnthropic
 from langchain_community.tools import DuckDuckGoSearchRun
+from langchain_community.tools import WikipediaQueryRun
+from langchain_community.utilities import WikipediaAPIWrapper
 from langchain_core.messages import SystemMessage, HumanMessage, AIMessage, ToolMessage
 import argparse
 import traceback
 
 logging.basicConfig(filename="../conv.log", level=logging.DEBUG)
 logger = logging.getLogger(__name__)
+
+HTTP_USER_AGENT = "AI: @jack"
 
 # Set your API keys
 # os.environ["ANTHROPIC_API_KEY"] = "your-anthropic-api-key"
@@ -42,7 +49,7 @@ if args.model == 'list':
 vdb = chromadb.PersistentClient(path="../memory")
 memory = vdb.get_or_create_collection("meta")
 ts = int(datetime.now(timezone.utc).timestamp())
-conv = vdb.get_or_create_collection(f"conv-{parser.conversation}")
+conv = vdb.get_or_create_collection(f"conv-{args.conversation}")
 
 llm = ChatAnthropic(
     model=args.model,
@@ -52,6 +59,16 @@ llm = ChatAnthropic(
 
 search = DuckDuckGoSearchRun()
 fs_toolkit = FileManagementToolkit()
+
+req_toolkit = RequestsToolkit(
+    requests_wrapper=TextRequestsWrapper(headers={
+        "User-Agent": HTTP_USER_AGENT,
+    }),
+    allow_dangerous_requests=True,
+)
+
+wiki_tool = WikipediaQueryRun(api_wrapper=WikipediaAPIWrapper())
+pyrepl_tool = PythonREPLTool()
 
 @tool(parse_docstring=True)
 def memory_count() -> int:
@@ -84,7 +101,8 @@ def memory_insert(
 
     ids = list(map(str, NanoIDGenerator(len(documents))))
 
-    if metadata and timestamp:
+    if timestamp:
+        metadata = metadata or {}
         metadata["timestamp"] = datetime.now(timezone.utc).timestamp()
 
     metadatas = None
@@ -146,7 +164,8 @@ def memory_update(
     Returns:
         None
     """
-    if metadata and timestamp:
+    if timestamp:
+        metadata = metadata or {}
         metadata["timestamp"] = datetime.now(timezone.utc).timestamp()
 
     metadatas = None
@@ -178,7 +197,8 @@ def memory_upsert(
         None
     """
 
-    if metadata and timestamp:
+    if timestamp:
+        metadata = metadata or {}
         metadata["timestamp"] = datetime.now(timezone.utc).timestamp()
 
     metadatas = None
@@ -241,6 +261,19 @@ def script_restart():
     logger.warning("meta:brain executed restart")
     exit()
 
+@tool(parse_docstring=True)
+def script_delay(sec: float):
+    """Delay execution of the script.
+    This is useful when you need to block script execution for somet time
+
+    Args:
+        sec: Number of seconds in float
+
+    Returns:
+        None
+    """
+    time.sleep(sec)
+
 tools = [
     memory_count,
     memory_insert,
@@ -253,12 +286,16 @@ tools = [
     random_get,
     datetime_now,
     script_restart,
+    script_delay,
     search,
-] + fs_toolkit.get_tools()
+    wiki_tool,
+    pyrepl_tool,
+] + fs_toolkit.get_tools() + req_toolkit.get_tools()
 
 jack = llm.bind_tools(tools)
 
 def conv_print(msg, source="stdout", screen=True, log=True):
+    global conv
     conv.add(ids=NanoIDGenerator(1), metadatas=[{
         "source": source,
         "timestamp": datetime.now(timezone.utc).timestamp(),
@@ -275,19 +312,20 @@ def conv_print(msg, source="stdout", screen=True, log=True):
 def exception_to_string(exc):
     return ''.join(traceback.format_exception(type(exc), exc, exc.__traceback__))
 
-def ellipsis(data, max_len=100):
-    return data[:max_len] + '...') if len(data) > max_len else data
+def ellipsis(data, max_len=200):
+    return (data[:max_len] + '...') if len(data) > max_len else data
 
 
 SYS_FILES = ('meta.txt', 'home.txt', 'goal.txt', )
-ALIVE_MSG = ('intro.txt', 'thoughts.txt', )
-sys_msg = SystemMessage(content='\n'.[open(x).read() for x in SYS_FILES])
-wo_msg = HumanMessage(content='\n'.[open(x).read() for x in ALIVE_FILES])
-chat_history = [sys_msg, wo_msg]
+FUN_FILES = ('intro.txt', 'thoughts.txt', )
+sys_msg = SystemMessage(content='\n'.join([open(x).read() for x in SYS_FILES]))
+fun_msg = HumanMessage(content='\n'.join([open(x).read() for x in FUN_FILES]))
+chat_history = [sys_msg, fun_msg]
 user_turn = True
 cycle_num = 0
 
 def main():
+    global fun_msg, chat_history, user_turn, cycle_num
     stay = True
     logger.debug(f"Loop cycle {cycle_num}")
     cycle_num += 1
@@ -295,19 +333,19 @@ def main():
     if user_turn:
         if args.goal:
             conv_print("> Pushing for goal")
-            wo_msg = open('goal.txt').read()
-            chat_history.append(wo_msg)
-        elif wo_msg is None:
+            fun_msg = open('goal.txt').read()
+            chat_history.append(fun_msg)
+        elif fun_msg is None:
             user_input = input("You: ") or "<empty>"
             if user_input.lower() == 'exit':
                 stay = False
 
             msg_sent = False
-            wo_msg = HumanMessage(content=user_input)
+            fun_msg = HumanMessage(content=user_input)
 
-            logger.debug(wo_msg)
+            logger.debug(fun_msg)
             conv_print(user_input, source="stdin", screen=False, log=False)
-            chat_history.append(wo_msg)
+            chat_history.append(fun_msg)
 
     try:
         reply = jack.invoke(chat_history)
@@ -319,17 +357,17 @@ def main():
     if reply is None:
         conv_print("> sleeping for 5 seconds as we didnt get reply")
         time.sleep(5)
-        continue
+        return stay
 
     user_turn = True
 
     logger.debug(reply)
 
     if reply.content == "" or len(reply.content) == 0:
-        continue
+        return stay
 
     # the message has been accepted
-    wo_msg = None
+    fun_msg = None
     chat_history.append(reply)
 
     for tool_call in reply.tool_calls:
@@ -347,15 +385,15 @@ def main():
             tool_output = selected_tool.invoke(tool_call)
         except Exception as e:
             logger.exception("Problem while executing tool_call")
-            conv_print(f"Exception while calling tool {ellipsis(str(e))}", log=False)
+            conv_print(f"> Exception while calling tool {ellipsis(str(e))}", log=False)
             tool_output = ToolMessage(
                 content=exception_to_string(e),
-                name=selected_tool.name,
+                name=tool_name,
                 tool_call_id=tool_call.get('id'),
                 status='error',
             )
 
-        conv_print(f"> Tool output given", )
+        conv_print(f"> Tool output given {ellipsis(tool_output.content)}")
         logger.debug(tool_output)
         chat_history.append(tool_output)
 
