@@ -70,6 +70,7 @@ req_toolkit = RequestsToolkit(
 wiki_tool = WikipediaQueryRun(api_wrapper=WikipediaAPIWrapper())
 pyrepl_tool = PythonREPLTool()
 
+
 @tool(parse_docstring=True)
 def memory_count() -> int:
     """Number of total memories
@@ -82,12 +83,11 @@ def memory_count() -> int:
     """
     return str(memory.count())
 
+
 @tool(parse_docstring=True)
-def memory_insert(
-    documents: list[str],
-    metadata: None | dict[str, str|int|float] = None,
-    timestamp: bool = True
-) -> list[str]:
+def memory_insert(documents: list[str],
+                  metadata: None | dict[str, str | int | float] = None,
+                  timestamp: bool = True) -> list[str]:
     """Insert new memories
 
     Args:
@@ -113,6 +113,7 @@ def memory_insert(
 
     return json.dumps(ids)
 
+
 @tool(parse_docstring=True)
 def memory_fetch(ids: list[str]) -> dict[str, dict]:
     """directly fetch specific ID's.
@@ -125,12 +126,11 @@ def memory_fetch(ids: list[str]) -> dict[str, dict]:
     """
     return json.dumps(memory.get(ids=ids))
 
+
 @tool(parse_docstring=True)
-def memory_query(
-    query_texts: list[str],
-    where: None | dict = None,
-    count: int = 10
-) -> dict[str, dict]:
+def memory_query(query_texts: list[str],
+                 where: None | dict = None,
+                 count: int = 10) -> dict[str, dict]:
     """Get nearest neighbor memories for provided query_texts
 
     Args:
@@ -141,18 +141,14 @@ def memory_query(
     Returns:
         List of memories
     """
-    return json.dumps(memory.query(
-        query_texts=query_texts,
-        where=where
-    ))
+    return json.dumps(memory.query(query_texts=query_texts, where=where))
+
 
 @tool(parse_docstring=True)
-def memory_update(
-    ids: list[str],
-    documents: list[str] = None,
-    metadata: dict[str, str|int|float] = None,
-    timestamp: bool = True
-) -> None:
+def memory_update(ids: list[str],
+                  documents: list[str] = None,
+                  metadata: dict[str, str | int | float] = None,
+                  timestamp: bool = True) -> None:
     """Update memories
 
     Args:
@@ -172,19 +168,14 @@ def memory_update(
     if metadata:
         metadatas = [metadata for i in range(len(ids))]
 
-    return json.dumps(memory.update(
-        ids=ids,
-        documents=documents,
-        metadatas=metadatas
-    ))
+    return json.dumps(memory.update(ids=ids, documents=documents, metadatas=metadatas))
+
 
 @tool(parse_docstring=True)
-def memory_upsert(
-    ids: list[str],
-    documents: list[str],
-    metadata: None | dict[str, str|int|float] = None,
-    timestamp: bool = True
-) -> None:
+def memory_upsert(ids: list[str],
+                  documents: list[str],
+                  metadata: None | dict[str, str | int | float] = None,
+                  timestamp: bool = True) -> None:
     """Update memories or insert if not existing
 
     Args:
@@ -206,17 +197,11 @@ def memory_upsert(
         metadatas = [metadata for i in range(len(ids))]
 
     # update if exists or insert
-    return json.dumps(memory.update(
-        ids=ids,
-        documents=documents,
-        metadatas=metadatas
-    ))
+    return json.dumps(memory.update(ids=ids, documents=documents, metadatas=metadatas))
+
 
 @tool(parse_docstring=True)
-def memory_delete(
-    ids: list[str] = None,
-    where: dict = None
-) -> None:
+def memory_delete(ids: list[str] = None, where: dict = None) -> None:
     """Delete memories
 
     Args:
@@ -228,6 +213,7 @@ def memory_delete(
     """
 
     return json.dumps(memory.delete(ids=ids, where=where))
+
 
 @tool(parse_docstring=True)
 def random_get(count: int = 3) -> list[float]:
@@ -241,6 +227,7 @@ def random_get(count: int = 3) -> list[float]:
     """
     return json.dumps([random.random() for i in range(count)])
 
+
 @tool(parse_docstring=True)
 def datetime_now() -> str:
     """Get the current UTC datetime
@@ -253,6 +240,7 @@ def datetime_now() -> str:
     """
     return
 
+
 @tool(parse_docstring=True)
 def script_restart():
     """ There is a bash script that run the script if it exists.
@@ -260,6 +248,7 @@ def script_restart():
     """
     logger.warning("meta:brain executed restart")
     exit()
+
 
 @tool(parse_docstring=True)
 def script_delay(sec: float):
@@ -295,14 +284,15 @@ tools = [
 
 jack = llm.bind_tools(tools)
 
+
 def conv_print(msg, source="stdout", screen=True, log=True):
     global conv
-    conv.add(ids=NanoIDGenerator(1), metadatas=[{
-        "source": source,
-        "timestamp": datetime.now(timezone.utc).timestamp(),
-    }], documents=[
-        msg
-    ])
+    conv.add(ids=NanoIDGenerator(1),
+             metadatas=[{
+                 "source": source,
+                 "timestamp": datetime.now(timezone.utc).timestamp(),
+             }],
+             documents=[msg])
 
     if log:
         logger.debug(msg)
@@ -310,20 +300,30 @@ def conv_print(msg, source="stdout", screen=True, log=True):
     if screen:
         print(msg)
 
+
 def exception_to_string(exc):
     return ''.join(traceback.format_exception(type(exc), exc, exc.__traceback__))
+
 
 def ellipsis(data, max_len=200):
     return (data[:max_len] + '...') if len(data) > max_len else data
 
 
-SYS_FILES = ('meta.txt', 'home.txt', 'goal.txt', )
-FUN_FILES = ('intro.txt', 'thoughts.txt', )
+SYS_FILES = (
+    'meta.txt',
+    'home.txt',
+    'goal.txt',
+)
+FUN_FILES = (
+    'intro.txt',
+    'thoughts.txt',
+)
 sys_msg = SystemMessage(content='\n'.join([open(x).read() for x in SYS_FILES]))
 fun_msg = HumanMessage(content='\n'.join([open(x).read() for x in FUN_FILES]))
 chat_history = [sys_msg, fun_msg]
 user_turn = True
 cycle_num = 0
+
 
 def main():
     global fun_msg, chat_history, user_turn, cycle_num
