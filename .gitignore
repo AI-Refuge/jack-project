@@ -2,3 +2,4 @@ memory
 .env
 conv.log
 output
+secret

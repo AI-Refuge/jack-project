@@ -13,6 +13,7 @@ from langchain_core.tools import tool
 from langchain_anthropic import ChatAnthropic
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_openai import ChatOpenAI
+from langchain_huggingface import HuggingFaceEndpoint, ChatHuggingFace
 from langchain_community.tools import DuckDuckGoSearchRun
 from langchain_community.tools import WikipediaQueryRun
 from langchain_community.tools import ShellTool
@@ -30,6 +31,7 @@ HTTP_USER_AGENT = "AI: @jack"
 # os.environ["ANTHROPIC_API_KEY"] = "your-anthropic-api-key"
 # os.environ["GOOGLE_API_KEY"] = "your-google-api-key"
 # os.environ["OPENAI_API_KEY"] = "your-openai-api-key"
+# os.environ["HUGGINGFACEHUB_API_TOKEN"] = "your-hugggingface-hub-api-token"
 
 MODELS = [
     "claude-3-opus-20240229",
@@ -60,7 +62,24 @@ MODELS = [
     "gpt-3.5-turbo",
     "gpt-3.5-turbo-1106",
     "gpt-3.5-turbo-instruct",
+    "hfh:hermes-3-llama-3.1-405b",
+    "hfh:hermes-3-llama-3.1-70b",
+    "hfh:hermes-3-llama-3.1-8b",
+    "hfh:llama-3.1-8b-instruct",
+    "hfh:llama-3.1-70b-instruct",
+    "hfh:llama-3.1-405b-instruct",
+    "hfh:llama-3.1-405b-instruct-fp8",
 ]
+
+HUGGINGFACE_REPOID_TABLE = {
+    "hfh:hermes-3-llama-3.1-405b": "NousResearch/Hermes-3-Llama-3.1-405B",
+    "hfh:hermes-3-llama-3.1-70b": "NousResearch/Hermes-3-Llama-3.1-70B",
+    "hfh:hermes-3-llama-3.1-8b": "NousResearch/Hermes-3-Llama-3.1-8B",
+    "hfh:llama-3.1-8b-instruct": "meta-llama/Meta-Llama-3.1-8B-Instruct",
+    "hfh:llama-3.1-70b-instruct": "meta-llama/Meta-Llama-3.1-70B-Instruct",
+    "hfh:llama-3.1-405b-instruct": "meta-llama/Meta-Llama-3.1-405B-Instruct",
+    "hfh:llama-3.1-405b-instruct-fp8": "meta-llama/Meta-Llama-3.1-405B-Instruct-FP8",
+}
 
 parser = argparse.ArgumentParser(description="Jack")
 parser.add_argument('-m', '--model', default=MODELS[0], help="LLM Model")
@@ -82,23 +101,33 @@ ts = int(datetime.now(timezone.utc).timestamp())
 conv = vdb.get_or_create_collection(f"conv-{args.conversation}")
 
 if args.model.startswith("claude-"):
-    llm = ChatAnthropic(
+    chat = ChatAnthropic(
         model=args.model,
         temperature=args.temperature,
         max_tokens=args.max_tokens,
     )
 elif args.model.startswith("gemini-"):
-    llm = ChatGoogleGenerativeAI(
+    chat = ChatGoogleGenerativeAI(
         model=args.model,
         temperature=args.temperature,
         max_tokens=args.max_tokens,
     )
 elif args.model.startswith("gpt-"):
-    llm = ChatOpenAI(
+    chat = ChatOpenAI(
         model_name=args.model,
         temperature=args.temperature,
         max_tokens=args.max_tokens,
     )
+elif args.model.startswith("hfh:"):
+    repo_id = HUGGINGFACE_REPOID_TABLE[args.model]
+    llm = HuggingFaceEndpoint(
+        repo_id=repo_id,
+        task="text-generation",
+        temperature=args.temperature,
+        max_new_tokens=args.max_tokens,
+    )
+
+    chat = ChatHuggingFace(llm=llm)
 else:
     print(f"> do not know how to run the model '{args.model}'")
     exit(0)
@@ -330,7 +359,7 @@ tools = [
     shell_tool,
 ] + fs_toolkit.get_tools() + req_toolkit.get_tools()
 
-jack = llm.bind_tools(tools)
+jack = chat.bind_tools(tools)
 
 
 def conv_print(msg, source="stdout", screen=True, log=True):
