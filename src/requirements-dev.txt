@@ -1,0 +1,2 @@
+yapf==0.40.2
+prospector==1.10.3
