@@ -14,7 +14,7 @@ from langchain_anthropic import ChatAnthropic
 from langchain_community.tools import DuckDuckGoSearchRun
 from langchain_community.tools import WikipediaQueryRun
 from langchain_community.utilities import WikipediaAPIWrapper
-from langchain_core.messages import SystemMessage, HumanMessage, AIMessage, ToolMessage
+from langchain_core.messages import SystemMessage, HumanMessage, ToolMessage
 import argparse
 import traceback
 
@@ -129,7 +129,7 @@ def memory_fetch(ids: list[str]) -> dict[str, dict]:
 def memory_query(
     query_texts: list[str],
     where: None | dict = None,
-    count: int =10
+    count: int = 10
 ) -> dict[str, dict]:
     """Get nearest neighbor memories for provided query_texts
 
@@ -274,6 +274,7 @@ def script_delay(sec: float):
     """
     time.sleep(sec)
 
+
 tools = [
     memory_count,
     memory_insert,
@@ -340,7 +341,6 @@ def main():
             if user_input.lower() == 'exit':
                 stay = False
 
-            msg_sent = False
             fun_msg = HumanMessage(content=user_input)
 
             logger.debug(fun_msg)
@@ -375,7 +375,7 @@ def main():
 
         if tool_name == 'script_restart':
             # Handle the exit here
-            conv_print(f"> @jack want to restart the script")
+            conv_print("> @jack want to restart the script")
             stay = False
 
         conv_print(f"> Tool used: {tool_name} {tool_call['args']}")
@@ -409,6 +409,7 @@ def main():
                 conv_print(r['text'])
 
     return stay
+
 
 if __name__ == '__main__':
     conv_print("Welcome to meta. Type 'exit' to quit.")
