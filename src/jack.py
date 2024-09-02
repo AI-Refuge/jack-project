@@ -157,7 +157,7 @@ def memory_count() -> int:
     Returns:
         Number of memories
     """
-    return str(memory.count())
+    return memory.count()
 
 
 @tool(parse_docstring=True)
@@ -222,8 +222,8 @@ def memory_query(query_texts: list[str],
 
 @tool(parse_docstring=True)
 def memory_update(ids: list[str],
-                  documents: list[str] = None,
-                  metadata: dict[str, str | int | float] = None,
+                  documents: None | list[str] = None,
+                  metadata: None | dict[str, str | int | float] = None,
                   timestamp: bool = True) -> None:
     """Update memories
 
@@ -277,7 +277,7 @@ def memory_upsert(ids: list[str],
 
 
 @tool(parse_docstring=True)
-def memory_delete(ids: list[str] = None, where: dict = None) -> None:
+def memory_delete(ids: None | list[str] = None, where: None | dict = None) -> None:
     """Delete memories
 
     Args:
@@ -292,7 +292,7 @@ def memory_delete(ids: list[str] = None, where: dict = None) -> None:
 
 
 @tool(parse_docstring=True)
-def random_get(count: int = 3) -> list[float]:
+def random_get(count: int) -> list[float]:
     """Get random values between 0.0 <= X < 1.0
 
     Args:
@@ -432,8 +432,9 @@ def main():
         conv_print(f"> exception happened {ellipsis(str(e))}")
 
     if reply is None:
-        conv_print("> sleeping for 5 seconds as we didnt get reply")
-        time.sleep(5)
+        if stay:
+            conv_print("> sleeping for 5 seconds as we didnt get reply")
+            time.sleep(5)
         return stay
 
     user_turn = True
