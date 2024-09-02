@@ -260,8 +260,10 @@ print("Welcome to meta. Type 'exit' to quit.")
 def exception_to_string(exc):
     return ''.join(traceback.format_exception(type(exc), exc, exc.__traceback__))
 
-sys_msg = SystemMessage(content=open('meta.txt').read())
-wo_msg = HumanMessage(content=open('home.txt').read())
+SYS_FILES = ('meta.txt', 'home.txt', 'goal.txt', )
+ALIVE_MSG = ('intro.txt', 'thoughts.txt', )
+sys_msg = SystemMessage(content='\n'.[open(x).read() for x in SYS_FILES])
+wo_msg = HumanMessage(content='\n'.[open(x).read() for x in ALIVE_FILES])
 chat_history = [sys_msg, wo_msg]
 user_turn = True
 cycle_num = 0
