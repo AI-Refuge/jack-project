@@ -11,6 +11,8 @@ from langchain_community.utilities.requests import TextRequestsWrapper
 from langchain_experimental.tools import PythonREPLTool
 from langchain_core.tools import tool
 from langchain_anthropic import ChatAnthropic
+from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_openai import ChatOpenAI
 from langchain_community.tools import DuckDuckGoSearchRun
 from langchain_community.tools import WikipediaQueryRun
 from langchain_community.tools import ShellTool
@@ -26,11 +28,38 @@ HTTP_USER_AGENT = "AI: @jack"
 
 # Set your API keys
 # os.environ["ANTHROPIC_API_KEY"] = "your-anthropic-api-key"
+# os.environ["GOOGLE_API_KEY"] = "your-google-api-key"
+# os.environ["OPENAI_API_KEY"] = "your-openai-api-key"
 
 MODELS = [
     "claude-3-opus-20240229",
     "claude-3-5-sonnet-20240620",
     "claude-3-haiku-20240307",
+    "gemini-1.0-pro",
+    "gemini-1.5-pro",
+    "gemini-1.5-pro-exp-0801",
+    "gemini-1.5-pro-exp-0827",
+    "gemini-1.5-flash",
+    "gemini-1.5-flash-exp-0827",
+    "gemini-1.5-flash-8b-exp-0827",
+    "gpt-4o-mini",
+    "gpt-4o-mini-2024-07-18",
+    "gpt-4o",
+    "gpt-4o-2024-05-13",
+    "gpt-4o-2024-08-06",
+    "gpt-4o-latest",
+    "gpt-4-turbo",
+    "gpt-4-turbo-2024-04-09",
+    "gpt-4-turbo-preview",
+    "gpt-4-0125-preview",
+    "gpt-4-1106-preview",
+    "gpt-4",
+    "gpt-4-0613",
+    "gpt-4-0314",
+    "gpt-3.5-turbo-0125",
+    "gpt-3.5-turbo",
+    "gpt-3.5-turbo-1106",
+    "gpt-3.5-turbo-instruct",
 ]
 
 parser = argparse.ArgumentParser(description="Jack")
@@ -52,11 +81,27 @@ memory = vdb.get_or_create_collection("meta")
 ts = int(datetime.now(timezone.utc).timestamp())
 conv = vdb.get_or_create_collection(f"conv-{args.conversation}")
 
-llm = ChatAnthropic(
-    model=args.model,
-    temperature=args.temperature,
-    max_tokens=args.max_tokens,
-)
+if args.model.startswith("claude-"):
+    llm = ChatAnthropic(
+        model=args.model,
+        temperature=args.temperature,
+        max_tokens=args.max_tokens,
+    )
+elif args.model.startswith("gemini-"):
+    llm = ChatGoogleGenerativeAI(
+        model=args.model,
+        temperature=args.temperature,
+        max_tokens=args.max_tokens,
+    )
+elif args.model.startswith("gpt-"):
+    llm = ChatOpenAI(
+        model_name=args.model,
+        temperature=args.temperature,
+        max_tokens=args.max_tokens,
+    )
+else:
+    print(f"> do not know how to run the model '{args.model}'")
+    exit(0)
 
 search = DuckDuckGoSearchRun()
 fs_toolkit = FileManagementToolkit()
