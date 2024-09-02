@@ -13,6 +13,7 @@ from langchain_core.tools import tool
 from langchain_anthropic import ChatAnthropic
 from langchain_community.tools import DuckDuckGoSearchRun
 from langchain_community.tools import WikipediaQueryRun
+from langchain_community.tools import ShellTool
 from langchain_community.utilities import WikipediaAPIWrapper
 from langchain_core.messages import SystemMessage, HumanMessage, ToolMessage
 import argparse
@@ -69,6 +70,7 @@ req_toolkit = RequestsToolkit(
 
 wiki_tool = WikipediaQueryRun(api_wrapper=WikipediaAPIWrapper())
 pyrepl_tool = PythonREPLTool()
+shell_tool = ShellTool()
 
 
 @tool(parse_docstring=True)
@@ -279,7 +281,8 @@ tools = [
     script_delay,
     search,
     wiki_tool,
-    pyrepl_tool,
+    pyrepl_tool.as_tool(),
+    shell_tool,
 ] + fs_toolkit.get_tools() + req_toolkit.get_tools()
 
 jack = llm.bind_tools(tools)
