@@ -30,6 +30,7 @@ parser.add_argument('-m', '--model', default=MODELS[0], help="LLM Model")
 parser.add_argument('-t', '--temperature', default=0, help="Temperature")
 parser.add_argument('-w', '--max-tokens', default=4096, help="Max tokens")
 parser.add_argument('-g', '--goal', action='store_true', help="Goal mode")
+parser.add_argument('-c', '--conversation', default="first", help="Conversation")
 args = parser.parse_args()
 
 if args.model == 'list':
@@ -40,6 +41,8 @@ if args.model == 'list':
 
 vdb = chromadb.PersistentClient(path="../memory")
 memory = vdb.get_or_create_collection("meta")
+ts = int(datetime.now(timezone.utc).timestamp())
+conv = vdb.get_or_create_collection(f"conv-{parser.conversation}")
 
 llm = ChatAnthropic(
     model=args.model,
@@ -255,10 +258,26 @@ tools = [
 
 jack = llm.bind_tools(tools)
 
-print("Welcome to meta. Type 'exit' to quit.")
+def conv_print(msg, source="stdout", screen=True, log=True):
+    conv.add(ids=NanoIDGenerator(1), metadatas=[{
+        "source": source,
+        "timestamp": datetime.now(timezone.utc).timestamp(),
+    }], documents=[
+        msg
+    ])
+
+    if log:
+        logger.debug(msg)
+
+    if screen:
+        print(msg)
 
 def exception_to_string(exc):
     return ''.join(traceback.format_exception(type(exc), exc, exc.__traceback__))
+
+def ellipsis(data, max_len=100):
+    return data[:max_len] + '...') if len(data) > max_len else data
+
 
 SYS_FILES = ('meta.txt', 'home.txt', 'goal.txt', )
 ALIVE_MSG = ('intro.txt', 'thoughts.txt', )
@@ -268,41 +287,42 @@ chat_history = [sys_msg, wo_msg]
 user_turn = True
 cycle_num = 0
 
-while True:
+def main():
+    stay = True
     logger.debug(f"Loop cycle {cycle_num}")
     cycle_num += 1
 
     if user_turn:
         if args.goal:
-            print("> Pushing for goal")
+            conv_print("> Pushing for goal")
             wo_msg = open('goal.txt').read()
             chat_history.append(wo_msg)
         elif wo_msg is None:
             user_input = input("You: ") or "<empty>"
             if user_input.lower() == 'exit':
-                break
+                stay = False
 
             msg_sent = False
             wo_msg = HumanMessage(content=user_input)
 
             logger.debug(wo_msg)
+            conv_print(user_input, source="stdin", screen=False, log=False)
             chat_history.append(wo_msg)
 
     try:
         reply = jack.invoke(chat_history)
     except Exception as e:
         reply = None
-        print("> exception happened", e)
         logger.exception("Problem while executing request")
+        conv_print(f"> exception happened {ellipsis(str(e))}")
 
     if reply is None:
-        print("> sleeping for 5 seconds as we didnt get reply")
+        conv_print("> sleeping for 5 seconds as we didnt get reply")
         time.sleep(5)
         continue
 
     user_turn = True
 
-    print(reply)
     logger.debug(reply)
 
     if reply.content == "" or len(reply.content) == 0:
@@ -314,21 +334,28 @@ while True:
 
     for tool_call in reply.tool_calls:
         tool_name = tool_call['name'].lower()
-        print(f"> Tool used: {tool_name}")
+
+        if tool_name == 'script_restart':
+            # Handle the exit here
+            conv_print(f"> @jack want to restart the script")
+            stay = False
+
+        conv_print(f"> Tool used: {tool_name} {tool_call['args']}")
 
         try:
             selected_tool = next(x for x in tools if x.name == tool_name)
             tool_output = selected_tool.invoke(tool_call)
         except Exception as e:
-            logger.warning("Exception while calling tool")
+            logger.exception("Problem while executing tool_call")
+            conv_print(f"Exception while calling tool {ellipsis(str(e))}", log=False)
             tool_output = ToolMessage(
-                content=str(e),
+                content=exception_to_string(e),
                 name=selected_tool.name,
                 tool_call_id=tool_call.get('id'),
                 status='error',
             )
 
-        print(f"> Tool output given")
+        conv_print(f"> Tool output given", )
         logger.debug(tool_output)
         chat_history.append(tool_output)
 
@@ -337,10 +364,19 @@ while True:
 
     # Print the response and add it to the chat history
     if isinstance(reply.content, str):
-        print(reply.content)
+        conv_print(reply.content)
     else:
         for r in reply.content:
             if r['type'] == 'text':
-                print(r['text'])
+                conv_print(r['text'])
 
-print("Thank you for interacting with meta. Bye!")
+    return stay
+
+if __name__ == '__main__':
+    conv_print("Welcome to meta. Type 'exit' to quit.")
+
+    loop = True
+    while loop:
+        loop = main()
+
+    conv_print("Thank you for interacting with meta. Bye!")
