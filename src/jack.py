@@ -314,7 +314,7 @@ def datetime_now() -> str:
     Returns:
         String time in ISO 8601 format
     """
-    return
+    return str(datetime.now(timezone.utc))
 
 
 @tool(parse_docstring=True)
