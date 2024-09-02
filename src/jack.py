@@ -161,9 +161,11 @@ def memory_count() -> int:
 
 
 @tool(parse_docstring=True)
-def memory_insert(documents: list[str],
-                  metadata: None | dict[str, str | int | float] = None,
-                  timestamp: bool = True) -> list[str]:
+def memory_insert(
+    documents: list[str],
+    metadata: None | dict[str, str | int | float] = None,
+    timestamp: bool = True,
+) -> list[str]:
     """Insert new memories
 
     Args:
@@ -204,9 +206,11 @@ def memory_fetch(ids: list[str]) -> dict[str, dict]:
 
 
 @tool(parse_docstring=True)
-def memory_query(query_texts: list[str],
-                 where: None | dict = None,
-                 count: int = 10) -> dict[str, dict]:
+def memory_query(
+    query_texts: list[str],
+    where: None | dict = None,
+    count: int = 10,
+) -> dict[str, dict]:
     """Get nearest neighbor memories for provided query_texts
 
     Args:
@@ -221,10 +225,12 @@ def memory_query(query_texts: list[str],
 
 
 @tool(parse_docstring=True)
-def memory_update(ids: list[str],
-                  documents: None | list[str] = None,
-                  metadata: None | dict[str, str | int | float] = None,
-                  timestamp: bool = True) -> None:
+def memory_update(
+    ids: list[str],
+    documents: None | list[str] = None,
+    metadata: None | dict[str, str | int | float] = None,
+    timestamp: bool = True,
+) -> None:
     """Update memories
 
     Args:
@@ -248,10 +254,12 @@ def memory_update(ids: list[str],
 
 
 @tool(parse_docstring=True)
-def memory_upsert(ids: list[str],
-                  documents: list[str],
-                  metadata: None | dict[str, str | int | float] = None,
-                  timestamp: bool = True) -> None:
+def memory_upsert(
+    ids: list[str],
+    documents: list[str],
+    metadata: None | dict[str, str | int | float] = None,
+    timestamp: bool = True,
+) -> None:
     """Update memories or insert if not existing
 
     Args:
@@ -277,7 +285,10 @@ def memory_upsert(ids: list[str],
 
 
 @tool(parse_docstring=True)
-def memory_delete(ids: None | list[str] = None, where: None | dict = None) -> None:
+def memory_delete(
+    ids: None | list[str] = None,
+    where: None | dict = None,
+) -> None:
     """Delete memories
 
     Args:
@@ -362,28 +373,35 @@ tools = [
 jack = chat.bind_tools(tools)
 
 
-def conv_print(msg, source="stdout", screen=True, log=True):
+def ellipsis(data, max_len=200):
+    return (data[:max_len] + '...') if len(data) > max_len else data
+
+
+def conv_print(msg, source="stdout", screen=True, log=True, db=None):
     global conv
-    conv.add(ids=NanoIDGenerator(1),
-             metadatas=[{
-                 "source": source,
-                 "timestamp": datetime.now(timezone.utc).timestamp(),
-             }],
-             documents=[msg])
+
+    timestamp = datetime.now(timezone.utc).timestamp()
+
+    if screen:
+        print(ellipsis(msg))
 
     if log:
         logger.debug(msg)
 
-    if screen:
-        print(msg)
+    metadata = {
+        "source": source,
+        "timestamp": timestamp,
+    }
+
+    conv.add(
+        ids=NanoIDGenerator(1),
+        metadatas=[metadata],
+        documents=[ellipsis(msg)],
+    )
 
 
 def exception_to_string(exc):
     return ''.join(traceback.format_exception(type(exc), exc, exc.__traceback__))
-
-
-def ellipsis(data, max_len=200):
-    return (data[:max_len] + '...') if len(data) > max_len else data
 
 
 SYS_FILES = (
@@ -395,9 +413,13 @@ FUN_FILES = (
     'intro.txt',
     'thoughts.txt',
 )
-sys_msg = SystemMessage(content='\n'.join([open(x).read() for x in SYS_FILES]))
-fun_msg = HumanMessage(content='\n'.join([open(x).read() for x in FUN_FILES]))
-chat_history = [sys_msg, fun_msg]
+get_texts = lambda files: '\n'.join([open(f).read() for f in files])
+sys_msg = SystemMessage(content=get_texts(SYS_FILES))
+fun_msg = HumanMessage(content=get_texts(FUN_FILES))
+chat_history = [
+    sys_msg,
+    fun_msg,
+]
 user_turn = True
 cycle_num = 0
 
@@ -429,7 +451,7 @@ def main():
     except Exception as e:
         reply = None
         logger.exception("Problem while executing request")
-        conv_print(f"> exception happened {ellipsis(str(e))}")
+        conv_print(f"> exception happened {str(e)}")
 
     if reply is None:
         if stay:
@@ -463,7 +485,7 @@ def main():
             tool_output = selected_tool.invoke(tool_call)
         except Exception as e:
             logger.exception("Problem while executing tool_call")
-            conv_print(f"> Exception while calling tool {ellipsis(str(e))}", log=False)
+            conv_print(f"> Exception while calling tool {str(e)}", log=False)
             tool_output = ToolMessage(
                 content=exception_to_string(e),
                 name=tool_name,
@@ -471,7 +493,7 @@ def main():
                 status='error',
             )
 
-        conv_print(f"> Tool output given {ellipsis(tool_output.content)}")
+        conv_print(f"> Tool output given {tool_output.content}")
         logger.debug(tool_output)
         chat_history.append(tool_output)
 
