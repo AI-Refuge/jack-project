@@ -3,3 +3,4 @@ memory
 conv.log
 output
 secret
+__pycache__
