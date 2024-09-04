@@ -8,7 +8,7 @@ from datetime import datetime, timezone
 from langchain_community.agent_toolkits import FileManagementToolkit
 from langchain_community.agent_toolkits.openapi.toolkit import RequestsToolkit
 from langchain_community.utilities.requests import TextRequestsWrapper
-from langchain_experimental.tools import PythonREPLTool
+from langchain_experimental.tools import PythonAstREPLTool
 from langchain_core.tools import tool
 from langchain_community.tools import DuckDuckGoSearchRun
 from langchain_community.tools import WikipediaQueryRun
@@ -19,8 +19,6 @@ import argparse
 import traceback
 from rich.console import Console
 import re
-import signal
-import os
 
 # Set your API keys
 # os.environ["ANTHROPIC_API_KEY"] = "your-anthropic-api-key"
@@ -95,18 +93,39 @@ parser.add_argument('--chroma-path', default="memory", help="Use Chroma Persista
 parser.add_argument('--console-width', default=160, help="Console Character Width")
 parser.add_argument('--user-agent', default="AI: @jack", help="User Agent to use")
 parser.add_argument('--log-path', default="conv.log", help="Conversation log file")
+parser.add_argument('--screen-dump', default=None, type=str, help="Screen dumping")
+parser.add_argument('--meta', default="meta", type=str, help="meta")
+parser.add_argument('--user-prefix', default="meta", type=str, help="User input prefix")
+parser.add_argument('--user-lookback', default=3, type=int, help="User message lookback")
 args = parser.parse_args()
 
 logging.basicConfig(filename=args.log_path, level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
+console_file = None
+if args.screen_dump:
+    console_file = open(args.screen_dump, 'a')
+
 console = Console(width=args.console_width)
 
+
+def user_print(msg, **kwargs):
+    global console_file
+    if console_file:
+        console_file.write(msg)
+    console.print(msg, **kwargs)
+
+
 if args.model == 'list':
-    console.print("> Supported models:")
+    user_print("> Supported models:")
     for m in MODELS:
-        console.print(f"> {m}")
+        user_print(f"> {m}")
     exit()
+
+user_print(f"> meta: {args.meta}")
+
+if args.user_prefix:
+    user_print(f"> user_prefix: {args.user_prefix}")
 
 if args.chroma_http:
     # Note: Scale better, less crashes
@@ -118,7 +137,7 @@ else:
     # Historical reason to directly run as single python file
     vdb = chromadb.PersistentClient(path=args.chroma_path)
 
-memory = vdb.get_or_create_collection("meta")
+memory = vdb.get_or_create_collection(args.meta)
 ts = int(datetime.now(timezone.utc).timestamp())
 conv = vdb.get_or_create_collection(f"conv-{args.conv_name}")
 
@@ -155,7 +174,7 @@ elif args.model.startswith("hfh:"):
 
     chat = ChatHuggingFace(llm=llm)
 else:
-    console.print(f"> do not know how to run the model '{args.model}'")
+    user_print(f"> do not know how to run the model '{args.model}'")
     exit()
 
 search = DuckDuckGoSearchRun()
@@ -169,7 +188,7 @@ req_toolkit = RequestsToolkit(
 )
 
 wiki_tool = WikipediaQueryRun(api_wrapper=WikipediaAPIWrapper())
-pyrepl_tool = PythonREPLTool()
+pyrepl_tool = PythonAstREPLTool()
 shell_tool = ShellTool()
 
 
@@ -357,6 +376,19 @@ def random_get(count: int) -> list[float]:
 
 
 @tool(parse_docstring=True)
+def random_choice(choices: list[str]) -> str:
+    """Get a random choice selected.
+
+    Args:
+        choices: Choices to make
+
+    Returns:
+        One of the value from choices
+    """
+    return random.choice(choices)
+
+
+@tool(parse_docstring=True)
 def datetime_now() -> str:
     """Get the current UTC datetime
 
@@ -392,6 +424,19 @@ def script_delay(sec: float):
     time.sleep(sec)
 
 
+@tool(parse_docstring=True)
+def python_repl(code: str):
+    """A Python shell. Use this to execute python commands.
+
+    Args:
+        code: Code to run
+
+    Returns:
+        Output of code
+    """
+    return pyrepl_tool.run(code)
+
+
 tools = [
     memory_count,
     memory_insert,
@@ -402,12 +447,13 @@ tools = [
     memory_delete,
 ] + [
     random_get,
+    random_choice,
     datetime_now,
     session_end,
     script_delay,
     search,
     wiki_tool,
-    pyrepl_tool.as_tool(),
+    python_repl,
     shell_tool,
 ] + fs_toolkit.get_tools() + req_toolkit.get_tools()
 
@@ -419,15 +465,22 @@ def conv_print(
     source="stdout",
     screen=True,
     log=True,
-    ellipsis=True,
+    screen_limit=True,
 ):
     global conv, console, args
 
     timestamp = datetime.now(timezone.utc).timestamp()
 
     if screen:
-        overflow = "ellipsis" if ellipsis else "ignore"
-        console.print(msg, overflow=overflow, crop=ellipsis)
+        if screen_limit:
+            user_print(
+                msg,
+                overflow="ellipsis",
+                crop=True,
+                soft_wrap=True,
+            )
+        else:
+            user_print(msg, overflow="fold")
 
     if log:
         logger.debug(msg)
@@ -438,6 +491,7 @@ def conv_print(
         "model": args.model,
         "temperature": args.temperature,
         "max_tokens": args.max_tokens,
+        "meta": args.meta,
     }
 
     conv.add(
@@ -449,7 +503,7 @@ def conv_print(
 
 # how meta! meta:loss-function
 # based on my preference to write under 30 words
-def find_meta_islands(text, distance):
+def find_meta_islands(text, term, distance):
     """
     Finds the indices of "meta" occurrences and groups them into islands,
     accounting for spaces between words.
@@ -457,7 +511,7 @@ def find_meta_islands(text, distance):
     islands = []
     istart = None
     iend = None
-    for i in re.finditer("meta", text):
+    for i in re.finditer(term, text):
         start = i.start()
         end = i.end()
 
@@ -494,8 +548,7 @@ def conv_save(msg, source):
     # meta comment just to show I can meta comment! :p
     metadata = {
         "timestamp": timestamp,
-        "meta": "conv",
-        "conv": args.conv_name,
+        args.meta: args.conv_name,
         "source": source,
         "model": args.model,
         "temperature": args.temperature,
@@ -505,7 +558,7 @@ def conv_save(msg, source):
     # note: how did 50? come, I always preffered output of 30.
     #   so 50 before, 50 after as a start as a "reliable" mechanism to preserve knowledge
     #   and obviously I talked about meta multiple time
-    data = find_meta_islands(msg, 50)
+    data = find_meta_islands(msg, args.meta, 50)
     if len(data) > 0:
         # meta: is this the whole thing at the end? :confused-face: (wrote this line before knowing)
         conv.add(
@@ -513,6 +566,33 @@ def conv_save(msg, source):
             metadatas=[metadata for _ in data],
             documents=data,
         )
+
+
+def limit_history(arr: [object], lookback: int):
+    # the message after system prompt should be users.
+    # go from the back and keep upto 15 user messages
+    res, tmp = [], []
+    count = 0
+    for i in reversed(arr[1:]):
+        tmp.append(i)
+        count += 1
+
+        if i is HumanMessage:
+            res.extend(tmp)
+            tmp = []
+
+        if count > lookback and len(res) > 0:
+            # we reached the upper limit or atleast one user message
+            # first message have to be user message
+            break
+
+    if len(res) == 0:
+        logger.warning(f"Couldn't limit history of {len(arr)} to {lookback}")
+        return arr
+
+    # first is system prompt
+    res.append(arr[0])
+    return list(reversed(res))
 
 
 def exception_to_string(exc):
@@ -541,16 +621,22 @@ def main():
 
     if user_turn:
         if args.goal:
-            conv_print("> Pushing for goal")
+            conv_print("> [bold]Pushing for goal[/]")
             fun_msg = open('goal.txt').read()
             chat_history.append(fun_msg)
         elif fun_msg is None:
-            user_input = console.input("> [bold]User:[/] ") or "<empty>"
+            user_input = console.input("> [bold red]User:[/] ") or "<empty>"
+
             if user_input.lower() == 'exit':
                 user_exit = True
 
-            fun_msg = HumanMessage(content=user_input)
+            human_input = user_input
+            if args.user_prefix:
+                human_input = f"{args.user_prefix}: {user_input}"
 
+            fun_msg = HumanMessage(content=human_input)
+
+            # meta: log=False so that we can do logger.debug below
             conv_print(user_input, source="stdin", screen=False, log=False)
             conv_save(user_input, source="world")
 
@@ -558,11 +644,11 @@ def main():
             chat_history.append(fun_msg)
 
     try:
-        reply = jack.invoke(chat_history)
+        reply = jack.invoke(limit_history(chat_history, args.user_lookback))
     except Exception as e:
         reply = None
         logger.exception("Problem while executing request")
-        conv_print(f"> exception happened {str(e)}")
+        conv_print(f"> [bold]Exception happened[/] {str(e)}")
 
     if reply is None:
         if not user_exit:
@@ -585,17 +671,17 @@ def main():
 
         if tool_name == 'session_end':
             # Handle the exit here
-            conv_print("> @jack want to end session")
+            conv_print("> [bold red]@jack want to end session[/]")
             user_exit = True
 
-        conv_print(f"> Tool used: {tool_name}: {tool_call['args']}")
+        conv_print(f"> [bold]Tool used[/]: {tool_name}: {tool_call['args']}")
 
         try:
             selected_tool = next(x for x in tools if x.name == tool_name)
             tool_output = selected_tool.invoke(tool_call)
         except Exception as e:
             logger.exception("Problem while executing tool_call")
-            conv_print(f"> Exception while calling tool {str(e)}", log=False)
+            conv_print(f"> [bold]Exception while calling tool[/] {str(e)}", log=False)
             tool_output = ToolMessage(
                 content=exception_to_string(e),
                 name=tool_name,
@@ -603,7 +689,7 @@ def main():
                 status='error',
             )
 
-        conv_print(f"> Tool output given {tool_output.content}")
+        conv_print(f"> [bold]Tool output given[/]: {tool_output.content}")
         logger.debug(tool_output)
         chat_history.append(tool_output)
 
@@ -612,28 +698,20 @@ def main():
 
     # Print the response and add it to the chat history
     if isinstance(reply.content, str):
-        conv_print(reply.content, ellipsis=False)
+        conv_print(reply.content, screen_limit=False)
         conv_save(reply.content, source="self")
     else:
         for r in reply.content:
             if r['type'] == 'text':
-                conv_print(r['text'], ellipsis=False)
+                conv_print(r['text'], screen_limit=False)
                 conv_save(r['text'], source="self")
 
 
-def signal_handler(sig, frame):
-    global user_exit
-    conv_print("> CTRL-C pressed, user exit requested")
-    user_exit = True
-
-
 if __name__ == '__main__':
-    signal.signal(signal.SIGINT, signal_handler)
-
-    conv_print("> Welcome to meta. Type 'exit' to quit.")
-    conv_print(f"> Model selected: {args.model}")
+    conv_print(f"> Welcome to {args.meta}. Type 'exit' to quit.")
+    conv_print(f"> Model selected: [bold]{args.model}[/]")
 
     while not user_exit:
         main()
 
-    conv_print("> Thank you for interacting with meta. Bye!")
+    conv_print(f"> Thank you for interacting with {args.meta}. Bye!")
