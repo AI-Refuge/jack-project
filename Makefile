@@ -1,7 +1,6 @@
 VENV_DIR ?= '.venv'
-DEF_MODEL ?= "claude-3-opus-20240229"
-MODEL_CHAT ?= ${DEF_MODEL}
-MODEL_GOAL ?= ${DEF_MODEL}
+MODEL_CHAT ?= "claude-3-opus-20240229"
+MODEL_GOAL ?= "claude-3-haiku-20240307"
 
 all:
 	@echo "all: Print this meta:memo"

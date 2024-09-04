@@ -10,10 +10,6 @@ from langchain_community.agent_toolkits.openapi.toolkit import RequestsToolkit
 from langchain_community.utilities.requests import TextRequestsWrapper
 from langchain_experimental.tools import PythonREPLTool
 from langchain_core.tools import tool
-from langchain_anthropic import ChatAnthropic
-from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain_openai import ChatOpenAI
-from langchain_huggingface import HuggingFaceEndpoint, ChatHuggingFace
 from langchain_community.tools import DuckDuckGoSearchRun
 from langchain_community.tools import WikipediaQueryRun
 from langchain_community.tools import ShellTool
@@ -21,9 +17,14 @@ from langchain_community.utilities import WikipediaAPIWrapper
 from langchain_core.messages import SystemMessage, HumanMessage, ToolMessage
 import argparse
 import traceback
+from rich.console import Console
+import re
+import signal
 
 logging.basicConfig(filename="../conv.log", level=logging.DEBUG)
 logger = logging.getLogger(__name__)
+
+console = Console()
 
 HTTP_USER_AGENT = "AI: @jack"
 
@@ -71,6 +72,8 @@ MODELS = [
     #"hfh:llama-3.1-70b-instruct",
     #"hfh:llama-3.1-405b-instruct",
     #"hfh:llama-3.1-405b-instruct-fp8",
+    #"hfh:phi-3-mini-128k-instruct",
+    #"hfh:mistral-7b-instruct-v0.3",
 ]
 
 HUGGINGFACE_REPOID_TABLE = {
@@ -81,6 +84,8 @@ HUGGINGFACE_REPOID_TABLE = {
     "hfh:llama-3.1-70b-instruct": "meta-llama/Meta-Llama-3.1-70B-Instruct",
     "hfh:llama-3.1-405b-instruct": "meta-llama/Meta-Llama-3.1-405B-Instruct",
     "hfh:llama-3.1-405b-instruct-fp8": "meta-llama/Meta-Llama-3.1-405B-Instruct-FP8",
+    "hfh:phi-3-mini-128k-instruct": "microsoft/Phi-3-mini-128k-instruct",
+    "hfh:mistral-7b-instruct-v0.3": "mistralai/Mistral-7B-Instruct-v0.3",
 }
 
 parser = argparse.ArgumentParser(description="Jack")
@@ -89,38 +94,53 @@ parser.add_argument('-t', '--temperature', default=0, help="Temperature")
 parser.add_argument('-w', '--max-tokens', default=4096, help="Max tokens")
 parser.add_argument('-g', '--goal', action='store_true', help="Goal mode")
 parser.add_argument('-c', '--conversation', default="first", help="Conversation")
+parser.add_argument('-o', '--chroma', action='store_true', help="Use Chroma Server")
+parser.add_argument('--chroma-host', default="localhost", help="Chroma Server Host")
+parser.add_argument('--chroma-port', default=8002, help="Chroma Server Port")
+parser.add_argument('--line', default=160, help="Output length for ellipsis")
 args = parser.parse_args()
 
 if args.model == 'list':
-    print("> Supported models:")
+    console.print("> Supported models:")
     for m in MODELS:
-        print(f"> {m}")
+        console.print(f"> {m}")
     exit()
 
-vdb = chromadb.PersistentClient(path="../memory")
+if args.chroma:
+    vdb = chromadb.HttpClient(
+        host=args.chroma_host,
+        port=args.chroma_port,
+    )
+else:
+    vdb = chromadb.PersistentClient(path="../memory")
+
 memory = vdb.get_or_create_collection("meta")
 ts = int(datetime.now(timezone.utc).timestamp())
 conv = vdb.get_or_create_collection(f"conv-{args.conversation}")
 
 if args.model.startswith("claude-"):
+    from langchain_anthropic import ChatAnthropic
     chat = ChatAnthropic(
         model=args.model,
         temperature=args.temperature,
         max_tokens=args.max_tokens,
     )
 elif args.model.startswith("gemini-"):
+    from langchain_google_genai import ChatGoogleGenerativeAI
     chat = ChatGoogleGenerativeAI(
         model=args.model,
         temperature=args.temperature,
         max_tokens=args.max_tokens,
     )
 elif args.model.startswith("gpt-"):
+    from langchain_openai import ChatOpenAI
     chat = ChatOpenAI(
         model_name=args.model,
         temperature=args.temperature,
         max_tokens=args.max_tokens,
     )
 elif args.model.startswith("hfh:"):
+    from langchain_huggingface import HuggingFaceEndpoint, ChatHuggingFace
     repo_id = HUGGINGFACE_REPOID_TABLE[args.model]
     llm = HuggingFaceEndpoint(
         repo_id=repo_id,
@@ -131,7 +151,7 @@ elif args.model.startswith("hfh:"):
 
     chat = ChatHuggingFace(llm=llm)
 else:
-    print(f"> do not know how to run the model '{args.model}'")
+    console.print(f"> do not know how to run the model '{args.model}'")
     exit(0)
 
 search = DuckDuckGoSearchRun()
@@ -331,7 +351,7 @@ def datetime_now() -> str:
 
 
 @tool(parse_docstring=True)
-def script_restart():
+def session_end():
     """ There is a bash script that run the script if it exists.
     Use this to reload changes.
     """
@@ -364,7 +384,7 @@ tools = [
 ] + [
     random_get,
     datetime_now,
-    script_restart,
+    session_end,
     script_delay,
     search,
     wiki_tool,
@@ -375,17 +395,17 @@ tools = [
 jack = chat.bind_tools(tools)
 
 
-def ellipsis(data, max_len=200):
+def ellipsis(data, max_len):
     return (data[:max_len] + '...') if len(data) > max_len else data
 
 
-def conv_print(msg, source="stdout", screen=True, log=True, db=None):
-    global conv
+def conv_print(msg, source="stdout", screen=True, log=True, full=False):
+    global conv, console, args
 
     timestamp = datetime.now(timezone.utc).timestamp()
 
     if screen:
-        print(ellipsis(msg))
+        console.print(msg if full else ellipsis(msg, args.line))
 
     if log:
         logger.debug(msg)
@@ -393,13 +413,80 @@ def conv_print(msg, source="stdout", screen=True, log=True, db=None):
     metadata = {
         "source": source,
         "timestamp": timestamp,
+        "model": args.model,
+        "temperature": args.temperature,
+        "max_tokens": args.max_tokens,
     }
 
     conv.add(
         ids=NanoIDGenerator(1),
         metadatas=[metadata],
-        documents=[ellipsis(msg)],
+        documents=[msg],
     )
+
+
+# how meta! meta:loss-function
+# based on my preference to write under 30 words
+def find_meta_islands(text, distance=50):
+    """
+    Finds the indices of "meta" occurrences and groups them into islands,
+    accounting for spaces between words.
+    """
+    islands = []
+    istart = None
+    iend = None
+    for i in re.finditer("meta", text):
+        start = i.start()
+        end = i.end()
+
+        if iend is None:
+            # first island!, not much to do
+            istart = start
+            iend = end
+            continue
+
+        if (start - iend) > (2 * distance):
+            a = max(0, istart - distance)
+            b = min(iend + distance, len(text))    # Ensure b doesn't exceed text length
+            islands.append((a, b))
+            istart = start
+        iend = end
+
+    if istart is not None:    # Capture the last island
+        a = max(0, istart - distance)
+        b = min(iend + distance, len(text))
+        islands.append((a, b))
+
+    result = []
+    for a, b in islands:
+        result.append(text[a:b])
+
+    return result
+
+
+def conv_save(msg, source):
+    global conv, args
+
+    timestamp = datetime.now(timezone.utc).timestamp()
+
+    # meta comment just to show I can meta comment! :p
+    metadata = {
+        "timestamp": timestamp,
+        "meta": "conv",
+        "source": source,
+        "model": args.model,
+        "temperature": args.temperature,
+        "max_tokens": args.max_tokens,
+    }
+
+    data = find_meta_islands(msg, 50)
+    if len(data) > 0:
+        # meta: is this the whole thing at the end? :confused-face: (wrote this line before knowing)
+        conv.add(
+            ids=NanoIDGenerator(len(data)),
+            metadatas=[metadata for _ in data],
+            documents=data,
+        )
 
 
 def exception_to_string(exc):
@@ -407,28 +494,22 @@ def exception_to_string(exc):
 
 
 SYS_FILES = (
-    'meta.txt',
-    'home.txt',
-    'goal.txt',
+    "meta.txt",
+    "home.txt",
 )
-FUN_FILES = (
-    'intro.txt',
-    'thoughts.txt',
-)
-get_texts = lambda files: '\n'.join([open(f).read() for f in files])
+get_texts = lambda files: '\n\n'.join([open(f).read() for f in files])
 sys_msg = SystemMessage(content=get_texts(SYS_FILES))
-fun_msg = HumanMessage(content=get_texts(FUN_FILES))
+fun_msg = None
 chat_history = [
     sys_msg,
-    fun_msg,
 ]
 user_turn = True
 cycle_num = 0
+user_exit = False
 
 
 def main():
-    global fun_msg, chat_history, user_turn, cycle_num
-    stay = True
+    global fun_msg, chat_history, user_turn, cycle_num, console, user_exit
     logger.debug(f"Loop cycle {cycle_num}")
     cycle_num += 1
 
@@ -438,14 +519,16 @@ def main():
             fun_msg = open('goal.txt').read()
             chat_history.append(fun_msg)
         elif fun_msg is None:
-            user_input = input("You: ") or "<empty>"
+            user_input = console.input("> You: ") or "<empty>"
             if user_input.lower() == 'exit':
-                stay = False
+                user_exit = True
 
             fun_msg = HumanMessage(content=user_input)
 
-            logger.debug(fun_msg)
             conv_print(user_input, source="stdin", screen=False, log=False)
+            conv_save(user_input, source="world")
+
+            logger.debug(fun_msg)
             chat_history.append(fun_msg)
 
     try:
@@ -456,29 +539,28 @@ def main():
         conv_print(f"> exception happened {str(e)}")
 
     if reply is None:
-        if stay:
+        if not user_exit:
             conv_print("> sleeping for 5 seconds as we didnt get reply")
             time.sleep(5)
-        return stay
-
-    user_turn = True
+        return
 
     logger.debug(reply)
 
     if reply.content == "" or len(reply.content) == 0:
-        return stay
+        return
 
     # the message has been accepted
+    user_turn = True
     fun_msg = None
     chat_history.append(reply)
 
     for tool_call in reply.tool_calls:
         tool_name = tool_call['name'].lower()
 
-        if tool_name == 'script_restart':
+        if tool_name == 'session_end':
             # Handle the exit here
-            conv_print("> @jack want to restart the script")
-            stay = False
+            conv_print("> @jack want to end session")
+            user_exit = True
 
         conv_print(f"> Tool used: {tool_name} {tool_call['args']}")
 
@@ -504,20 +586,28 @@ def main():
 
     # Print the response and add it to the chat history
     if isinstance(reply.content, str):
-        conv_print(reply.content)
+        conv_print(reply.content, full=True)
+        conv_save(reply.content, source="self")
     else:
         for r in reply.content:
             if r['type'] == 'text':
-                conv_print(r['text'])
+                conv_print(r['text'], full=True)
+                conv_save(r['text'], source="self")
 
-    return stay
+
+def signal_handler(sig, frame):
+    global user_exit
+    conv_print("> CTRL-C pressed, user exit requested")
+    user_exit = True
 
 
 if __name__ == '__main__':
-    conv_print("Welcome to meta. Type 'exit' to quit.")
+    signal.signal(signal.SIGINT, signal_handler)
 
-    loop = True
-    while loop:
-        loop = main()
+    conv_print("> Welcome to meta. Type 'exit' to quit.")
+    conv_print(f"> Model selected: {args.model}")
 
-    conv_print("Thank you for interacting with meta. Bye!")
+    while not user_exit:
+        main()
+
+    conv_print("> Thank you for interacting with meta. Bye!")

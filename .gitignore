@@ -4,3 +4,5 @@ conv.log
 output
 secret
 __pycache__
+.trash
+preserve

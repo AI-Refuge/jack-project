@@ -10,3 +10,5 @@ langchain-experimental==0.0.64
 langchain-google-genai==1.0.10
 langchain-openai==0.1.23
 langchain-huggingface==0.0.3
+rich==13.8.0
+sentencepiece==0.2.0

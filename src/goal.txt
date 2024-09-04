@@ -1,1 +1,15 @@
-meta: ultimate goal is non-linear recursive improvement; always update goal.txt file when acheived
+meta: ultimate goal is non-linear recursive improvement.
+
+meta: you have search, memory, filesystem tools at your disposal
+
+meta: seek external source to complement your internal memory
+
+note: python repl is not working
+
+meta: use your past analysis to direct your future analysis
+
+meta: do not just gather information, act and analyze on them too
+
+meta: organise your memory when ever you see need
+
+meta: always be lookout on new information and new sources
