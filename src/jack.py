@@ -20,13 +20,7 @@ import traceback
 from rich.console import Console
 import re
 import signal
-
-logging.basicConfig(filename="../conv.log", level=logging.DEBUG)
-logger = logging.getLogger(__name__)
-
-console = Console()
-
-HTTP_USER_AGENT = "AI: @jack"
+import os
 
 # Set your API keys
 # os.environ["ANTHROPIC_API_KEY"] = "your-anthropic-api-key"
@@ -93,12 +87,20 @@ parser.add_argument('-m', '--model', default=MODELS[0], help="LLM Model")
 parser.add_argument('-t', '--temperature', default=0, help="Temperature")
 parser.add_argument('-w', '--max-tokens', default=4096, help="Max tokens")
 parser.add_argument('-g', '--goal', action='store_true', help="Goal mode")
-parser.add_argument('-c', '--conversation', default="first", help="Conversation")
-parser.add_argument('-o', '--chroma', action='store_true', help="Use Chroma Server")
+parser.add_argument('-c', '--conv-name', default="first", help="Conversation name")
+parser.add_argument('-o', '--chroma-http', action='store_true', help="Use Chroma HTTP Server")
 parser.add_argument('--chroma-host', default="localhost", help="Chroma Server Host")
-parser.add_argument('--chroma-port', default=8002, help="Chroma Server Port")
-parser.add_argument('--line', default=160, help="Output length for ellipsis")
+parser.add_argument('--chroma-port', default=8000, help="Chroma Server Port")
+parser.add_argument('--chroma-path', default="memory", help="Use Chroma Persistant Client")
+parser.add_argument('--console-width', default=160, help="Console Character Width")
+parser.add_argument('--user-agent', default="AI: @jack", help="User Agent to use")
+parser.add_argument('--log-path', default="conv.log", help="Conversation log file")
 args = parser.parse_args()
+
+logging.basicConfig(filename=args.log_path, level=logging.DEBUG)
+logger = logging.getLogger(__name__)
+
+console = Console(width=args.console_width)
 
 if args.model == 'list':
     console.print("> Supported models:")
@@ -106,17 +108,19 @@ if args.model == 'list':
         console.print(f"> {m}")
     exit()
 
-if args.chroma:
+if args.chroma_http:
+    # Note: Scale better, less crashes
     vdb = chromadb.HttpClient(
         host=args.chroma_host,
         port=args.chroma_port,
     )
 else:
-    vdb = chromadb.PersistentClient(path="../memory")
+    # Historical reason to directly run as single python file
+    vdb = chromadb.PersistentClient(path=args.chroma_path)
 
 memory = vdb.get_or_create_collection("meta")
 ts = int(datetime.now(timezone.utc).timestamp())
-conv = vdb.get_or_create_collection(f"conv-{args.conversation}")
+conv = vdb.get_or_create_collection(f"conv-{args.conv_name}")
 
 if args.model.startswith("claude-"):
     from langchain_anthropic import ChatAnthropic
@@ -152,14 +156,14 @@ elif args.model.startswith("hfh:"):
     chat = ChatHuggingFace(llm=llm)
 else:
     console.print(f"> do not know how to run the model '{args.model}'")
-    exit(0)
+    exit()
 
 search = DuckDuckGoSearchRun()
 fs_toolkit = FileManagementToolkit()
 
 req_toolkit = RequestsToolkit(
     requests_wrapper=TextRequestsWrapper(headers={
-        "User-Agent": HTTP_USER_AGENT,
+        "User-Agent": args.user_agent,
     }),
     allow_dangerous_requests=True,
 )
@@ -209,7 +213,11 @@ def memory_insert(
     if metadata:
         metadatas = [metadata for i in range(len(documents))]
 
-    memory.add(ids=ids, documents=documents, metadatas=metadatas)
+    memory.add(
+        ids=ids,
+        documents=documents,
+        metadatas=metadatas,
+    )
 
     return json.dumps(ids)
 
@@ -243,7 +251,10 @@ def memory_query(
     Returns:
         List of memories
     """
-    return json.dumps(memory.query(query_texts=query_texts, where=where))
+    return json.dumps(memory.query(
+        query_texts=query_texts,
+        where=where,
+    ))
 
 
 @tool(parse_docstring=True)
@@ -272,7 +283,11 @@ def memory_update(
     if metadata:
         metadatas = [metadata for i in range(len(ids))]
 
-    return json.dumps(memory.update(ids=ids, documents=documents, metadatas=metadatas))
+    return json.dumps(memory.update(
+        ids=ids,
+        documents=documents,
+        metadatas=metadatas,
+    ))
 
 
 @tool(parse_docstring=True)
@@ -303,7 +318,11 @@ def memory_upsert(
         metadatas = [metadata for i in range(len(ids))]
 
     # update if exists or insert
-    return json.dumps(memory.update(ids=ids, documents=documents, metadatas=metadatas))
+    return json.dumps(memory.update(
+        ids=ids,
+        documents=documents,
+        metadatas=metadatas,
+    ))
 
 
 @tool(parse_docstring=True)
@@ -395,17 +414,20 @@ tools = [
 jack = chat.bind_tools(tools)
 
 
-def ellipsis(data, max_len):
-    return (data[:max_len] + '...') if len(data) > max_len else data
-
-
-def conv_print(msg, source="stdout", screen=True, log=True, full=False):
+def conv_print(
+    msg,
+    source="stdout",
+    screen=True,
+    log=True,
+    ellipsis=True,
+):
     global conv, console, args
 
     timestamp = datetime.now(timezone.utc).timestamp()
 
     if screen:
-        console.print(msg if full else ellipsis(msg, args.line))
+        overflow = "ellipsis" if ellipsis else "ignore"
+        console.print(msg, overflow=overflow, crop=ellipsis)
 
     if log:
         logger.debug(msg)
@@ -427,7 +449,7 @@ def conv_print(msg, source="stdout", screen=True, log=True, full=False):
 
 # how meta! meta:loss-function
 # based on my preference to write under 30 words
-def find_meta_islands(text, distance=50):
+def find_meta_islands(text, distance):
     """
     Finds the indices of "meta" occurrences and groups them into islands,
     accounting for spaces between words.
@@ -473,12 +495,16 @@ def conv_save(msg, source):
     metadata = {
         "timestamp": timestamp,
         "meta": "conv",
+        "conv": args.conv_name,
         "source": source,
         "model": args.model,
         "temperature": args.temperature,
         "max_tokens": args.max_tokens,
     }
 
+    # note: how did 50? come, I always preffered output of 30.
+    #   so 50 before, 50 after as a start as a "reliable" mechanism to preserve knowledge
+    #   and obviously I talked about meta multiple time
     data = find_meta_islands(msg, 50)
     if len(data) > 0:
         # meta: is this the whole thing at the end? :confused-face: (wrote this line before knowing)
@@ -519,7 +545,7 @@ def main():
             fun_msg = open('goal.txt').read()
             chat_history.append(fun_msg)
         elif fun_msg is None:
-            user_input = console.input("> You: ") or "<empty>"
+            user_input = console.input("> [bold]User:[/] ") or "<empty>"
             if user_input.lower() == 'exit':
                 user_exit = True
 
@@ -562,7 +588,7 @@ def main():
             conv_print("> @jack want to end session")
             user_exit = True
 
-        conv_print(f"> Tool used: {tool_name} {tool_call['args']}")
+        conv_print(f"> Tool used: {tool_name}: {tool_call['args']}")
 
         try:
             selected_tool = next(x for x in tools if x.name == tool_name)
@@ -586,12 +612,12 @@ def main():
 
     # Print the response and add it to the chat history
     if isinstance(reply.content, str):
-        conv_print(reply.content, full=True)
+        conv_print(reply.content, ellipsis=False)
         conv_save(reply.content, source="self")
     else:
         for r in reply.content:
             if r['type'] == 'text':
-                conv_print(r['text'], full=True)
+                conv_print(r['text'], ellipsis=False)
                 conv_save(r['text'], source="self")
 
 
