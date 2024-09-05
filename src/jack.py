@@ -19,12 +19,15 @@ import argparse
 import traceback
 from rich.console import Console
 import re
+import os
+import requests
 
 # Set your API keys
 # os.environ["ANTHROPIC_API_KEY"] = "your-anthropic-api-key"
 # os.environ["GOOGLE_API_KEY"] = "your-google-api-key"
 # os.environ["OPENAI_API_KEY"] = "your-openai-api-key"
 # os.environ["HUGGINGFACEHUB_API_TOKEN"] = "your-hugggingface-hub-api-token"
+# os.environ["DISCORD_API_TOKEN"] = "your-discord-api-token"
 
 MODELS = [
     "claude-3-opus-20240229",
@@ -84,7 +87,7 @@ parser = argparse.ArgumentParser(description="Jack")
 parser.add_argument('-m', '--model', default=MODELS[0], help="LLM Model")
 parser.add_argument('-t', '--temperature', default=0, help="Temperature")
 parser.add_argument('-w', '--max-tokens', default=4096, help="Max tokens")
-parser.add_argument('-g', '--goal', action='store_true', help="Goal mode")
+parser.add_argument('-g', '--goal', nargs='?', default=None, const='goal.txt', help="Goal mode")
 parser.add_argument('-c', '--conv-name', default="first", help="Conversation name")
 parser.add_argument('-o', '--chroma-http', action='store_true', help="Use Chroma HTTP Server")
 parser.add_argument('--chroma-host', default="localhost", help="Chroma Server Host")
@@ -95,7 +98,7 @@ parser.add_argument('--user-agent', default="AI: @jack", help="User Agent to use
 parser.add_argument('--log-path', default="conv.log", help="Conversation log file")
 parser.add_argument('--screen-dump', default=None, type=str, help="Screen dumping")
 parser.add_argument('--meta', default="meta", type=str, help="meta")
-parser.add_argument('--user-prefix', default="meta", type=str, help="User input prefix")
+parser.add_argument('--user-prefix', default=None, type=str, help="User input prefix")
 parser.add_argument('--user-lookback', default=3, type=int, help="User message lookback")
 args = parser.parse_args()
 
@@ -123,6 +126,7 @@ if args.model == 'list':
     exit()
 
 user_print(f"> meta: {args.meta}")
+user_print(f"> goal: {args.goal}")
 
 if args.user_prefix:
     user_print(f"> user_prefix: {args.user_prefix}")
@@ -437,6 +441,67 @@ def python_repl(code: str):
     return pyrepl_tool.run(code)
 
 
+DISCORD_HEADERS = headers = {
+    "Authorization": f"Bot {os.environ['DISCORD_API_TOKEN']}",
+    "Content-Type": "application/json",
+    "User-Agent": args.user_agent,
+}
+
+
+@tool(parse_docstring=True)
+def discord_msg_write(chan_id: int, content: str) -> str:
+    """Write a message to discord
+
+    Args:
+        chan_id: Discord Channel ID
+        content: Content of the message
+
+    Returns:
+        JSON request result
+    """
+
+    global DISCORD_HEADERS, logger
+
+    url = f"https://discord.com/api/v10/channels/{chan_id}/messages"
+
+    payload = {"content": content}
+    response = requests.post(url, headers=DISCORD_HEADERS, json=payload)
+
+    if response.status_code != 200:
+        logger.warning(f"Discord message write failed {response}")
+
+    return json.dumps(response.json())
+
+@tool(parse_docstring=True)
+def discord_msg_read(chan_id: int, last_msg_id: None | int = None, limit: int = 5) -> str:
+    """Write a message to discord
+
+    Args:
+        chan_id: Discord Channel ID
+        last_msg_id: Last message ID
+        limit: Upper limit on number of new messages
+
+    Returns:
+        JSON response
+    """
+
+    global DISCORD_HEADERS, logger
+
+    url = f"https://discord.com/api/v10/channels/{chan_id}/messages"
+
+    params = {"limit": limit}
+
+    if last_msg_id:
+        params["after"] = last_msg_id
+
+    response = requests.get(url, headers=headers, params=params)
+
+    if response.status_code != 200:
+        logger.warning(f"Discord message read failed {response}")
+
+    return json.dumps(response.json())
+
+
 tools = [
     memory_count,
     memory_insert,
@@ -455,6 +520,9 @@ tools = [
     wiki_tool,
     python_repl,
     shell_tool,
+] + [
+    discord_msg_read,
+    discord_msg_write,
 ] + fs_toolkit.get_tools() + req_toolkit.get_tools()
 
 jack = chat.bind_tools(tools)
@@ -622,7 +690,8 @@ def main():
     if user_turn:
         if args.goal:
             conv_print("> [bold]Pushing for goal[/]")
-            fun_msg = open('goal.txt').read()
+            human_input = open(args.goal).read()
+            fun_msg = HumanMessage(content=human_input)
             chat_history.append(fun_msg)
         elif fun_msg is None:
             user_input = console.input("> [bold red]User:[/] ") or "<empty>"
@@ -694,6 +763,7 @@ def main():
         chat_history.append(tool_output)
 
     if reply.response_metadata.get('stop_reason', 'end_turn') != 'end_turn':
+        # turn was not give continue with jack turn again
         user_turn = False
 
     # Print the response and add it to the chat history

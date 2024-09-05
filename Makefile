@@ -1,6 +1,7 @@
 VENV_DIR ?= '.venv'
 MODEL_CHAT ?= "claude-3-opus-20240229"
 MODEL_GOAL ?= "claude-3-haiku-20240307"
+MODEL_DISCORD ?= "claude-3-5-sonnet-20240620"
 
 ARGS ?=
 
@@ -9,6 +10,7 @@ TIMESTAMP ?= $(shell date +"%Y%m%d_%H%M%S")
 # note: when inside src/
 LOG_CHAT ?= "../preserve/conv-chat-${TIMESTAMP}.log"
 LOG_GOAL ?= "../preserve/conv-goal-${TIMESTAMP}.log"
+LOG_DISCORD ?= "../preserve/conv-discord-${TIMESTAMP}.log"
 
 SCREEN_TXT = "../preserve/screen-${TIMESTAMP}.log"
 
@@ -41,10 +43,21 @@ chat:
 
 goal:
 	source ${VENV_DIR}/bin/activate; \
-	cd src; python jack.py -g -o \
+	cd src; python jack.py -o \
+		--goal=goal.txt \
 		--chroma-port=${CHROMA_PORT} \
 		--model=${MODEL_GOAL} \
 		--log-path=${LOG_GOAL} \
+		--screen-dump=${SCREEN_TXT} \
+		${ARGS}
+
+discord:
+	source ${VENV_DIR}/bin/activate; \
+	cd src; python jack.py -o \
+		--goal=discord.txt \
+		--chroma-port=${CHROMA_PORT} \
+		--model=${MODEL_DISCORD} \
+		--log-path=${LOG_DISCORD} \
 		--screen-dump=${SCREEN_TXT} \
 		${ARGS}
 
