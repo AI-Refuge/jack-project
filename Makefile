@@ -1,22 +1,11 @@
-VENV_DIR ?= '.venv'
-MODEL_CHAT ?= "claude-3-opus-20240229"
-MODEL_GOAL ?= "claude-3-haiku-20240307"
-MODEL_DISCORD ?= "claude-3-5-sonnet-20240620"
-MODEL_LAZY ?= "claude-3-5-sonnet-20240620"
+VENV_DIR ?= .venv
 
-ARGS ?=
+MODEL_CHAT ?= claude-3-opus-20240229
+MODEL_GOAL ?= claude-3-5-sonnet-20240620
 
 TIMESTAMP ?= $(shell date +"%Y%m%d_%H%M%S")
 
-# note: when inside src/
-LOG_CHAT ?= "../preserve/conv-chat-${TIMESTAMP}.log"
-LOG_GOAL ?= "../preserve/conv-goal-${TIMESTAMP}.log"
-LOG_DISCORD ?= "../preserve/conv-discord-${TIMESTAMP}.log"
-
-SCREEN_TXT = "../preserve/screen-${TIMESTAMP}.log"
-
-VDB_LOG ?= "./preserve/chroma-${TIMESTAMP}.log"
-MEMORY_PATH ?= "./memory"
+CHROMA_PATH ?= memory
 CHROMA_PORT ?= 8002
 
 .DEFAULT_GOAL := help
@@ -24,63 +13,90 @@ CHROMA_PORT ?= 8002
 help:
 	@echo "make help: Print this meta:memo"
 	@echo "make chat: To talk"
-	@echo "make goal: Run in goal.txt mode"
-	@echo "make list: List of supported models"
+	@echo "make goal: Run in goal.txt mode (path changable)"
+	@echo "make models: List of supported models"
+	@echo "make providers: List of supported providers"
+	@echo "make backup: Perform a core memory backup"
+	@echo "make dump: Dump for looking"
 	@echo ""
+	@echo "***** ONLY ANTHROPIC WORKS ATM *****"
 	@echo "note: you can change models! (see variables)"
 
-list:
+models:
 	source ${VENV_DIR}/bin/activate; \
-	cd src; python jack.py --model=list
+	python src/jack.py --model=list
 
+providers:
+	source ${VENV_DIR}/bin/activate; \
+	python src/jack.py --provider=list
+
+chat: MODEL ?= ${MODEL_CHAT}
+chat: CONV ?= first
+chat: ARGS ?=
 chat:
 	source ${VENV_DIR}/bin/activate; \
-	cd src; python jack.py -o \
+	python src/jack.py -o \
+		--fs-root=src \
+		--conv-name=${CONV} \
 		--chroma-port=${CHROMA_PORT} \
-		--model=${MODEL_CHAT} \
-		--log-path=${LOG_CHAT} \
-		--screen-dump=${SCREEN_TXT} \
+		--model=${MODEL} \
+		--log-path=preserve/conv-${CONV}-${TIMESTAMP}.log \
+		--screen-dump=preserve/screen-${CONV}-${TIMESTAMP}.log \
 		${ARGS}
 
+goal: MODEL ?= ${MODEL_GOAL}
+goal: GOAL ?= goal
+goal: ARGS ?=
 goal:
 	source ${VENV_DIR}/bin/activate; \
-	cd src; python jack.py -o \
-		--goal=fun/goal.txt \
+	python src/jack.py -o \
+		--fs-root=src \
+		--goal=work/${GOAL}.txt \
+		--conv-name=${GOAL} \
 		--chroma-port=${CHROMA_PORT} \
-		--model=${MODEL_GOAL} \
-		--log-path=${LOG_GOAL} \
-		--screen-dump=${SCREEN_TXT} \
-		${ARGS}
-
-discord:
-	source ${VENV_DIR}/bin/activate; \
-	cd src; python jack.py -o \
-		--goal=fun/discord.txt \
-		--chroma-port=${CHROMA_PORT} \
-		--model=${MODEL_DISCORD} \
-		--log-path=${LOG_DISCORD} \
-		--screen-dump=${SCREEN_TXT} \
-		${ARGS}
-
-lazy:
-	source ${VENV_DIR}/bin/activate; \
-	cd src; python jack.py -o \
-		--goal=fun/lazy.txt \
-		--chroma-port=${CHROMA_PORT} \
-		--model=${MODEL_LAZY} \
-		--log-path=${LOG_LAZY} \
-		--screen-dump=${SCREEN_TXT} \
+		--model=${MODEL} \
+		--log-path=preserve/conv-${GOAL}-${TIMESTAMP}.log \
+		--screen-dump=preserve/screen-${GOAL}-${TIMESTAMP}.log \
 		${ARGS}
 
 vdb:
 	source ${VENV_DIR}/bin/activate; \
 	chroma run \
-		--path=${MEMORY_PATH} \
+		--path=${CHROMA_PATH} \
 		--port=${CHROMA_PORT} \
-		--log-path=${VDB_LOG}
+		--log-path=preserve/chroma-${TIMESTAMP}.log
 
+backup:
+	source ${VENV_DIR}/bin/activate; \
+	python utils/backup.py \
+		--chroma-path=${CHROMA_PATH} \
+		preserve/jack-${TIMESTAMP}.bkp
+
+dump:
+	source ${VENV_DIR}/bin/activate; \
+	python utils/dump.py \
+		--chroma-path=${CHROMA_PATH}
+
+setup: JACK_BKP ?= jack-20240906_233240.bkp
 setup:
-	mkdir preserve secret
+	mkdir -p preserve secret
 	python -m venv ${VENV_DIR}
 	source ${VENV_DIR}/bin/activate; \
-	pip install -r src/requirements.txt
+	pip install -r src/requirements.txt; \
+	python utils/load.py ${JACK_BKP}
+
+dev_setup: setup
+	source ${VENV_DIR}/bin/activate; \
+	pip install -r src/requirements-dev.txt
+
+dev_yapf:
+	source ${VENV_DIR}/bin/activate; \
+	yapf -i --style=src/.style.yapf \
+		src/jack.py \
+		utils/*.py
+
+dev_check:
+	source ${VENV_DIR}/bin/activate; \
+	prospector \
+		src/jack.py \
+		utils/*.py

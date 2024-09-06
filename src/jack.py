@@ -76,7 +76,7 @@ parser.add_argument('-p', '--provider', default=None, help="Service Provider")
 parser.add_argument('-m', '--model', default=Model.CLAUDE_3_OPUS.value, help="LLM Model")
 parser.add_argument('-t', '--temperature', default=0, help="Temperature")
 parser.add_argument('-w', '--max-tokens', default=4096, help="Max tokens")
-parser.add_argument('-g', '--goal', nargs='?', default=None, const='goal.txt', help="Goal mode")
+parser.add_argument('-g', '--goal', nargs='?', default=None, const='goal.txt', help="Goal mode (file inside fs-root)")
 parser.add_argument('-c', '--conv-name', default="first", help="Conversation name")
 parser.add_argument('-o', '--chroma-http', action='store_true', help="Use Chroma HTTP Server")
 parser.add_argument('--chroma-host', default="localhost", help="Chroma Server Host")
@@ -92,6 +92,7 @@ parser.add_argument('--user-lookback', default=3, type=int, help="User message l
 parser.add_argument('--island-radius', default=150, type=int, help="How big meta memory island should be")
 parser.add_argument('--reattempt-delay', default=5, type=float, help="Reattempt delay (seconds)")
 parser.add_argument('--tools', action=argparse.BooleanOptionalAction, default=True, help="Tools")
+parser.add_argument('--fs-root', type=str, default=None, help="Filesystem root path")
 args = parser.parse_args()
 
 # It don't make sense, hence you have to remove this error yourself
@@ -118,14 +119,18 @@ def user_print(msg, **kwargs):
 
 if args.provider == 'list':
     user_print("> Supported providers:")
-    for p in Provider:
-        user_print(f"> {p.value}")
+    #for p in Provider:
+    #    user_print(f"> {p.value}")
+    user_print(f"> [b]{Provider.ANTRHOPIC.value}[/]")
     exit()
 
 if args.model == 'list':
     user_print("> Supported models:")
-    for m in Model:
-        user_print(f"> {m.value}")
+    #for m in Model:
+    #    user_print(f"> {m.value}")
+    user_print(f"> [b]{Model.CLAUDE_3_OPUS.value}[/]")
+    user_print(f"> [b]{Model.CLAUDE_3_5_SONNET.value}[/]")
+    user_print(f"> [b]{Model.CLAUDE_3_HAIKU.value}[/]")
     exit()
 
 if args.chroma_http:
@@ -212,7 +217,7 @@ else:
     exit()
 
 search = DuckDuckGoSearchRun()
-fs_toolkit = FileManagementToolkit()
+fs_toolkit = FileManagementToolkit(root_dir=args.fs_root)
 
 req_toolkit = RequestsToolkit(
     requests_wrapper=TextRequestsWrapper(headers={
@@ -631,7 +636,7 @@ def conv_print(
 # based on my preference to write under 30 words
 def find_meta_islands(text, term, distance):
     """
-    Finds the indices of "meta" occurrences and groups them into islands,
+    Finds the indices of "meta" (ie term) occurrences and groups them into islands,
     accounting for spaces between words.
     """
     islands = []
@@ -734,6 +739,7 @@ SYS_FILES = (
     # for future, it might be useful to look into it. (meta:obviously!)
     "super.txt",
 
+    # "home" related stuff
     "home.txt",
 
     # this file was done to understand why llm was "lazy"
@@ -746,8 +752,19 @@ SYS_FILES = (
     # Just some more prompt that I found useful, they are going in memory soon
     "prompt.txt",
 )
-get_texts = lambda files: '\n\n'.join([open(f).read() for f in files])
-sys_msg = SystemMessage(content=get_texts(SYS_FILES))
+
+
+def src_path(x: str):
+    global args
+
+    if args.fs_root is None:
+        return x
+
+    return os.path.join(args.fs_root, x)
+
+
+sys_texts = [open(fp).read() for fp in map(src_path, SYS_FILES)]
+sys_msg = SystemMessage(content='\n\n'.join(sys_texts))
 fun_msg = None
 chat_history = [
     sys_msg,
@@ -765,7 +782,7 @@ def main():
     if user_turn:
         if args.goal:
             conv_print("> [bold]Pushing for goal[/]")
-            human_input = open(args.goal).read()
+            human_input = open(src_path(args.goal)).read()
             fun_msg = HumanMessage(content=human_input)
             chat_history.append(fun_msg)
         elif fun_msg is None:

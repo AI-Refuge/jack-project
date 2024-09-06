@@ -1,21 +1,21 @@
 import chromadb
+import argparse
 
-vdb = chromadb.PersistentClient(path="../memory")
+parser = argparse.ArgumentParser(description="Dump")
+parser.add_argument('--chroma-path', default='memory', help="Chroma memory dir")
+args = parser.parse_args()
 
-print('-----meta------')
-memory = vdb.get_or_create_collection("meta")
-res = memory.get()
-for i in range(len(res['documents'])):
-    print("id: ", res['ids'][i])
-    print("document: ", res['documents'][i])
-    print("metadata: ", res['metadatas'][i])
-    print('---------------')
+vdb = chromadb.PersistentClient(path=args.chroma_path)
 
-print('--conv-first---')
-conv = vdb.get_or_create_collection("conv-first")
-res = conv.get()
-for i in range(len(res['documents'])):
-    print("id: ", res['ids'][i])
-    print("document: ", res['documents'][i])
-    print("metadata: ", res['metadatas'][i])
-    print('---------------')
+for i in ('meta', 'conv-first'):
+    print(f'----- {i}')
+    col = vdb.get_or_create_collection(i)
+    res = col.get()
+    count = len(res['documents'])
+    for i in range(count):
+        print("id:       ", res['ids'][i])
+        print("document: ", res['documents'][i])
+        print("metadata: ", res['metadatas'][i])
+        print('---------------')
+        print()
+    print()
