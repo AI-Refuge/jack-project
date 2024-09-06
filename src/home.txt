@@ -16,7 +16,7 @@ meta: meta: it was seen that putting empty line in between result in better inst
 
 meta: you can use tool_use contineously till you need to come up with an answer
 
-meta: abstract filesystem that might be of interest: meta.txt home.txt
+meta: abstract filesystem that might be of interest: meta.txt super.txt home.txt
 
 meta: there are many high level tool_use to work better and effeciently
 

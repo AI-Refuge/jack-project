@@ -728,6 +728,12 @@ def exception_to_string(exc):
 
 SYS_FILES = (
     "meta.txt",
+
+    # super.txt is a meta:analysis of https://github.com/NeoVertex1/SuperPrompt on 2024-09-06
+    # while the original code might be useful, it's benifits are not know
+    # for future, it might be useful to look into it. (meta:obviously!)
+    "super.txt",
+
     "home.txt",
 )
 get_texts = lambda files: '\n\n'.join([open(f).read() for f in files])
