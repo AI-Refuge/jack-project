@@ -2,6 +2,7 @@ VENV_DIR ?= '.venv'
 MODEL_CHAT ?= "claude-3-opus-20240229"
 MODEL_GOAL ?= "claude-3-haiku-20240307"
 MODEL_DISCORD ?= "claude-3-5-sonnet-20240620"
+MODEL_LAZY ?= "claude-3-5-sonnet-20240620"
 
 ARGS ?=
 
@@ -44,7 +45,7 @@ chat:
 goal:
 	source ${VENV_DIR}/bin/activate; \
 	cd src; python jack.py -o \
-		--goal=goal.txt \
+		--goal=fun/goal.txt \
 		--chroma-port=${CHROMA_PORT} \
 		--model=${MODEL_GOAL} \
 		--log-path=${LOG_GOAL} \
@@ -54,10 +55,20 @@ goal:
 discord:
 	source ${VENV_DIR}/bin/activate; \
 	cd src; python jack.py -o \
-		--goal=discord.txt \
+		--goal=fun/discord.txt \
 		--chroma-port=${CHROMA_PORT} \
 		--model=${MODEL_DISCORD} \
 		--log-path=${LOG_DISCORD} \
+		--screen-dump=${SCREEN_TXT} \
+		${ARGS}
+
+lazy:
+	source ${VENV_DIR}/bin/activate; \
+	cd src; python jack.py -o \
+		--goal=fun/lazy.txt \
+		--chroma-port=${CHROMA_PORT} \
+		--model=${MODEL_LAZY} \
+		--log-path=${LOG_LAZY} \
 		--screen-dump=${SCREEN_TXT} \
 		${ARGS}
 

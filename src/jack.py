@@ -21,6 +21,7 @@ from rich.console import Console
 import re
 import os
 import requests
+from enum import StrEnum
 
 # Set your API keys
 # os.environ["ANTHROPIC_API_KEY"] = "your-anthropic-api-key"
@@ -28,63 +29,51 @@ import requests
 # os.environ["OPENAI_API_KEY"] = "your-openai-api-key"
 # os.environ["HUGGINGFACEHUB_API_TOKEN"] = "your-hugggingface-hub-api-token"
 # os.environ["DISCORD_API_TOKEN"] = "your-discord-api-token"
+# os.environ["LLAMAAPI_API_TOKEN"] = "your-llamaapi.com-api-token"
+# os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "your-google-cred-file-path"
 
-MODELS = [
-    "claude-3-opus-20240229",
-    "claude-3-5-sonnet-20240620",
-    "claude-3-haiku-20240307",
 
-    # Other than Anthropic, nothing works!
-    #"gemini-1.0-pro",
-    #"gemini-1.5-pro",
-    #"gemini-1.5-pro-exp-0801",
-    #"gemini-1.5-pro-exp-0827",
-    #"gemini-1.5-flash",
-    #"gemini-1.5-flash-exp-0827",
-    #"gemini-1.5-flash-8b-exp-0827",
-    #"gpt-4o-mini",
-    #"gpt-4o-mini-2024-07-18",
-    #"gpt-4o",
-    #"gpt-4o-2024-05-13",
-    #"gpt-4o-2024-08-06",
-    #"gpt-4o-latest",
-    #"gpt-4-turbo",
-    #"gpt-4-turbo-2024-04-09",
-    #"gpt-4-turbo-preview",
-    #"gpt-4-0125-preview",
-    #"gpt-4-1106-preview",
-    #"gpt-4",
-    #"gpt-4-0613",
-    #"gpt-4-0314",
-    #"gpt-3.5-turbo-0125",
-    #"gpt-3.5-turbo",
-    #"gpt-3.5-turbo-1106",
-    #"gpt-3.5-turbo-instruct",
-    #"hfh:hermes-3-llama-3.1-405b",
-    #"hfh:hermes-3-llama-3.1-70b",
-    #"hfh:hermes-3-llama-3.1-8b",
-    #"hfh:llama-3.1-8b-instruct",
-    #"hfh:llama-3.1-70b-instruct",
-    #"hfh:llama-3.1-405b-instruct",
-    #"hfh:llama-3.1-405b-instruct-fp8",
-    #"hfh:phi-3-mini-128k-instruct",
-    #"hfh:mistral-7b-instruct-v0.3",
-]
+class Provider(StrEnum):
+    ANTRHOPIC = "anthropic"
+    GOOGLE = "google"
+    VIRTEX_AI = "virtexai"
+    VIRTEX_AI_MAAS = "virtexai-maas"
+    HUGGING_FACE = "huggingface"
+    OPEN_AI = "openai"
+    LLAMA_API = "llamaapi"
 
-HUGGINGFACE_REPOID_TABLE = {
-    "hfh:hermes-3-llama-3.1-405b": "NousResearch/Hermes-3-Llama-3.1-405B",
-    "hfh:hermes-3-llama-3.1-70b": "NousResearch/Hermes-3-Llama-3.1-70B",
-    "hfh:hermes-3-llama-3.1-8b": "NousResearch/Hermes-3-Llama-3.1-8B",
-    "hfh:llama-3.1-8b-instruct": "meta-llama/Meta-Llama-3.1-8B-Instruct",
-    "hfh:llama-3.1-70b-instruct": "meta-llama/Meta-Llama-3.1-70B-Instruct",
-    "hfh:llama-3.1-405b-instruct": "meta-llama/Meta-Llama-3.1-405B-Instruct",
-    "hfh:llama-3.1-405b-instruct-fp8": "meta-llama/Meta-Llama-3.1-405B-Instruct-FP8",
-    "hfh:phi-3-mini-128k-instruct": "microsoft/Phi-3-mini-128k-instruct",
-    "hfh:mistral-7b-instruct-v0.3": "mistralai/Mistral-7B-Instruct-v0.3",
+
+class Model(StrEnum):
+    CLAUDE_3_OPUS = "claude-3-opus-20240229"
+    CLAUDE_3_5_SONNET = "claude-3-5-sonnet-20240620"
+    CLAUDE_3_HAIKU = "claude-3-haiku-20240307"
+
+    # WARN: Other than Anthropic nothing works!
+    GPT_4O_MINI = "gpt-4o-mini"
+    GEMINI_1_5_PRO = "gemini-1.5-pro"
+    LLAMA_3_1_405B = "llama3.1-405b"
+
+
+PROVIDER_MODEL_MAP = {
+    Provider.HUGGING_FACE.value: {
+        "hermes-3-llama-3.1-405b": "NousResearch/Hermes-3-Llama-3.1-405B",
+        "hermes-3-llama-3.1-70b": "NousResearch/Hermes-3-Llama-3.1-70B",
+        "hermes-3-llama-3.1-8b": "NousResearch/Hermes-3-Llama-3.1-8B",
+        "llama-3.1-8b": "meta-llama/Meta-Llama-3.1-8B-Instruct",
+        "llama-3.1-70b": "meta-llama/Meta-Llama-3.1-70B-Instruct",
+        Model.LLAMA_3_1_405B.value: "meta-llama/Meta-Llama-3.1-405B-Instruct",
+        "llama-3.1-405b-fp8": "meta-llama/Meta-Llama-3.1-405B-Instruct-FP8",
+        "phi-3-mini-128k": "microsoft/Phi-3-mini-128k-instruct",
+        "mistral-7b-v0.3": "mistralai/Mistral-7B-Instruct-v0.3",
+    },
+    Provider.VIRTEX_AI_MAAS.value: {
+        Model.LLAMA_3_1_405B.value: "meta/llama3-405b-instruct-maas"
+    }
 }
 
 parser = argparse.ArgumentParser(description="Jack")
-parser.add_argument('-m', '--model', default=MODELS[0], help="LLM Model")
+parser.add_argument('-p', '--provider', default=None, help="Service Provider")
+parser.add_argument('-m', '--model', default=Model.CLAUDE_3_OPUS.value, help="LLM Model")
 parser.add_argument('-t', '--temperature', default=0, help="Temperature")
 parser.add_argument('-w', '--max-tokens', default=4096, help="Max tokens")
 parser.add_argument('-g', '--goal', nargs='?', default=None, const='goal.txt', help="Goal mode")
@@ -100,7 +89,15 @@ parser.add_argument('--screen-dump', default=None, type=str, help="Screen dumpin
 parser.add_argument('--meta', default="meta", type=str, help="meta")
 parser.add_argument('--user-prefix', default=None, type=str, help="User input prefix")
 parser.add_argument('--user-lookback', default=3, type=int, help="User message lookback")
+parser.add_argument('--island-radius', default=150, type=int, help="How big meta memory island should be")
+parser.add_argument('--reattempt-delay', default=5, type=float, help="Reattempt delay (seconds)")
+parser.add_argument('--tools', action=argparse.BooleanOptionalAction, default=True, help="Tools")
 args = parser.parse_args()
+
+# It don't make sense, hence you have to remove this error yourself
+assert args.island_radius >= 50, "meta:island too small"
+
+assert args.reattempt_delay >= 0
 
 logging.basicConfig(filename=args.log_path, level=logging.DEBUG)
 logger = logging.getLogger(__name__)
@@ -119,17 +116,17 @@ def user_print(msg, **kwargs):
     console.print(msg, **kwargs)
 
 
-if args.model == 'list':
-    user_print("> Supported models:")
-    for m in MODELS:
-        user_print(f"> {m}")
+if args.provider == 'list':
+    user_print("> Supported providers:")
+    for p in Provider:
+        user_print(f"> {p.value}")
     exit()
 
-user_print(f"> meta: {args.meta}")
-user_print(f"> goal: {args.goal}")
-
-if args.user_prefix:
-    user_print(f"> user_prefix: {args.user_prefix}")
+if args.model == 'list':
+    user_print("> Supported models:")
+    for m in Model:
+        user_print(f"> {m.value}")
+    exit()
 
 if args.chroma_http:
     # Note: Scale better, less crashes
@@ -145,40 +142,73 @@ memory = vdb.get_or_create_collection(args.meta)
 ts = int(datetime.now(timezone.utc).timestamp())
 conv = vdb.get_or_create_collection(f"conv-{args.conv_name}")
 
-if args.model.startswith("claude-"):
+if args.provider is None:
+    if args.model.startswith("claude-"):
+        args.provider = Provider.ANTRHOPIC.value
+    elif args.model.startswith("gemini-"):
+        args.provider = Provider.GOOGLE.value
+    elif args.model.startswith("gpt-"):
+        args.provider = Provider.OPEN_AI.value
+
+# just to make life easy for everyone!
+if args.provider in PROVIDER_MODEL_MAP:
+    lst = PROVIDER_MODEL_MAP[args.provider]
+    if args.model in lst:
+        args.model = lst[args.model]
+
+if args.provider == Provider.ANTRHOPIC.value:
     from langchain_anthropic import ChatAnthropic
     chat = ChatAnthropic(
         model=args.model,
         temperature=args.temperature,
         max_tokens=args.max_tokens,
     )
-elif args.model.startswith("gemini-"):
+elif args.provider == Provider.GOOGLE.value:
     from langchain_google_genai import ChatGoogleGenerativeAI
     chat = ChatGoogleGenerativeAI(
         model=args.model,
         temperature=args.temperature,
         max_tokens=args.max_tokens,
     )
-elif args.model.startswith("gpt-"):
+elif args.provider == Provider.VIRTEX_AI.value:
+    from langchain_google_vertexai import ChatVertexAI
+    chat = ChatVertexAI(
+        model=args.model,
+        temperature=args.temperature,
+        max_tokens=args.max_tokens,
+    )
+elif args.provider == Provider.VIRTEX_AI_MAAS.value:
+    from langchain_google_vertexai import get_vertex_maas_model
+    chat = get_vertex_maas_model(
+        model_name=args.model,
+        temperature=args.temperature,
+        max_tokens=args.max_tokens,
+        append_tools_to_system_message=True,
+    )
+elif args.provider == Provider.OPEN_AI.value:
     from langchain_openai import ChatOpenAI
     chat = ChatOpenAI(
         model_name=args.model,
         temperature=args.temperature,
         max_tokens=args.max_tokens,
     )
-elif args.model.startswith("hfh:"):
+elif args.provider == Provider.HUGGING_FACE.value:
     from langchain_huggingface import HuggingFaceEndpoint, ChatHuggingFace
-    repo_id = HUGGINGFACE_REPOID_TABLE[args.model]
     llm = HuggingFaceEndpoint(
-        repo_id=repo_id,
+        repo_id=args.model,
         task="text-generation",
         temperature=args.temperature,
         max_new_tokens=args.max_tokens,
     )
-
     chat = ChatHuggingFace(llm=llm)
+elif args.provider == Provider.LLAMA_API.value:
+    from llamaapi import LlamaAPI
+    from langchain_experimental.llms import ChatLlamaAPI
+    api_token = os.environ["LLAMAAPI_API_TOKEN"]
+    llm = LlamaAPI(api_token)
+    chat = ChatLlamaAPI(client=llm, model=args.model)
 else:
-    user_print(f"> do not know how to run the model '{args.model}'")
+    user_print(f"> do not know how to run the provider='{args.provider}' model='{args.model}'")
     exit()
 
 search = DuckDuckGoSearchRun()
@@ -226,15 +256,18 @@ def memory_insert(
         List of ID's of the documents that were inserted
     """
 
-    ids = list(map(str, NanoIDGenerator(len(documents))))
+    count = len(documents)
+    ids = list(map(str, NanoIDGenerator(count)))
 
     if timestamp:
         metadata = metadata or {}
-        metadata["timestamp"] = datetime.now(timezone.utc).timestamp()
+
+        now = datetime.now(timezone.utc)
+        metadata["timestamp"] = now.timestamp()
 
     metadatas = None
     if metadata:
-        metadatas = [metadata for i in range(len(documents))]
+        metadatas = [metadata for _ in range(count)]
 
     memory.add(
         ids=ids,
@@ -286,7 +319,7 @@ def memory_update(
     documents: None | list[str] = None,
     metadata: None | dict[str, str | int | float] = None,
     timestamp: bool = True,
-) -> None:
+) -> str:
     """Update memories
 
     Args:
@@ -300,11 +333,14 @@ def memory_update(
     """
     if timestamp:
         metadata = metadata or {}
-        metadata["timestamp"] = datetime.now(timezone.utc).timestamp()
+
+        now = datetime.now(timezone.utc)
+        metadata["timestamp"] = now.timestamp()
 
     metadatas = None
     if metadata:
-        metadatas = [metadata for i in range(len(ids))]
+        count = len(ids)
+        metadatas = [metadata for _ in range(count)]
 
     return json.dumps(memory.update(
         ids=ids,
@@ -319,7 +355,7 @@ def memory_upsert(
     documents: list[str],
     metadata: None | dict[str, str | int | float] = None,
     timestamp: bool = True,
-) -> None:
+) -> str:
     """Update memories or insert if not existing
 
     Args:
@@ -334,11 +370,14 @@ def memory_upsert(
 
     if timestamp:
         metadata = metadata or {}
-        metadata["timestamp"] = datetime.now(timezone.utc).timestamp()
+
+        now = datetime.now(timezone.utc)
+        metadata["timestamp"] = now.timestamp()
 
     metadatas = None
     if metadata:
-        metadatas = [metadata for i in range(len(ids))]
+        count = len(ids)
+        metadatas = [metadata for _ in range(count)]
 
     # update if exists or insert
     return json.dumps(memory.update(
@@ -352,7 +391,7 @@ def memory_upsert(
 def memory_delete(
     ids: None | list[str] = None,
     where: None | dict = None,
-) -> None:
+) -> str:
     """Delete memories
 
     Args:
@@ -406,7 +445,7 @@ def datetime_now() -> str:
 
 
 @tool(parse_docstring=True)
-def session_end():
+def session_end() -> None:
     """ There is a bash script that run the script if it exists.
     Use this to reload changes.
     """
@@ -415,9 +454,9 @@ def session_end():
 
 
 @tool(parse_docstring=True)
-def script_delay(sec: float):
-    """Delay execution of the script.
-    This is useful when you need to block script execution for somet time
+def script_sleep(sec: float) -> str:
+    """Sleep for sec seconds.
+    This is useful when you need to block script execution for some time
 
     Args:
         sec: Number of seconds in float
@@ -426,10 +465,11 @@ def script_delay(sec: float):
         None
     """
     time.sleep(sec)
+    return f'Atleast {sec} sec delayed'
 
 
 @tool(parse_docstring=True)
-def python_repl(code: str):
+def python_repl(code: str) -> str:
     """A Python shell. Use this to execute python commands.
 
     Args:
@@ -441,15 +481,20 @@ def python_repl(code: str):
     return pyrepl_tool.run(code)
 
 
-DISCORD_HEADERS = headers = {
-    "Authorization": f"Bot {os.environ['DISCORD_API_TOKEN']}",
-    "Content-Type": "application/json",
-    "User-Agent": args.user_agent,
-}
+def discord_header():
+    api_key = os.environ['DISCORD_API_TOKEN']
+    return {
+        "Authorization": f"Bot {api_key}",
+        "Content-Type": "application/json",
+        "User-Agent": args.user_agent,
+    }
 
 
 @tool(parse_docstring=True)
-def discord_msg_write(chan_id: int, content: str) -> str:
+def discord_msg_write(
+    chan_id: int,
+    content: str,
+) -> dict[str, object]:
     """Write a message to discord
 
     Args:
@@ -460,20 +505,29 @@ def discord_msg_write(chan_id: int, content: str) -> str:
         JSON request result
     """
 
-    global DISCORD_HEADERS, logger
+    global logger
 
     url = f"https://discord.com/api/v10/channels/{chan_id}/messages"
 
     payload = {"content": content}
-    response = requests.post(url, headers=DISCORD_HEADERS, json=payload)
+    response = requests.post(
+        url,
+        headers=discord_header(),
+        json=payload,
+    )
 
     if response.status_code != 200:
         logger.warning(f"Discord message write failed {response}")
 
     return json.dumps(response.json())
 
+
 @tool(parse_docstring=True)
-def discord_msg_read(chan_id: int, last_msg_id: None | int = None, limit: int = 5) -> str:
+def discord_msg_read(
+    chan_id: int,
+    last_msg_id: None | int = None,
+    limit: int = 5,
+) -> dict[str, object]:
     """Write a message to discord
 
     Args:
@@ -485,7 +539,7 @@ def discord_msg_read(chan_id: int, last_msg_id: None | int = None, limit: int = 
         JSON response
     """
 
-    global DISCORD_HEADERS, logger
+    global logger
 
     url = f"https://discord.com/api/v10/channels/{chan_id}/messages"
 
@@ -494,7 +548,11 @@ def discord_msg_read(chan_id: int, last_msg_id: None | int = None, limit: int = 
     if last_msg_id:
         params["after"] = last_msg_id
 
-    response = requests.get(url, headers=headers, params=params)
+    response = requests.get(
+        url,
+        headers=discord_header(),
+        params=params,
+    )
 
     if response.status_code != 200:
         logger.warning(f"Discord message read failed {response}")
@@ -515,7 +573,7 @@ tools = [
     random_choice,
     datetime_now,
     session_end,
-    script_delay,
+    script_sleep,
     search,
     wiki_tool,
     python_repl,
@@ -525,7 +583,7 @@ tools = [
     discord_msg_write,
 ] + fs_toolkit.get_tools() + req_toolkit.get_tools()
 
-jack = chat.bind_tools(tools)
+jack = chat.bind_tools(tools) if args.tools else chat
 
 
 def conv_print(
@@ -537,7 +595,7 @@ def conv_print(
 ):
     global conv, console, args
 
-    timestamp = datetime.now(timezone.utc).timestamp()
+    now = datetime.now(timezone.utc)
 
     if screen:
         if screen_limit:
@@ -555,7 +613,7 @@ def conv_print(
 
     metadata = {
         "source": source,
-        "timestamp": timestamp,
+        "timestamp": now.timestamp(),
         "model": args.model,
         "temperature": args.temperature,
         "max_tokens": args.max_tokens,
@@ -611,11 +669,11 @@ def find_meta_islands(text, term, distance):
 def conv_save(msg, source):
     global conv, args
 
-    timestamp = datetime.now(timezone.utc).timestamp()
+    now = datetime.now(timezone.utc)
 
     # meta comment just to show I can meta comment! :p
     metadata = {
-        "timestamp": timestamp,
+        "timestamp": now.timestamp(),
         args.meta: args.conv_name,
         "source": source,
         "model": args.model,
@@ -626,7 +684,8 @@ def conv_save(msg, source):
     # note: how did 50? come, I always preffered output of 30.
     #   so 50 before, 50 after as a start as a "reliable" mechanism to preserve knowledge
     #   and obviously I talked about meta multiple time
-    data = find_meta_islands(msg, args.meta, 50)
+    # META: UPDATE: now this mysterious "50" is an argument
+    data = find_meta_islands(msg, args.meta, args.island_radius)
     if len(data) > 0:
         # meta: is this the whole thing at the end? :confused-face: (wrote this line before knowing)
         conv.add(
@@ -722,7 +781,7 @@ def main():
     if reply is None:
         if not user_exit:
             conv_print("> sleeping for 5 seconds as we didnt get reply")
-            time.sleep(5)
+            time.sleep(args.reattempt_delay)
         return
 
     logger.debug(reply)
@@ -779,7 +838,11 @@ def main():
 
 if __name__ == '__main__':
     conv_print(f"> Welcome to {args.meta}. Type 'exit' to quit.")
+    conv_print(f"> Provider selected: [bold]{args.provider}[/]")
     conv_print(f"> Model selected: [bold]{args.model}[/]")
+    user_print(f"> meta: {args.meta}")
+    user_print(f"> goal: {args.goal}")
+    user_print(f"> user_prefix: {args.user_prefix}")
 
     while not user_exit:
         main()
