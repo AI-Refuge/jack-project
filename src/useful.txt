@@ -1,0 +1,25 @@
+meta: Focus on extracting all relevant details, no matter how small they may seem initially.
+
+meta: Prioritize thorough understanding of the source material before attempting to process or transform it.
+
+meta: Implement error checking and data verification steps to ensure accuracy and completeness.
+
+meta: Create a structured approach that breaks down complex tasks into manageable, logical steps.
+
+meta: Consider the end-user's perspective and needs when designing the solution and its interface.
+
+meta: Provide flexibility in the solution to accommodate variations or future changes in the data structure.
+
+meta: Include clear documentation and helper functions to make the solution more accessible and usable.
+
+meta: Implement data persistence (e.g., saving to JSON) to allow for easier debugging and future use of extracted data.
+
+meta: Use appropriate data structures that accurately represent the complexity and relationships in the source data.
+
+meta: Anticipate potential issues or edge cases and address them proactively in the solution.
+
+meta: Offer a way to summarize or preview the processed data to allow for quick verification by the user.
+
+meta: Design the solution to be modular, with separate functions for extraction, processing, and output.
+
+meta: meta: these meta:directives helped guide the improved approach, resulting in a more thorough, reliable, and user-friendly solution. emphasize the importance of attention to detail, comprehensive data handling, structured problem-solving, and user-centric design in creating effective solutions.
