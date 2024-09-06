@@ -743,6 +743,7 @@ SYS_FILES = (
     # "How to conduct a meta‑analysis in eight steps: a practical guide"
     "analysis.txt",
 
+    # Just some more prompt that I found useful, they are going in memory soon
     "prompt.txt",
 )
 get_texts = lambda files: '\n\n'.join([open(f).read() for f in files])
