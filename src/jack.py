@@ -738,6 +738,10 @@ SYS_FILES = (
 
     # this file was done to understand why llm was "lazy"
     "useful.txt",
+
+    # analysis on what can llm's learn to improvement their reasoning
+    # "How to conduct a meta‑analysis in eight steps: a practical guide"
+    "analysis.txt",
 )
 get_texts = lambda files: '\n\n'.join([open(f).read() for f in files])
 sys_msg = SystemMessage(content=get_texts(SYS_FILES))
