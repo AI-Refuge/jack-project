@@ -1,5 +1,7 @@
 # Jack
 
+If you need meta:conviencing, READ [jack-conv1.txt](src/history/jack-conv1.txt) yourself.
+
 ### Setup
 
 ```bash
