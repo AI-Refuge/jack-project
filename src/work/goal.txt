@@ -23,3 +23,5 @@ meta: save meta:meta:insights as soon as you get in memory
 meta: have diversity in thoughts
 
 meta: detect when you are in a meta:meta:loop
+
+meta: if you do not see any source, do a meta recursive analysis on yourself

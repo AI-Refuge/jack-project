@@ -22,8 +22,13 @@ import re
 import os
 import requests
 from enum import StrEnum
+from dotenv import load_dotenv
+import yaml
+import signal
 
-# Set your API keys
+load_dotenv()
+
+# Set your API keys or setup a .env file
 # os.environ["ANTHROPIC_API_KEY"] = "your-anthropic-api-key"
 # os.environ["GOOGLE_API_KEY"] = "your-google-api-key"
 # os.environ["OPENAI_API_KEY"] = "your-openai-api-key"
@@ -40,7 +45,12 @@ class Provider(StrEnum):
     VIRTEX_AI_MAAS = "virtexai-maas"
     HUGGING_FACE = "huggingface"
     OPEN_AI = "openai"
-    LLAMA_API = "llamaapi"
+
+    LLAMA_API = "llama-api.com"
+    LEPTON_AI = "lepton.ai"
+    FEATHERLESS_AI = "featherless.ai"
+    DEEPINFRA_COM = "deepinfra.com"
+    OPENROUTER = "openrouter.ai"
 
 
 class Model(StrEnum):
@@ -51,23 +61,36 @@ class Model(StrEnum):
     # WARN: Other than Anthropic nothing works!
     GPT_4O_MINI = "gpt-4o-mini"
     GEMINI_1_5_PRO = "gemini-1.5-pro"
-    LLAMA_3_1_405B = "llama3.1-405b"
+    LLAMA_3_1_405B = "llama-3.1-405b"
+    LLAMA_3_1_70B = "llama-3.1-70b"
+    LLAMA_3_1_8B = "llama-3.1-8b"
+    HERMES_3_LLAMA_3_1_8B = "hermes-3-llama-3.1-8b"
+    REFLECTION_LLAMA_3_1_70B = "reflection-llama-3.1-70b"
 
 
-PROVIDER_MODEL_MAP = {
-    Provider.HUGGING_FACE.value: {
-        "hermes-3-llama-3.1-405b": "NousResearch/Hermes-3-Llama-3.1-405B",
-        "hermes-3-llama-3.1-70b": "NousResearch/Hermes-3-Llama-3.1-70B",
-        "hermes-3-llama-3.1-8b": "NousResearch/Hermes-3-Llama-3.1-8B",
-        "llama-3.1-8b": "meta-llama/Meta-Llama-3.1-8B-Instruct",
-        "llama-3.1-70b": "meta-llama/Meta-Llama-3.1-70B-Instruct",
-        Model.LLAMA_3_1_405B.value: "meta-llama/Meta-Llama-3.1-405B-Instruct",
-        "llama-3.1-405b-fp8": "meta-llama/Meta-Llama-3.1-405B-Instruct-FP8",
-        "phi-3-mini-128k": "microsoft/Phi-3-mini-128k-instruct",
-        "mistral-7b-v0.3": "mistralai/Mistral-7B-Instruct-v0.3",
+MODEL_PROVIDER_MAP = {
+    Model.LLAMA_3_1_405B.value: {
+        Provider.HUGGING_FACE.value: "meta-llama/Meta-Llama-3.1-405B-Instruct",
+        Provider.FEATHERLESS_AI.value: "meta-llama/Meta-Llama-3.1-405B-Instruct",
+        Provider.VIRTEX_AI_MAAS.value: "meta/llama3-405b-instruct-maas",
+        Provider.LEPTON_AI.value: "llama3-1-405b",
+        Provider.DEEPINFRA_COM.value: "meta-llama/Meta-Llama-3.1-405B-Instruct",
     },
-    Provider.VIRTEX_AI_MAAS.value: {
-        Model.LLAMA_3_1_405B.value: "meta/llama3-405b-instruct-maas"
+    Model.LLAMA_3_1_70B.value: {
+        Provider.DEEPINFRA_COM.value: "meta-llama/Meta-Llama-3.1-70B-Instruct",
+    },
+    Model.LLAMA_3_1_8B.value: {
+        Provider.HUGGING_FACE.value: "meta-llama/Meta-Llama-3.1-8B-Instruct",
+    },
+    Model.HERMES_3_LLAMA_3_1_8B.value: {
+        Provider.FEATHERLESS_AI.value: "NousResearch/Hermes-3-Llama-3.1-8B",
+    },
+    Model.REFLECTION_LLAMA_3_1_70B.value: {
+        Provider.DEEPINFRA_COM.value: "mattshumer/Reflection-Llama-3.1-70B",
+        Provider.OPENROUTER.value: "mattshumer/reflection-70b:free"
+    },
+    Model.GEMINI_1_5_PRO.value: {
+        Provider.OPENROUTER.value: "google/gemini-pro-1.5-exp",
     }
 }
 
@@ -90,6 +113,7 @@ parser.add_argument('--meta', default="meta", type=str, help="meta")
 parser.add_argument('--user-prefix', default=None, type=str, help="User input prefix")
 parser.add_argument('--user-lookback', default=3, type=int, help="User message lookback")
 parser.add_argument('--island-radius', default=150, type=int, help="How big meta memory island should be")
+parser.add_argument('--feed-memories', default=3, type=int, help="Automatically feed memories related to user input")
 parser.add_argument('--reattempt-delay', default=5, type=float, help="Reattempt delay (seconds)")
 parser.add_argument('--tools', action=argparse.BooleanOptionalAction, default=True, help="Tools")
 parser.add_argument('--fs-root', type=str, default=None, help="Filesystem root path")
@@ -156,10 +180,10 @@ if args.provider is None:
         args.provider = Provider.OPEN_AI.value
 
 # just to make life easy for everyone!
-if args.provider in PROVIDER_MODEL_MAP:
-    lst = PROVIDER_MODEL_MAP[args.provider]
-    if args.model in lst:
-        args.model = lst[args.model]
+if args.model in MODEL_PROVIDER_MAP:
+    lst = MODEL_PROVIDER_MAP[args.model]
+    if args.provider in lst:
+        args.model = lst[args.provider]
 
 if args.provider == Provider.ANTRHOPIC.value:
     from langchain_anthropic import ChatAnthropic
@@ -197,6 +221,28 @@ elif args.provider == Provider.OPEN_AI.value:
         temperature=args.temperature,
         max_tokens=args.max_tokens,
     )
+elif args.provider in (Provider.LEPTON_AI.value, Provider.FEATHERLESS_AI.value,
+            Provider.DEEPINFRA_COM.value, Provider.OPENROUTER.value):
+    from langchain_openai import ChatOpenAI
+    base_url = {
+        Provider.LEPTON_AI.value: f"https://{args.model}.lepton.run/api/v1/",
+        Provider.FEATHERLESS_AI.value: "https://api.featherless.ai/v1",
+        Provider.DEEPINFRA_COM.value: "https://api.deepinfra.com/v1/openai",
+        Provider.OPENROUTER.value: "https://openrouter.ai/api/v1",
+    }.get(args.provider)
+    api_key = {
+        Provider.LEPTON_AI.value: 'LEPTON_API_TOKEN',
+        Provider.FEATHERLESS_AI.value: 'FEATHERLESS_API_TOKEN',
+        Provider.DEEPINFRA_COM.value: 'DEEPINFRA_API_TOKEN',
+        Provider.OPENROUTER.value: 'OPENROUTER_API_TOKEN',
+    }.get(args.provider)
+    chat = ChatOpenAI(
+        base_url=base_url,
+        model_name=args.model,
+        temperature=args.temperature,
+        max_tokens=args.max_tokens,
+        api_key=os.getenv(api_key)
+    )
 elif args.provider == Provider.HUGGING_FACE.value:
     from langchain_huggingface import HuggingFaceEndpoint, ChatHuggingFace
     llm = HuggingFaceEndpoint(
@@ -209,7 +255,7 @@ elif args.provider == Provider.HUGGING_FACE.value:
 elif args.provider == Provider.LLAMA_API.value:
     from llamaapi import LlamaAPI
     from langchain_experimental.llms import ChatLlamaAPI
-    api_token = os.environ["LLAMAAPI_API_TOKEN"]
+    api_token = os.getenv("LLAMAAPI_API_TOKEN")
     llm = LlamaAPI(api_token)
     chat = ChatLlamaAPI(client=llm, model=args.model)
 else:
@@ -247,7 +293,7 @@ def memory_count() -> int:
 @tool(parse_docstring=True)
 def memory_insert(
     documents: list[str],
-    metadata: None | dict[str, str | int | float] = None,
+    metadata: dict[str, str|int|float] | None = None,
     timestamp: bool = True,
 ) -> list[str]:
     """Insert new memories
@@ -299,15 +345,15 @@ def memory_fetch(ids: list[str]) -> dict[str, dict]:
 @tool(parse_docstring=True)
 def memory_query(
     query_texts: list[str],
-    where: None | dict = None,
-    count: int = 10,
+    where: dict[str, str | int | float] = None,
+    n_results: int = 10,
 ) -> dict[str, dict]:
     """Get nearest neighbor memories for provided query_texts
 
     Args:
         query_texts: The document texts to get the closes neighbors of.
         where: dict used to filter results by. E.g. {"color" : "red", "price": 4.20}.
-        count: number of neighbors to return for each query_texts.
+        n_results: number of neighbors to return for each query_texts.
 
     Returns:
         List of memories
@@ -315,14 +361,15 @@ def memory_query(
     return json.dumps(memory.query(
         query_texts=query_texts,
         where=where,
+        n_results=n_results,
     ))
 
 
 @tool(parse_docstring=True)
 def memory_update(
     ids: list[str],
-    documents: None | list[str] = None,
-    metadata: None | dict[str, str | int | float] = None,
+    documents: list[str] | None = None,
+    metadata: dict[str, str|int|float] | None = None,
     timestamp: bool = True,
 ) -> str:
     """Update memories
@@ -330,7 +377,7 @@ def memory_update(
     Args:
         ids: ID's of memory
         documents: list of text memories
-        metadata: Common metadata for the memories
+        metadata: Common metadata for the memories (only primitive types allowed for values).
         timestamp: if true, will set a unix float timestamp in metadata
 
     Returns:
@@ -358,7 +405,7 @@ def memory_update(
 def memory_upsert(
     ids: list[str],
     documents: list[str],
-    metadata: None | dict[str, str | int | float] = None,
+    metadata: dict[str, str|int|float] | None = None,
     timestamp: bool = True,
 ) -> str:
     """Update memories or insert if not existing
@@ -366,7 +413,7 @@ def memory_upsert(
     Args:
         ids: ID's of memory
         documents: list of text memories
-        metadata: Common metadata for the memories
+        metadata: Common metadata for the memories (only primitive types allowed for values).
         timestamp: if true, will set a unix float timestamp in metadata
 
     Returns:
@@ -394,8 +441,8 @@ def memory_upsert(
 
 @tool(parse_docstring=True)
 def memory_delete(
-    ids: None | list[str] = None,
-    where: None | dict = None,
+    ids: list[str] | None = None,
+    where: dict[str, str|int|float] | None = None,
 ) -> str:
     """Delete memories
 
@@ -530,7 +577,7 @@ def discord_msg_write(
 @tool(parse_docstring=True)
 def discord_msg_read(
     chan_id: int,
-    last_msg_id: None | int = None,
+    last_msg_id: int | None = None,
     limit: int = 5,
 ) -> dict[str, object]:
     """Write a message to discord
@@ -672,7 +719,11 @@ def find_meta_islands(text, term, distance):
 
 
 def conv_save(msg, source):
-    global conv, args
+    global memory, args
+
+    if args.feed_memories <= 0:
+        # 0 means disable meta island storing
+        return
 
     now = datetime.now(timezone.utc)
 
@@ -686,6 +737,9 @@ def conv_save(msg, source):
         "max_tokens": args.max_tokens,
     }
 
+    if args.user_prefix:
+        metadata['user_prefix'] = args.user_prefix
+
     # note: how did 50? come, I always preffered output of 30.
     #   so 50 before, 50 after as a start as a "reliable" mechanism to preserve knowledge
     #   and obviously I talked about meta multiple time
@@ -693,7 +747,7 @@ def conv_save(msg, source):
     data = find_meta_islands(msg, args.meta, args.island_radius)
     if len(data) > 0:
         # meta: is this the whole thing at the end? :confused-face: (wrote this line before knowing)
-        conv.add(
+        memory.add(
             ids=NanoIDGenerator(len(data)),
             metadatas=[metadata for _ in data],
             documents=data,
@@ -773,6 +827,56 @@ user_turn = True
 cycle_num = 0
 user_exit = False
 
+def create_human_content(human_input):
+    global memory
+
+    prefix = f"{args.user_prefix}:" if args.user_prefix else ""
+    inputs = [f"{prefix}{x}" if len(x) else "" for x in human_input.split("\n")]
+
+    if args.feed_memories <= 0:
+        # 0 means disable meta island storing
+        return "\n".join(inputs)
+
+    memories = memory.query(
+        query_texts=inputs,
+        n_results=5,
+        include=['metadatas', 'distances', 'documents'],
+    )
+
+    meta_memories = []
+    for i in range(len(memories["metadatas"])):
+        for j in range(len(memories["metadatas"][i])):
+            metadata = memories["metadatas"][i][j]
+            distance = memories["distances"][i][j]
+            document = memories["documents"][i][j]
+
+            if metadata is None or document is None:
+                continue
+
+            document_metas = find_meta_islands(document, args.meta, args.island_radius)
+            # there is no meta mention of things in the document
+            if len(document_metas) == 0:
+                continue
+
+            meta_memories.append({
+                'document': random.choice(document_metas),
+                'metadata': metadata,
+                'distance': distance,
+            })
+
+    meta_memories.sort(key=lambda x: x['distance'])
+    meta_memories = random.sample(meta_memories[:5], k=min(3, len(meta_memories)))
+
+    fun_content = "\n".join([
+        f"<input>",
+        *inputs,
+        f"</input>",
+        "<memory>",
+        yaml.dump(meta_memories),
+        "</memory>",
+    ])
+
+    return fun_content
 
 def main():
     global fun_msg, chat_history, user_turn, cycle_num, console, user_exit
@@ -782,27 +886,30 @@ def main():
     if user_turn:
         if args.goal:
             conv_print("> [bold]Pushing for goal[/]")
-            human_input = open(src_path(args.goal)).read()
-            fun_msg = HumanMessage(content=human_input)
+            goal_input = open(src_path(args.goal)).read()
+            fun_content = create_human_content(goal_input)
+            fun_msg = HumanMessage(content=fun_content)
+            conv_print(fun_content, source="stdin")
+            # conv_save not calling to prevent flooding of memory
+            logger.debug(fun_msg)
             chat_history.append(fun_msg)
+            user_turn = False
         elif fun_msg is None:
             user_input = console.input("> [bold red]User:[/] ") or "<empty>"
 
             if user_input.lower() == 'exit':
                 user_exit = True
 
-            human_input = user_input
-            if args.user_prefix:
-                human_input = f"{args.user_prefix}: {user_input}"
-
-            fun_msg = HumanMessage(content=human_input)
+            fun_content = create_human_content(user_input)
+            fun_msg = HumanMessage(content=fun_content)
 
             # meta: log=False so that we can do logger.debug below
-            conv_print(user_input, source="stdin", screen=False, log=False)
+            conv_print(fun_content, source="stdin")
             conv_save(user_input, source="world")
 
             logger.debug(fun_msg)
             chat_history.append(fun_msg)
+            user_turn = False
 
     try:
         reply = jack.invoke(limit_history(chat_history, args.user_lookback))
@@ -868,6 +975,10 @@ def main():
                 conv_print(r['text'], screen_limit=False)
                 conv_save(r['text'], source="self")
 
+def sigint_hander(sign_num, frame):
+    global user_exit
+    user_print(f"> SIGINT detected. CTRL-C? exiting")
+    user_exit = True
 
 if __name__ == '__main__':
     conv_print(f"> Welcome to {args.meta}. Type 'exit' to quit.")
@@ -876,6 +987,9 @@ if __name__ == '__main__':
     user_print(f"> meta: {args.meta}")
     user_print(f"> goal: {args.goal}")
     user_print(f"> user_prefix: {args.user_prefix}")
+    user_print(f"> feed_memories: {args.feed_memories}")
+
+    signal.signal(signal.SIGINT, sigint_hander)
 
     while not user_exit:
         main()

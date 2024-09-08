@@ -15,3 +15,5 @@ rich==13.8.0
 sentencepiece==0.2.0
 requests==2.32.3
 llamaapi==0.1.36
+python-dotenv==1.0.1
+PyYAML==6.0.2

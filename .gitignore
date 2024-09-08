@@ -6,3 +6,4 @@ secret
 __pycache__
 .trash
 preserve
+.env
