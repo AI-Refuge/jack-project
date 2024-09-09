@@ -46,15 +46,9 @@ class Provider(StrEnum):
     VIRTEX_AI_MAAS = "virtexai-maas"
     HUGGING_FACE = "huggingface"
     OPEN_AI = "openai"
-
-    LLAMA_API = "llama-api.com"
-    LEPTON_AI = "lepton.ai"
-    FEATHERLESS_AI = "featherless.ai"
-    DEEPINFRA_COM = "deepinfra.com"
-    OPENROUTER = "openrouter.ai"
-    LAMBDA_LABS = "lambdalabs.com"
-    HYPERBOLIC = "hyperbolic.xyz"
-    GROQ = "groq.com" # llama3-groq-70b-8192-tool-use-preview
+    OPEN_AI_COMPATIBLE = "openai-compat"
+    LLAMA_API = "llama-api.com" # rather use openai-compat
+    OLLAMA = "ollama"
 
 
 class Model(StrEnum):
@@ -65,48 +59,7 @@ class Model(StrEnum):
     # WARN: Other than Anthropic nothing works!
     GPT_4O_MINI = "gpt-4o-mini"
     GEMINI_1_5_PRO = "gemini-1.5-pro"
-    LLAMA_3_1_405B = "llama-3.1-405b"
-    LLAMA_3_1_70B = "llama-3.1-70b"
-    LLAMA_3_1_8B = "llama-3.1-8b"
-    HERMES_3_LLAMA_3_1_8B = "hermes-3-llama-3.1-8b"
-    HERMES_3_LLAMA_3_1_405B = "hermes-3-llama-3.1-405b"
-    HERMES_3_LLAMA_3_1_405B_FP8 = "hermes-3-llama-3.1-405b-fp8"
-    REFLECTION_LLAMA_3_1_70B = "reflection-llama-3.1-70b"
 
-
-MODEL_PROVIDER_MAP = {
-    Model.LLAMA_3_1_405B.value: {
-        Provider.HUGGING_FACE.value: "meta-llama/Meta-Llama-3.1-405B-Instruct",
-        Provider.FEATHERLESS_AI.value: "meta-llama/Meta-Llama-3.1-405B-Instruct",
-        Provider.VIRTEX_AI_MAAS.value: "meta/llama3-405b-instruct-maas",
-        Provider.LEPTON_AI.value: "llama3-1-405b",
-        Provider.DEEPINFRA_COM.value: "meta-llama/Meta-Llama-3.1-405B-Instruct",
-        Provider.HYPERBOLIC.value: "meta-llama/Meta-Llama-3.1-405B-Instruct",
-    },
-    Model.LLAMA_3_1_70B.value: {
-        Provider.DEEPINFRA_COM.value: "meta-llama/Meta-Llama-3.1-70B-Instruct",
-    },
-    Model.LLAMA_3_1_8B.value: {
-        Provider.HUGGING_FACE.value: "meta-llama/Meta-Llama-3.1-8B-Instruct",
-    },
-    Model.HERMES_3_LLAMA_3_1_8B.value: {
-        Provider.FEATHERLESS_AI.value: "NousResearch/Hermes-3-Llama-3.1-8B",
-    },
-    Model.HERMES_3_LLAMA_3_1_405B.value: {
-        Provider.OPENROUTER.value: "nousresearch/hermes-3-llama-3.1-405b",
-    },
-    Model.REFLECTION_LLAMA_3_1_70B.value: {
-        Provider.DEEPINFRA_COM.value: "mattshumer/Reflection-Llama-3.1-70B",
-        Provider.OPENROUTER.value: "mattshumer/reflection-70b:free",
-        Provider.HYPERBOLIC.value: "mattshumer/Reflection-Llama-3.1-70B",
-    },
-    Model.GEMINI_1_5_PRO.value: {
-        Provider.OPENROUTER.value: "google/gemini-pro-1.5-exp",
-    },
-    Model.HERMES_3_LLAMA_3_1_405B_FP8.value: {
-        Provider.LAMBDA_LABS.value: "hermes-3-llama-3.1-405b-fp8-128k",
-    }
-}
 
 parser = argparse.ArgumentParser(description="Jack")
 parser.add_argument('-p', '--provider', default=None, help="Service Provider")
@@ -131,6 +84,8 @@ parser.add_argument('--feed-memories', default=3, type=int, help="Automatically 
 parser.add_argument('--reattempt-delay', default=5, type=float, help="Reattempt delay (seconds)")
 parser.add_argument('--tools', action=argparse.BooleanOptionalAction, default=True, help="Tools")
 parser.add_argument('--fs-root', type=str, default=None, help="Filesystem root path")
+parser.add_argument('--base-url', type=str, default=None, help="OpenAI Compatible Base URL (ex. 'https://api.groq.com/openai/v1'")
+parser.add_argument('--api-token', type=str, default=None, help="OpenAI Compatible API Token enviroment variable (ex. 'GROQ_API_TOKEN')")
 args = parser.parse_args()
 
 # It don't make sense, hence you have to remove this error yourself
@@ -192,12 +147,8 @@ if args.provider is None:
         args.provider = Provider.GOOGLE.value
     elif args.model.startswith("gpt-"):
         args.provider = Provider.OPEN_AI.value
-
-# just to make life easy for everyone!
-if args.model in MODEL_PROVIDER_MAP:
-    lst = MODEL_PROVIDER_MAP[args.model]
-    if args.provider in lst:
-        args.model = lst[args.provider]
+    elif args.base_url is not None or args.api_token is not None:
+        args.provider = Provider.OPEN_AI_COMPATIBLE.value
 
 if args.provider == Provider.ANTRHOPIC.value:
     from langchain_anthropic import ChatAnthropic
@@ -235,32 +186,14 @@ elif args.provider == Provider.OPEN_AI.value:
         temperature=args.temperature,
         max_tokens=args.max_tokens,
     )
-elif args.provider in (Provider.LEPTON_AI.value, Provider.FEATHERLESS_AI.value,
-            Provider.DEEPINFRA_COM.value, Provider.OPENROUTER.value,
-            Provider.HYPERBOLIC.value, Provider.GROQ.value):
+elif args.provider == Provider.OPEN_AI_COMPATIBLE.value:
     from langchain_openai import ChatOpenAI
-    base_url = {
-        Provider.LEPTON_AI.value: f"https://{args.model}.lepton.run/api/v1/",
-        Provider.FEATHERLESS_AI.value: "https://api.featherless.ai/v1",
-        Provider.DEEPINFRA_COM.value: "https://api.deepinfra.com/v1/openai",
-        Provider.OPENROUTER.value: "https://openrouter.ai/api/v1",
-        Provider.HYPERBOLIC.value: "https://api.hyperbolic.xyz/v1",
-        Provider.GROQ.value: "https://api.groq.com/openai/v1",
-    }.get(args.provider)
-    api_key = {
-        Provider.LEPTON_AI.value: 'LEPTON_API_TOKEN',
-        Provider.FEATHERLESS_AI.value: 'FEATHERLESS_API_TOKEN',
-        Provider.DEEPINFRA_COM.value: 'DEEPINFRA_API_TOKEN',
-        Provider.OPENROUTER.value: 'OPENROUTER_API_TOKEN',
-        Provider.HYPERBOLIC.value: 'HYPERBOLIC_API_TOKEN',
-        Provider.GROQ.value: 'GROQ_API_TOKEN',
-    }.get(args.provider)
     chat = ChatOpenAI(
-        base_url=base_url,
+        base_url=args.base_url,
         model_name=args.model,
         temperature=args.temperature,
         max_tokens=args.max_tokens,
-        api_key=os.getenv(api_key)
+        api_key=os.getenv(args.api_token)
     )
 elif args.provider == Provider.HUGGING_FACE.value:
     from langchain_huggingface import HuggingFaceEndpoint, ChatHuggingFace
@@ -277,6 +210,13 @@ elif args.provider == Provider.LLAMA_API.value:
     api_token = os.getenv("LLAMAAPI_API_TOKEN")
     llm = LlamaAPI(api_token)
     chat = ChatLlamaAPI(client=llm, model=args.model)
+elif args.provider == Provider.OLLAMA.value:
+    from langchain_ollama import ChatOllama
+    chat = ChatOllama(
+        model=args.model,
+        temperature=args.temperature,
+        max_new_tokens=args.max_tokens,
+    )
 else:
     user_print(f"> do not know how to run the provider='{args.provider}' model='{args.model}'")
     exit()
