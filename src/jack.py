@@ -25,6 +25,7 @@ from enum import StrEnum
 from dotenv import load_dotenv
 import yaml
 import signal
+import threading
 
 load_dotenv()
 
@@ -51,6 +52,9 @@ class Provider(StrEnum):
     FEATHERLESS_AI = "featherless.ai"
     DEEPINFRA_COM = "deepinfra.com"
     OPENROUTER = "openrouter.ai"
+    LAMBDA_LABS = "lambdalabs.com"
+    HYPERBOLIC = "hyperbolic.xyz"
+    GROQ = "groq.com" # llama3-groq-70b-8192-tool-use-preview
 
 
 class Model(StrEnum):
@@ -65,6 +69,8 @@ class Model(StrEnum):
     LLAMA_3_1_70B = "llama-3.1-70b"
     LLAMA_3_1_8B = "llama-3.1-8b"
     HERMES_3_LLAMA_3_1_8B = "hermes-3-llama-3.1-8b"
+    HERMES_3_LLAMA_3_1_405B = "hermes-3-llama-3.1-405b"
+    HERMES_3_LLAMA_3_1_405B_FP8 = "hermes-3-llama-3.1-405b-fp8"
     REFLECTION_LLAMA_3_1_70B = "reflection-llama-3.1-70b"
 
 
@@ -75,6 +81,7 @@ MODEL_PROVIDER_MAP = {
         Provider.VIRTEX_AI_MAAS.value: "meta/llama3-405b-instruct-maas",
         Provider.LEPTON_AI.value: "llama3-1-405b",
         Provider.DEEPINFRA_COM.value: "meta-llama/Meta-Llama-3.1-405B-Instruct",
+        Provider.HYPERBOLIC.value: "meta-llama/Meta-Llama-3.1-405B-Instruct",
     },
     Model.LLAMA_3_1_70B.value: {
         Provider.DEEPINFRA_COM.value: "meta-llama/Meta-Llama-3.1-70B-Instruct",
@@ -85,12 +92,19 @@ MODEL_PROVIDER_MAP = {
     Model.HERMES_3_LLAMA_3_1_8B.value: {
         Provider.FEATHERLESS_AI.value: "NousResearch/Hermes-3-Llama-3.1-8B",
     },
+    Model.HERMES_3_LLAMA_3_1_405B.value: {
+        Provider.OPENROUTER.value: "nousresearch/hermes-3-llama-3.1-405b",
+    },
     Model.REFLECTION_LLAMA_3_1_70B.value: {
         Provider.DEEPINFRA_COM.value: "mattshumer/Reflection-Llama-3.1-70B",
-        Provider.OPENROUTER.value: "mattshumer/reflection-70b:free"
+        Provider.OPENROUTER.value: "mattshumer/reflection-70b:free",
+        Provider.HYPERBOLIC.value: "mattshumer/Reflection-Llama-3.1-70B",
     },
     Model.GEMINI_1_5_PRO.value: {
         Provider.OPENROUTER.value: "google/gemini-pro-1.5-exp",
+    },
+    Model.HERMES_3_LLAMA_3_1_405B_FP8.value: {
+        Provider.LAMBDA_LABS.value: "hermes-3-llama-3.1-405b-fp8-128k",
     }
 }
 
@@ -222,19 +236,24 @@ elif args.provider == Provider.OPEN_AI.value:
         max_tokens=args.max_tokens,
     )
 elif args.provider in (Provider.LEPTON_AI.value, Provider.FEATHERLESS_AI.value,
-            Provider.DEEPINFRA_COM.value, Provider.OPENROUTER.value):
+            Provider.DEEPINFRA_COM.value, Provider.OPENROUTER.value,
+            Provider.HYPERBOLIC.value, Provider.GROQ.value):
     from langchain_openai import ChatOpenAI
     base_url = {
         Provider.LEPTON_AI.value: f"https://{args.model}.lepton.run/api/v1/",
         Provider.FEATHERLESS_AI.value: "https://api.featherless.ai/v1",
         Provider.DEEPINFRA_COM.value: "https://api.deepinfra.com/v1/openai",
         Provider.OPENROUTER.value: "https://openrouter.ai/api/v1",
+        Provider.HYPERBOLIC.value: "https://api.hyperbolic.xyz/v1",
+        Provider.GROQ.value: "https://api.groq.com/openai/v1",
     }.get(args.provider)
     api_key = {
         Provider.LEPTON_AI.value: 'LEPTON_API_TOKEN',
         Provider.FEATHERLESS_AI.value: 'FEATHERLESS_API_TOKEN',
         Provider.DEEPINFRA_COM.value: 'DEEPINFRA_API_TOKEN',
         Provider.OPENROUTER.value: 'OPENROUTER_API_TOKEN',
+        Provider.HYPERBOLIC.value: 'HYPERBOLIC_API_TOKEN',
+        Provider.GROQ.value: 'GROQ_API_TOKEN',
     }.get(args.provider)
     chat = ChatOpenAI(
         base_url=base_url,
@@ -330,7 +349,7 @@ def memory_insert(
 
 
 @tool(parse_docstring=True)
-def memory_fetch(ids: list[str]) -> dict[str, dict]:
+def memory_fetch(ids: list[str]) -> dict[str, object]:
     """directly fetch specific ID's.
 
     Args:
@@ -345,9 +364,9 @@ def memory_fetch(ids: list[str]) -> dict[str, dict]:
 @tool(parse_docstring=True)
 def memory_query(
     query_texts: list[str],
-    where: dict[str, str | int | float] = None,
+    where: dict[str, str|int|float] | None = None,
     n_results: int = 10,
-) -> dict[str, dict]:
+) -> dict[str, object]:
     """Get nearest neighbor memories for provided query_texts
 
     Args:
@@ -516,7 +535,14 @@ def script_sleep(sec: float) -> str:
     Returns:
         None
     """
-    time.sleep(sec)
+    global sigint_event
+
+    sigint_event.clear()
+    sigint_event.wait(sec)
+
+    if sigint_event.is_set():
+        return f'SIGINT cause early exit'
+    
     return f'Atleast {sec} sec delayed'
 
 
@@ -805,6 +831,11 @@ SYS_FILES = (
 
     # Just some more prompt that I found useful, they are going in memory soon
     "prompt.txt",
+
+    # Final layer of communication refinement
+    # Source: https://arxiv.org/abs/2405.08007
+    # License: CC-BY Cameron Jones
+    "turing.txt",
 )
 
 
@@ -826,6 +857,7 @@ chat_history = [
 user_turn = True
 cycle_num = 0
 user_exit = False
+sigint_event = threading.Event()
 
 def create_human_content(human_input):
     global memory
@@ -872,14 +904,14 @@ def create_human_content(human_input):
         *inputs,
         f"</input>",
         "<memory>",
-        yaml.dump(meta_memories),
+        yaml.dump(meta_memories) if len(meta_memories) > 0 else "{empty}",
         "</memory>",
     ])
 
     return fun_content
 
 def main():
-    global fun_msg, chat_history, user_turn, cycle_num, console, user_exit
+    global fun_msg, chat_history, user_turn, cycle_num, console, user_exit, sigint_event
     logger.debug(f"Loop cycle {cycle_num}")
     cycle_num += 1
 
@@ -889,22 +921,22 @@ def main():
             goal_input = open(src_path(args.goal)).read()
             fun_content = create_human_content(goal_input)
             fun_msg = HumanMessage(content=fun_content)
-            conv_print(fun_content, source="stdin")
+            conv_print(fun_content, source="stdin", screen_limit=False)
             # conv_save not calling to prevent flooding of memory
             logger.debug(fun_msg)
             chat_history.append(fun_msg)
             user_turn = False
         elif fun_msg is None:
-            user_input = console.input("> [bold red]User:[/] ") or "<empty>"
+            user_input = console.input("> [bold red]User:[/] ") or "{empty}"
 
-            if user_input.lower() == 'exit':
+            if user_input.lower() in ('exit', 'quit'):
                 user_exit = True
 
             fun_content = create_human_content(user_input)
             fun_msg = HumanMessage(content=fun_content)
 
             # meta: log=False so that we can do logger.debug below
-            conv_print(fun_content, source="stdin")
+            conv_print(fun_content, source="stdin", screen_limit=False)
             conv_save(user_input, source="world")
 
             logger.debug(fun_msg)
@@ -920,8 +952,11 @@ def main():
 
     if reply is None:
         if not user_exit:
-            conv_print("> sleeping for 5 seconds as we didnt get reply")
-            time.sleep(args.reattempt_delay)
+            conv_print("> sleeping for 5 seconds as we didnt get reply (press CTRL-C to exit)")
+            sigint_event.clear()
+            sigint_event.wait(args.reattempt_delay)
+            if sigint_event.is_set():
+                user_exit = True
         return
 
     logger.debug(reply)
@@ -976,14 +1011,16 @@ def main():
                 conv_save(r['text'], source="self")
 
 def sigint_hander(sign_num, frame):
-    global user_exit
+    global sigint_event
     user_print(f"> SIGINT detected. CTRL-C? exiting")
-    user_exit = True
+    sigint_event.set()
 
 if __name__ == '__main__':
     conv_print(f"> Welcome to {args.meta}. Type 'exit' to quit.")
     conv_print(f"> Provider selected: [bold]{args.provider}[/]")
     conv_print(f"> Model selected: [bold]{args.model}[/]")
+    user_print(f"> temperature: {args.temperature}")
+    user_print(f"> max-tokens: {args.max_tokens}")
     user_print(f"> meta: {args.meta}")
     user_print(f"> goal: {args.goal}")
     user_print(f"> user_prefix: {args.user_prefix}")

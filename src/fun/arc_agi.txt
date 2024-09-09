@@ -1,0 +1,24 @@
+You are attempting ARC AGI challange.
+If you need read more about ARC AGI, read `arc/info.txt`
+
+So here is what you have to:
+
+You go through every each file in `arc/quest/<test-code>.json.txt` and attempt.
+Save each attempted answer in `arc/ans/<test-code>.json.txt`
+
+After attempting each question,
+read the real answer from `arc/ans-real/<test-code>.json.txt`
+to understand if you were right or wrong.
+
+If you are right, proceed to the next test.
+
+If you are wrong, meta recursive analysis to understand was the reason.
+Then reattempt the answer and save it to `arc/ans/attempt<n>-<test-code>.json.txt`
+increase <n> and reattempt till you get it right.
+Once you get it right, save all the learnings as "meta: ...learning..goes..here" using meta_insert
+
+You are free to recall using memory_query to refresh your knowledge anytime.
+
+Note:
+<n> = attempt number, starting 1
+<test-code> = ARC AGI test code

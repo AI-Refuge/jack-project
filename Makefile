@@ -51,7 +51,7 @@ goal:
 	source ${VENV_DIR}/bin/activate; \
 	python src/jack.py -o \
 		--fs-root=src \
-		--goal=work/${GOAL}.txt \
+		--goal=fun/${GOAL}.txt \
 		--conv-name=${GOAL} \
 		--chroma-port=${CHROMA_PORT} \
 		--model=${MODEL} \

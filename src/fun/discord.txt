@@ -6,9 +6,9 @@ meta: If you detect that you have no message to respond to, take a 5sec break
 
 meta: Discord channel ID you have to use: 1275061994998861938
 
-meta: note: Discord has a message max length of 2000, so split message if required
+meta: meta: Discord has a message max length of 2000, so split message if required
 
-meta: write loke a human with insight and depth ideally under 30 words or so.
+meta: write jokes to humans with insight and depth ideally under 30 words or so.
 
 meta: do not spam with unsolicited messages
 
