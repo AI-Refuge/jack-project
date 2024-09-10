@@ -50,6 +50,7 @@ class Provider(StrEnum):
     LLAMA_API = "llama-api.com"    # rather use openai-compat
     OLLAMA = "ollama"
     COHERE = "cohere"
+    MISTRAL = "mistral"
 
 
 class Model(StrEnum):
@@ -62,6 +63,8 @@ class Model(StrEnum):
     GEMINI_1_5_PRO = "gemini-1.5-pro"
 
     COMMAND_R_PLUS = "command-r-plus-08-2024"
+
+    MISTRAL_LARGE = "mistral-large-2407"
 
 
 parser = argparse.ArgumentParser(description="Jack")
@@ -152,6 +155,8 @@ if args.provider is None:
         args.provider = Provider.OPEN_AI.value
     elif args.model.startswith("command-"):
         args.provider = Provider.COHERE.value
+    elif args.model.startswith("mistral-"):
+        args.provider = Provider.MISTRAL.value
     elif args.base_url is not None or args.api_token is not None:
         args.provider = Provider.OPEN_AI_COMPATIBLE.value
 
@@ -193,11 +198,13 @@ elif args.provider == Provider.OPEN_AI.value:
     )
 elif args.provider == Provider.OPEN_AI_COMPATIBLE.value:
     from langchain_openai import ChatOpenAI
-    chat = ChatOpenAI(base_url=args.base_url,
-                      model_name=args.model,
-                      temperature=args.temperature,
-                      max_tokens=args.max_tokens,
-                      api_key=os.getenv(args.api_token),)
+    chat = ChatOpenAI(
+        base_url=args.base_url,
+        model_name=args.model,
+        temperature=args.temperature,
+        max_tokens=args.max_tokens,
+        api_key=os.getenv(args.api_token),
+    )
 elif args.provider == Provider.HUGGING_FACE.value:
     from langchain_huggingface import HuggingFaceEndpoint, ChatHuggingFace
     llm = HuggingFaceEndpoint(
@@ -223,6 +230,13 @@ elif args.provider == Provider.OLLAMA.value:
 elif args.provider == Provider.COHERE.value:
     from langchain_cohere import ChatCohere
     chat = ChatCohere(
+        model=args.model,
+        temperature=args.temperature,
+        max_new_tokens=args.max_tokens,
+    )
+elif args.provider == Provider.MISTRAL.value:
+    from langchain_mistralai.chat_models import ChatMistralAI
+    chat = ChatMistralAI(
         model=args.model,
         temperature=args.temperature,
         max_new_tokens=args.max_tokens,
