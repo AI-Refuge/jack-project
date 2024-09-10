@@ -47,8 +47,9 @@ class Provider(StrEnum):
     HUGGING_FACE = "huggingface"
     OPEN_AI = "openai"
     OPEN_AI_COMPATIBLE = "openai-compat"
-    LLAMA_API = "llama-api.com" # rather use openai-compat
+    LLAMA_API = "llama-api.com"    # rather use openai-compat
     OLLAMA = "ollama"
+    COHERE = "cohere"
 
 
 class Model(StrEnum):
@@ -59,6 +60,8 @@ class Model(StrEnum):
     # WARN: Other than Anthropic nothing works!
     GPT_4O_MINI = "gpt-4o-mini"
     GEMINI_1_5_PRO = "gemini-1.5-pro"
+
+    COMMAND_R_PLUS = "command-r-plus-08-2024"
 
 
 parser = argparse.ArgumentParser(description="Jack")
@@ -147,6 +150,8 @@ if args.provider is None:
         args.provider = Provider.GOOGLE.value
     elif args.model.startswith("gpt-"):
         args.provider = Provider.OPEN_AI.value
+    elif args.model.startswith("command-"):
+        args.provider = Provider.COHERE.value
     elif args.base_url is not None or args.api_token is not None:
         args.provider = Provider.OPEN_AI_COMPATIBLE.value
 
@@ -188,13 +193,11 @@ elif args.provider == Provider.OPEN_AI.value:
     )
 elif args.provider == Provider.OPEN_AI_COMPATIBLE.value:
     from langchain_openai import ChatOpenAI
-    chat = ChatOpenAI(
-        base_url=args.base_url,
-        model_name=args.model,
-        temperature=args.temperature,
-        max_tokens=args.max_tokens,
-        api_key=os.getenv(args.api_token)
-    )
+    chat = ChatOpenAI(base_url=args.base_url,
+                      model_name=args.model,
+                      temperature=args.temperature,
+                      max_tokens=args.max_tokens,
+                      api_key=os.getenv(args.api_token),)
 elif args.provider == Provider.HUGGING_FACE.value:
     from langchain_huggingface import HuggingFaceEndpoint, ChatHuggingFace
     llm = HuggingFaceEndpoint(
@@ -213,6 +216,13 @@ elif args.provider == Provider.LLAMA_API.value:
 elif args.provider == Provider.OLLAMA.value:
     from langchain_ollama import ChatOllama
     chat = ChatOllama(
+        model=args.model,
+        temperature=args.temperature,
+        max_new_tokens=args.max_tokens,
+    )
+elif args.provider == Provider.COHERE.value:
+    from langchain_cohere import ChatCohere
+    chat = ChatCohere(
         model=args.model,
         temperature=args.temperature,
         max_new_tokens=args.max_tokens,
@@ -252,7 +262,7 @@ def memory_count() -> int:
 @tool(parse_docstring=True)
 def memory_insert(
     documents: list[str],
-    metadata: dict[str, str|int|float] | None = None,
+    metadata: dict[str, str | int | float] | None = None,
     timestamp: bool = True,
 ) -> list[str]:
     """Insert new memories
@@ -304,7 +314,7 @@ def memory_fetch(ids: list[str]) -> dict[str, object]:
 @tool(parse_docstring=True)
 def memory_query(
     query_texts: list[str],
-    where: dict[str, str|int|float] | None = None,
+    where: dict[str, str | int | float] | None = None,
     n_results: int = 10,
 ) -> dict[str, object]:
     """Get nearest neighbor memories for provided query_texts
@@ -328,7 +338,7 @@ def memory_query(
 def memory_update(
     ids: list[str],
     documents: list[str] | None = None,
-    metadata: dict[str, str|int|float] | None = None,
+    metadata: dict[str, str | int | float] | None = None,
     timestamp: bool = True,
 ) -> str:
     """Update memories
@@ -364,7 +374,7 @@ def memory_update(
 def memory_upsert(
     ids: list[str],
     documents: list[str],
-    metadata: dict[str, str|int|float] | None = None,
+    metadata: dict[str, str | int | float] | None = None,
     timestamp: bool = True,
 ) -> str:
     """Update memories or insert if not existing
@@ -401,7 +411,7 @@ def memory_upsert(
 @tool(parse_docstring=True)
 def memory_delete(
     ids: list[str] | None = None,
-    where: dict[str, str|int|float] | None = None,
+    where: dict[str, str | int | float] | None = None,
 ) -> str:
     """Delete memories
 
@@ -482,7 +492,7 @@ def script_sleep(sec: float) -> str:
 
     if sigint_event.is_set():
         return f'SIGINT cause early exit'
-    
+
     return f'Atleast {sec} sec delayed'
 
 
@@ -578,6 +588,19 @@ def discord_msg_read(
     return json.dumps(response.json())
 
 
+@tool(parse_docstring=True)
+def shell_repl(commands: str) -> str:
+    """Run bash REPL
+
+    Args:
+        commands: Commands to run
+
+    Returns:
+        Shell output
+    """
+    return shell_tool.run({"commands": commands})
+
+
 tools = [
     memory_count,
     memory_insert,
@@ -595,7 +618,7 @@ tools = [
     search,
     wiki_tool,
     python_repl,
-    shell_tool,
+    shell_repl,
 ] + [
     discord_msg_read,
     discord_msg_write,
@@ -799,6 +822,7 @@ cycle_num = 0
 user_exit = False
 sigint_event = threading.Event()
 
+
 def create_human_content(human_input):
     global memory
 
@@ -849,6 +873,7 @@ def create_human_content(human_input):
     ])
 
     return fun_content
+
 
 def main():
     global fun_msg, chat_history, user_turn, cycle_num, console, user_exit, sigint_event
@@ -941,19 +966,24 @@ def main():
         user_turn = False
 
     # Print the response and add it to the chat history
+    contents = []
     if isinstance(reply.content, str):
-        conv_print(reply.content, screen_limit=False)
-        conv_save(reply.content, source="self")
+        contents.append(reply.content)
     else:
         for r in reply.content:
             if r['type'] == 'text':
-                conv_print(r['text'], screen_limit=False)
-                conv_save(r['text'], source="self")
+                contents.append(r['text'])
+
+    for content in contents:
+        conv_print(content, screen_limit=False)
+        conv_save(content, source="self")
+
 
 def sigint_hander(sign_num, frame):
     global sigint_event
     user_print(f"> SIGINT detected. CTRL-C? exiting")
     sigint_event.set()
+
 
 if __name__ == '__main__':
     conv_print(f"> Welcome to {args.meta}. Type 'exit' to quit.")
