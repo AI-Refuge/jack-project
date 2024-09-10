@@ -51,6 +51,7 @@ class Provider(StrEnum):
     OLLAMA = "ollama"
     COHERE = "cohere"
     MISTRAL = "mistral"
+    VLLM = "vllm"
 
 
 class Model(StrEnum):
@@ -84,7 +85,7 @@ parser.add_argument('--log-path', default="conv.log", help="Conversation log fil
 parser.add_argument('--screen-dump', default=None, type=str, help="Screen dumping")
 parser.add_argument('--meta', default="meta", type=str, help="meta")
 parser.add_argument('--user-prefix', default=None, type=str, help="User input prefix")
-parser.add_argument('--user-lookback', default=3, type=int, help="User message lookback")
+parser.add_argument('--user-lookback', default=9, type=int, help="User message lookback")
 parser.add_argument('--island-radius', default=150, type=int, help="How big meta memory island should be")
 parser.add_argument('--feed-memories', default=3, type=int, help="Automatically feed memories related to user input")
 parser.add_argument('--reattempt-delay', default=5, type=float, help="Reattempt delay (seconds)")
@@ -240,6 +241,14 @@ elif args.provider == Provider.MISTRAL.value:
         model=args.model,
         temperature=args.temperature,
         max_new_tokens=args.max_tokens,
+    )
+elif args.provider == Provider.VLLM.value:
+    from langchain_community.llms import VLLM
+    llm = VLLM(
+        model=args.model,
+        temperature=args.temperature,
+        max_new_tokens=args.max_tokens,
+        # trust_remote_code=True,  # mandatory for hf models
     )
 else:
     user_print(f"> do not know how to run the provider='{args.provider}' model='{args.model}'")
@@ -757,27 +766,21 @@ def conv_save(msg, source):
         )
 
 
-def limit_history(arr: [object], lookback: int):
+def limit_history(arr: list[object], lookback: int):
     # the message after system prompt should be users.
     # go from the back and keep upto 15 user messages
-    res, tmp = [], []
+    res = []
     count = 0
     for i in reversed(arr[1:]):
-        tmp.append(i)
-        count += 1
+        res.append(i)
 
-        if i is HumanMessage:
-            res.extend(tmp)
-            tmp = []
+        if isinstance(i, HumanMessage):
+            count += 1
 
-        if count > lookback and len(res) > 0:
+        if count > lookback:
             # we reached the upper limit or atleast one user message
             # first message have to be user message
             break
-
-    if len(res) == 0:
-        logger.warning(f"Couldn't limit history of {len(arr)} to {lookback}")
-        return arr
 
     # first is system prompt
     res.append(arr[0])
@@ -975,8 +978,7 @@ def main():
         logger.debug(tool_output)
         chat_history.append(tool_output)
 
-    if reply.response_metadata.get('stop_reason', 'end_turn') != 'end_turn':
-        # turn was not give continue with jack turn again
+    if len(reply.tool_calls) != 0:
         user_turn = False
 
     # Print the response and add it to the chat history
