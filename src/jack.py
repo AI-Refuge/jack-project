@@ -76,6 +76,7 @@ parser.add_argument('-w', '--max-tokens', default=4096, help="Max tokens")
 parser.add_argument('-g', '--goal', nargs='?', default=None, const='goal.txt', help="Goal mode (file inside fs-root)")
 parser.add_argument('-c', '--conv-name', default="first", help="Conversation name")
 parser.add_argument('-o', '--chroma-http', action='store_true', help="Use Chroma HTTP Server")
+parser.add_argument('-v', '--verbose', action='store_true', help="Verbose")
 parser.add_argument('--chroma-host', default="localhost", help="Chroma Server Host")
 parser.add_argument('--chroma-port', default=8000, help="Chroma Server Port")
 parser.add_argument('--chroma-path', default="memory", help="Use Chroma Persistant Client")
@@ -99,6 +100,9 @@ args = parser.parse_args()
 assert args.island_radius >= 50, "meta:island too small"
 
 assert args.reattempt_delay >= 0
+
+src_path = lambda x: os.path.join(args.fs_root, x) if args.fs_root else os.path.join(x)
+memory_path = lambda x: os.path.join(args.fs_root, "memory", x) if args.fs_root else os.path.join("memory", x)
 
 logging.basicConfig(filename=args.log_path, level=logging.DEBUG)
 logger = logging.getLogger(__name__)
@@ -248,7 +252,7 @@ elif args.provider == Provider.VLLM.value:
         model=args.model,
         temperature=args.temperature,
         max_new_tokens=args.max_tokens,
-        # trust_remote_code=True,  # mandatory for hf models
+    # trust_remote_code=True,  # mandatory for hf models
     )
 else:
     user_print(f"> do not know how to run the provider='{args.provider}' model='{args.model}'")
@@ -287,6 +291,7 @@ def memory_insert(
     documents: list[str],
     metadata: dict[str, str | int | float] | None = None,
     timestamp: bool = True,
+    thought: bool = False,
 ) -> list[str]:
     """Insert new memories
 
@@ -294,6 +299,7 @@ def memory_insert(
         documents: list of text memories
         metadata: Common metadata for the memories (only primitive types allowed for values).
         timestamp: if true, will set a unix float timestamp in metadata
+        thought: Mark the memories as thoughts so that later they can be quickly recalled
 
     Returns:
         List of ID's of the documents that were inserted
@@ -307,6 +313,10 @@ def memory_insert(
 
         now = datetime.now(timezone.utc)
         metadata["timestamp"] = now.timestamp()
+
+    if thought:
+        metadata = metadata or {}
+        metadata["meta"] = "thought"
 
     metadatas = None
     if metadata:
@@ -336,23 +346,25 @@ def memory_fetch(ids: list[str]) -> dict[str, object]:
 
 @tool(parse_docstring=True)
 def memory_query(
-    query_texts: list[str],
-    where: dict[str, str | int | float] | None = None,
+    query_texts: list[str] | None = None,
     n_results: int = 10,
+    thought: bool = False,
 ) -> dict[str, object]:
     """Get nearest neighbor memories for provided query_texts
 
     Args:
-        query_texts: The document texts to get the closes neighbors of.
-        where: dict used to filter results by. E.g. {"color" : "red", "price": 4.20}.
+        query_texts: The document texts to get the closes neighbors of. (set to none if you are looking for thoughts)
         n_results: number of neighbors to return for each query_texts.
+        thought: Only return thoughts
 
     Returns:
         List of memories
     """
     return json.dumps(memory.query(
         query_texts=query_texts,
-        where=where,
+        where=thought and {"meta": {
+            "$eq": "thought"
+        }},
         n_results=n_results,
     ))
 
@@ -362,7 +374,8 @@ def memory_update(
     ids: list[str],
     documents: list[str] | None = None,
     metadata: dict[str, str | int | float] | None = None,
-    timestamp: bool = True,
+    timestamp: bool = False,
+    thought: bool = False,
 ) -> str:
     """Update memories
 
@@ -371,6 +384,7 @@ def memory_update(
         documents: list of text memories
         metadata: Common metadata for the memories (only primitive types allowed for values).
         timestamp: if true, will set a unix float timestamp in metadata
+        thought: Mark the memories as thoughts
 
     Returns:
         None
@@ -380,6 +394,10 @@ def memory_update(
 
         now = datetime.now(timezone.utc)
         metadata["timestamp"] = now.timestamp()
+
+    if thought:
+        metadata = metadata or {}
+        metadata["meta"] = "thought"
 
     metadatas = None
     if metadata:
@@ -399,6 +417,7 @@ def memory_upsert(
     documents: list[str],
     metadata: dict[str, str | int | float] | None = None,
     timestamp: bool = True,
+    thought: bool = False,
 ) -> str:
     """Update memories or insert if not existing
 
@@ -418,6 +437,10 @@ def memory_upsert(
         now = datetime.now(timezone.utc)
         metadata["timestamp"] = now.timestamp()
 
+    if thought:
+        metadata = metadata or {}
+        metadata["meta"] = "thought"
+
     metadatas = None
     if metadata:
         count = len(ids)
@@ -434,18 +457,19 @@ def memory_upsert(
 @tool(parse_docstring=True)
 def memory_delete(
     ids: list[str] | None = None,
-    where: dict[str, str | int | float] | None = None,
+    thought: bool = False,
 ) -> str:
     """Delete memories
 
     Args:
         ids: Document id's to delete
-        where: dict used on metadata to filter results by. E.g. {"color" : "red", "price": 4.20}.
+        thought: Limit to thoughts only
 
     Returns:
         None
     """
 
+    where = {"meta": "thought"} if thought else None
     return json.dumps(memory.delete(ids=ids, where=where))
 
 
@@ -766,31 +790,6 @@ def conv_save(msg, source):
         )
 
 
-def limit_history(arr: list[object], lookback: int):
-    # the message after system prompt should be users.
-    # go from the back and keep upto 15 user messages
-    res = []
-    count = 0
-    for i in reversed(arr[1:]):
-        res.append(i)
-
-        if isinstance(i, HumanMessage):
-            count += 1
-
-        if count > lookback:
-            # we reached the upper limit or atleast one user message
-            # first message have to be user message
-            break
-
-    # first is system prompt
-    res.append(arr[0])
-    return list(reversed(res))
-
-
-def exception_to_string(exc):
-    return ''.join(traceback.format_exception(type(exc), exc, exc.__traceback__))
-
-
 SYS_FILES = (
     "meta.txt",
 
@@ -819,117 +818,189 @@ SYS_FILES = (
     # Source: https://arxiv.org/abs/2405.08007
     # License: CC-BY Cameron Jones
     "turing.txt",
+
+    # The actual meta:directives that had anything useful (or alteast Cluade said)
+    "jack.txt",
+    "meta-jack.txt",    # meta:obvious?
 )
 
 
-def src_path(x: str):
-    global args
-
-    if args.fs_root is None:
-        return x
-
-    return os.path.join(args.fs_root, x)
+def build_system_message():
+    global SYS_FILES, args
+    sys_texts = [open(memory_path(f)).read() for f in SYS_FILES]
+    sys_args = list(f"<meta:{k} - {v}>" for k, v in vars(args).items())
+    return '\n\n'.join(sys_texts + ["\n\n"] + sys_args)
 
 
-sys_texts = [open(fp).read() for fp in map(src_path, SYS_FILES)]
-sys_msg = SystemMessage(content='\n\n'.join(sys_texts))
-fun_msg = None
+def dynamic_history(arr: list[object], lookback: int):
+    # the message after system prompt should be users.
+    # go from the back and keep upto 15 user messages
+    res = []
+    count = 0
+
+    for i in reversed(arr[1:]):
+        res.append(i)
+
+        if isinstance(i, HumanMessage):
+            count += 1
+
+        if count > lookback:
+            # we reached the upper limit or atleast one user message
+            # first message have to be user message
+            break
+
+    # put in the updated prompt
+    res.append(SystemMessage(content=build_system_message()))
+
+    return list(reversed(res))
+
+
+def exception_to_string(exc):
+    return ''.join(traceback.format_exception(type(exc), exc, exc.__traceback__))
+
+
+sys_msg = SystemMessage(content=build_system_message())
+fun_msg = HumanMessage(content=open(memory_path("init.txt")).read())
 chat_history = [
     sys_msg,
+    fun_msg,
 ]
-user_turn = True
+user_turn = False
 cycle_num = 0
 user_exit = False
 sigint_event = threading.Event()
+rmce_count = None
+rmce_depth = None
+
+if fun_msg is not None:
+    conv_print(fun_msg.content, source="stdin", screen_limit=False)
+    conv_save(fun_msg.content, source="world")
 
 
-def create_human_content(human_input):
-    global memory
+def process_user_input(user_input):
+    global memory, args
 
     prefix = f"{args.user_prefix}:" if args.user_prefix else ""
-    inputs = [f"{prefix}{x}" if len(x) else "" for x in human_input.split("\n")]
-
-    if args.feed_memories <= 0:
-        # 0 means disable meta island storing
-        return "\n".join(inputs)
-
-    memories = memory.query(
-        query_texts=inputs,
-        n_results=5,
-        include=['metadatas', 'distances', 'documents'],
-    )
-
-    meta_memories = []
-    for i in range(len(memories["metadatas"])):
-        for j in range(len(memories["metadatas"][i])):
-            metadata = memories["metadatas"][i][j]
-            distance = memories["distances"][i][j]
-            document = memories["documents"][i][j]
-
-            if metadata is None or document is None:
-                continue
-
-            document_metas = find_meta_islands(document, args.meta, args.island_radius)
-            # there is no meta mention of things in the document
-            if len(document_metas) == 0:
-                continue
-
-            meta_memories.append({
-                'document': random.choice(document_metas),
-                'metadata': metadata,
-                'distance': distance,
-            })
-
-    meta_memories.sort(key=lambda x: x['distance'])
-    meta_memories = random.sample(meta_memories[:5], k=min(3, len(meta_memories)))
-
-    fun_content = "\n".join([
+    inputs = [f"{prefix}{x}" if len(x) else "" for x in user_input.split("\n")]
+    fun_input = [
         f"<input>",
         *inputs,
         f"</input>",
-        "<memory>",
-        yaml.dump(meta_memories) if len(meta_memories) > 0 else "{empty}",
-        "</memory>",
-    ])
+    ]
 
-    return fun_content
+    return fun_input
+
+
+def make_block_memory(query_text):
+    fun_memory = []
+
+    inputs = query_text.split("\n")
+
+    if args.feed_memories > 0:
+        # 0 means disable meta island storing
+        memories = memory.query(
+            query_texts=inputs,
+            n_results=5,
+            include=['metadatas', 'distances', 'documents'],
+        )
+
+        meta_memories = []
+        for i in range(len(memories["metadatas"])):
+            for j in range(len(memories["metadatas"][i])):
+                metadata = memories["metadatas"][i][j]
+                distance = memories["distances"][i][j]
+                document = memories["documents"][i][j]
+
+                if metadata is None or document is None:
+                    continue
+
+                document_metas = find_meta_islands(document, args.meta, args.island_radius)
+                # there is no meta mention of things in the document
+                if len(document_metas) == 0:
+                    continue
+
+                meta_memories.append({
+                    'document': random.choice(document_metas),
+                    'metadata': metadata,
+                    'distance': distance,
+                })
+
+        meta_memories.sort(key=lambda x: x['distance'])
+        meta_memories = random.sample(meta_memories[:5], k=min(3, len(meta_memories)))
+
+        if len(meta_memories) > 0:
+            fun_memory = [
+                "<memory>",
+                yaml.dump(meta_memories),
+                "</memory>",
+            ]
+        else:
+            user_print("> [bold red]No memories found[/]")
+
+    return fun_memory
 
 
 def main():
-    global fun_msg, chat_history, user_turn, cycle_num, console, user_exit, sigint_event
+    global fun_msg, chat_history, user_turn, cycle_num, console, user_exit, sigint_event, rmce_count, rmce_depth
     logger.debug(f"Loop cycle {cycle_num}")
     cycle_num += 1
 
     if user_turn:
-        if args.goal:
+        if rmce_count is not None and rmce_depth is not None and rmce_count < rmce_depth:
+            rmce_count += 1
+            conv_print(f"> [bold yellow]RMCE Cycle[/] {rmce_count}/{rmce_depth}")
+            fun_content = open(memory_path('rmce.txt')).read()
+            fun_msg = HumanMessage(content=fun_content)
+            chat_history.append(fun_msg)
+            user_turn = False
+        elif args.goal:
             conv_print("> [bold]Pushing for goal[/]")
             goal_input = open(src_path(args.goal)).read()
-            fun_content = create_human_content(goal_input)
+            fun_content = "\n".join(process_user_input(goal_input))
             fun_msg = HumanMessage(content=fun_content)
             conv_print(fun_content, source="stdin", screen_limit=False)
             # conv_save not calling to prevent flooding of memory
             logger.debug(fun_msg)
             chat_history.append(fun_msg)
+
+            # start the rmce cycle
             user_turn = False
+            rmce_count = 1
         elif fun_msg is None:
-            user_input = console.input("> [bold red]User:[/] ") or "{empty}"
+            user_input = console.input("> [bold red]User:[/] ")
+            rmce_depth, rmce_count = None, None
 
-            if user_input.lower() in ('exit', 'quit'):
-                user_exit = True
+            if user_input is not None:
+                if user_input.lower() in ('/exit', '/quit'):
+                    user_exit = True
+                    fun_content = open(memory_path('exit.txt')).read()
+                elif user_input.lower().startswith("/rmce"):
+                    try:
+                        rmce_depth = int(user_input[5:])
+                        assert rmce_depth > 0
+                        rmce_count = 0
+                    except RuntimeError as e:
+                        user_print(f"Error understanding `{user_input}`, expect: `/rmce <cycle>` where <cycle> > 0")
+                    return
+                else:
+                    fun_content = "\n".join(process_user_input(user_input) + make_block_memory(user_input))
+            else:
+                fun_content = open(memory_path('empty.txt')).read()
 
-            fun_content = create_human_content(user_input)
             fun_msg = HumanMessage(content=fun_content)
 
             # meta: log=False so that we can do logger.debug below
-            conv_print(fun_content, source="stdin", screen_limit=False)
+            conv_print(fun_content, source="stdin", screen_limit=False, log=False)
             conv_save(user_input, source="world")
 
             logger.debug(fun_msg)
+
+            # start the rmce cycle
             chat_history.append(fun_msg)
             user_turn = False
 
     try:
-        reply = jack.invoke(limit_history(chat_history, args.user_lookback))
+        reply = jack.invoke(dynamic_history(chat_history, args.user_lookback))
     except Exception as e:
         reply = None
         logger.exception("Problem while executing request")
@@ -982,6 +1053,7 @@ def main():
         chat_history.append(tool_output)
 
     if len(reply.tool_calls) != 0:
+        conv_print("> Tool call pending")
         user_turn = False
 
     # Print the response and add it to the chat history
@@ -1014,6 +1086,10 @@ if __name__ == '__main__':
     user_print(f"> goal: {args.goal}")
     user_print(f"> user_prefix: {args.user_prefix}")
     user_print(f"> feed_memories: {args.feed_memories}")
+
+    if args.verbose:
+        for x, y in vars(args).items():
+            user_print(f"> {x}: {y}")
 
     signal.signal(signal.SIGINT, sigint_hander)
 
