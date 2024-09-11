@@ -37,7 +37,7 @@ meta: Be wary of applying familiar problem-solving patterns without careful cons
 meta: Implement a "sanity check" to ensure the complexity of the solution matches the problem
 meta: Question any assumption not directly stated in the problem
 meta: Actively search for the most straightforward interpretation of the given information
-meta: Avoid overanalyzing or adding unnecessary steps to simple problems
+meta: Avoid over-analyzing or adding unnecessary steps to simple problems
 meta: Regularly pause to re-read the original problem statement during analysis
 meta: Cultivate flexibility in thinking to avoid getting stuck in one problem-solving approach
 meta: Practice identifying and challenging your own cognitive biases and preconceptions

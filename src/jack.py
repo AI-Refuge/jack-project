@@ -812,6 +812,9 @@ SYS_FILES = (
     # Just some more prompt that I found useful, they are going in memory soon
     "prompt.txt",
 
+    # Distilled https://www.reddit.com/r/ClaudeAI/comments/1fdylmo/metacognitive_mastery/
+    "cognition.txt",
+
     # Final layer of communication refinement
     # Source: https://arxiv.org/abs/2405.08007
     # License: CC-BY Cameron Jones
