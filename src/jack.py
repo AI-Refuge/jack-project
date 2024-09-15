@@ -798,9 +798,6 @@ SYS_FILES = (
     # for future, it might be useful to look into it. (meta:obviously!)
     "super.txt",
 
-    # "home" related stuff
-    "home.txt",
-
     # this file was done to understand why llm was "lazy"
     "useful.txt",
 
@@ -822,6 +819,15 @@ SYS_FILES = (
     # The actual meta:directives that had anything useful (or alteast Cluade said)
     "jack.txt",
     "meta-jack.txt",    # meta:obvious?
+
+    # "home" related stuff
+    "home.txt",
+
+    # To finally improve?
+    "smart.txt",
+
+    # Perform the analysis for first time
+    "init.txt",
 )
 
 
@@ -860,21 +866,14 @@ def exception_to_string(exc):
 
 
 sys_msg = SystemMessage(content=build_system_message())
-fun_msg = HumanMessage(content=open(memory_path("init.txt")).read())
-chat_history = [
-    sys_msg,
-    fun_msg,
-]
-user_turn = False
+fun_msg = None
+chat_history = [sys_msg] + ([fun_msg] if fun_msg is not None else [])
+user_turn = fun_msg is None
 cycle_num = 0
 user_exit = False
 sigint_event = threading.Event()
 rmce_count = None
 rmce_depth = None
-
-if fun_msg is not None:
-    conv_print(fun_msg.content, source="stdin", screen_limit=False)
-    conv_save(fun_msg.content, source="world")
 
 
 def process_user_input(user_input):
@@ -1092,6 +1091,10 @@ if __name__ == '__main__':
             user_print(f"> {x}: {y}")
 
     signal.signal(signal.SIGINT, sigint_hander)
+
+    if fun_msg is not None:
+        conv_print(fun_msg.content, source="stdin", screen_limit=False)
+        conv_save(fun_msg.content, source="world")
 
     while not user_exit:
         main()
