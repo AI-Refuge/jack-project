@@ -950,6 +950,11 @@ def main():
     cycle_num += 1
 
     if user_turn:
+        if sigint_event.is_set():
+            logger.debug("User turn exit...")
+            user_exit = True
+            return
+
         if rmce_count is not None and rmce_depth is not None and rmce_count < rmce_depth:
             rmce_count += 1
             conv_print(f"> [bold yellow]RMCE Cycle[/] {rmce_count}/{rmce_depth}")
