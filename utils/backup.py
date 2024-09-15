@@ -4,7 +4,7 @@ import argparse
 
 parser = argparse.ArgumentParser(description="Backup")
 parser.add_argument('--chroma-path', default='memory', help="Chroma memory dir")
-parser.add_argument('--collection', default='meta', help="Collection")
+parser.add_argument('--collection', default='mem-meta', help="Collection")
 parser.add_argument('output_path', default='jack.bkp', help="Output file")
 args = parser.parse_args()
 

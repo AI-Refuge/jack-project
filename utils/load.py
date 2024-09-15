@@ -7,7 +7,7 @@ ts = int(datetime.now(timezone.utc).timestamp())
 
 parser = argparse.ArgumentParser(description="Load")
 parser.add_argument('--chroma-path', default='memory', help="Chroma memory dir")
-parser.add_argument('--collection', default='meta', help="Collection")
+parser.add_argument('--collection', default='mem-meta', help="Collection")
 parser.add_argument('--name', default='@jack', help="Meta name of memory")
 parser.add_argument('input_path', default='jack.bkp', help="Memory JSONL file")
 args = parser.parse_args()

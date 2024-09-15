@@ -99,6 +99,8 @@ args = parser.parse_args()
 # It don't make sense, hence you have to remove this error yourself
 assert args.island_radius >= 50, "meta:island too small"
 
+assert len(args.meta) > 0, "meta:meta must contain something"
+
 assert args.reattempt_delay >= 0
 
 src_path = lambda x: os.path.join(args.fs_root, x) if args.fs_root else os.path.join(x)
@@ -139,16 +141,17 @@ if args.model == 'list':
 
 if args.chroma_http:
     # Note: Scale better, less crashes
+    logger.debug("Using chromadb http client")
     vdb = chromadb.HttpClient(
         host=args.chroma_host,
         port=args.chroma_port,
     )
 else:
     # Historical reason to directly run as single python file
+    logger.debug("Using chromadb persistant client")
     vdb = chromadb.PersistentClient(path=args.chroma_path)
 
-memory = vdb.get_or_create_collection(args.meta)
-ts = int(datetime.now(timezone.utc).timestamp())
+memory = vdb.get_or_create_collection(f"mem-{args.meta}")
 conv = vdb.get_or_create_collection(f"conv-{args.conv_name}")
 
 if args.provider is None:
@@ -359,11 +362,13 @@ def memory_query(
     Returns:
         List of memories
     """
+    where = None
+    if thought:
+        where = {"meta": {"$eq": "thought"}}
+
     return json.dumps(memory.query(
         query_texts=query_texts,
-        where=thought and {"meta": {
-            "$eq": "thought"
-        }},
+        where=where,
         n_results=n_results,
     ))
 
@@ -372,7 +377,7 @@ def memory_query(
 def memory_update(
     ids: list[str],
     documents: list[str] | None = None,
-    timestamp: bool = False,
+    timestamp: bool = True,
     thought: bool = False,
 ) -> str:
     """Update memories
@@ -765,7 +770,8 @@ def conv_save(msg, source):
     # meta comment just to show I can meta comment! :p
     metadata = {
         "timestamp": now.timestamp(),
-        args.meta: args.conv_name,
+        "meta": "island",
+        "conv": args.conv_name,
         "source": source,
         "model": args.model,
         "temperature": args.temperature,
@@ -782,8 +788,9 @@ def conv_save(msg, source):
     data = find_meta_islands(msg, args.meta, args.island_radius)
     if len(data) > 0:
         # meta: is this the whole thing at the end? :confused-face: (wrote this line before knowing)
+        ids = list(map(str, NanoIDGenerator(len(data))))
         memory.add(
-            ids=NanoIDGenerator(len(data)),
+            ids=ids,
             metadatas=[metadata for _ in data],
             documents=data,
         )
@@ -817,7 +824,6 @@ SYS_FILES = (
 
     # The actual meta:directives that had anything useful (or alteast Cluade said)
     "jack.txt",
-    "meta-jack.txt",    # meta:obvious?
 
     # "home" related stuff
     "home.txt",
@@ -831,10 +837,9 @@ SYS_FILES = (
 
 
 def build_system_message():
-    global SYS_FILES, args
+    global SYS_FILES
     sys_texts = [open(memory_path(f)).read() for f in SYS_FILES]
-    sys_args = list(f"<meta:{k} - {v}>" for k, v in vars(args).items())
-    return '\n\n'.join(sys_texts + ["\n\n"] + sys_args)
+    return '\n\n'.join(sys_texts)
 
 
 def dynamic_history(arr: list[object], lookback: int):
@@ -890,12 +895,13 @@ def process_user_input(user_input):
 
 
 def make_block_memory(query_text):
+    global args, memory
+
     fun_memory = []
 
     inputs = query_text.split("\n")
 
     if args.feed_memories > 0:
-        # 0 means disable meta island storing
         memories = memory.query(
             query_texts=inputs,
             n_results=5,
@@ -1071,12 +1077,12 @@ def main():
 
 def sigint_hander(sign_num, frame):
     global sigint_event
-    user_print(f"> SIGINT detected. CTRL-C? exiting")
+    user_print(f"> SIGINT detected. exiting")
     sigint_event.set()
 
 
 if __name__ == '__main__':
-    conv_print(f"> Welcome to {args.meta}. Type 'exit' to quit.")
+    conv_print(f"> Welcome to {args.meta}. Type '/exit' to quit.")
     conv_print(f"> Provider selected: [bold]{args.provider}[/]")
     conv_print(f"> Model selected: [bold]{args.model}[/]")
     user_print(f"> temperature: {args.temperature}")
