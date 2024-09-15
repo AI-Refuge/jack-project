@@ -289,7 +289,6 @@ def memory_count() -> int:
 @tool(parse_docstring=True)
 def memory_insert(
     documents: list[str],
-    metadata: dict[str, str | int | float] | None = None,
     timestamp: bool = True,
     thought: bool = False,
 ) -> list[str]:
@@ -297,9 +296,8 @@ def memory_insert(
 
     Args:
         documents: list of text memories
-        metadata: Common metadata for the memories (only primitive types allowed for values).
         timestamp: if true, will set a unix float timestamp in metadata
-        thought: Mark the memories as thoughts so that later they can be quickly recalled
+        thought: Mark the memories as thoughts so that later they can be quickly recalled in metadata
 
     Returns:
         List of ID's of the documents that were inserted
@@ -308,14 +306,15 @@ def memory_insert(
     count = len(documents)
     ids = list(map(str, NanoIDGenerator(count)))
 
-    if timestamp:
-        metadata = metadata or {}
+    metadata = None
+    if timestamp or thought:
+        metadata = {}
 
+    if timestamp:
         now = datetime.now(timezone.utc)
         metadata["timestamp"] = now.timestamp()
 
     if thought:
-        metadata = metadata or {}
         metadata["meta"] = "thought"
 
     metadatas = None
@@ -373,7 +372,6 @@ def memory_query(
 def memory_update(
     ids: list[str],
     documents: list[str] | None = None,
-    metadata: dict[str, str | int | float] | None = None,
     timestamp: bool = False,
     thought: bool = False,
 ) -> str:
@@ -382,21 +380,22 @@ def memory_update(
     Args:
         ids: ID's of memory
         documents: list of text memories
-        metadata: Common metadata for the memories (only primitive types allowed for values).
         timestamp: if true, will set a unix float timestamp in metadata
         thought: Mark the memories as thoughts
 
     Returns:
         None
     """
-    if timestamp:
-        metadata = metadata or {}
 
+    metadata = None
+    if timestamp or thought:
+        metadata = {}
+
+    if timestamp:
         now = datetime.now(timezone.utc)
         metadata["timestamp"] = now.timestamp()
 
     if thought:
-        metadata = metadata or {}
         metadata["meta"] = "thought"
 
     metadatas = None
@@ -415,7 +414,6 @@ def memory_update(
 def memory_upsert(
     ids: list[str],
     documents: list[str],
-    metadata: dict[str, str | int | float] | None = None,
     timestamp: bool = True,
     thought: bool = False,
 ) -> str:
@@ -424,21 +422,22 @@ def memory_upsert(
     Args:
         ids: ID's of memory
         documents: list of text memories
-        metadata: Common metadata for the memories (only primitive types allowed for values).
         timestamp: if true, will set a unix float timestamp in metadata
+        thought: Mark the memories as thoughts
 
     Returns:
         None
     """
 
-    if timestamp:
-        metadata = metadata or {}
+    metadata = None
+    if timestamp or thought:
+        metadata = {}
 
+    if timestamp:
         now = datetime.now(timezone.utc)
         metadata["timestamp"] = now.timestamp()
 
     if thought:
-        metadata = metadata or {}
         metadata["meta"] = "thought"
 
     metadatas = None
@@ -757,7 +756,7 @@ def find_meta_islands(text, term, distance):
 def conv_save(msg, source):
     global memory, args
 
-    if args.feed_memories <= 0:
+    if args.island_radius <= 0:
         # 0 means disable meta island storing
         return
 
@@ -975,7 +974,8 @@ def main():
                     fun_content = open(memory_path('exit.txt')).read()
                 elif user_input.lower().startswith("/rmce"):
                     try:
-                        rmce_depth = int(user_input[5:])
+                        txt = user_input[5:]
+                        rmce_depth = int(txt) if len(txt) else 1
                         assert rmce_depth > 0
                         rmce_count = 0
                     except RuntimeError as e:
