@@ -965,7 +965,7 @@ def main():
         elif args.goal:
             conv_print("> [bold]Pushing for goal[/]")
             goal_input = open(src_path(args.goal)).read()
-            fun_content = "\n".join(process_user_input(goal_input))
+            fun_content = "\n".join(process_user_input(goal_input) + make_block_memory(goal_input))
             fun_msg = HumanMessage(content=fun_content)
             conv_print(fun_content, source="stdin", screen_limit=False)
             # conv_save not calling to prevent flooding of memory
