@@ -14,7 +14,7 @@ from langchain_community.tools import DuckDuckGoSearchRun
 from langchain_community.tools import WikipediaQueryRun
 from langchain_community.tools import ShellTool
 from langchain_community.utilities import WikipediaAPIWrapper
-from langchain_core.messages import SystemMessage, HumanMessage, ToolMessage
+from langchain_core.messages import SystemMessage, HumanMessage, ToolMessage, AIMessage
 import argparse
 import traceback
 from rich.console import Console
@@ -675,7 +675,7 @@ def agent_exec(query: str, who: str) -> str:
     contents = []
     hist = [
         SystemMessage(content=sys_prompt),
-        HumanMessage(content=queries),
+        HumanMessage(content=query),
     ]
 
     while True:
@@ -687,6 +687,8 @@ def agent_exec(query: str, who: str) -> str:
 
         if reply is None:
             break
+
+        hist.append(reply)
 
         for tool_call in reply.tool_calls:
             tool_name = tool_call['name'].lower()
@@ -705,15 +707,14 @@ def agent_exec(query: str, who: str) -> str:
 
             hist.append(tool_output)
 
-        if isinstance(reply.content, str):
-            contents.append(reply.content)
-        else:
-            contents.extend(reply.content)
-
         if len(reply.tool_calls) == 0:
             break
 
-    return "\n".join(contents)
+    res = [i.content for i in hist if isinstance(i, AIMessage)]
+    if res is None:
+        return ""
+    
+    return json.dumps(res)
 
 
 @tool(parse_docstring=True)
@@ -728,7 +729,7 @@ def agents_run(queries: list[str], who: str = "assistant") -> list[str]:
         list of responses from the agents in order
     """
 
-    return [agent_exec(q, who) for q in queries]
+    return json.dumps([agent_exec(q, who) for q in queries])
 
 
 tools = [
@@ -1029,12 +1030,12 @@ def main():
     logger.debug(f"Loop cycle {cycle_num}")
     cycle_num += 1
 
-    if user_turn:
-        if sigint_event.is_set():
-            logger.debug("User turn exit...")
-            user_exit = True
-            return
+    if sigint_event.is_set():
+        logger.debug("SIGINT triggered exit...")
+        user_exit = True
+        return
 
+    if user_turn:
         if rmce_count is not None and rmce_depth is not None and rmce_count < rmce_depth:
             rmce_count += 1
             conv_print(f"> [bold yellow]RMCE Cycle[/] {rmce_count}/{rmce_depth}")

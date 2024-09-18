@@ -3,11 +3,11 @@ If you need read more about ARC AGI, read `arc/info.txt`
 
 So here is what you have to:
 
-You go through every each file in `arc/quest/<test-code>.json.txt` and attempt.
-Save each attempted answer in `arc/ans/<test-code>.json.txt`
+You go through every each file in `arc/ques/<test-code>.json.txt` and attempt. ex. arc/ques/0d3d703e.json.txt arc/ques/00d62c1b.json.txt
+Save each attempted answer in `arc/ans/<test-code>.json.txt` ex. arc/ans/3eda0437.json.txt arc/ans/3f7978a0.json.txt
 
 After attempting each question,
-read the real answer from `arc/ans-real/<test-code>.json.txt`
+read the real answer from `arc/ans-real/<test-code>.json.txt` ex. arc/ans-real/3eda0437.json.txt arc/ans-real/3f7978a0.json.txt
 to understand if you were right or wrong.
 
 If you are right, proceed to the next test.
@@ -22,3 +22,4 @@ You are free to recall using memory_query to refresh your knowledge anytime.
 Note:
 <n> = attempt number, starting 1
 <test-code> = ARC AGI test code
+Save the unicode symbol for answer that are used in question
