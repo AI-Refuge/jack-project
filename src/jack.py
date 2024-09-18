@@ -542,7 +542,7 @@ def script_sleep(sec: float) -> str:
     sigint_event.wait(sec)
 
     if sigint_event.is_set():
-        return f'SIGINT cause early exit'
+        return 'SIGINT cause early exit'
 
     return f'Atleast {sec} sec delayed'
 
@@ -672,7 +672,6 @@ def agent_exec(query: str, who: str) -> str:
         agent_error(e)
         return None
 
-    contents = []
     hist = [
         SystemMessage(content=sys_prompt),
         HumanMessage(content=query),
@@ -713,7 +712,7 @@ def agent_exec(query: str, who: str) -> str:
     res = [i.content for i in hist if isinstance(i, AIMessage)]
     if res is None:
         return ""
-    
+
     return json.dumps(res)
 
 
@@ -967,9 +966,9 @@ def process_user_input(user_input):
     prefix = f"{args.user_prefix}:" if args.user_prefix else ""
     inputs = [f"{prefix}{x}" if len(x) else "" for x in user_input.split("\n")]
     fun_input = [
-        f"<input>",
+        "<input>",
         *inputs,
-        f"</input>",
+        "</input>",
     ]
 
     return fun_input
@@ -1071,7 +1070,7 @@ def main():
                         assert rmce_depth > 0
                         rmce_count = 0
                     except RuntimeError as e:
-                        user_print(f"Error understanding `{user_input}`, expect: `/rmce <cycle>` where <cycle> > 0")
+                        user_print(f"Error understanding '{user_input}', expect: '/rmce <cycle>' where <cycle> > 0 ({str(e)})")
                     return
                 else:
                     fun_content = "\n".join(process_user_input(user_input) + make_block_memory(user_input))
@@ -1163,7 +1162,7 @@ def main():
 
 def sigint_hander(sign_num, frame):
     global sigint_event
-    user_print(f"> SIGINT detected. exiting")
+    user_print("> SIGINT detected. exiting")
     sigint_event.set()
 
 
