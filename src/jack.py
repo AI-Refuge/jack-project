@@ -667,7 +667,7 @@ def agent_exec(query: str, who: str) -> str:
     conv_print(f"> Creating {who} agent for {query}")
 
     try:
-        sys_prompt = open(src_path(f"prompt/{who}.txt")).read()
+        sys_prompt = open(src_path(f"agent/{who}.txt")).read()
     except Exception as e:
         agent_error(e)
         return None
