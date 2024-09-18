@@ -652,7 +652,87 @@ def shell_repl(commands: str) -> str:
     return shell_tool.run({"commands": commands})
 
 
+def agent_error(e: Exception):
+    global logger
+    logger.exception("Problem while executing agent")
+    conv_print(f"> [bold]Agent Exception[/] {str(e)}")
+
+
+def agent_exec(query: str, who: str) -> str:
+    global user_exit, jack
+
+    if user_exit is True:
+        return None
+
+    conv_print(f"> Creating {who} agent for {query}")
+
+    try:
+        sys_prompt = open(src_path(f"prompt/{who}.txt")).read()
+    except Exception as e:
+        agent_error(e)
+        return None
+
+    contents = []
+    hist = [
+        SystemMessage(content=sys_prompt),
+        HumanMessage(content=queries),
+    ]
+
+    while True:
+        try:
+            reply = jack.invoke(hist)
+        except Exception as e:
+            agent_error(e)
+            break
+
+        if reply is None:
+            break
+
+        for tool_call in reply.tool_calls:
+            tool_name = tool_call['name'].lower()
+
+            try:
+                selected_tool = next(x for x in tools if x.name == tool_name)
+                tool_output = selected_tool.invoke(tool_call)
+            except Exception as e:
+                agent_error(e)
+                tool_output = ToolMessage(
+                    content=exception_to_string(e),
+                    name=tool_name,
+                    tool_call_id=tool_call.get('id'),
+                    status='error',
+                )
+
+            hist.append(tool_output)
+
+        if isinstance(reply.content, str):
+            contents.append(reply.content)
+        else:
+            contents.extend(reply.content)
+
+        if len(reply.tool_calls) == 0:
+            break
+
+    return "\n".join(contents)
+
+
+@tool(parse_docstring=True)
+def agents_run(queries: list[str], who: str = "assistant") -> list[str]:
+    """Run independent queries on agent
+
+    Args:
+        queries: Agent query list
+        who: Type of agent (used for system prompt)
+
+    Returns:
+        list of responses from the agents in order
+    """
+
+    return [agent_exec(q, who) for q in queries]
+
+
 tools = [
+    agents_run,
     memory_count,
     memory_insert,
     memory_fetch,
@@ -924,7 +1004,7 @@ def make_block_memory(query_text):
                     continue
 
                 meta_memories.append({
-                    'document': random.choice(document_metas),
+                    'document': random.choice(document_metas).strip(),
                     'metadata': metadata,
                     'distance': distance,
                 })
