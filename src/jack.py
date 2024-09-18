@@ -26,6 +26,7 @@ from dotenv import load_dotenv
 import yaml
 import signal
 import threading
+import asyncio
 
 load_dotenv()
 
@@ -658,13 +659,14 @@ def agent_error(e: Exception):
     conv_print(f"> [bold]Agent Exception[/] {str(e)}")
 
 
-def agent_exec(query: str, who: str) -> str:
+
+async def agent_exec(query: str, who: str) -> str:
     global user_exit, jack
 
     if user_exit is True:
         return None
 
-    conv_print(f"> Creating {who} agent for {query}")
+    conv_print(f"> Creating agent '{who}' for '{query}'")
 
     try:
         sys_prompt = open(src_path(f"agent/{who}.txt")).read()
@@ -710,11 +712,15 @@ def agent_exec(query: str, who: str) -> str:
             break
 
     res = [i.content for i in hist if isinstance(i, AIMessage)]
-    if res is None:
-        return ""
+    if len(res) == 0:
+        return "<meta: empty>"
 
     return json.dumps(res)
 
+
+async def agents_exec(queries: list[str], who: str) -> list[str]:
+    res = await asyncio.gather(*[agent_exec(q, who) for q in queries])
+    return res
 
 @tool(parse_docstring=True)
 def agents_run(queries: list[str], who: str = "assistant") -> list[str]:
@@ -728,7 +734,8 @@ def agents_run(queries: list[str], who: str = "assistant") -> list[str]:
         list of responses from the agents in order
     """
 
-    return json.dumps([agent_exec(q, who) for q in queries])
+    res = asyncio.run(agents_exec(queries, who))
+    return json.dumps(res)
 
 
 tools = [
