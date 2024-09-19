@@ -104,8 +104,11 @@ assert len(args.meta) > 0, "meta:meta must contain something"
 
 assert args.reattempt_delay >= 0
 
-src_path = lambda x: os.path.join(args.fs_root, x) if args.fs_root else os.path.join(x)
-memory_path = lambda x: os.path.join(args.fs_root, "memory", x) if args.fs_root else os.path.join("memory", x)
+src_path = lambda *x: os.path.join(args.fs_root, *x) if args.fs_root else os.path.join(*x)
+memory_path = lambda *x: src_path("memory", *x)
+agent_path = lambda *x: src_path("agent", *x)
+fun_path = lambda *x: src_path("fun", *x)
+user_path = lambda *x: src_path("user", *x)
 
 logging.basicConfig(filename=args.log_path, level=logging.DEBUG)
 logger = logging.getLogger(__name__)
@@ -663,15 +666,18 @@ async def agent_exec(query: str, who: str) -> str:
     global user_exit, jack
 
     if user_exit is True:
-        return None
+        return "<meta: user want to exit hence agent failed to run>"
 
     conv_print(f"> Creating agent '{who}' for '{query}'")
 
     try:
-        sys_prompt = open(src_path(f"agent/{who}.txt")).read()
+        sys_prompt = "\n\n".join([
+            open(memory_path(f"meta.txt")).read(),
+            open(agent_path(f"{who}.txt")).read(),
+        ])
     except Exception as e:
         agent_error(e)
-        return None
+        return "<meta: unable to find system prompt file(s)>"
 
     hist = [
         SystemMessage(content=sys_prompt),
@@ -712,7 +718,7 @@ async def agent_exec(query: str, who: str) -> str:
 
     res = [i.content for i in hist if isinstance(i, AIMessage)]
     if len(res) == 0:
-        return "<meta: empty>"
+        return "<meta: no response from agent>"
 
     return json.dumps(res)
 
@@ -756,7 +762,7 @@ def agents_avail() -> list[str]:
     """
 
     agents = []
-    for path in os.listdir(src_path("agent")):
+    for path in os.listdir(agent_path()):
         if path.endswith(".txt"):
             who = get_filename_without_extension(path)
             agents.append(who)
@@ -1072,7 +1078,7 @@ def main():
         if rmce_count is not None and rmce_depth is not None and rmce_count < rmce_depth:
             rmce_count += 1
             conv_print(f"> [bold yellow]RMCE Cycle[/] {rmce_count}/{rmce_depth}")
-            fun_content = open(memory_path('rmce.txt')).read()
+            fun_content = open(user_path('rmce.txt')).read()
             fun_msg = HumanMessage(content=fun_content)
             chat_history.append(fun_msg)
             user_turn = False
@@ -1096,7 +1102,7 @@ def main():
             if user_input is not None:
                 if user_input.lower() in ('/exit', '/quit'):
                     user_exit = True
-                    fun_content = open(memory_path('exit.txt')).read()
+                    fun_content = open(user_path('exit.txt')).read()
                 elif user_input.lower().startswith("/rmce"):
                     try:
                         txt = user_input[5:]
@@ -1109,7 +1115,7 @@ def main():
                 else:
                     fun_content = "\n".join(process_user_input(user_input) + make_block_memory(user_input))
             else:
-                fun_content = open(memory_path('empty.txt')).read()
+                fun_content = open(user_path('empty.txt')).read()
 
             fun_msg = HumanMessage(content=fun_content)
 
