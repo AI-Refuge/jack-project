@@ -659,7 +659,6 @@ def agent_error(e: Exception):
     conv_print(f"> [bold]Agent Exception[/] {str(e)}")
 
 
-
 async def agent_exec(query: str, who: str) -> str:
     global user_exit, jack
 
@@ -722,13 +721,14 @@ async def agents_exec(queries: list[str], who: str) -> list[str]:
     res = await asyncio.gather(*[agent_exec(q, who) for q in queries])
     return res
 
+
 @tool(parse_docstring=True)
 def agents_run(queries: list[str], who: str = "assistant") -> list[str]:
     """Run independent queries on agent
 
     Args:
         queries: Agent query list
-        who: Type of agent (used for system prompt)
+        who: Type of agent (used for system prompt) - see agents_avail() tool
 
     Returns:
         list of responses from the agents in order
@@ -738,8 +738,35 @@ def agents_run(queries: list[str], who: str = "assistant") -> list[str]:
     return json.dumps(res)
 
 
+def get_filename_without_extension(file_path):
+    # Extract the base name from the file path
+    base_name = os.path.basename(file_path)
+    # Split the base name into name and extension
+    file_name, _ = os.path.splitext(base_name)
+    return file_name
+
+
+@tool(parse_docstring=True)
+def agents_avail() -> list[str]:
+    """List of agent available (that can be passed as who to agents_run()
+    The files are stored in agent/<who>.txt if you want to see their system prompt
+
+    Returns:
+        List of agents name for who parameter of agents_run()
+    """
+
+    agents = []
+    for path in os.listdir(src_path("agent")):
+        if path.endswith(".txt"):
+            who = get_filename_without_extension(path)
+            agents.append(who)
+
+    return json.dumps(agents)
+
+
 tools = [
     agents_run,
+    agents_avail,
     memory_count,
     memory_insert,
     memory_fetch,
