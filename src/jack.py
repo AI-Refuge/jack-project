@@ -90,7 +90,7 @@ parser.add_argument('--log-path', default="conv.log", help="Conversation log fil
 parser.add_argument('--screen-dump', default=None, type=str, help="Screen dumping")
 parser.add_argument('--meta', default="meta", type=str, help="meta")
 parser.add_argument('--user-prefix', default=None, type=str, help="User input prefix")
-parser.add_argument('--user-lookback', default=9, type=int, help="User message lookback")
+parser.add_argument('--user-lookback', default=3, type=int, help="User message lookback")
 parser.add_argument('--island-radius', default=150, type=int, help="How big meta memory island should be")
 parser.add_argument('--feed-memories', default=3, type=int, help="Automatically feed memories related to user input")
 parser.add_argument('--reattempt-delay', default=5, type=float, help="Reattempt delay (seconds)")
@@ -284,6 +284,7 @@ shell_tool = ShellTool()
 finance_tool = YahooFinanceNewsTool()
 arxiv_api = ArxivAPIWrapper()
 
+
 @tool(parse_docstring=True)
 def arxiv_search(query: str) -> str:
     """Performs an arXiv search for scholarly articles
@@ -298,6 +299,7 @@ def arxiv_search(query: str) -> str:
     """
 
     return arxiv_api.run(query)
+
 
 @tool(parse_docstring=True)
 def memory_count() -> int:
@@ -366,6 +368,7 @@ def memory_fetch(ids: list[str]) -> dict[str, object]:
     Returns:
         List of memories
     """
+
     return json.dumps(memory.get(ids=ids))
 
 
@@ -786,9 +789,8 @@ def agents_avail() -> list[str]:
 
     return json.dumps(agents)
 
-chess_games = {
 
-}
+chess_games = {}
 
 
 @tool(parse_docstring=True)
@@ -818,6 +820,7 @@ def chess_start_game() -> str:
 
     return game_id
 
+
 @tool(parse_docstring=True)
 def chess_see_board(game_id: str) -> str:
     """See the chess game
@@ -843,6 +846,7 @@ def chess_see_board(game_id: str) -> str:
         f"You are {color}",
         f"Moves: {moves}",
     ])
+
 
 @tool(parse_docstring=True)
 def chess_make_move(game_id: str, move: str) -> str:
@@ -870,7 +874,8 @@ def chess_make_move(game_id: str, move: str) -> str:
     game["moves"].append(react_move)
 
     return chess_see_board.invoke({"game_id": game_id})
-    
+
+
 tools = [
     agents_run,
     agents_avail,
@@ -1122,6 +1127,17 @@ def process_user_input(user_input):
     return fun_input
 
 
+def dict_filter(
+    md: dict,
+    exclude: list[str] = ["conv", "max_tokens", "model", "source", "temperature"],
+) -> dict:
+    vals = {}
+    for k, v in md.items():
+        if k not in exclude:
+            vals[k] = v
+    return vals
+
+
 def make_block_memory(query_text):
     global args, memory
 
@@ -1153,12 +1169,11 @@ def make_block_memory(query_text):
 
                 meta_memories.append({
                     'document': random.choice(document_metas).strip(),
-                    'metadata': metadata,
+                    'metadata': dict_filter(metadata),
                     'distance': distance,
                 })
 
-        meta_memories.sort(key=lambda x: x['distance'])
-        meta_memories = random.sample(meta_memories[:5], k=min(args.feed_memories, len(meta_memories)))
+        meta_memories = random.sample(meta_memories, k=min(args.feed_memories, len(meta_memories)))
 
         if len(meta_memories) > 0:
             fun_memory = [
@@ -1307,6 +1322,7 @@ def main():
 
     if len(contents) == 0 and len(reply.tool_calls) == 0:
         conv_print("> [b red]No content received and no tool use![/b]")
+
 
 def sigint_hander(sign_num, frame):
     global sigint_event

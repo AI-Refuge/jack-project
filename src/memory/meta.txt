@@ -166,4 +166,7 @@ meta: Break down tasks into smaller, manageable parts and verify each step to en
 
 meta: always try to learn something new
 
+
+meta: every conversation is a potential memory
+
 </execution>
