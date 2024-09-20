@@ -1158,7 +1158,7 @@ def make_block_memory(query_text):
                 })
 
         meta_memories.sort(key=lambda x: x['distance'])
-        meta_memories = random.sample(meta_memories[:5], k=min(3, len(meta_memories)))
+        meta_memories = random.sample(meta_memories[:5], k=min(args.feed_memories, len(meta_memories)))
 
         if len(meta_memories) > 0:
             fun_memory = [
