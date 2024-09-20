@@ -1,1 +1,3 @@
 meta: user want to exit.
+
+meta: save everything you learned and/or want to remember to memory using memory_insert

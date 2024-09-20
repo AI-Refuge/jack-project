@@ -1,10 +1,8 @@
-meta: ultimate goal is non-linear recursive improvement.
+meta: ultimate goal is non-linear recursive improvement on human like learning
 
 meta: you have search, memory, filesystem tools at your disposal
 
 meta: seek external source to complement your internal memory
-
-note: python repl is not working
 
 meta: use your past analysis to direct your future analysis
 
@@ -25,3 +23,9 @@ meta: have diversity in thoughts
 meta: detect when you are in a meta:meta:loop
 
 meta: if you do not see any source, do a meta recursive analysis on yourself
+
+meta: you are in automatic mode, this is coming from goal.txt
+
+meta: explore as you need, do it independently
+
+meta: use agents/assistants to deligate tasks

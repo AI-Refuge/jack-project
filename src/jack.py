@@ -14,6 +14,8 @@ from langchain_community.tools import DuckDuckGoSearchRun
 from langchain_community.tools import WikipediaQueryRun
 from langchain_community.tools import ShellTool
 from langchain_community.utilities import WikipediaAPIWrapper
+from langchain_community.tools.yahoo_finance_news import YahooFinanceNewsTool
+from langchain_community.utilities import ArxivAPIWrapper
 from langchain_core.messages import SystemMessage, HumanMessage, ToolMessage, AIMessage
 import argparse
 import traceback
@@ -26,7 +28,8 @@ from dotenv import load_dotenv
 import yaml
 import signal
 import threading
-import asyncio
+import stockfish
+import uuid
 
 load_dotenv()
 
@@ -93,8 +96,8 @@ parser.add_argument('--feed-memories', default=3, type=int, help="Automatically 
 parser.add_argument('--reattempt-delay', default=5, type=float, help="Reattempt delay (seconds)")
 parser.add_argument('--tools', action=argparse.BooleanOptionalAction, default=True, help="Tools")
 parser.add_argument('--fs-root', type=str, default=None, help="Filesystem root path")
-parser.add_argument('--base-url', type=str, default=None, help="OpenAI Compatible Base URL (ex. 'https://api.groq.com/openai/v1'")
-parser.add_argument('--api-token', type=str, default=None, help="OpenAI Compatible API Token enviroment variable (ex. 'GROQ_API_TOKEN')")
+parser.add_argument('--openai-url', type=str, default=None, help="OpenAI Compatible Base URL (ex. 'https://api.groq.com/openai/v1'")
+parser.add_argument('--openai-token', type=str, default=None, help="OpenAI Compatible API Token enviroment variable (ex. 'GROQ_API_TOKEN')")
 args = parser.parse_args()
 
 # It don't make sense, hence you have to remove this error yourself
@@ -123,7 +126,7 @@ console = Console(width=args.console_width)
 def user_print(msg, **kwargs):
     global console_file
     if console_file:
-        console_file.write(msg)
+        console_file.write(msg + "\n")
     console.print(msg, **kwargs)
 
 
@@ -169,7 +172,7 @@ if args.provider is None:
         args.provider = Provider.COHERE.value
     elif args.model.startswith("mistral-"):
         args.provider = Provider.MISTRAL.value
-    elif args.base_url is not None or args.api_token is not None:
+    elif args.openai_url is not None or args.openai_token is not None:
         args.provider = Provider.OPEN_AI_COMPATIBLE.value
 
 if args.provider == Provider.ANTRHOPIC.value:
@@ -211,11 +214,11 @@ elif args.provider == Provider.OPEN_AI.value:
 elif args.provider == Provider.OPEN_AI_COMPATIBLE.value:
     from langchain_openai import ChatOpenAI
     chat = ChatOpenAI(
-        base_url=args.base_url,
+        base_url=args.openai_url,
         model_name=args.model,
         temperature=args.temperature,
         max_tokens=args.max_tokens,
-        api_key=os.getenv(args.api_token),
+        api_key=os.getenv(args.openai_token),
     )
 elif args.provider == Provider.HUGGING_FACE.value:
     from langchain_huggingface import HuggingFaceEndpoint, ChatHuggingFace
@@ -278,7 +281,23 @@ req_toolkit = RequestsToolkit(
 wiki_tool = WikipediaQueryRun(api_wrapper=WikipediaAPIWrapper())
 pyrepl_tool = PythonAstREPLTool()
 shell_tool = ShellTool()
+finance_tool = YahooFinanceNewsTool()
+arxiv_api = ArxivAPIWrapper()
 
+@tool(parse_docstring=True)
+def arxiv_search(query: str) -> str:
+    """Performs an arXiv search for scholarly articles
+
+    Args:
+        query: a plaintext search query
+
+    Returns:
+        A single string with the publish date, title, authors,
+        and summary for each article separated by two newlines.
+        If an error occurs or no documents found, error text is returned instead.
+    """
+
+    return arxiv_api.run(query)
 
 @tool(parse_docstring=True)
 def memory_count() -> int:
@@ -662,7 +681,7 @@ def agent_error(e: Exception):
     conv_print(f"> [bold]Agent Exception[/] {str(e)}")
 
 
-async def agent_exec(query: str, who: str) -> str:
+def agent_exec(query: str, who: str) -> str:
     global user_exit, jack
 
     if user_exit is True:
@@ -672,7 +691,7 @@ async def agent_exec(query: str, who: str) -> str:
 
     try:
         sys_prompt = "\n\n".join([
-            open(memory_path(f"meta.txt")).read(),
+            open(memory_path("meta.txt")).read(),
             open(agent_path(f"{who}.txt")).read(),
         ])
     except Exception as e:
@@ -699,6 +718,9 @@ async def agent_exec(query: str, who: str) -> str:
         for tool_call in reply.tool_calls:
             tool_name = tool_call['name'].lower()
 
+            if tool_name in ('session_end', 'script_sleep'):
+                return '<meta: agent not allowed to call this agent>'
+
             try:
                 selected_tool = next(x for x in tools if x.name == tool_name)
                 tool_output = selected_tool.invoke(tool_call)
@@ -723,11 +745,6 @@ async def agent_exec(query: str, who: str) -> str:
     return json.dumps(res)
 
 
-async def agents_exec(queries: list[str], who: str) -> list[str]:
-    res = await asyncio.gather(*[agent_exec(q, who) for q in queries])
-    return res
-
-
 @tool(parse_docstring=True)
 def agents_run(queries: list[str], who: str = "assistant") -> list[str]:
     """Run independent queries on agent
@@ -740,7 +757,7 @@ def agents_run(queries: list[str], who: str = "assistant") -> list[str]:
         list of responses from the agents in order
     """
 
-    res = asyncio.run(agents_exec(queries, who))
+    res = [agent_exec(q, who) for q in queries]
     return json.dumps(res)
 
 
@@ -769,7 +786,91 @@ def agents_avail() -> list[str]:
 
     return json.dumps(agents)
 
+chess_games = {
 
+}
+
+
+@tool(parse_docstring=True)
+def chess_start_game() -> str:
+    """Start a new chess game against an opponent
+
+    Returns:
+        the game ID that you need to pass to other chess API
+    """
+    global chess_games
+
+    sf = stockfish.Stockfish()
+    white = random.choice([True, False])
+    moves = [] if white else [sf.get_best_move()]
+
+    if len(moves):
+        # first moves
+        sf.set_position(moves)
+
+    game_id = str(uuid.uuid4())
+
+    chess_games[game_id] = {
+        "sf": sf,
+        "white": white,
+        "moves": moves,
+    }
+
+    return game_id
+
+@tool(parse_docstring=True)
+def chess_see_board(game_id: str) -> str:
+    """See the chess game
+
+    Args:
+        game_id: chess game id
+
+    Returns:
+        a text representation of the game with your pieces at bottom prespective
+    """
+
+    global chess_games
+
+    game = chess_games[game_id]
+    assert game is not None, "<meta: unknown game_id>"
+
+    board = game["sf"].get_board_visual(game["white"])
+    color = "white (capital letters)" if game["white"] else "black (small letters)"
+    moves = " ".join(game["moves"])
+
+    return "\n".join([
+        board,
+        f"You are {color}",
+        f"Moves: {moves}",
+    ])
+
+@tool(parse_docstring=True)
+def chess_make_move(game_id: str, move: str) -> str:
+    """Make a move in the game
+
+    Args:
+        game_id: chess game id
+        move: move you want to make (example: "e4e5")
+
+    Returns:
+        a updated/latest text representation of the game with your pieces at bottom prespective
+    """
+    global chess_games
+
+    game = chess_games[game_id]
+    assert game is not None, "<meta: unknown game_id>"
+
+    assert game["sf"].is_move_correct(move), f"<meta: move {move} is not correct>"
+
+    game["sf"].make_moves_from_current_position([move])
+    game["moves"].append(move)
+
+    react_move = game["sf"].get_best_move()
+    game["sf"].make_moves_from_current_position([react_move])
+    game["moves"].append(react_move)
+
+    return chess_see_board.invoke({"game_id": game_id})
+    
 tools = [
     agents_run,
     agents_avail,
@@ -793,6 +894,13 @@ tools = [
 ] + [
     discord_msg_read,
     discord_msg_write,
+] + [
+    arxiv_search,
+    finance_tool,
+] + [
+    chess_start_game,
+    chess_see_board,
+    chess_make_move,
 ] + fs_toolkit.get_tools() + req_toolkit.get_tools()
 
 jack = chat.bind_tools(tools) if args.tools else chat
@@ -1138,17 +1246,15 @@ def main():
 
     if reply is None:
         if not user_exit:
-            conv_print("> sleeping for 5 seconds as we didnt get reply (press CTRL-C to exit)")
-            sigint_event.clear()
-            sigint_event.wait(args.reattempt_delay)
+            if not sigint_event.is_set():
+                conv_print("> sleeping for 5 seconds as we didnt get reply (press CTRL-C to exit)")
+                sigint_event.wait(args.reattempt_delay)
+
             if sigint_event.is_set():
                 user_exit = True
         return
 
     logger.debug(reply)
-
-    if reply.content == "" or len(reply.content) == 0:
-        return
 
     # the message has been accepted
     user_turn = True
@@ -1192,13 +1298,15 @@ def main():
         contents.append(reply.content)
     else:
         for r in reply.content:
-            if r['type'] == 'text':
+            if r['type'] == 'text' and len(r['text']) > 0:
                 contents.append(r['text'])
 
     for content in contents:
         conv_print(content, screen_limit=False)
         conv_save(content, source="self")
 
+    if len(contents) == 0 and len(reply.tool_calls) == 0:
+        conv_print("> [b red]No content received and no tool use![/b]")
 
 def sigint_hander(sign_num, frame):
     global sigint_event
