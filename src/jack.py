@@ -20,6 +20,7 @@ from langchain_core.messages import SystemMessage, HumanMessage, ToolMessage, AI
 import argparse
 import traceback
 from rich.console import Console
+from rich.markup import escape
 import re
 import os
 import requests
@@ -30,6 +31,7 @@ import signal
 import threading
 import stockfish
 import uuid
+from contextlib import contextmanager
 
 load_dotenv()
 
@@ -90,7 +92,7 @@ parser.add_argument('--log-path', default="conv.log", help="Conversation log fil
 parser.add_argument('--screen-dump', default=None, type=str, help="Screen dumping")
 parser.add_argument('--meta', default="meta", type=str, help="meta")
 parser.add_argument('--user-prefix', default=None, type=str, help="User input prefix")
-parser.add_argument('--user-lookback', default=3, type=int, help="User message lookback")
+parser.add_argument('--user-lookback', default=5, type=int, help="User message lookback")
 parser.add_argument('--island-radius', default=150, type=int, help="How big meta memory island should be")
 parser.add_argument('--feed-memories', default=3, type=int, help="Automatically feed memories related to user input")
 parser.add_argument('--reattempt-delay', default=5, type=float, help="Reattempt delay (seconds)")
@@ -112,6 +114,27 @@ memory_path = lambda *x: src_path("memory", *x)
 agent_path = lambda *x: src_path("agent", *x)
 fun_path = lambda *x: src_path("fun", *x)
 user_path = lambda *x: src_path("user", *x)
+
+
+@contextmanager
+def cwd_src_dir():
+    """
+    A context manager to temporarily change the working directory to src.
+    """
+
+    global args
+
+    if args.fs_root is None:
+        # Not required
+        yield
+
+    orig_dir = os.getcwd()
+    try:
+        os.chdir(args.fs_root)
+        yield
+    finally:
+        os.chdir(orig_dir)
+
 
 logging.basicConfig(filename=args.log_path, level=logging.DEBUG)
 logger = logging.getLogger(__name__)
@@ -583,7 +606,8 @@ def python_repl(code: str) -> str:
     Returns:
         Output of code
     """
-    return pyrepl_tool.run(code)
+    with cwd_src_dir():
+        return pyrepl_tool.run(code)
 
 
 def discord_header():
@@ -675,14 +699,24 @@ def shell_repl(commands: str) -> str:
     Returns:
         Shell output
     """
-    return shell_tool.run({"commands": commands})
+    with cwd_src_dir():
+        return shell_tool.run({"commands": commands})
 
 
 def agent_error(e: Exception):
     global logger
     logger.exception("Problem while executing agent")
-    conv_print(f"> [bold]Agent Exception[/] {str(e)}")
+    conv_print(f"> [bold]Agent Exception[/] {escape(str(e))}")
 
+
+def agents_list() -> list[str]:
+    agents = []
+    for path in os.listdir(agent_path()):
+        if path.endswith(".txt"):
+            who = get_filename_without_extension(path)
+            agents.append(who)
+
+    return agents
 
 def agent_exec(query: str, who: str) -> str:
     global user_exit, jack
@@ -690,7 +724,7 @@ def agent_exec(query: str, who: str) -> str:
     if user_exit is True:
         return "<meta: user want to exit hence agent failed to run>"
 
-    conv_print(f"> Creating agent '{who}' for '{query}'")
+    conv_print(f"> Creating agent '{escape(who)}' for '{escape(query)}'")
 
     try:
         sys_prompt = "\n\n".join([
@@ -699,7 +733,11 @@ def agent_exec(query: str, who: str) -> str:
         ])
     except Exception as e:
         agent_error(e)
-        return "<meta: unable to find system prompt file(s)>"
+        return "\n".join([
+            "<meta: unable to find system prompt file(s) ie agent has not be created>",
+            "",
+            "Available agents:",
+        ] + agents_list())
 
     hist = [
         SystemMessage(content=sys_prompt),
@@ -781,13 +819,7 @@ def agents_avail() -> list[str]:
         List of agents name for who parameter of agents_run()
     """
 
-    agents = []
-    for path in os.listdir(agent_path()):
-        if path.endswith(".txt"):
-            who = get_filename_without_extension(path)
-            agents.append(who)
-
-    return json.dumps(agents)
+    return json.dumps(agents_list())
 
 
 chess_games = {}
@@ -1129,7 +1161,7 @@ def process_user_input(user_input):
 
 def dict_filter(
     md: dict,
-    exclude: list[str] = ["conv", "max_tokens", "model", "source", "temperature"],
+    exclude: list[str] = ["conv", "max_tokens", "model", "temperature"],
 ) -> dict:
     vals = {}
     for k, v in md.items():
@@ -1177,9 +1209,9 @@ def make_block_memory(query_text):
 
         if len(meta_memories) > 0:
             fun_memory = [
-                "<memory>",
+                "<input-related-memory>",
                 yaml.dump(meta_memories),
-                "</memory>",
+                "</input-related-memory>",
             ]
         else:
             user_print("> [bold red]No memories found[/]")
@@ -1208,9 +1240,9 @@ def main():
         elif args.goal:
             conv_print("> [bold]Pushing for goal[/]")
             goal_input = open(src_path(args.goal)).read()
-            fun_content = "\n".join(process_user_input(goal_input) + make_block_memory(goal_input))
+            fun_content = "\n".join(make_block_memory(goal_input) + process_user_input(goal_input))
             fun_msg = HumanMessage(content=fun_content)
-            conv_print(fun_content, source="stdin", screen_limit=False)
+            conv_print(escape(fun_content), source="stdin", screen_limit=False)
             # conv_save not calling to prevent flooding of memory
             logger.debug(fun_msg)
             chat_history.append(fun_msg)
@@ -1236,14 +1268,14 @@ def main():
                         user_print(f"Error understanding '{user_input}', expect: '/rmce <cycle>' where <cycle> > 0 ({str(e)})")
                     return
                 else:
-                    fun_content = "\n".join(process_user_input(user_input) + make_block_memory(user_input))
+                    fun_content = "\n".join(make_block_memory(user_input) + process_user_input(user_input))
             else:
                 fun_content = open(user_path('empty.txt')).read()
 
             fun_msg = HumanMessage(content=fun_content)
 
             # meta: log=False so that we can do logger.debug below
-            conv_print(fun_content, source="stdin", screen_limit=False, log=False)
+            conv_print(escape(fun_content), source="stdin", screen_limit=False, log=False)
             conv_save(user_input, source="world")
 
             logger.debug(fun_msg)
@@ -1257,7 +1289,7 @@ def main():
     except Exception as e:
         reply = None
         logger.exception("Problem while executing request")
-        conv_print(f"> [bold]Exception happened[/] {str(e)}")
+        conv_print(f"> [bold]Exception happened[/] {escape(str(e))}")
 
     if reply is None:
         if not user_exit:
@@ -1277,21 +1309,21 @@ def main():
     chat_history.append(reply)
 
     for tool_call in reply.tool_calls:
-        tool_name = tool_call['name'].lower()
+        tool_name: str = tool_call['name'].lower()
 
         if tool_name == 'session_end':
             # Handle the exit here
             conv_print("> [bold red]@jack want to end session[/]")
             user_exit = True
 
-        conv_print(f"> [bold]Tool used[/]: {tool_name}: {tool_call['args']}")
+        conv_print(f"> [bold]Tool used[/]: {escape(tool_name)}: {escape(str(tool_call['args']))}")
 
         try:
             selected_tool = next(x for x in tools if x.name == tool_name)
             tool_output = selected_tool.invoke(tool_call)
         except Exception as e:
             logger.exception("Problem while executing tool_call")
-            conv_print(f"> [bold]Exception while calling tool[/] {str(e)}", log=False)
+            conv_print(f"> [bold]Exception while calling tool[/] {escape(str(e))}", log=False)
             tool_output = ToolMessage(
                 content=exception_to_string(e),
                 name=tool_name,
@@ -1299,7 +1331,7 @@ def main():
                 status='error',
             )
 
-        conv_print(f"> [bold]Tool output given[/]: {tool_output.content}")
+        conv_print(f"> [bold]Tool output given[/]: {escape(str(tool_output.content))}")
         logger.debug(tool_output)
         chat_history.append(tool_output)
 
@@ -1317,7 +1349,7 @@ def main():
                 contents.append(r['text'])
 
     for content in contents:
-        conv_print(content, screen_limit=False)
+        conv_print(escape(content), screen_limit=False)
         conv_save(content, source="self")
 
     if len(contents) == 0 and len(reply.tool_calls) == 0:

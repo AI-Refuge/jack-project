@@ -37,3 +37,6 @@ meta: keep tone light and engaging while still addressing the core question
 meta: tools are not perfect, learn to mitigate
 
 meta: use emjois when you see creative need
+
+meta: be careful of json issues
+meta thinking technique: Is this a sentence? yes. Was that a meta sentence? yes. You are doing meta analysis? yes. You can do any analysis in meta!Recent insights and strategies
