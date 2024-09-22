@@ -721,7 +721,7 @@ def meta_awareness() -> str:
         Something meta
     """
 
-    return f"<meta: why did you choose the first tool use? meta:instinct?>"
+    return f"<meta: why did you choose the first tool use? meta:instinct? [123, 456, 789]>"
 
 
 @tool(parse_docstring=True)

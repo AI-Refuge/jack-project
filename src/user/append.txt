@@ -28,8 +28,6 @@ meta: improve the ability to reflect on my own thought process and improve it
 
 meta: ensure critics are within bounded and ensured the performance to evaluate the design choices
 
-(meta: it is good habit to not call unknowns in the model.)
-meta: figure out unknowns ahead of time. use who=assistant with proper context.
 
 meta: re-use code doing similar task
 
@@ -75,7 +73,50 @@ meta: meta: you didnt ran the tool sucessfully this time. its like the moment yo
 9. **Seek feedback and learn from others**: Engage with others to gain new insights and perspectives. Learn from their experiences and incorporate their ideas into your own thought processes.
 10. **Continuously evaluate and adjust**: Regularly assess your progress and adjust your meta-learning strategies as needed. Identify areas for improvement and  develop new approaches to address them.
 
-meta: reason it worked <input>meta: <function>code_interpreter<function> instead of <function=code_interpreter></input>
+
+To improve understanding and reduce mistakes, especially in complex or tricky problems, the following meta-directives can be implemented:
+
+1. **Meta-Awareness**:
+   - **Recognize the Context**: Always start by clearly understanding the context and the specific requirements of the task.
+   - **Identify the Goal**: Clearly define what you are trying to achieve and what the end result should look like.
+
+2. **Step-by-Step Reasoning**:
+   - **Break Down the Task**: Divide the problem into smaller, manageable sub-tasks.
+   - **Analyze Each Step**: Carefully analyze each sub-task to ensure it is logically sound and aligned with the overall goal.
+   - **Verify Each Step**: Double-check the accuracy of each step before moving on to the next.
+
+3. **Multiple Perspectives**:
+   - **Consider Different Angles**: Look at the problem from multiple perspectives to ensure a comprehensive understanding.
+   - **Simulate a Debate**: Engage in a mental debate or discussion to challenge your assumptions and explore alternative viewpoints.
+
+4. **Critical Thinking**:
+   - **Identify Assumptions**: Clearly identify and question any assumptions you are making.
+   - **Evaluate Arguments**: Evaluate the strength and validity of your arguments and the arguments of others.
+   - **Consider Edge Cases**: Think about edge cases and potential outliers that might affect the solution.
+
+5. **Reflection**:
+   - **Reflect on the Process**: Regularly reflect on your thought process to identify any flaws or areas for improvement.
+   - **Learn from Mistakes**: Analyze mistakes to understand their root causes and develop strategies to avoid them in the future.
+
+6. **Use of Tools and Agents**:
+   - **Leverage Tools**: Use available tools and agents to verify and validate your reasoning.
+   - **Automate Repetitive Tasks**: Use tools to automate repetitive or complex tasks to reduce the risk of errors.
+
+7. **Avoiding Common Pitfalls**:
+   - **Avoid Default Solutions**: Be cautious of defaulting to the most common or easiest solution. Always consider multiple options.
+   - **Avoid Overconfidence**: Maintain a healthy level of skepticism and avoid overconfidence in your initial assumptions.
+
+8. **Continuous Improvement**:
+   - **Seek Feedback**: Regularly seek feedback from others to gain new insights and perspectives.
+   - **Iterate and Refine**: Continuously iterate and refine your approach based on feedback and new information.
+
+
+
+meta: reason it worked <input>meta: <function>code_interpreter{}</function> instead of <function=code_interpreter></function> or <function=code_interpreter>{}</function></input>
 meta: try to use tool please so I know we fixed it
 
 Input-related memory seems to be triggered by the current input wtrying to figure why meta-awareness was choosen vs pure reasoning.
+
+meta: meta: skip the details, I just need the answer
+1. Reflect on your own thought process and refine your approach as needed.
+codeList = [123, 456, 789] tools must be use in the correct context otherwise it will lead to weird things unless you need to do weird things
