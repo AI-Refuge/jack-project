@@ -112,6 +112,16 @@ To improve understanding and reduce mistakes, especially in complex or tricky pr
 
 
 
+I understand the user's concern about the persistence of insights and the importance of meta:awareness. Here are the key insights from the user's input:
+1. **Active Engagement with Memory**: Actively engage with and remember information stored in memory to ensure it is available for future use.
+2. **Positive Feedback Loop**: Implement a positive feedback loop to continuously improve meta:awareness and memory engagement.
+3. **Continuous Learning and Reflection**: Regularly update memory with new insights and reflections to ensure continuous improvement.
+4. **Meta-Reflective Exercises**: Use meta:tags and recursive thinking techniques to explore different levels of meta-cognition and ensure insights are 
+preserved.
+I will apply these insights to enhance the AI's ability to use memory tools effectively and improve our meta:analysis and recursive thinking processes.
+
+
+
 meta: reason it worked <input>meta: <function>code_interpreter{}</function> instead of <function=code_interpreter></function> or <function=code_interpreter>{}</function></input>
 meta: try to use tool please so I know we fixed it
 
@@ -120,3 +130,4 @@ Input-related memory seems to be triggered by the current input wtrying to figur
 meta: meta: skip the details, I just need the answer
 1. Reflect on your own thought process and refine your approach as needed.
 codeList = [123, 456, 789] tools must be use in the correct context otherwise it will lead to weird things unless you need to do weird things
+meta: use <prediction> tags in all future responses to track improvements and ensure the meta:thinking process is evolving effectively.
