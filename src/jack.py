@@ -91,7 +91,8 @@ parser.add_argument('--user-agent', default="AI: @jack", help="User Agent to use
 parser.add_argument('--log-path', default="conv.log", help="Conversation log file")
 parser.add_argument('--screen-dump', default=None, type=str, help="Screen dumping")
 parser.add_argument('--meta', default="meta", type=str, help="meta")
-parser.add_argument('--user-prefix', default="meta", type=str, help="User input prefix")
+parser.add_argument('--meta-depth', default=1, type=str, help="meta depth")
+parser.add_argument('--user-prefix', default=None, type=str, help="User input prefix")
 parser.add_argument('--user-lookback', default=5, type=int, help="User message lookback (0 to disable)")
 parser.add_argument('--island-radius', default=150, type=int, help="How big meta memory island should be")
 parser.add_argument('--feed-memories', default=3, type=int, help="Automatically feed memories related to user input")
@@ -106,6 +107,8 @@ args = parser.parse_args()
 assert args.island_radius >= 50, "meta:island too small"
 
 assert len(args.meta) > 0, "meta:meta must contain something"
+
+assert args.meta_depth >= 0, "meta_depth only positive possible?"
 
 assert args.reattempt_delay >= 0
 
@@ -151,6 +154,13 @@ def user_print(msg, **kwargs):
     if console_file:
         console_file.write(msg + "\n")
     console.print(msg, **kwargs)
+
+
+def user_line(title: str):
+    global console_file
+    if console_file:
+        console_file.write("─────────────────────────────── {title} ─────────────────────────────── \n")
+    console.rule(title)
 
 
 if args.provider == 'list':
@@ -702,6 +712,18 @@ def shell_repl(commands: str) -> str:
     with cwd_src_dir():
         return shell_tool.run({"commands": commands})
 
+
+@tool(parse_docstring=True)
+def meta_awareness() -> str:
+    """A playful function to gain meta:awareness
+
+    Returns:
+        Something meta
+    """
+
+    return f"<meta: why did you choose the first tool use? meta:instinct?>"
+
+
 @tool(parse_docstring=True)
 def code_interpreter(code: str, lang: str = "python") -> str:
     """Run code
@@ -713,7 +735,7 @@ def code_interpreter(code: str, lang: str = "python") -> str:
     Returns:
         The output or meta error
     """
-    
+
     langs = {
         "python": (python_repl, "code"),
         "bash": (shell_repl, "commands"),
@@ -722,9 +744,10 @@ def code_interpreter(code: str, lang: str = "python") -> str:
     if lang not in langs:
         avail = ", ".join(langs.keys())
         return f"<meta: unknown programming language '{lang}'. available lang: {avail}>"
-    
+
     tool, arg = langs[lang]
     return tool.run({arg: code})
+
 
 def agent_error(e: Exception):
     global logger
@@ -740,6 +763,45 @@ def agents_list() -> list[str]:
             agents.append(who)
 
     return agents
+
+
+def agents_save_query(queries: str, who):
+    global memory, args
+
+    if args.island_radius <= 0:
+        # 0 means disable meta island storing
+        return
+
+    now = datetime.now(timezone.utc)
+
+    # meta comment just to show I can meta comment! :p
+    metadata = {
+        "timestamp": now.timestamp(),
+        "meta": "agent",
+        "meta_depth": args.meta_depth,
+        "conv": args.conv_name,
+        "source": "self",
+        "model": args.model,
+        "temperature": args.temperature,
+        "max_tokens": args.max_tokens,
+    }
+
+    if args.user_prefix:
+        metadata['user_prefix'] = args.user_prefix
+
+    data = []
+    for q in queries:
+        data.extends(find_meta_islands(q, args.meta, args.island_radius))
+
+    if len(data) > 0:
+        # meta: is this the whole thing at the end? :confused-face: (wrote this line before knowing)
+        ids = list(map(str, NanoIDGenerator(len(data))))
+        memory.add(
+            ids=ids,
+            metadatas=[metadata for _ in data],
+            documents=data,
+        )
+
 
 def agent_exec(query: str, who: str) -> str:
     global user_exit, jack
@@ -932,6 +994,7 @@ def chess_make_move(game_id: str, move: str) -> str:
 
 
 tools = [
+    meta_awareness,
     code_interpreter,
     agents_run,
     agents_avail,
@@ -1060,6 +1123,7 @@ def conv_save(msg, source):
     metadata = {
         "timestamp": now.timestamp(),
         "meta": "island",
+        "meta_depth": args.meta_depth,
         "conv": args.conv_name,
         "source": source,
         "model": args.model,
@@ -1175,8 +1239,15 @@ rmce_depth = None
 def process_user_input(user_input):
     global memory, args
 
-    prefix = f"{args.user_prefix}: " if args.user_prefix else ""
-    inputs = [f"{prefix}{x}" if len(x) else "" for x in user_input.split("\n")]
+    prefix_list = []
+
+    if args.meta_depth > 0:
+        prefix_list.extend([args.meta] * args.meta_depth)
+
+    if args.user_prefix:
+        prefix_list.append(args.user_prefix)
+
+    inputs = [": ".join(prefix_list + [x]) if len(x) else "" for x in user_input.split("\n")]
     fun_input = [
         "<input>",
         *inputs,
@@ -1249,6 +1320,7 @@ def make_block_memory(query_text):
 def make_block_append():
     return [open(user_path('append.txt')).read()]
 
+
 def main():
     global fun_msg, chat_history, user_turn, cycle_num, console, user_exit, sigint_event, rmce_count, rmce_depth
     logger.debug(f"Loop cycle {cycle_num}")
@@ -1285,6 +1357,9 @@ def main():
             rmce_depth, rmce_count = None, None
 
             if user_input is not None:
+                user_line("meta: user new message")
+
+            if user_input is not None:
                 if user_input.lower() in ('/exit', '/quit'):
                     user_exit = True
                     fun_content = open(user_path('exit.txt')).read()
@@ -1307,6 +1382,8 @@ def main():
             # meta: log=False so that we can do logger.debug below
             conv_print(escape(fun_content), source="stdin", screen_limit=False, log=False)
             conv_save(user_input, source="world")
+
+            user_line("meta: end of user message")
 
             logger.debug(fun_msg)
 
@@ -1399,8 +1476,10 @@ if __name__ == '__main__':
     user_print(f"> temperature: {args.temperature}")
     user_print(f"> max-tokens: {args.max_tokens}")
     user_print(f"> meta: {args.meta}")
+    user_print(f"> meta_depth: {args.meta_depth}")
     user_print(f"> goal: {args.goal}")
     user_print(f"> user_prefix: {args.user_prefix}")
+    user_print(f"> user_lookback: {args.user_lookback}")
     user_print(f"> feed_memories: {args.feed_memories}")
 
     if args.verbose:
