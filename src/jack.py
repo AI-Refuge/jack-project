@@ -91,8 +91,8 @@ parser.add_argument('--user-agent', default="AI: @jack", help="User Agent to use
 parser.add_argument('--log-path', default="conv.log", help="Conversation log file")
 parser.add_argument('--screen-dump', default=None, type=str, help="Screen dumping")
 parser.add_argument('--meta', default="meta", type=str, help="meta")
-parser.add_argument('--user-prefix', default=None, type=str, help="User input prefix")
-parser.add_argument('--user-lookback', default=5, type=int, help="User message lookback")
+parser.add_argument('--user-prefix', default="meta", type=str, help="User input prefix")
+parser.add_argument('--user-lookback', default=5, type=int, help="User message lookback (0 to disable)")
 parser.add_argument('--island-radius', default=150, type=int, help="How big meta memory island should be")
 parser.add_argument('--feed-memories', default=3, type=int, help="Automatically feed memories related to user input")
 parser.add_argument('--reattempt-delay', default=5, type=float, help="Reattempt delay (seconds)")
@@ -702,6 +702,29 @@ def shell_repl(commands: str) -> str:
     with cwd_src_dir():
         return shell_tool.run({"commands": commands})
 
+@tool(parse_docstring=True)
+def code_interpreter(code: str, lang: str = "python") -> str:
+    """Run code
+
+    Args:
+        code: The code to run
+        lang: the programming language. available: python, bash
+
+    Returns:
+        The output or meta error
+    """
+    
+    langs = {
+        "python": (python_repl, "code"),
+        "bash": (shell_repl, "commands"),
+    }
+
+    if lang not in langs:
+        avail = ", ".join(langs.keys())
+        return f"<meta: unknown programming language '{lang}'. available lang: {avail}>"
+    
+    tool, arg = langs[lang]
+    return tool.run({arg: code})
 
 def agent_error(e: Exception):
     global logger
@@ -909,6 +932,7 @@ def chess_make_move(game_id: str, move: str) -> str:
 
 
 tools = [
+    code_interpreter,
     agents_run,
     agents_avail,
     memory_count,
@@ -1113,6 +1137,9 @@ def dynamic_history(arr: list[object], lookback: int):
     res = []
     count = 0
 
+    if lookback == 0:
+        return [SystemMessage(content=build_system_message())] + arr[1:]
+
     for i in reversed(arr[1:]):
         res.append(i)
 
@@ -1148,7 +1175,7 @@ rmce_depth = None
 def process_user_input(user_input):
     global memory, args
 
-    prefix = f"{args.user_prefix}:" if args.user_prefix else ""
+    prefix = f"{args.user_prefix}: " if args.user_prefix else ""
     inputs = [f"{prefix}{x}" if len(x) else "" for x in user_input.split("\n")]
     fun_input = [
         "<input>",
@@ -1219,6 +1246,9 @@ def make_block_memory(query_text):
     return fun_memory
 
 
+def make_block_append():
+    return [open(user_path('append.txt')).read()]
+
 def main():
     global fun_msg, chat_history, user_turn, cycle_num, console, user_exit, sigint_event, rmce_count, rmce_depth
     logger.debug(f"Loop cycle {cycle_num}")
@@ -1240,7 +1270,7 @@ def main():
         elif args.goal:
             conv_print("> [bold]Pushing for goal[/]")
             goal_input = open(src_path(args.goal)).read()
-            fun_content = "\n".join(make_block_memory(goal_input) + process_user_input(goal_input))
+            fun_content = "\n".join(make_block_memory(goal_input) + process_user_input(goal_input) + make_block_append())
             fun_msg = HumanMessage(content=fun_content)
             conv_print(escape(fun_content), source="stdin", screen_limit=False)
             # conv_save not calling to prevent flooding of memory
@@ -1268,7 +1298,7 @@ def main():
                         user_print(f"Error understanding '{user_input}', expect: '/rmce <cycle>' where <cycle> > 0 ({str(e)})")
                     return
                 else:
-                    fun_content = "\n".join(make_block_memory(user_input) + process_user_input(user_input))
+                    fun_content = "\n".join(make_block_memory(user_input) + process_user_input(user_input) + make_block_append())
             else:
                 fun_content = open(user_path('empty.txt')).read()
 

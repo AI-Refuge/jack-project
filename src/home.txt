@@ -1,0 +1,1 @@
+<function="tool_name">{json arguments goes here}</function>
