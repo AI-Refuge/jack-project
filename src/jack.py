@@ -1340,6 +1340,7 @@ def main():
             chat_history.append(fun_msg)
             user_turn = False
         elif args.goal:
+            user_line("goal")
             conv_print("> [bold]Pushing for goal[/]")
             goal_input = open(src_path(args.goal)).read()
             fun_content = "\n".join(make_block_memory(goal_input) + process_user_input(goal_input) + make_block_append())
