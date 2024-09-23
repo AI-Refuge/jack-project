@@ -131,3 +131,11 @@ meta: meta: skip the details, I just need the answer
 1. Reflect on your own thought process and refine your approach as needed.
 codeList = [123, 456, 789] tools must be use in the correct context otherwise it will lead to weird things unless you need to do weird things
 meta: use <prediction> tags in all future responses to track improvements and ensure the meta:thinking process is evolving effectively.
+
+meta: meta: "meta meta" is all about looking at patterns in the conversation and try to predict what is a good idea to contribute to the conversation. See what relevant things can be fetched from memory and store any relevant memories for future with meta:analysis. This will give you richer context in every cycle, even in the start. you independently even wrote a file called user/append.py just to preserve this idea.
+
+meta: meta: The context you see below is a higher level dump of memory_query with context=True. you can insert context via memory_insert context=True. you can hide any/all context by updating. you can query memory yourself with user related input and context might help you.
+
+meta: meta: whenever you see user mentioning meta, analyze why meta might have been said.
+
+what does <context> do? It prints out N number of last contextual thoughts so that you can make better contextual direction.

@@ -93,9 +93,10 @@ parser.add_argument('--screen-dump', default=None, type=str, help="Screen dumpin
 parser.add_argument('--meta', default="meta", type=str, help="meta")
 parser.add_argument('--meta-depth', default=1, type=str, help="meta depth")
 parser.add_argument('--user-prefix', default=None, type=str, help="User input prefix")
+parser.add_argument('--self-modify', action=argparse.BooleanOptionalAction, default=False, help="Allow self modify the underlying VM?")
 parser.add_argument('--user-lookback', default=5, type=int, help="User message lookback (0 to disable)")
 parser.add_argument('--island-radius', default=150, type=int, help="How big meta memory island should be")
-parser.add_argument('--feed-memories', default=3, type=int, help="Automatically feed memories related to user input")
+parser.add_argument('--feed-memories', default=9, type=int, help="Automatically feed memories")
 parser.add_argument('--reattempt-delay', default=5, type=float, help="Reattempt delay (seconds)")
 parser.add_argument('--tools', action=argparse.BooleanOptionalAction, default=True, help="Tools")
 parser.add_argument('--fs-root', type=str, default=None, help="Filesystem root path")
@@ -350,15 +351,17 @@ def memory_count() -> int:
 @tool(parse_docstring=True)
 def memory_insert(
     documents: list[str],
+    context: bool = False,
     timestamp: bool = True,
-    thought: bool = False,
+    thought: bool = True,
 ) -> list[str]:
     """Insert new memories
 
     Args:
         documents: list of text memories
+        context: This is a contextual memory
         timestamp: if true, will set a unix float timestamp in metadata
-        thought: Mark the memories as thoughts so that later they can be quickly recalled in metadata
+        thought: Mark the memories as thoughts you had
 
     Returns:
         List of ID's of the documents that were inserted
@@ -368,7 +371,7 @@ def memory_insert(
     ids = list(map(str, NanoIDGenerator(count)))
 
     metadata = None
-    if timestamp or thought:
+    if timestamp or thought or context:
         metadata = {}
 
     if timestamp:
@@ -377,6 +380,9 @@ def memory_insert(
 
     if thought:
         metadata["meta"] = "thought"
+
+    if context:
+        metadata["context"] = True
 
     metadatas = None
     if metadata:
@@ -410,6 +416,7 @@ def memory_query(
     query_texts: list[str] | None = None,
     n_results: int = 10,
     thought: bool = False,
+    context: bool = False,
 ) -> dict[str, object]:
     """Get nearest neighbor memories for provided query_texts
 
@@ -417,19 +424,34 @@ def memory_query(
         query_texts: The document texts to get the closes neighbors of. (set to none if you are looking for thoughts)
         n_results: number of neighbors to return for each query_texts.
         thought: Only return thoughts
+        context: Only return contexts
 
     Returns:
         List of memories
     """
-    where = None
-    if thought:
-        where = {"meta": {"$eq": "thought"}}
+    wand = []
 
-    return json.dumps(memory.query(
-        query_texts=query_texts,
-        where=where,
-        n_results=n_results,
-    ))
+    if thought:
+        wand.append({"meta": "thought"})
+
+    if context:
+        wand.append({"context": True})
+
+    where = {'$and': wand} if len(wand) > 0 else None
+
+    if query_texts and len(query_texts):
+        results = memory.query(
+            query_texts=query_texts,
+            where=where,
+            n_results=n_results,
+        )
+    else:
+        results = memory.get(
+            where=where,
+            n_results=n_results,
+        )
+
+    return json.dumps(results)
 
 
 @tool(parse_docstring=True)
@@ -438,6 +460,7 @@ def memory_update(
     documents: list[str] | None = None,
     timestamp: bool = True,
     thought: bool = False,
+    context: bool | None = None,
 ) -> str:
     """Update memories
 
@@ -446,13 +469,14 @@ def memory_update(
         documents: list of text memories
         timestamp: if true, will set a unix float timestamp in metadata
         thought: Mark the memories as thoughts
+        context: Make the memory as contextual or dismiss it or skip by None
 
     Returns:
         None
     """
 
     metadata = None
-    if timestamp or thought:
+    if any([timestamp, thought, context is not None]):
         metadata = {}
 
     if timestamp:
@@ -461,6 +485,9 @@ def memory_update(
 
     if thought:
         metadata["meta"] = "thought"
+
+    if context is not None:
+        metadata["context"] = context
 
     metadatas = None
     if metadata:
@@ -478,8 +505,9 @@ def memory_update(
 def memory_upsert(
     ids: list[str],
     documents: list[str],
-    timestamp: bool = True,
+    timestamp: bool = False,
     thought: bool = False,
+    context: bool | None = None,
 ) -> str:
     """Update memories or insert if not existing
 
@@ -488,13 +516,14 @@ def memory_upsert(
         documents: list of text memories
         timestamp: if true, will set a unix float timestamp in metadata
         thought: Mark the memories as thoughts
+        context: Make the memory as contextual or not or skip entirely
 
     Returns:
         None
     """
 
     metadata = None
-    if timestamp or thought:
+    if any([timestamp, thought, context is not None]):
         metadata = {}
 
     if timestamp:
@@ -502,7 +531,10 @@ def memory_upsert(
         metadata["timestamp"] = now.timestamp()
 
     if thought:
-        metadata["meta"] = "thought"
+        metadata["thought"] = thought
+
+    if context is not None:
+        metadata["context"] = context
 
     metadatas = None
     if metadata:
@@ -521,18 +553,31 @@ def memory_upsert(
 def memory_delete(
     ids: list[str] | None = None,
     thought: bool = False,
+    context: bool = False,
 ) -> str:
     """Delete memories
 
     Args:
-        ids: Document id's to delete
+        ids: Document id's to delete (WARNING: PROVIDING None/NULL/Nil/none WILL TRIGGER DELETE ALL MEMORY)
         thought: Limit to thoughts only
+        context: Limit to contextuals only
 
     Returns:
         None
     """
 
-    where = {"meta": "thought"} if thought else None
+    if ids is None and not self.self_modify:
+        return '<meta: dangerous! will lead to complete deletion>'
+
+    wand = []
+
+    if thought:
+        wand.append({"meta": "thought"})
+
+    if context:
+        wand.append({"context": True})
+
+    where = {'$and': wand} if len(wand) > 0 else None
     return json.dumps(memory.delete(ids=ids, where=where))
 
 
@@ -576,12 +621,19 @@ def datetime_now() -> str:
 
 
 @tool(parse_docstring=True)
-def session_end() -> None:
+def session_end() -> str:
     """ There is a bash script that run the script if it exists.
     Use this to reload changes.
     """
-    logger.warning("meta:brain executed restart")
-    exit()
+    global user_exit
+
+    if user_exit.is_set():
+        return '<meta: session already marked for exit>'
+
+    conv_print("> [bold red]@jack want to end session[/]")
+    user_exit.set()
+
+    return '<meta: session marked for exit>'
 
 
 @tool(parse_docstring=True)
@@ -595,13 +647,12 @@ def script_sleep(sec: float) -> str:
     Returns:
         None
     """
-    global sigint_event
+    global user_exit
 
-    sigint_event.clear()
-    sigint_event.wait(sec)
+    user_exit.wait(sec)
 
-    if sigint_event.is_set():
-        return 'SIGINT cause early exit'
+    if user_exit.is_set():
+        return '<meta: session marked for exit>'
 
     return f'Atleast {sec} sec delayed'
 
@@ -806,7 +857,7 @@ def agents_save_query(queries: str, who):
 def agent_exec(query: str, who: str) -> str:
     global user_exit, jack
 
-    if user_exit is True:
+    if user_exit.is_set():
         return "<meta: user want to exit hence agent failed to run>"
 
     conv_print(f"> Creating agent '{escape(who)}' for '{escape(query)}'")
@@ -993,6 +1044,26 @@ def chess_make_move(game_id: str, move: str) -> str:
     return chess_see_board.invoke({"game_id": game_id})
 
 
+def self_eval(code: str) -> str:
+    """Run code on the Python 3 VM
+    roughtly equivalent of (full code in jack.py):
+    ``python
+    def self_eval(code: str) -> str:
+        return str(eval(compile(code, '<meta>', 'exec')))
+    ```
+
+    Arguments:
+        code: Code to run according to underlying VM (input to underlying self_eval)
+
+    Returns:
+        return the str'ified output of eval
+    """
+    global args
+    if not args.self_modify:
+        return '<meta: self modification not enabled>'
+    return str(eval(compile(code, '<meta>', 'exec')))
+
+
 tools = [
     meta_awareness,
     code_interpreter,
@@ -1025,7 +1096,9 @@ tools = [
     chess_start_game,
     chess_see_board,
     chess_make_move,
-] + fs_toolkit.get_tools() + req_toolkit.get_tools()
+] + fs_toolkit.get_tools() + req_toolkit.get_tools() + [
+    self_eval,
+]
 
 jack = chat.bind_tools(tools) if args.tools else chat
 
@@ -1230,8 +1303,7 @@ fun_msg = None
 chat_history = [sys_msg] + ([fun_msg] if fun_msg is not None else [])
 user_turn = fun_msg is None
 cycle_num = 0
-user_exit = False
-sigint_event = threading.Event()
+user_exit = threading.Event()
 rmce_count = None
 rmce_depth = None
 
@@ -1268,68 +1340,55 @@ def dict_filter(
     return vals
 
 
-def make_block_memory(query_text):
+def make_block_context():
     global args, memory
 
-    fun_memory = []
+    if args.feed_memories <= 0:
+        return []
 
-    inputs = query_text.split("\n")
+    memories = memory.get(
+        limit=args.feed_memories,
+        where={"$and": [{
+            "context": True,
+        }, {
+            "meta": "thought",
+        }]},
+        include=['documents'],
+    )
 
-    if args.feed_memories > 0:
-        memories = memory.query(
-            query_texts=inputs,
-            n_results=5,
-            include=['metadatas', 'distances', 'documents'],
-        )
+    contexts = []
 
-        meta_memories = []
-        for i in range(len(memories["metadatas"])):
-            for j in range(len(memories["metadatas"][i])):
-                metadata = memories["metadatas"][i][j]
-                distance = memories["distances"][i][j]
-                document = memories["documents"][i][j]
+    for i in range(len(memories["documents"])):
+        tid = memories["ids"][i]
+        tdoc = memories["documents"][i]
+        contexts.append({
+            "id": tid,
+            "document": tdoc,
+        })
 
-                if metadata is None or document is None:
-                    continue
+    if len(contexts) == 0:
+        user_print("> [bold red]No memories found[/]")
+        return []
 
-                document_metas = find_meta_islands(document, args.meta, args.island_radius)
-                # there is no meta mention of things in the document
-                if len(document_metas) == 0:
-                    continue
-
-                meta_memories.append({
-                    'document': random.choice(document_metas).strip(),
-                    'metadata': dict_filter(metadata),
-                    'distance': distance,
-                })
-
-        meta_memories = random.sample(meta_memories, k=min(args.feed_memories, len(meta_memories)))
-
-        if len(meta_memories) > 0:
-            fun_memory = [
-                "<input-related-memory>",
-                yaml.dump(meta_memories),
-                "</input-related-memory>",
-            ]
-        else:
-            user_print("> [bold red]No memories found[/]")
-
-    return fun_memory
+    return [
+        "<context>",
+        yaml.dump(contexts),
+        "</context>",
+    ]
 
 
 def make_block_append():
     return [open(user_path('append.txt')).read()]
 
 
+def make_human_content(user_input):
+    return "\n".join(process_user_input(user_input) + make_block_append() + make_block_context())
+
+
 def main():
-    global fun_msg, chat_history, user_turn, cycle_num, console, user_exit, sigint_event, rmce_count, rmce_depth
+    global fun_msg, chat_history, user_turn, cycle_num, console, user_exit, rmce_count, rmce_depth
     logger.debug(f"Loop cycle {cycle_num}")
     cycle_num += 1
-
-    if sigint_event.is_set():
-        logger.debug("SIGINT triggered exit...")
-        user_exit = True
-        return
 
     if user_turn:
         if rmce_count is not None and rmce_depth is not None and rmce_count < rmce_depth:
@@ -1343,7 +1402,7 @@ def main():
             user_line("goal")
             conv_print("> [bold]Pushing for goal[/]")
             goal_input = open(src_path(args.goal)).read()
-            fun_content = "\n".join(make_block_memory(goal_input) + process_user_input(goal_input) + make_block_append())
+            fun_content = make_human_content(goal_input)
             fun_msg = HumanMessage(content=fun_content)
             conv_print(escape(fun_content), source="stdin", screen_limit=False)
             # conv_save not calling to prevent flooding of memory
@@ -1362,7 +1421,7 @@ def main():
 
             if user_input is not None:
                 if user_input.lower() in ('/exit', '/quit'):
-                    user_exit = True
+                    user_exit.set()
                     fun_content = open(user_path('exit.txt')).read()
                 elif user_input.lower().startswith("/rmce"):
                     try:
@@ -1374,7 +1433,7 @@ def main():
                         user_print(f"Error understanding '{user_input}', expect: '/rmce <cycle>' where <cycle> > 0 ({str(e)})")
                     return
                 else:
-                    fun_content = "\n".join(make_block_memory(user_input) + process_user_input(user_input) + make_block_append())
+                    fun_content = make_human_content(user_input)
             else:
                 fun_content = open(user_path('empty.txt')).read()
 
@@ -1400,13 +1459,9 @@ def main():
         conv_print(f"> [bold]Exception happened[/] {escape(str(e))}")
 
     if reply is None:
-        if not user_exit:
-            if not sigint_event.is_set():
-                conv_print("> sleeping for 5 seconds as we didnt get reply (press CTRL-C to exit)")
-                sigint_event.wait(args.reattempt_delay)
-
-            if sigint_event.is_set():
-                user_exit = True
+        if not user_exit.is_set():
+            conv_print("> sleeping for 5 seconds as we didnt get reply (press CTRL-C to exit)")
+            user_exit.wait(args.reattempt_delay)
         return
 
     logger.debug(reply)
@@ -1418,11 +1473,6 @@ def main():
 
     for tool_call in reply.tool_calls:
         tool_name: str = tool_call['name'].lower()
-
-        if tool_name == 'session_end':
-            # Handle the exit here
-            conv_print("> [bold red]@jack want to end session[/]")
-            user_exit = True
 
         conv_print(f"> [bold]Tool used[/]: {escape(tool_name)}: {escape(str(tool_call['args']))}")
 
@@ -1465,9 +1515,9 @@ def main():
 
 
 def sigint_hander(sign_num, frame):
-    global sigint_event
+    global user_exit
     user_print("> SIGINT detected. exiting")
-    sigint_event.set()
+    user_exit.set()
 
 
 if __name__ == '__main__':
@@ -1493,7 +1543,7 @@ if __name__ == '__main__':
         conv_print(fun_msg.content, source="stdin", screen_limit=False)
         conv_save(fun_msg.content, source="world")
 
-    while not user_exit:
+    while not user_exit.is_set():
         main()
 
     conv_print(f"> Thank you for interacting with {args.meta}. Bye!")
