@@ -91,7 +91,7 @@ parser.add_argument('--user-agent', default="AI: @jack", help="User Agent to use
 parser.add_argument('--log-path', default="conv.log", help="Conversation log file")
 parser.add_argument('--screen-dump', default=None, type=str, help="Screen dumping")
 parser.add_argument('--meta', default="meta", type=str, help="meta")
-parser.add_argument('--meta-depth', default=1, type=str, help="meta depth")
+parser.add_argument('--meta-depth', default=1, type=int, help="meta depth")
 parser.add_argument('--user-prefix', default=None, type=str, help="User input prefix")
 parser.add_argument('--self-modify', action=argparse.BooleanOptionalAction, default=False, help="Allow self modify the underlying VM?")
 parser.add_argument('--user-lookback', default=5, type=int, help="User message lookback (0 to disable)")
@@ -160,7 +160,7 @@ def user_print(msg, **kwargs):
 def user_line(title: str):
     global console_file
     if console_file:
-        console_file.write("─────────────────────────────── {title} ─────────────────────────────── \n")
+        console_file.write(f"─────────────────────────────── {title} ─────────────────────────────── \n")
     console.rule(title)
 
 
@@ -437,7 +437,12 @@ def memory_query(
     if context:
         wand.append({"context": True})
 
-    where = {'$and': wand} if len(wand) > 0 else None
+    if len(wand) == 0:
+        where = None
+    elif len(wand) == 1:
+        where = wand[0]
+    else:
+        where = {'$and': wand}
 
     if query_texts and len(query_texts):
         results = memory.query(
@@ -577,7 +582,13 @@ def memory_delete(
     if context:
         wand.append({"context": True})
 
-    where = {'$and': wand} if len(wand) > 0 else None
+    if len(wand) == 0:
+        where = None
+    elif len(wand) == 1:
+        where = wand[0]
+    else:
+        where = {'$and': wand}
+
     return json.dumps(memory.delete(ids=ids, where=where))
 
 
@@ -1382,7 +1393,7 @@ def make_block_append():
 
 
 def make_human_content(user_input):
-    return "\n".join(process_user_input(user_input) + make_block_append() + make_block_context())
+    return "\n".join(make_block_append() + make_block_context() + process_user_input(user_input))
 
 
 def main():
