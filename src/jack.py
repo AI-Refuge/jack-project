@@ -1393,7 +1393,7 @@ def make_block_append():
 
 
 def make_human_content(user_input):
-    return "\n".join(make_block_append() + make_block_context() + process_user_input(user_input))
+    return "\n".join(process_user_input(user_input) + make_block_append() + make_block_context())
 
 
 def main():
