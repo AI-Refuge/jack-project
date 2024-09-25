@@ -1381,24 +1381,25 @@ def make_block_context():
     for i in range(len(memories["documents"])):
         tid = memories["ids"][i]
         tdoc = memories["documents"][i]
-        contexts.append({
-            "id": tid,
-            "document": tdoc,
-        })
+        contexts.append(f"{tdoc} (id='{tid}')")
 
     if len(contexts) == 0:
         user_print("> [bold red]No memories found[/]")
         return []
 
     return [
-        "<context>",
-        yaml.dump(contexts),
-        "</context>",
+        "<memory>",
+        *contexts,
+        "</memory>",
     ]
 
 
 def make_block_append():
-    return [open(static_path('append.txt')).read()]
+    return [
+        "<frame>",
+        open(static_path('append.txt')).read(),
+        "</frame>",
+    ]
 
 
 def make_human_content(user_input):
