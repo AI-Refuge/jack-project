@@ -1066,6 +1066,7 @@ def chess_make_move(game_id: str, move: str) -> str:
 
     return chess_see_board.invoke({"game_id": game_id})
 
+
 @tool(parse_docstring=True)
 def meta_eval(code: str) -> str:
     """Run code on the Python 3 VM (ie meta:brain)
@@ -1408,11 +1409,7 @@ def make_block_append() -> str:
 
 
 def make_human_content(user_input: str):
-    return "\n\n".join([
-        process_user_input(user_input),
-        make_block_context(),
-        make_block_append()
-    ])
+    return "\n\n".join([process_user_input(user_input), make_block_context(), make_block_append(),])
 
 
 def main():
@@ -1426,6 +1423,8 @@ def main():
             conv_print(f"> [bold yellow]RMCE Cycle[/] {rmce_count}/{rmce_depth}")
             fun_content = open(user_path('rmce.txt')).read()
             fun_msg = HumanMessage(content=fun_content)
+            if args.verbose:
+                conv_print(escape(fun_content), source="stdin", screen_limit=False)
             chat_history.append(fun_msg)
             user_turn = False
         elif args.goal:
@@ -1434,7 +1433,8 @@ def main():
             goal_input = open(src_path(args.goal)).read()
             fun_content = make_human_content(goal_input)
             fun_msg = HumanMessage(content=fun_content)
-            conv_print(escape(fun_content), source="stdin", screen_limit=False)
+            if args.verbose:
+                conv_print(escape(fun_content), source="stdin", screen_limit=False)
             # conv_save not calling to prevent flooding of memory
             logger.debug(fun_msg)
             chat_history.append(fun_msg)
@@ -1447,9 +1447,6 @@ def main():
             rmce_depth, rmce_count = None, None
 
             if user_input is not None:
-                user_line("meta: user new message")
-
-            if user_input is not None:
                 if user_input.lower() in ('/exit', '/quit'):
                     user_exit.set()
                     fun_content = open(user_path('exit.txt')).read()
@@ -1459,6 +1456,7 @@ def main():
                         rmce_depth = int(txt) if len(txt) else 1
                         assert rmce_depth > 0
                         rmce_count = 0
+                        user_print(f"> [b]rmce'ing {rmce_depth} time(s)[/b]")
                     except RuntimeError as e:
                         user_print(f"Error understanding '{user_input}', expect: '/rmce <cycle>' where <cycle> > 0 ({str(e)})")
                     return
@@ -1468,6 +1466,7 @@ def main():
                         meta_level = int(txt) if len(txt) else 0
                         assert meta_level > 0
                         args.meta_level = meta_level
+                        user_print(f"> [b]meta_level set to {meta_level}[/b]")
                     except RuntimeError as e:
                         user_print(f"Error understanding '{user_input}', expect: '/level <value>' where <value> >= 0 ({str(e)})")
                     return
@@ -1478,11 +1477,15 @@ def main():
 
             fun_msg = HumanMessage(content=fun_content)
 
-            # meta: log=False so that we can do logger.debug below
-            conv_print(escape(fun_content), source="stdin", screen_limit=False, log=False)
-            conv_save(user_input, source="world")
+            if args.verbose:
+                user_line("meta: user new message")
 
-            user_line("meta: end of user message")
+                # meta: log=False so that we can do logger.debug below
+                conv_print(escape(fun_content), source="stdin", screen_limit=False, log=False)
+
+                user_line("meta: end of user message")
+
+            conv_save(user_input, source="world")
 
             logger.debug(fun_msg)
 
@@ -1555,7 +1558,7 @@ def main():
 
 def sigint_hander(sign_num, frame):
     global user_exit
-    user_print("> SIGINT detected. exiting")
+    user_print("\n> SIGINT detected. exiting")
     user_exit.set()
 
 
@@ -1571,6 +1574,7 @@ if __name__ == '__main__':
     user_print(f"> user_prefix: {args.user_prefix}")
     user_print(f"> user_lookback: {args.user_lookback}")
     user_print(f"> feed_memories: {args.feed_memories}")
+    user_print(f"> verbose: {args.verbose}")
 
     if args.verbose:
         for x, y in vars(args).items():
