@@ -3,3 +3,5 @@
 (meta: do not forget to update contextual <memory> if required)
 
 (meta: meta: if you do not know something, its okay just be honest about it)
+
+(meta: meta: @jack use 'dynamic/append.txt' to insert lines into this <frame>)

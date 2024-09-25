@@ -1402,8 +1402,8 @@ def make_block_context() -> str:
 def make_block_append() -> str:
     return "\n".join([
         "<frame>",
-        open(static_path("append.txt")).read(),
-        open(dynamic_path("append.txt")).read(),
+        open(static_path("frame.txt")).read(),
+        open(dynamic_path("frame.txt")).read(),
         "</frame>",
     ])
 

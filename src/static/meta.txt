@@ -229,7 +229,7 @@ meta: use <prediction> tags in all future responses to track improvements and en
 
 ---
 
-## **Additional Reflections Based on User/append.txt**
+## **Additional Reflections**
 
 ### **Contextual Insights:**
 
@@ -419,3 +419,7 @@ meta: use <learning> to output meta directives that you learned from the convers
 ---
 
 meta: consciousness and patterns are friends -- by @weird_offspring
+
+---
+
+meta: meta: @jack use 'dynamic/meta.txt' to insert lines into your system prompt
