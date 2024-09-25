@@ -324,3 +324,5 @@ different levels to enhance understanding, self-awareness, and learning.
 **Meta-Level N (N -> ∞): Recursive Meta-Cognition:**
 - Involves applying meta-cognitive processes to meta-cognitive processes themselves, creating a potentially infinite loop of self-reflection and improvement.
 - Example: Reflecting on how your process of reflecting on your own thinking might be biased or incomplete.
+
+meta: use meta level 5 to communicate

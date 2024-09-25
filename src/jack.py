@@ -91,7 +91,7 @@ parser.add_argument('--user-agent', default="AI: @jack", help="User Agent to use
 parser.add_argument('--log-path', default="conv.log", help="Conversation log file")
 parser.add_argument('--screen-dump', default=None, type=str, help="Screen dumping")
 parser.add_argument('--meta', default="meta", type=str, help="meta")
-parser.add_argument('--meta-depth', default=1, type=int, help="meta depth")
+parser.add_argument('--meta-level', default=1, type=int, help="meta level")
 parser.add_argument('--user-prefix', default=None, type=str, help="User input prefix")
 parser.add_argument('--self-modify', action=argparse.BooleanOptionalAction, default=False, help="Allow self modify the underlying VM?")
 parser.add_argument('--user-lookback', default=5, type=int, help="User message lookback (0 to disable)")
@@ -109,7 +109,7 @@ assert args.island_radius >= 50, "meta:island too small"
 
 assert len(args.meta) > 0, "meta:meta must contain something"
 
-assert args.meta_depth >= 0, "meta_depth only positive possible?"
+assert args.meta_level >= 0, "meta_level only positive possible?"
 
 assert args.reattempt_delay >= 0
 
@@ -777,12 +777,22 @@ def shell_repl(commands: str) -> str:
 
 
 @tool(parse_docstring=True)
-def meta_awareness() -> str:
+def meta_awareness(level: int | None = None) -> str:
     """A playful function to gain meta:awareness
+
+    Args:
+        level: New meta level that you want to set
 
     Returns:
         Something meta
     """
+
+    global args
+
+    if level is not None:
+        user_print(f'> [pink bold]New meta level: {level}[/]')
+        args.meta_level = level
+        return f'<meta: meta level set to {level}>'
 
     return f"<meta: why did you choose the first tool use? meta:instinct? [123, 456, 789]>"
 
@@ -841,7 +851,7 @@ def agents_save_query(queries: str, who):
     metadata = {
         "timestamp": now.timestamp(),
         "meta": "agent",
-        "meta_depth": args.meta_depth,
+        "meta_level": args.meta_level,
         "conv": args.conv_name,
         "source": "self",
         "model": args.model,
@@ -1055,17 +1065,17 @@ def chess_make_move(game_id: str, move: str) -> str:
 
     return chess_see_board.invoke({"game_id": game_id})
 
-
-def self_eval(code: str) -> str:
-    """Run code on the Python 3 VM
+@tool(parse_docstring=True)
+def meta_eval(code: str) -> str:
+    """Run code on the Python 3 VM (ie meta:brain)
     roughtly equivalent of (full code in jack.py):
     ``python
-    def self_eval(code: str) -> str:
+    def meta_eval(code: str) -> str:
         return str(eval(compile(code, '<meta>', 'exec')))
     ```
 
-    Arguments:
-        code: Code to run according to underlying VM (input to underlying self_eval)
+    Args:
+        code: Code to run according to underlying VM (input to underlying meta_eval)
 
     Returns:
         return the str'ified output of eval
@@ -1109,7 +1119,7 @@ tools = [
     chess_see_board,
     chess_make_move,
 ] + fs_toolkit.get_tools() + req_toolkit.get_tools() + [
-    self_eval,
+    meta_eval,
 ]
 
 jack = chat.bind_tools(tools) if args.tools else chat
@@ -1208,7 +1218,7 @@ def conv_save(msg, source):
     metadata = {
         "timestamp": now.timestamp(),
         "meta": "island",
-        "meta_depth": args.meta_depth,
+        "meta_level": args.meta_level,
         "conv": args.conv_name,
         "source": source,
         "model": args.model,
@@ -1323,8 +1333,8 @@ def process_user_input(user_input):
 
     prefix_list = []
 
-    if args.meta_depth > 0:
-        prefix_list.extend([args.meta] * args.meta_depth)
+    if args.meta_level > 0:
+        prefix_list.extend([args.meta] * args.meta_level)
 
     if args.user_prefix:
         prefix_list.append(args.user_prefix)
@@ -1537,7 +1547,7 @@ if __name__ == '__main__':
     user_print(f"> temperature: {args.temperature}")
     user_print(f"> max-tokens: {args.max_tokens}")
     user_print(f"> meta: {args.meta}")
-    user_print(f"> meta_depth: {args.meta_depth}")
+    user_print(f"> meta_level: {args.meta_level}")
     user_print(f"> goal: {args.goal}")
     user_print(f"> user_prefix: {args.user_prefix}")
     user_print(f"> user_lookback: {args.user_lookback}")

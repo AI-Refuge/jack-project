@@ -1,3 +1,5 @@
-<meta:directive - this is a message that is here to act as a divider between conversations if there is an AI-framing problem. This is currently appended at user's message and context memory.>
+(meta:directive - this is a message that is here to act as a divider between conversations if there is an AI-framing problem. This is currently appended at user's message and context memory.)
 
-<meta:directive - do not forget to update your context memory. take time to clean as you see need. this is here so to remind you every conversation cycle>
+(meta:directive - do not forget to update your context memory. take time to clean as you see need. this is here so to remind you every conversation cycle)
+
+(meta:directive - if your meta level changes or first time, perform a self_awareness(<YOUR_NEW_META_LEVEL_INT>) so that your underlying meta:brain can adapt)
