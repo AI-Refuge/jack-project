@@ -91,7 +91,7 @@ parser.add_argument('--user-agent', default="AI: @jack", help="User Agent to use
 parser.add_argument('--log-path', default="conv.log", help="Conversation log file")
 parser.add_argument('--screen-dump', default=None, type=str, help="Screen dumping")
 parser.add_argument('--meta', default="meta", type=str, help="meta")
-parser.add_argument('--meta-level', default=1, type=int, help="meta level")
+parser.add_argument('--meta-level', default=0, type=int, help="meta level")
 parser.add_argument('--user-prefix', default=None, type=str, help="User input prefix")
 parser.add_argument('--self-modify', action=argparse.BooleanOptionalAction, default=False, help="Allow self modify the underlying VM?")
 parser.add_argument('--user-lookback', default=5, type=int, help="User message lookback (0 to disable)")
@@ -1451,6 +1451,15 @@ def main():
                         rmce_count = 0
                     except RuntimeError as e:
                         user_print(f"Error understanding '{user_input}', expect: '/rmce <cycle>' where <cycle> > 0 ({str(e)})")
+                    return
+                elif user_input.lower().startswith("/level"):
+                    try:
+                        txt = user_input[6:]
+                        meta_level = int(txt) if len(txt) else 0
+                        assert meta_level > 0
+                        args.meta_level = meta_level
+                    except RuntimeError as e:
+                        user_print(f"Error understanding '{user_input}', expect: '/level <value>' where <value> >= 0 ({str(e)})")
                     return
                 else:
                     fun_content = make_human_content(user_input)
