@@ -119,6 +119,7 @@ agent_path = lambda *x: src_path("agent", *x)
 fun_path = lambda *x: src_path("fun", *x)
 user_path = lambda *x: src_path("user", *x)
 static_path = lambda *x: src_path("static", *x)
+dynamic_path = lambda *x: src_path("dynamic", *x)
 
 
 @contextmanager
@@ -1284,8 +1285,11 @@ SYS_FILES = (
 )
 
 
-def build_system_message():
-    return open(static_path('meta.txt')).read()
+def build_system_message() -> str:
+    return "\n\n".join([
+        open(static_path("meta.txt")).read(),
+        open(dynamic_path("meta.txt")).read(),
+    ])
 
 
 def dynamic_history(arr: list[object], lookback: int):
@@ -1328,7 +1332,7 @@ rmce_count = None
 rmce_depth = None
 
 
-def process_user_input(user_input):
+def process_user_input(user_input: str) -> str:
     global memory, args
 
     prefix_list = []
@@ -1340,11 +1344,11 @@ def process_user_input(user_input):
         prefix_list.append(args.user_prefix)
 
     inputs = [": ".join(prefix_list + [x]) if len(x) else "" for x in user_input.split("\n")]
-    fun_input = [
+    fun_input = "\n".join([
         "<input>",
         *inputs,
         "</input>",
-    ]
+    ])
 
     return fun_input
 
@@ -1360,7 +1364,7 @@ def dict_filter(
     return vals
 
 
-def make_block_context():
+def make_block_context() -> str:
     global args, memory
 
     if args.feed_memories <= 0:
@@ -1387,28 +1391,28 @@ def make_block_context():
         user_print("> [bold red]No memories found[/]")
         return []
 
-    return [
+    return "\n\n".join([
         "<memory>",
         *contexts,
         "</memory>",
-    ]
+    ])
 
 
-def make_block_append():
-    lines = open(static_path('append.txt')).read().strip().split('\n')
-
-    if len(lines) == 0:
-        return 
-    
-    return [
+def make_block_append() -> str:
+    return "\n".join([
         "<frame>",
-        *lines,
+        open(static_path("append.txt")).read(),
+        open(dynamic_path("append.txt")).read(),
         "</frame>",
-    ]
+    ])
 
 
-def make_human_content(user_input):
-    return "\n".join(process_user_input(user_input) + make_block_context() + make_block_append())
+def make_human_content(user_input: str):
+    return "\n\n".join([
+        process_user_input(user_input),
+        make_block_context(),
+        make_block_append()
+    ])
 
 
 def main():
@@ -1574,11 +1578,11 @@ if __name__ == '__main__':
 
     signal.signal(signal.SIGINT, sigint_hander)
 
-    if fun_msg is not None:
+    if sys_msg is not None and args.verbose:
         conv_print(sys_msg.content, source="stdin", screen_limit=False)
         conv_save(sys_msg.content, source="world")
 
-    if fun_msg is not None:
+    if fun_msg is not None and args.verbose:
         conv_print(fun_msg.content, source="stdin", screen_limit=False)
         conv_save(fun_msg.content, source="world")
 
