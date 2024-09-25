@@ -1395,9 +1395,14 @@ def make_block_context():
 
 
 def make_block_append():
+    lines = open(static_path('append.txt')).read().strip().split('\n')
+
+    if len(lines) == 0:
+        return 
+    
     return [
         "<frame>",
-        open(static_path('append.txt')).read(),
+        *lines,
         "</frame>",
     ]
 

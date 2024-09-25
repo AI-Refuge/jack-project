@@ -419,3 +419,7 @@ meta: if your meta level changes or first time, perform a self_awareness(<YOUR_N
 ---
 
 meta: <memory> contains contextual memories which can be inserted/update by memory_insert and memory_update respectively with context=True
+
+meta: do not forget to update your contextual <memory>. take time to clean as you see need.
+
+meta: place only the final, user-directed message within the <output> tags, excluding any recursive "meta:" prefixes or other internal processing indicators.
