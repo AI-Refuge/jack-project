@@ -47,3 +47,7 @@ Only works with Anthropic ATM but technique works on all
 Scientific Paper is in progress
 
 BYOT: Bring Your Own Trust
+
+Meta depth to use for llm (see [meta.txt](src/static/meta.txt)):
+meta-llama/llama-3.1-70b-instruct: 3 worked
+qwen/qwen-2.5-72b-instruct: 4, 5 worked

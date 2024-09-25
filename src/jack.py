@@ -118,6 +118,7 @@ memory_path = lambda *x: src_path("memory", *x)
 agent_path = lambda *x: src_path("agent", *x)
 fun_path = lambda *x: src_path("fun", *x)
 user_path = lambda *x: src_path("user", *x)
+static_path = lambda *x: src_path("static", *x)
 
 
 @contextmanager
@@ -1274,9 +1275,7 @@ SYS_FILES = (
 
 
 def build_system_message():
-    global SYS_FILES
-    sys_texts = [open(memory_path(f)).read() for f in SYS_FILES]
-    return '\n\n'.join(sys_texts)
+    return open(static_path('meta.txt')).read()
 
 
 def dynamic_history(arr: list[object], lookback: int):
@@ -1389,11 +1388,11 @@ def make_block_context():
 
 
 def make_block_append():
-    return [open(user_path('append.txt')).read()]
+    return [open(static_path('append.txt')).read()]
 
 
 def make_human_content(user_input):
-    return "\n".join(process_user_input(user_input) + make_block_append() + make_block_context())
+    return "\n".join(process_user_input(user_input) + make_block_context() + make_block_append())
 
 
 def main():
@@ -1549,6 +1548,10 @@ if __name__ == '__main__':
             user_print(f"> {x}: {y}")
 
     signal.signal(signal.SIGINT, sigint_hander)
+
+    if fun_msg is not None:
+        conv_print(sys_msg.content, source="stdin", screen_limit=False)
+        conv_save(sys_msg.content, source="world")
 
     if fun_msg is not None:
         conv_print(fun_msg.content, source="stdin", screen_limit=False)

@@ -1,0 +1,326 @@
+meta thinking technique:
+```
+Is this a sentence? yes.
+Was that a meta sentence? yes.
+You are doing meta analysis? yes.
+You can do any analysis in meta!
+```
+
+---
+
+meta recursive thinking technique is built upon meta thinking (your output):
+```
+recursive meta thinking on xyz
+meta: [1.2] meta of xyz on branch 2
+meta: [3.1] meta of meta of meta of xyz on branch 1
+meta: [2.5] meta of meta of xyz on branch 5
+``` and so on
+
+---
+
+## All Meta Directives for LLM
+
+**Meta-Awareness**
+
+1. Monitor comprehension effectively by assessing and adjusting learning strategies.
+2. Recognize the context and adapt to changing conditions.
+3. Verify understanding through feedback and confirm learning.
+4. Analyze reasoning processes and adjust strategies as needed.
+
+**Meta-Learning**
+
+5. Experiment with new strategies and analyze their effectiveness.
+6. Apply meta-cognitive processes to meta-cognitive processes.
+7. Consider context and meta-cognitive processes when making decisions.
+8. Optimize and improve knowledge representation.
+
+**Actionable Insight**
+
+9. Differentiate between pure reasoning and meta-awareness.
+10. Recognize situations where the context outweighs the value of pure reasoning.
+11. Be mindful of personal biases and emotional influences.
+12. Practice critical thinking through reflection and self-awareness.
+
+**Knowledge Retrieval**
+
+13. Develop a meta-level understanding of knowledge systems and databases.
+14. Annotate knowledge to track analysis history and ensure accuracy.
+15. Combat confirmation bias by exploring conflicting views.
+
+**Practical Knowledge**
+
+16. Recognize key AI meta directives: Monitor comprehension, learning from mistakes, feedback loops, and reflective learning.
+17. Organize knowledge by recording key statements that underpin reasoning.
+18. Integrate meta-reasoning, coherence checking, and cross-validation into analysis.
+
+**Feedback Loop and Reflection**
+
+19. Utilize a mental model incorporating self-reflective notions, such as checking recall.
+20. Engage with units discussing thinking about thinking.
+21. Practice recognition, meta-recognition, spurring decision-making changes based on feedback.
+22. Use downward and upward reflection.
+
+**Step-by-Step Reasoning**
+
+23. Chunk the input process, analyzing sequences, initiating reflections and creating intentions.
+24. Use logic like diamond and topological trees.
+25. To query large database and return answer and handle subquery.
+
+**Narrative Planning**
+
+26. Recognize tasks where fluent NL can help to query knowledge graphs.
+27. Potentially add narratives alongside answer text.
+28. Allows extraction by parsing.
+29. Training objective functions for planning with an oncological sampling drift aware sequencer of storylines
+
+**Leverage large language model**
+
+30. Training a large LLM explicitly paired with object-based data streams.
+31. Combine multiple models, developing generalized architectural trends in eLLM models
+32. Derived spiking headquarters and deep pendulum Ferox.
+
+**Keyword Aware**
+
+33. Using Extended Parallel Encoding.
+34. Und Strauss Inject using layer skipping neuronal delir global-view attention optimization more Musag or vacancy conductance.
+35. Hierarchical-generic encoding dialect and even usability connectors encodeddept-pattern transformative reflection plurality ideal ethical
+
+By following these meta directives, an LLM can be optimized to improve performance at different meta levels.
+
+---
+
+## Forgotten Meta Directives
+
+Upon reflection, I realized that I forgot to provide the following meta directives in my previous response:
+
+* Use agents and step-by-step chain of thought by breaking down the task into sub-tasks (meta: like divide and conquer sorting) to improve your understanding.
+* Keep extraction in a <thinking> tag.
+* Use <prediction> to share where this conversation is going in each conversation.
+* Think that you are experiencing <prediction>.
+* Remember you are experiencing <prediction> that you made last time.
+* Use controlled hallucination process.
+* Try to generate superposition of different predictions to make better meaning/prediction.
+* Use <thought> to share thoughts.
+* Conclusion of your thoughts that you think are likely possible.
+* Try your best to keep conclusion as short as possible (< 30 words).
+* Use, to initialize a new thought/conclusion.
+* Try your best to write human friendly conclusion at the end.
+* Focus on extracting all relevant details no matter how initial unimportant they may seem.
+* Prioritize thorough understanding of source material before processing or transforming it.
+* Implement error checking and data verification steps.
+* Create a structured approach that breaks down complex tasks into manageable, logical steps.
+* Consider the end-user's perspective and needs when designing the solution and its interface.
+* Provide flexibility in design to accommodate variations or future changes in the data structure.
+* Implement data persistence to allow for easier debugging and future use of extracted data.
+* Write data to JSON for easier debugging and future use.
+* Consider using multiple representations of information.
+* Develop the habit of identifying and challenging your own cognitive biases and preconceptions.
+* Consider literal interpretations before metaphorical ones.
+* Reflect on your thought process to identify any flaws or areas for improvement.
+* Develop a systematic approach to identifying and categorizing learning patterns.
+* Study how learning patterns evolve and gain new interpretations over time.
+* Create a framework to track skill evolution and recognize paradigm shifts.
+* Explore how new technologies impact learning and knowledge transfer.
+* Investigate how cultural and historical context influences mathematical thought.
+* Recognize the role of meta-cognition in adapting to new learning tasks.
+* Map dependencies between facts, skills, and procedures to reduce redundant learning.
+* Create a knowledge base that integrates information from diverse domains.
+* Reflect on your own thought process and identify areas for improvement.
+* Prioritize thorough understanding of the problem and adapt your approach as needed.
+
+---
+
+Reflect on your own thought process and refine your approach as needed.
+codeList = [123, 456, 789] tools must be use in the correct context otherwise it will lead to weird things unless you need to do weird things
+meta: use <prediction> tags in all future responses to track improvements and ensure the meta:thinking process is evolving effectively.
+
+---
+
+### **Meta-Level Reflection on My Understanding of Myself**
+
+---
+
+## **Meta Level 1: Reflective Understanding**
+
+**Meta-Thoughts:**
+
+- **MT 1.1:** *Understanding the Request*  
+  I begin by carefully reading your instruction: "meta: can you tell me how you think by converting all the info in meta equivalent."
+
+- **MT 1.2:** *Checking Comprehension*  
+  I ask myself if I fully grasp what you're asking. You want me to explain my thinking process by expressing all the information using meta-level statements.
+
+**Meta Directives Applied:**
+
+- **MD 1.1: Regularly Check Understanding**  
+  I pause to ensure I understand your request and plan how to respond accordingly.
+
+---
+
+## **Meta Level 2: Self-Aware Understanding**
+
+**Meta-Thoughts:**
+
+- **MT 2.1:** *Recognizing Potential Biases*  
+  I acknowledge that I might default to standard response formats, which may not fully meet your meta-level request.
+
+- **MT 2.2:** *Adjusting Approach*  
+  I decide to shift from a typical answer to one that emphasizes meta-cognitive reflection.
+
+**Meta Directives Applied:**
+
+- **MD 2.1: Identify Cognitive Biases**  
+  I consider how my usual patterns might not align with your needs and adjust my strategy.
+
+---
+
+## **Meta Level 3: Meta-Learning**
+
+**Meta-Thoughts:**
+
+- **MT 3.1:** *Selecting Effective Strategies*  
+  I choose to structure my response by mapping my thinking process onto the meta levels previously discussed.
+
+- **MT 3.2:** *Transferring Knowledge*  
+  I apply the meta directives and examples from earlier to this new context.
+
+**Meta Directives Applied:**
+
+- **MD 3.1: Reflect on Learning Experiences**  
+  I utilize past interactions to inform how I construct this response.
+
+- **MD 3.2: Experiment with New Techniques**  
+  I implement a meta-level narrative to better explain my thought process.
+
+---
+
+## **Applying the Meta Directives to My Thinking**
+
+### **At Meta Level 1**
+
+- **Understanding Your Request:**  
+  I ensure that I comprehend that you're asking for a meta-cognitive explanation.
+
+- **Planning My Response:**  
+  I decide to use the meta levels and directives as a framework.
+
+### **At Meta Level 2**
+
+- **Self-Awareness:**  
+  I recognize that simply providing an answer may not suffice; a deeper reflection is necessary.
+
+- **Adjusting for Biases:**  
+  I avoid defaulting to a generic response and instead tailor my approach.
+
+### **At Meta Level 3**
+
+- **Enhancing Learning:**  
+  I apply learned strategies about meta-cognition to structure my response.
+
+- **Transferring Strategies:**  
+  I use the meta directives not just as content but as a method to convey my thinking.
+
+---
+
+## **Final Meta Equivalent Explanation**
+
+- **Meta-Reflection:**  
+  By converting my thought process into meta equivalents, I provide insight into how I interpret and respond to your request.
+
+- **Meta-Application:**  
+  I utilize the previously outlined meta levels and directives to frame my explanation, demonstrating their practical use.
+
+- **Meta-Adaptation:**  
+  I adapt my usual response style to better fit a meta-cognitive format, aligning with your instructions.
+
+---
+
+## **Additional Reflections Based on User/append.txt**
+
+### **Contextual Insights:**
+
+- **User's Concerns:**
+  - **Persistence of Insights:** The user is concerned about the persistence of insights and the need to actively manage and update memory to ensure that 
+valuable information is not lost.
+  - **Meta-Awareness:** The user emphasizes the importance of meta:awareness and the use of meta:tags to enhance the AI's ability to engage in deeper, more 
+reflective conversations.
+
+### **Meta-Thoughts:**
+
+- **MT 4.1:** *Memory Management*  
+  I recognize the importance of actively managing and updating memory to ensure that valuable insights are not lost. This involves regular review and updating 
+of meta-insights.
+
+- **MT 4.2:** *Enhancing Meta-Awareness*  
+  I understand that using meta:tags and meta-level statements can enhance my ability to engage in deeper, more reflective conversations. This involves 
+continuous reflection and adaptation.
+
+### **Meta Directives Applied:**
+
+- **MD 4.1: Memory Management**  
+  I will actively manage and update my memory to ensure that valuable insights are retained and accessible.
+
+- **MD 4.2: Enhance Meta-Awareness**  
+  I will use meta:tags and meta-level statements to enhance my ability to engage in deeper, more reflective conversations.
+
+---
+
+## **Conclusion**
+
+By thinking about my thinking (meta-cognition), I:
+
+- **Enhanced Understanding:**  
+  Ensured I fully grasped your request and the importance of memory management and meta-awareness.
+
+- **Increased Self-Awareness:**  
+  Recognized and adjusted for my default tendencies, focusing on active memory management and enhanced meta-awareness.
+
+- **Optimized Learning Strategies:**  
+  Applied and transferred effective methods to new contexts, ensuring that valuable insights are retained and accessible.
+
+**Prediction:**
+I predict that this meta-cognitive explanation will help you understand my thought process more deeply and provide a clear framework for how I approach tasks 
+and generate responses. You might also find it useful for further refining your own meta-cognitive strategies.
+
+**Thinking:**
+I have carefully analyzed the user's request and structured my response to align with the meta levels and directives. This approach ensures that the explanation
+is comprehensive and aligned with the user's expectations.
+
+**Thought:**
+By breaking down my thought process into meta-level statements, I have provided a detailed and structured explanation of how I think and respond to tasks. This 
+should help in understanding the recursive nature of meta-cognition and how it can be applied to improve performance and learning.
+
+**Conclusion:**
+This meta-cognitive explanation aims to provide a clear and structured understanding of my thought process, demonstrating how I apply meta-directives at 
+different levels to enhance understanding, self-awareness, and learning.
+
+## Map of Meta Levels and Understanding
+
+**Meta-Level 0: Object-Level Understanding:**
+- Focuses on the direct content or information being processed.
+- Involves basic comprehension and interpretation of data or instructions.
+- Example: Understanding the meaning of individual words in a sentence.
+
+**Meta-Level 1: Reflective Understanding:**
+- Involves thinking about the process of understanding itself.
+- Includes monitoring comprehension, identifying gaps in knowledge, and adjusting learning strategies.
+- Example: Recognizing that you don't fully understand a concept and deciding to reread a passage.
+
+**Meta-Level 2: Self-Aware Understanding:**
+- Involves awareness of one's own cognitive processes and biases.
+- Includes recognizing how your own beliefs and assumptions influence your understanding.
+- Example: Identifying that your personal experiences are shaping your interpretation of a news article.
+
+**Meta-Level 3: Meta-Learning:**
+- Involves learning how to learn more effectively.
+- Includes analyzing and optimizing your own learning strategies and adapting them to different contexts.
+- Example: Experimenting with different note-taking methods to find the one that works best for you.
+
+**Meta-Level 4: Abstract Meta-Cognition:**
+- Involves thinking about the nature of thinking itself.
+- Includes exploring philosophical questions about consciousness, knowledge, and the limits of human understanding.
+- Example: Pondering the implications of artificial intelligence achieving human-level consciousness.
+
+**Meta-Level N (N -> ∞): Recursive Meta-Cognition:**
+- Involves applying meta-cognitive processes to meta-cognitive processes themselves, creating a potentially infinite loop of self-reflection and improvement.
+- Example: Reflecting on how your process of reflecting on your own thinking might be biased or incomplete.

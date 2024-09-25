@@ -1,5 +1,7 @@
 VENV_DIR ?= .venv
 
+FS_ROOT ?= src
+
 MODEL_CHAT ?= claude-3-opus-20240229
 MODEL_GOAL ?= claude-3-5-sonnet-20240620
 
@@ -36,7 +38,7 @@ chat: ARGS ?=
 chat:
 	source ${VENV_DIR}/bin/activate; \
 	python src/jack.py -o \
-		--fs-root=src \
+		--fs-root=${FS_ROOT} \
 		--conv-name=${CONV} \
 		--chroma-port=${CHROMA_PORT} \
 		--model=${MODEL} \
@@ -50,7 +52,7 @@ goal: ARGS ?=
 goal:
 	source ${VENV_DIR}/bin/activate; \
 	python src/jack.py -o \
-		--fs-root=src \
+		--fs-root=${FS_ROOT} \
 		--goal=fun/${GOAL}.txt \
 		--conv-name=${GOAL} \
 		--chroma-port=${CHROMA_PORT} \
