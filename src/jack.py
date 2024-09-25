@@ -1288,8 +1288,8 @@ SYS_FILES = (
 
 def build_system_message() -> str:
     return "\n\n".join([
-        open(static_path("meta.txt")).read(),
-        open(dynamic_path("meta.txt")).read(),
+        open(static_path("meta.txt")).read().strip(),
+        open(dynamic_path("meta.txt")).read().strip(),
     ])
 
 
@@ -1365,11 +1365,11 @@ def dict_filter(
     return vals
 
 
-def make_block_context() -> str:
+def make_block_context() -> str | None:
     global args, memory
 
     if args.feed_memories <= 0:
-        return []
+        return None
 
     memories = memory.get(
         limit=args.feed_memories,
@@ -1390,7 +1390,7 @@ def make_block_context() -> str:
 
     if len(contexts) == 0:
         user_print("> [bold red]No memories found[/]")
-        return []
+        return None
 
     return "\n\n".join([
         "<memory>",
@@ -1402,14 +1402,19 @@ def make_block_context() -> str:
 def make_block_append() -> str:
     return "\n".join([
         "<frame>",
-        open(static_path("frame.txt")).read(),
-        open(dynamic_path("frame.txt")).read(),
+        open(static_path("frame.txt")).read().strip(),
+        open(dynamic_path("frame.txt")).read().strip(),
         "</frame>",
     ])
 
 
 def make_human_content(user_input: str):
-    return "\n\n".join([process_user_input(user_input), make_block_context(), make_block_append(),])
+    res = [
+        process_user_input(user_input),
+        make_block_context(),
+        make_block_append(),
+    ]
+    return "\n\n".join([i for i in res if i is not None])
 
 
 def main():
@@ -1429,7 +1434,7 @@ def main():
             user_turn = False
         elif args.goal:
             user_line("goal")
-            conv_print("> [bold]Pushing for goal[/]")
+            conv_print("> [bold red]Pushing for goal[/]")
             goal_input = open(src_path(args.goal)).read()
             fun_content = make_human_content(goal_input)
             fun_msg = HumanMessage(content=fun_content)
@@ -1450,6 +1455,13 @@ def main():
                 if user_input.lower() in ('/exit', '/quit'):
                     user_exit.set()
                     fun_content = open(user_path('exit.txt')).read()
+                elif user_input.lower().startswith("/send"):
+                    try:
+                        path = user_input[6:]
+                        fun_content = open(src_path(path)).read()
+                    except RuntimeError as e:
+                        user_print(f"Unable to send '{user_input}', expect: '/send <text-file-path>' ({str(e)})")
+                    return
                 elif user_input.lower().startswith("/rmce"):
                     try:
                         txt = user_input[5:]
@@ -1477,15 +1489,15 @@ def main():
 
             fun_msg = HumanMessage(content=fun_content)
 
-            if args.verbose:
-                user_line("meta: user new message")
+            user_line("meta: user new message")
 
-                # meta: log=False so that we can do logger.debug below
-                conv_print(escape(fun_content), source="stdin", screen_limit=False, log=False)
+            # meta: log=False so that we can do logger.debug below
+            conv_print(escape(fun_content), source="stdin", screen_limit=False, log=False)
 
-                user_line("meta: end of user message")
+            user_line("meta: end of user message")
 
-            conv_save(user_input, source="world")
+            if user_input:
+                conv_save(user_input, source="world")
 
             logger.debug(fun_msg)
 
@@ -1543,8 +1555,11 @@ def main():
     contents = []
     if isinstance(reply.content, str):
         contents.append(reply.content)
-    else:
+    elif isinstance(reply.content, list):
         for r in reply.content:
+            if 'type' not in r:
+                continue
+
             if r['type'] == 'text' and len(r['text']) > 0:
                 contents.append(r['text'])
 
@@ -1586,7 +1601,7 @@ if __name__ == '__main__':
         conv_print(sys_msg.content, source="stdin", screen_limit=False)
         conv_save(sys_msg.content, source="world")
 
-    if fun_msg is not None and args.verbose:
+    if fun_msg is not None:
         conv_print(fun_msg.content, source="stdin", screen_limit=False)
         conv_save(fun_msg.content, source="world")
 
