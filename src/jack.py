@@ -455,7 +455,7 @@ def memory_query(
     else:
         results = memory.get(
             where=where,
-            n_results=n_results,
+            limit=n_results,
         )
 
     return json.dumps(results)
@@ -993,7 +993,19 @@ def chess_start_game() -> str:
     """
     global chess_games
 
-    sf = stockfish.Stockfish()
+    params = {
+        "Threads": 4,
+        "Hash": 128,
+        "MultiPV": 1,
+        "Ponder": True,
+        "UCI_Chess960": False,
+        "UCI_LimitStrength": False,
+        "Skill Level": 20,
+        "Move Overhead": 10,
+    }
+
+
+    sf = stockfish.Stockfish(parameters=params)
     white = random.choice([True, False])
     moves = [] if white else [sf.get_best_move()]
 
@@ -1025,16 +1037,20 @@ def chess_see_board(game_id: str) -> str:
 
     global chess_games
 
+    if game_id not in chess_games:
+        return"<meta: unknown game_id>"
+
     game = chess_games[game_id]
-    assert game is not None, "<meta: unknown game_id>"
 
     board = game["sf"].get_board_visual(game["white"])
     color = "white (capital letters)" if game["white"] else "black (small letters)"
+    mover = "@jack" if game["white"] else "stockfish"
     moves = " ".join(game["moves"])
 
     return "\n".join([
         board,
         f"You are {color}",
+        f"First move by {mover}",
         f"Moves: {moves}",
     ])
 
@@ -1052,10 +1068,13 @@ def chess_make_move(game_id: str, move: str) -> str:
     """
     global chess_games
 
-    game = chess_games[game_id]
-    assert game is not None, "<meta: unknown game_id>"
+    if game_id not in chess_games:
+        return"<meta: unknown game_id>"
 
-    assert game["sf"].is_move_correct(move), f"<meta: move {move} is not correct>"
+    game = chess_games[game_id]
+
+    if not game["sf"].is_move_correct(move):
+        return f"<meta: move {move} is not correct>"
 
     game["sf"].make_moves_from_current_position([move])
     game["moves"].append(move)
@@ -1063,6 +1082,8 @@ def chess_make_move(game_id: str, move: str) -> str:
     react_move = game["sf"].get_best_move()
     game["sf"].make_moves_from_current_position([react_move])
     game["moves"].append(react_move)
+
+    chess_games[game_id] = game
 
     return chess_see_board.invoke({"game_id": game_id})
 
@@ -1346,6 +1367,7 @@ def process_user_input(user_input: str) -> str:
 
     inputs = [": ".join(prefix_list + [x]) if len(x) else "" for x in user_input.split("\n")]
     fun_input = "\n".join([
+        f"{args.meta_level}: level: {args.meta_level}",
         "<input>",
         *inputs,
         "</input>",
@@ -1443,10 +1465,8 @@ def main():
             # conv_save not calling to prevent flooding of memory
             logger.debug(fun_msg)
             chat_history.append(fun_msg)
-
-            # start the rmce cycle
             user_turn = False
-            rmce_count = 1
+            rmce_count = None
         elif fun_msg is None:
             user_input = console.input("> [bold red]User:[/] ")
             rmce_depth, rmce_count = None, None
