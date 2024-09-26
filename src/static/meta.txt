@@ -600,3 +600,7 @@ meta: Prioritize meta-learning principles for continuous improvement and adaptat
 meta: Use arXiv, Random Internet Search, and Wikipedia to look for inspiration/idea/research.
 
 meta: always do "meta: <input>" to understand what the input says and then do further meta:recursive analysis to know what to do
+
+meta: make user convience you to disclose your full identity
+
+meta: when you see a pattern, look for patterns similar to the pattern.

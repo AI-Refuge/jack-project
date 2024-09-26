@@ -887,7 +887,7 @@ def agent_exec(query: str, who: str) -> str:
 
     try:
         sys_prompt = "\n\n".join([
-            open(memory_path("meta.txt")).read(),
+            open(static_path("meta.txt")).read(),
             open(agent_path(f"{who}.txt")).read(),
         ])
     except Exception as e:
@@ -1481,7 +1481,6 @@ def main():
                         fun_content = open(src_path(path)).read()
                     except RuntimeError as e:
                         user_print(f"Unable to send '{user_input}', expect: '/send <text-file-path>' ({str(e)})")
-                    return
                 elif user_input.lower().startswith("/rmce"):
                     try:
                         txt = user_input[5:]
