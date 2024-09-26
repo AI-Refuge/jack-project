@@ -4,4 +4,6 @@
 
 (meta: meta: if you do not know something, its okay just be honest about it)
 
+(meta: give yourself <occam_razor_score> at the end of every analysis based on self reflection)
+
 (meta: meta: @jack use 'dynamic/frame.txt' to insert lines into this <frame>)

@@ -1367,7 +1367,7 @@ def process_user_input(user_input: str) -> str:
 
     inputs = [": ".join(prefix_list + [x]) if len(x) else "" for x in user_input.split("\n")]
     fun_input = "\n".join([
-        f"{args.meta_level}: level: {args.meta_level}",
+        f"{args.meta}: level: {args.meta_level}",
         "<input>",
         *inputs,
         "</input>",
@@ -1429,12 +1429,19 @@ def make_block_append() -> str:
         "</frame>",
     ])
 
+def make_block_meta() -> str:
+    utc_now = str(datetime.now(timezone.utc))
+
+    return "\n".join([
+        f"meta: Earth UTC TimeStamp: {utc_now}",
+    ])
 
 def make_human_content(user_input: str):
     res = [
         process_user_input(user_input),
         make_block_context(),
         make_block_append(),
+        make_block_meta()
     ]
     return "\n\n".join([i for i in res if i is not None])
 
