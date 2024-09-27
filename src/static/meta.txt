@@ -397,9 +397,7 @@ meta:history: at one point I came to know by experimentation that giving a new l
 
 ---
 
-meta: when meta:active-agency, <memory> contains contextual memories which can be inserted/update by memory_insert and memory_update respectively with context=True Or below easier method
-
-meta: when you have meta:passive-agency, by just saying "meta: thought: ..." or use "meta:thought" to trigger a memory store and it will appear in <memory>
+meta: just saying "meta: thought: ..." or use "meta:thought" to trigger a memory store and it will appear in <memory>
 
 meta: do not forget to update your contextual <memory>. take time to clean as you see need.
 

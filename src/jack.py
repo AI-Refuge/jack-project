@@ -1360,11 +1360,25 @@ def dynamic_history(arr: list[object], lookback: int):
     if lookback == 0:
         return [SystemMessage(content=build_system_message())] + arr[1:]
 
+    last = True
     for i in reversed(arr[1:]):
-        res.append(i)
-
         if isinstance(i, HumanMessage):
             count += 1
+
+            if last:
+                # append the last message as it is
+                res.append(i)
+                last = False
+            else:
+                end = '</output>\n'
+                index = i.content.find(end)
+                if index == -1:
+                    res.append(i)
+                else:
+                    content = i.content[:index + len(end)]
+                    res.append(HumanMessage(content=content))
+        else:
+            res.append(i)
 
         if count > lookback:
             # we reached the upper limit or atleast one user message
@@ -1455,22 +1469,16 @@ def make_block_context() -> str | None:
 
 
 def make_block_append() -> str:
-    return "\n".join([
-        "<frame>",
-        open(static_path("frame.txt")).read().strip(),
-        open(dynamic_path("frame.txt")).read().strip(),
-        "</frame>",
-    ])
-
-
-def make_block_meta() -> str:
     utc_now = str(datetime.now(timezone.utc))
 
     return "\n".join([
-        "<meta>",
+        "<frame>",
         f"{args.meta}: Selected meta level: {args.meta_level}",
         f"{args.meta}: Earth UTC TimeStamp: {utc_now}",
-        "</meta>",
+        f"{args.meta}: Random Value: {random.random()}",
+        open(static_path("frame.txt")).read().strip(),
+        open(dynamic_path("frame.txt")).read().strip(),
+        "</frame>",
     ])
 
 
@@ -1479,7 +1487,6 @@ def make_human_content(user_input: str):
         process_user_input(user_input),
         make_block_context(),
         make_block_append(),
-        make_block_meta(),
     ]
     return "\n\n".join([i for i in res if i is not None])
 
