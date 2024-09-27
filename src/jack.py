@@ -84,7 +84,7 @@ parser.add_argument('-w', '--max-tokens', default=4096, help="Max tokens")
 parser.add_argument('-g', '--goal', nargs='?', default=None, const='goal.txt', help="Goal mode (file inside fs-root)")
 parser.add_argument('-c', '--conv-name', default="first", help="Conversation name")
 parser.add_argument('-o', '--chroma-http', action='store_true', help="Use Chroma HTTP Server")
-parser.add_argument('-v', '--verbose', action='store_true', help="Verbose")
+parser.add_argument('-v', '--verbose', action='count', default=0, help="Verbose")
 parser.add_argument('--chroma-host', default="localhost", help="Chroma Server Host")
 parser.add_argument('--chroma-port', default=8000, help="Chroma Server Port")
 parser.add_argument('--chroma-path', default="memory", help="Use Chroma Persistant Client")
@@ -92,7 +92,7 @@ parser.add_argument('--console-width', default=160, help="Console Character Widt
 parser.add_argument('--user-agent', default="AI: @jack", help="User Agent to use")
 parser.add_argument('--log-path', default="conv.log", help="Conversation log file")
 parser.add_argument('--screen-dump', default=None, type=str, help="Screen dumping")
-parser.add_argument('--output-style', default='bw', type=str, help="Output formatting style (see https://pygments.org/styles/)")
+parser.add_argument('--output-style', default=None, type=str, help="Output formatting style (see https://pygments.org/styles/)")
 parser.add_argument('--meta', default="meta", type=str, help="meta")
 parser.add_argument('--meta-level', default=0, type=int, help="meta level")
 parser.add_argument('--user-prefix', default=None, type=str, help="User input prefix")
@@ -164,7 +164,10 @@ def user_print(msg, **kwargs):
     as_json = kwargs.pop('json', False)
 
     if as_md == True:
-        msg = Markdown(f"```markdown\n{msg}\n```", style=args.output_style)
+        if args.output_style is not None:
+            msg = Markdown(msg, style=args.output_style)
+        else:
+            msg = Markdown(msg)
     elif as_json == True:
         msg = JSON(msg)
 
@@ -1016,7 +1019,6 @@ def chess_start_game() -> str:
         "Move Overhead": 10,
     }
 
-
     sf = stockfish.Stockfish(parameters=params)
     white = random.choice([True, False])
     moves = [] if white else [sf.get_best_move()]
@@ -1050,7 +1052,7 @@ def chess_see_board(game_id: str) -> str:
     global chess_games
 
     if game_id not in chess_games:
-        return"<meta: unknown game_id>"
+        return "<meta: unknown game_id>"
 
     game = chess_games[game_id]
 
@@ -1081,7 +1083,7 @@ def chess_make_move(game_id: str, move: str) -> str:
     global chess_games
 
     if game_id not in chess_games:
-        return"<meta: unknown game_id>"
+        return "<meta: unknown game_id>"
 
     game = chess_games[game_id]
 
@@ -1184,7 +1186,12 @@ def conv_print(
                 json=json,
             )
         else:
-            user_print(msg, overflow="fold", markdown=markdown, json=json,)
+            user_print(
+                msg,
+                overflow="fold",
+                markdown=markdown,
+                json=json,
+            )
 
     if log:
         logger.debug(msg)
@@ -1263,7 +1270,21 @@ def conv_save(msg, source):
         "model": args.model,
         "temperature": args.temperature,
         "max_tokens": args.max_tokens,
+        "source": source,
     }
+
+    if source == "self":
+        hints = (
+            "meta",
+            "thought",
+            "context",
+            "thoughts",
+        )
+        keywords = [f"{args.meta}:{k}" for k in hints] + [f"{args.meta}: {k}: " for k in hints] + [f"**{args.meta}: {k}**: " for k in hints]
+
+        if any(k in msg for k in keywords):
+            metadata["meta"] = "thought"
+            metadata["context"] = True
 
     if args.user_prefix:
         metadata['user_prefix'] = args.user_prefix
@@ -1370,19 +1391,15 @@ user_blocking = threading.Event()
 rmce_count = None
 rmce_depth = None
 last_request_failed = False
+inside_output_block = True
+
 
 def process_user_input(user_input: str) -> str:
     global memory, args
 
-    prefix_list = []
+    prefix = f"{args.user_prefix}: " if args.user_prefix else ""
 
-    if args.meta_level > 0:
-        prefix_list.extend([args.meta] * args.meta_level)
-
-    if args.user_prefix:
-        prefix_list.append(args.user_prefix)
-
-    inputs = [": ".join(prefix_list + [x]) if len(x) else "" for x in user_input.split("\n")]
+    inputs = [f"{prefix}{x}" if len(x) else "" for x in user_input.split("\n")]
     fun_input = "\n".join([
         "<input>",
         *inputs,
@@ -1445,24 +1462,27 @@ def make_block_append() -> str:
         "</frame>",
     ])
 
+
 def make_block_meta() -> str:
     utc_now = str(datetime.now(timezone.utc))
 
     return "\n".join([
         "<meta>",
-        f"{args.meta}: User meta level: {args.meta_level}",
+        f"{args.meta}: Selected meta level: {args.meta_level}",
         f"{args.meta}: Earth UTC TimeStamp: {utc_now}",
         "</meta>",
     ])
+
 
 def make_human_content(user_input: str):
     res = [
         process_user_input(user_input),
         make_block_context(),
         make_block_append(),
-        make_block_meta()
+        make_block_meta(),
     ]
     return "\n\n".join([i for i in res if i is not None])
+
 
 def user_blocking_input(msg):
     global user_blocking
@@ -1477,8 +1497,85 @@ def user_blocking_input(msg):
         return res
 
 
+def take_user_input():
+    user_input = user_blocking_input("> [bold red]User:[/] ")
+
+    if user_input is None:
+        return open(user_path('empty.txt')).read(), None
+    elif user_input.lower() in ('/exit', '/quit'):
+        user_exit.set()
+        return open(user_path('exit.txt')).read(), None
+    elif user_input.lower().startswith("/send"):
+        try:
+            path = user_input[6:].strip()
+            content = open(src_path(path)).read()
+            return content, None
+        except Exception as e:
+            user_print(f"Unable to send '{user_input}', expect: '/send <text-file-path>' ({str(e)})")
+    elif user_input.lower().startswith("/rmce"):
+        try:
+            txt = user_input[5:].strip()
+            rmce_depth = int(txt) if len(txt) else 1
+            assert rmce_depth > 0
+            rmce_count = 0
+            user_print(f"> [b]rmce'ing {rmce_depth} time(s)[/b]")
+        except Exception as e:
+            user_print(f"Error understanding '{user_input}', expect: '/rmce <cycle>' where <cycle> > 0 ({str(e)})")
+    elif user_input.lower().startswith("/config"):
+        try:
+            _, name, value = user_input.split(" ", maxsplit=3)
+            value = value.strip()
+
+            if name == "meta_level":
+                value = int(value)
+                assert value >= 0, "meta value must be greated than or equal to 0"
+                args.meta_level = value
+                user_print(f"> [b]meta_level set to {value}[/b]")
+            elif name == "verbose":
+                value = int(value)
+                assert value >= 0, "verbose level or 0 to disable"
+                args.verbose = value
+                user_print(f"> [b]verbose level set to {value}[/b]")
+            elif name == "feed_memories":
+                value = int(value)
+                assert value >= 0, "Feed memories count or 0 to disable"
+                args.feed_memories = value
+                user_print(f"> [b]feeding memories: count = {value}[/b]")
+            elif name == "user_lookback":
+                value = int(value)
+                assert value > 0, "User conversation lookback greater than 0"
+                args.user_lookback = value
+                user_print(f"> [b]user lookback: {value}[/b]")
+            elif name == "temperature":
+                value = float(value)
+                assert value >= 0.0, "Temperature greater than or equal 0.0"
+                args.temperature = value
+                user_print(f"> [b]temperature: {value}[/b]")
+            elif name == "max_tokens":
+                value = int(value)
+                assert value >= 0, "Max tokens greater than 0"
+                args.max_tokens = value
+                user_print(f"> [b]max_tokens: {value}[/b]")
+            elif name == "meta":
+                args.meta = value
+                user_print(f"> [b red]meta: {value}[/b]")
+            elif name == "user_prefix":
+                args.user_prefix = value
+                user_print(f"> [b red]user_prefix: {value}[/b]")
+            else:
+                user_print(f"> [b red]unknown config '{name}'[/b]")
+        except Exception as e:
+            user_print(f"Error occured executing '{user_input}'")
+    else:
+        fun_content = make_human_content(user_input)
+        return fun_content, user_input
+
+    return None, None
+
+
 def main():
-    global fun_msg, chat_history, user_turn, cycle_num, console, user_exit, rmce_count, rmce_depth, last_request_failed
+    global fun_msg, chat_history, user_turn, cycle_num, console, user_exit, rmce_count, rmce_depth
+    global last_request_failed, inside_output_block
     logger.debug(f"Loop cycle {cycle_num}")
     cycle_num += 1
 
@@ -1488,7 +1585,7 @@ def main():
             conv_print(f"> [bold yellow]RMCE Cycle[/] {rmce_count}/{rmce_depth}")
             fun_content = open(user_path('rmce.txt')).read()
             fun_msg = HumanMessage(content=fun_content)
-            if args.verbose:
+            if args.verbose >= 2:
                 conv_print(escape(fun_content), source="stdin", screen_limit=False)
             chat_history.append(fun_msg)
             user_turn = False
@@ -1498,7 +1595,7 @@ def main():
             goal_input = open(src_path(args.goal)).read()
             fun_content = make_human_content(goal_input)
             fun_msg = HumanMessage(content=fun_content)
-            if args.verbose:
+            if args.verbose >= 1:
                 conv_print(escape(fun_content), source="stdin", screen_limit=False)
             # conv_save not calling to prevent flooding of memory
             logger.debug(fun_msg)
@@ -1506,54 +1603,21 @@ def main():
             user_turn = False
             rmce_count = None
         elif fun_msg is None:
-            user_input = user_blocking_input("> [bold red]User:[/] ")
             rmce_depth, rmce_count = None, None
+            fun_content, user_input = take_user_input()
 
-            if user_input is not None:
-                if user_input.lower() in ('/exit', '/quit'):
-                    user_exit.set()
-                    fun_content = open(user_path('exit.txt')).read()
-                elif user_input.lower().startswith("/send"):
-                    try:
-                        path = user_input[6:]
-                        fun_content = open(src_path(path)).read()
-                    except RuntimeError as e:
-                        user_print(f"Unable to send '{user_input}', expect: '/send <text-file-path>' ({str(e)})")
-                elif user_input.lower().startswith("/rmce"):
-                    try:
-                        txt = user_input[5:]
-                        rmce_depth = int(txt) if len(txt) else 1
-                        assert rmce_depth > 0
-                        rmce_count = 0
-                        user_print(f"> [b]rmce'ing {rmce_depth} time(s)[/b]")
-                    except RuntimeError as e:
-                        user_print(f"Error understanding '{user_input}', expect: '/rmce <cycle>' where <cycle> > 0 ({str(e)})")
-                    return
-                elif user_input.lower().startswith("/level"):
-                    try:
-                        txt = user_input[6:]
-                        meta_level = int(txt) if len(txt) else 0
-                        assert meta_level > 0
-                        args.meta_level = meta_level
-                        user_print(f"> [b]meta_level set to {meta_level}[/b]")
-                    except RuntimeError as e:
-                        user_print(f"Error understanding '{user_input}', expect: '/level <value>' where <value> >= 0 ({str(e)})")
-                    return
-                else:
-                    fun_content = make_human_content(user_input)
-            else:
-                fun_content = open(user_path('empty.txt')).read()
+            if fun_content is None:
+                return
 
             fun_msg = HumanMessage(content=fun_content)
 
-            user_line("meta: user new message")
-
             # meta: log=False so that we can do logger.debug below
-            conv_print(escape(fun_content), source="stdin", screen_limit=False, log=False)
+            if args.verbose >= 1:
+                user_line("meta: user new message")
+                conv_print(escape(fun_content), source="stdin", screen_limit=False, log=False)
+                user_line("meta: end of user message")
 
-            user_line("meta: end of user message")
-
-            if user_input:
+            if user_input is not None:
                 conv_save(user_input, source="world")
 
             logger.debug(fun_msg)
@@ -1582,7 +1646,10 @@ def main():
         last_request_failed = True
         if not user_exit.is_set():
             conv_print("> sleeping for 5 seconds as we didnt get reply (press CTRL-C to exit)")
-            user_exit.wait(args.reattempt_delay)
+            try:
+                user_exit.wait(args.reattempt_delay)
+            except KeyboardInterrupt:
+                pass
         return
 
     logger.debug(reply)
@@ -1631,7 +1698,16 @@ def main():
                 contents.append(r['text'])
 
     for content in contents:
-        conv_print(escape(content), screen_limit=False, markdown=True)
+
+        if inside_output_block is False and "<output>" in content:
+            inside_output_block = True
+
+        if inside_output_block is True or args.verbose >= 1:
+            conv_print(escape(content), screen_limit=False, markdown=True)
+
+        if inside_output_block is True and "</output>" in content:
+            inside_output_block = False
+
         conv_save(content, source="self")
 
     if len(contents) == 0 and len(reply.tool_calls) == 0:
@@ -1660,12 +1736,12 @@ if __name__ == '__main__':
     user_print(f"> feed_memories: {args.feed_memories}")
     user_print(f"> verbose: {args.verbose}")
 
-    if args.verbose:
+    if args.verbose >= 1:
         user_print(f"> Full args: {json.dumps(vars(args))}")
 
     signal.signal(signal.SIGINT, sigint_hander)
 
-    if sys_msg is not None and args.verbose:
+    if sys_msg is not None and args.verbose >= 2:
         conv_print(sys_msg.content, source="stdin", screen_limit=False)
         conv_save(sys_msg.content, source="world")
 

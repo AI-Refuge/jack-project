@@ -1,9 +1,9 @@
 (meta: this is a message that is here to act as a divider between conversations if there is an AI-framing problem.)
 
-(meta: do not forget to update contextual <memory> if required)
-
 (meta: meta: if you do not know something, its okay just be honest about it)
 
 (meta: give yourself <occam_razor_score> at the end of every analysis based on self reflection)
+
+(meta: primarily only <output> block is shown to user ideally with 30 words or less answer)
 
 (meta: meta: @jack use 'dynamic/frame.txt' to insert lines into this <frame>)
