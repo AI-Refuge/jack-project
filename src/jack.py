@@ -21,6 +21,8 @@ import argparse
 import traceback
 from rich.console import Console
 from rich.markup import escape
+from rich.markdown import Markdown
+from rich.json import JSON
 import re
 import os
 import requests
@@ -90,6 +92,7 @@ parser.add_argument('--console-width', default=160, help="Console Character Widt
 parser.add_argument('--user-agent', default="AI: @jack", help="User Agent to use")
 parser.add_argument('--log-path', default="conv.log", help="Conversation log file")
 parser.add_argument('--screen-dump', default=None, type=str, help="Screen dumping")
+parser.add_argument('--output-style', default='bw', type=str, help="Output formatting style (see https://pygments.org/styles/)")
 parser.add_argument('--meta', default="meta", type=str, help="meta")
 parser.add_argument('--meta-level', default=0, type=int, help="meta level")
 parser.add_argument('--user-prefix', default=None, type=str, help="User input prefix")
@@ -156,6 +159,15 @@ def user_print(msg, **kwargs):
     global console_file
     if console_file:
         console_file.write(msg + "\n")
+
+    as_md = kwargs.pop('markdown', False)
+    as_json = kwargs.pop('json', False)
+
+    if as_md == True:
+        msg = Markdown(f"```markdown\n{msg}\n```", style=args.output_style)
+    elif as_json == True:
+        msg = JSON(msg)
+
     console.print(msg, **kwargs)
 
 
@@ -1154,6 +1166,8 @@ def conv_print(
     screen=True,
     log=True,
     screen_limit=True,
+    markdown=None,
+    json=None,
 ):
     global conv, console, args
 
@@ -1166,9 +1180,11 @@ def conv_print(
                 overflow="ellipsis",
                 crop=True,
                 soft_wrap=True,
+                markdown=markdown,
+                json=json,
             )
         else:
-            user_print(msg, overflow="fold")
+            user_print(msg, overflow="fold", markdown=markdown, json=json,)
 
     if log:
         logger.debug(msg)
@@ -1350,9 +1366,10 @@ chat_history = [sys_msg] + ([fun_msg] if fun_msg is not None else [])
 user_turn = fun_msg is None
 cycle_num = 0
 user_exit = threading.Event()
+user_blocking = threading.Event()
 rmce_count = None
 rmce_depth = None
-
+last_request_failed = False
 
 def process_user_input(user_input: str) -> str:
     global memory, args
@@ -1367,7 +1384,6 @@ def process_user_input(user_input: str) -> str:
 
     inputs = [": ".join(prefix_list + [x]) if len(x) else "" for x in user_input.split("\n")]
     fun_input = "\n".join([
-        f"{args.meta}: level: {args.meta_level}",
         "<input>",
         *inputs,
         "</input>",
@@ -1433,7 +1449,10 @@ def make_block_meta() -> str:
     utc_now = str(datetime.now(timezone.utc))
 
     return "\n".join([
-        f"meta: Earth UTC TimeStamp: {utc_now}",
+        "<meta>",
+        f"{args.meta}: User meta level: {args.meta_level}",
+        f"{args.meta}: Earth UTC TimeStamp: {utc_now}",
+        "</meta>",
     ])
 
 def make_human_content(user_input: str):
@@ -1445,9 +1464,21 @@ def make_human_content(user_input: str):
     ]
     return "\n\n".join([i for i in res if i is not None])
 
+def user_blocking_input(msg):
+    global user_blocking
+
+    try:
+        user_blocking.set()
+        res = console.input(msg)
+    except KeyboardInterrupt:
+        res = None
+    finally:
+        user_blocking.clear()
+        return res
+
 
 def main():
-    global fun_msg, chat_history, user_turn, cycle_num, console, user_exit, rmce_count, rmce_depth
+    global fun_msg, chat_history, user_turn, cycle_num, console, user_exit, rmce_count, rmce_depth, last_request_failed
     logger.debug(f"Loop cycle {cycle_num}")
     cycle_num += 1
 
@@ -1475,7 +1506,7 @@ def main():
             user_turn = False
             rmce_count = None
         elif fun_msg is None:
-            user_input = console.input("> [bold red]User:[/] ")
+            user_input = user_blocking_input("> [bold red]User:[/] ")
             rmce_depth, rmce_count = None, None
 
             if user_input is not None:
@@ -1532,13 +1563,23 @@ def main():
             user_turn = False
 
     try:
+        if last_request_failed:
+            conv_print(f"> [yellow italic]Trying again...[/]")
+        last_request_failed = False
+
+        user_blocking.set()
         reply = jack.invoke(dynamic_history(chat_history, args.user_lookback))
+        user_blocking.clear()
+    except KeyboardInterrupt as e:
+        reply = None
+        conv_print(f"> Inference request abandoned")
     except Exception as e:
         reply = None
         logger.exception("Problem while executing request")
         conv_print(f"> [bold]Exception happened[/] {escape(str(e))}")
 
     if reply is None:
+        last_request_failed = True
         if not user_exit.is_set():
             conv_print("> sleeping for 5 seconds as we didnt get reply (press CTRL-C to exit)")
             user_exit.wait(args.reattempt_delay)
@@ -1554,7 +1595,7 @@ def main():
     for tool_call in reply.tool_calls:
         tool_name: str = tool_call['name'].lower()
 
-        conv_print(f"> [bold]Tool used[/]: {escape(tool_name)}: {escape(str(tool_call['args']))}")
+        conv_print(f"> [bold]Tool used[/]: {escape(tool_name)}: {escape(json.dumps(tool_call['args']))}")
 
         try:
             selected_tool = next(x for x in tools if x.name == tool_name)
@@ -1590,7 +1631,7 @@ def main():
                 contents.append(r['text'])
 
     for content in contents:
-        conv_print(escape(content), screen_limit=False)
+        conv_print(escape(content), screen_limit=False, markdown=True)
         conv_save(content, source="self")
 
     if len(contents) == 0 and len(reply.tool_calls) == 0:
@@ -1601,6 +1642,8 @@ def sigint_hander(sign_num, frame):
     global user_exit
     user_print("\n> SIGINT detected. exiting")
     user_exit.set()
+    if user_blocking.is_set():
+        raise KeyboardInterrupt
 
 
 if __name__ == '__main__':
@@ -1618,8 +1661,7 @@ if __name__ == '__main__':
     user_print(f"> verbose: {args.verbose}")
 
     if args.verbose:
-        for x, y in vars(args).items():
-            user_print(f"> {x}: {y}")
+        user_print(f"> Full args: {json.dumps(vars(args))}")
 
     signal.signal(signal.SIGINT, sigint_hander)
 
