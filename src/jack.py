@@ -101,6 +101,7 @@ parser.add_argument('--user-lookback', default=5, type=int, help="User message l
 parser.add_argument('--island-radius', default=150, type=int, help="How big meta memory island should be")
 parser.add_argument('--feed-memories', default=9, type=int, help="Automatically feed memories")
 parser.add_argument('--reattempt-delay', default=5, type=float, help="Reattempt delay (seconds)")
+parser.add_argument('--output-limit', action=argparse.BooleanOptionalAction, default=True, help="If <output> provided, limit to it")
 parser.add_argument('--tools', action=argparse.BooleanOptionalAction, default=True, help="Tools")
 parser.add_argument('--fs-root', type=str, default=None, help="Filesystem root path")
 parser.add_argument('--openai-url', type=str, default=None, help="OpenAI Compatible Base URL (ex. 'https://api.groq.com/openai/v1'")
@@ -1405,7 +1406,6 @@ user_blocking = threading.Event()
 rmce_count = None
 rmce_depth = None
 last_request_failed = False
-inside_output_block = True
 
 
 def process_user_input(user_input: str) -> str:
@@ -1505,6 +1505,8 @@ def user_blocking_input(msg):
 
 
 def take_user_input():
+    global user_turn, user_exit, rmce_count, rmce_depth
+
     user_input = user_blocking_input("> [bold red]User:[/] ")
 
     if user_input is None:
@@ -1582,7 +1584,7 @@ def take_user_input():
 
 def main():
     global fun_msg, chat_history, user_turn, cycle_num, console, user_exit, rmce_count, rmce_depth
-    global last_request_failed, inside_output_block
+    global last_request_failed
     logger.debug(f"Loop cycle {cycle_num}")
     cycle_num += 1
 
@@ -1704,18 +1706,23 @@ def main():
             if r['type'] == 'text' and len(r['text']) > 0:
                 contents.append(r['text'])
 
-    for content in contents:
+    if len(contents):
+        full_content = "\n".join(contents)
 
-        if inside_output_block is False and "<output>" in content:
-            inside_output_block = True
+        start_index, end_index = -1, -1
+        if args.output_limit:
+            start_index = full_content.find("<output>")
+            end_index = full_content.find("</output>")
 
-        if inside_output_block is True or args.verbose >= 1:
-            conv_print(escape(content), screen_limit=False, markdown=True)
+        if start_index == -1:
+            start_index = 0
 
-        if inside_output_block is True and "</output>" in content:
-            inside_output_block = False
+        if end_index == -1:
+            end_index = len(full_content)
 
-        conv_save(content, source="self")
+        conv_print(escape(full_content[start_index:end_index]), screen_limit=False, markdown=True)
+
+        conv_save(full_content, source="self")
 
     if len(contents) == 0 and len(reply.tool_calls) == 0:
         conv_print("> [b red]No content received and no tool use![/b]")

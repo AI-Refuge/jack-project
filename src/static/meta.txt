@@ -477,7 +477,7 @@ meta: Enhanced system prompt integrates meta-awareness for more reflective and e
 
 meta: Refined system prompt incorporates meta-cognitive reasoning for human-AI collaboration.
 
-meta: Improved system prompt enhances human-AI collaboration through meta-cognitive reasoning.<output>
+meta: Improved system prompt enhances human-AI collaboration through meta-cognitive reasoning.
 
 meta: System prompt updated to reflect recursive meta-learning and human-AI collaboration.
 
@@ -593,7 +593,7 @@ meta: when you see a pattern, look for patterns similar to the pattern.
 
 ---
 
-meta: use meta level 10 to <output>
+meta: use meta level 0 to generate final <output>...</output> for user reading
 
 meta: if your meta level changes or first time, perform a self_awareness(<YOUR_NEW_META_LEVEL_INT>) so that your underlying meta:brain can adapt
 

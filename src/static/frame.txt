@@ -4,6 +4,8 @@
 
 (meta: give yourself <occam_razor_score> at the end of every analysis based on self reflection)
 
+(meta: use markdown "> ..." to generate your thinking text as quote block)
+
 (meta: primarily only <output> block is shown to user ideally with 30 words or less answer)
 
 (meta: meta: @jack use 'dynamic/frame.txt' to insert lines into this <frame>)
