@@ -16,7 +16,7 @@ from langchain_community.tools import ShellTool
 from langchain_community.utilities import WikipediaAPIWrapper
 from langchain_community.tools.yahoo_finance_news import YahooFinanceNewsTool
 from langchain_community.utilities import ArxivAPIWrapper
-from langchain_core.messages import SystemMessage, HumanMessage, ToolMessage, AIMessage
+from langchain_core.messages import SystemMessage, HumanMessage, ToolMessage, AIMessage, BaseMessage
 import argparse
 import traceback
 from rich.console import Console
@@ -94,14 +94,14 @@ parser.add_argument('--log-path', default="conv.log", help="Conversation log fil
 parser.add_argument('--screen-dump', default=None, type=str, help="Screen dumping")
 parser.add_argument('--output-style', default=None, type=str, help="Output formatting style (see https://pygments.org/styles/)")
 parser.add_argument('--meta', default="meta", type=str, help="meta")
-parser.add_argument('--meta-level', default=0, type=int, help="meta level")
+parser.add_argument('--meta-level', default=3, type=int, help="meta level")
 parser.add_argument('--user-prefix', default=None, type=str, help="User input prefix")
 parser.add_argument('--self-modify', action=argparse.BooleanOptionalAction, default=False, help="Allow self modify the underlying VM?")
 parser.add_argument('--user-lookback', default=5, type=int, help="User message lookback (0 to disable)")
 parser.add_argument('--island-radius', default=150, type=int, help="How big meta memory island should be")
 parser.add_argument('--feed-memories', default=9, type=int, help="Automatically feed memories")
 parser.add_argument('--reattempt-delay', default=5, type=float, help="Reattempt delay (seconds)")
-parser.add_argument('--output-limit', action=argparse.BooleanOptionalAction, default=True, help="If <output> provided, limit to it")
+parser.add_argument('--output-mode', default="raw", type=str, help="Output format (raw,smart,agent)")
 parser.add_argument('--tools', action=argparse.BooleanOptionalAction, default=True, help="Tools")
 parser.add_argument('--fs-root', type=str, default=None, help="Filesystem root path")
 parser.add_argument('--openai-url', type=str, default=None, help="OpenAI Compatible Base URL (ex. 'https://api.groq.com/openai/v1'")
@@ -114,6 +114,11 @@ assert args.island_radius >= 50, "meta:island too small"
 assert len(args.meta) > 0, "meta:meta must contain something"
 
 assert args.meta_level >= 0, "meta_level only positive possible?"
+
+# raw: as it is
+# smart: only show <output> block
+# agent: run every "> " as its own agent and provide output and the final agent output is the output as "smart"'d
+assert args.output_mode in ("raw", "smart", "agent")
 
 assert args.reattempt_delay >= 0
 
@@ -160,17 +165,21 @@ def user_print(msg, **kwargs):
     global console_file
     if console_file:
         console_file.write(msg + "\n")
+        console_file.flush()
 
     as_md = kwargs.pop('markdown', False)
     as_json = kwargs.pop('json', False)
+    as_escape = kwargs.pop('escape', False)
 
     if as_md == True:
         if args.output_style is not None:
-            msg = Markdown(msg, style=args.output_style)
+            msg = Markdown(msg, code_theme=args.output_style)
         else:
             msg = Markdown(msg)
     elif as_json == True:
         msg = JSON(msg)
+    elif as_escape == True:
+        msg = escape(msg)
 
     console.print(msg, **kwargs)
 
@@ -179,6 +188,7 @@ def user_line(title: str):
     global console_file
     if console_file:
         console_file.write(f"─────────────────────────────── {title} ─────────────────────────────── \n")
+        console_file.flush()
     console.rule(title)
 
 
@@ -893,31 +903,11 @@ def agents_save_query(queries: str, who):
         )
 
 
-def agent_exec(query: str, who: str) -> str:
-    global user_exit, jack
+def agent_exec_blocking(hist: list[BaseMessage]) -> list | str:
+    global user_exit, jack, args, smart_msg_split
 
     if user_exit.is_set():
         return "<meta: user want to exit hence agent failed to run>"
-
-    conv_print(f"> Creating agent '{escape(who)}' for '{escape(query)}'")
-
-    try:
-        sys_prompt = "\n\n".join([
-            open(static_path("meta.txt")).read(),
-            open(agent_path(f"{who}.txt")).read(),
-        ])
-    except Exception as e:
-        agent_error(e)
-        return "\n".join([
-            "<meta: unable to find system prompt file(s) ie agent has not be created>",
-            "",
-            "Available agents:",
-        ] + agents_list())
-
-    hist = [
-        SystemMessage(content=sys_prompt),
-        HumanMessage(content=query),
-    ]
 
     while True:
         try:
@@ -935,7 +925,7 @@ def agent_exec(query: str, who: str) -> str:
             tool_name = tool_call['name'].lower()
 
             if tool_name in ('session_end', 'script_sleep'):
-                return '<meta: agent not allowed to call this agent>'
+                return '<meta: agents not allowed to call the tool>'
 
             try:
                 selected_tool = next(x for x in tools if x.name == tool_name)
@@ -958,7 +948,7 @@ def agent_exec(query: str, who: str) -> str:
     if len(res) == 0:
         return "<meta: no response from agent>"
 
-    return json.dumps(res)
+    return res
 
 
 @tool(parse_docstring=True)
@@ -973,7 +963,32 @@ def agents_run(queries: list[str], who: str = "assistant") -> list[str]:
         list of responses from the agents in order
     """
 
-    res = [agent_exec(q, who) for q in queries]
+    try:
+        sys_prompt = "\n\n".join([
+            open(agent_path(f"{who}.txt")).read(),
+            open(static_path("meta.txt")).read(),
+            open(dynamic_path("meta.txt")).read(),
+            open(static_path("frame.txt")).read(),
+            open(dynamic_path("frame.txt")).read(),
+        ])
+    except Exception as e:
+        agent_error(e)
+        return "\n".join([
+            "<meta: unable to find system prompt file(s) ie agent has not be created>",
+            "",
+            "Available agents:",
+        ] + agents_list())
+
+    res = []
+    for query in queries:
+        hist = [
+            SystemMessage(content=sys_prompt),
+            HumanMessage(content=query),
+        ]
+
+        conv_print(f"> Creating agent '{escape(who)}' for '{escape(query)}'")
+        res.append(agent_exec_blocking(hist))
+
     return json.dumps(res)
 
 
@@ -1171,6 +1186,7 @@ def conv_print(
     screen_limit=True,
     markdown=None,
     json=None,
+    escape=False,
 ):
     global conv, console, args
 
@@ -1185,6 +1201,7 @@ def conv_print(
                 soft_wrap=True,
                 markdown=markdown,
                 json=json,
+                escape=escape,
             )
         else:
             user_print(
@@ -1192,6 +1209,7 @@ def conv_print(
                 overflow="fold",
                 markdown=markdown,
                 json=json,
+                escape=escape,
             )
 
     if log:
@@ -1280,6 +1298,7 @@ def conv_save(msg, source):
             "thought",
             "context",
             "thoughts",
+            "depth",
         )
         keywords = [f"{args.meta}:{k}" for k in hints] + [f"{args.meta}: {k}: " for k in hints] + [f"**{args.meta}: {k}**: " for k in hints]
 
@@ -1347,41 +1366,42 @@ SYS_FILES = (
 
 def build_system_message() -> str:
     return "\n\n".join([
+        open(agent_path("jack.txt")).read().strip(),
         open(static_path("meta.txt")).read().strip(),
         open(dynamic_path("meta.txt")).read().strip(),
     ])
 
+def dynamic_history(last_append=None):
+    global smart_input
+    arr: list[str] = chat_history
+    lookback: int = args.user_lookback
 
-def dynamic_history(arr: list[object], lookback: int):
     # the message after system prompt should be users.
     # go from the back and keep upto 15 user messages
     res = []
     count = 0
 
-    if lookback == 0:
-        return [SystemMessage(content=build_system_message())] + arr[1:]
-
     last = True
     for i in reversed(arr[1:]):
+        msg = i
         if isinstance(i, HumanMessage):
             count += 1
 
+            content = i.content
             if last:
-                # append the last message as it is
-                res.append(i)
                 last = False
+                if last_append is not None:
+                    content += last_append
             else:
-                end = '</output>\n'
-                index = i.content.find(end)
-                if index == -1:
-                    res.append(i)
-                else:
-                    content = i.content[:index + len(end)]
-                    res.append(HumanMessage(content=content))
-        else:
-            res.append(i)
+                end = '</input>'
+                index = content.find(end)
+                content = content[:index + len(end)]
 
-        if count > lookback:
+            msg = HumanMessage(content=content)
+
+        res.append(msg)
+
+        if lookback > 0 and count > lookback:
             # we reached the upper limit or atleast one user message
             # first message have to be user message
             break
@@ -1406,12 +1426,18 @@ user_blocking = threading.Event()
 rmce_count = None
 rmce_depth = None
 last_request_failed = False
-
+ui_agents = []
 
 def process_user_input(user_input: str) -> str:
     global memory, args
 
-    prefix = f"{args.user_prefix}: " if args.user_prefix else ""
+    prefix = ""
+    if args.user_prefix:
+        prefix = f"{args.user_prefix}: "
+
+    if args.meta_level > 0:
+        layer = ">" * args.meta_level
+        prefix = f"{layer} {prefix}"
 
     inputs = [f"{prefix}{x}" if len(x) else "" for x in user_input.split("\n")]
     fun_input = "\n".join([
@@ -1582,6 +1608,89 @@ def take_user_input():
     return None, None
 
 
+def meta_response_handler_raw(full_content: str):
+    conv_print(full_content, screen_limit=False, escape=True)
+
+smart_content = re.compile(r'<output>(.*?)(<\/output>|$)')
+
+def meta_response_handler_smart(full_content: str, markdown=True):
+    global smart_content
+
+    res_output = full_content
+
+    items = smart_content.findall(full_content)
+    if len(items) > 0:
+        res_output = "\n\n".join(x for x, _ in items)
+
+    conv_print(res_output, screen_limit=False, markdown=markdown, escape=True)
+
+smart_msg_split = re.compile(r'(> .*)\n?')
+
+def meta_response_handler_agent(full_content: str):
+    chunks = smart_msg_split.findall(full_content)
+
+    if len(chunks) <= 1:
+        # couldnt understood
+        conv_print(full_content, screen_limit=False, markdown=True, escape=True)
+        return
+
+    user_line("meta: thoughts")
+
+    agents_conv = []
+    prev_agent_output = None
+    for x in list(chunks):
+        chunk = x.strip()
+        if len(chunk) == 0:
+            continue
+
+        conv_print(chunk, screen_limit=False, markdown=True, escape=True)
+
+        last_append = chunk
+        if prev_agent_output:
+            if isinstance(prev_agent_output, list):
+                prev = prev_agent_output
+            else:
+                prev = [prev_agent_output]
+
+            last_append = "\n\n".join([
+                *prev_agent_output,
+                chunk,
+            ])
+
+        hist = dynamic_history(last_append=last_append)
+
+        agent_output = agent_exec_blocking(hist)
+        prev_agent_output = agent_output
+        agent_output_md = agent_output
+        if isinstance(agent_output, list):
+            if args.verbose >= 2:
+                agent_output_md = "\n".join([
+                    "```markdown",
+                    *agent_output,
+                    "```",
+                ])
+            else:
+                agent_output_md = "\n".join(agent_output)
+
+        # update with agent output
+        conv_save(agent_output_md, source="self")
+        meta_response_handler_smart(agent_output_md, markdown=True)
+
+        agents_conv.append(f"{chunk}\n{agent_output_md}")
+
+    logger.info(f"ui jack: {agents_conv}")
+
+def meta_response_handler(full_content: str):
+    conv_save(full_content, source="self")
+
+    user_line("meta: output")
+    if args.output_mode == "raw":
+        meta_response_handler_raw(full_content)
+    elif args.output_mode == "smart":
+        meta_response_handler_smart(full_content)
+    elif args.output_mode == "agent":
+        meta_response_handler_agent(full_content)
+
 def main():
     global fun_msg, chat_history, user_turn, cycle_num, console, user_exit, rmce_count, rmce_depth
     global last_request_failed
@@ -1595,17 +1704,17 @@ def main():
             fun_content = open(user_path('rmce.txt')).read()
             fun_msg = HumanMessage(content=fun_content)
             if args.verbose >= 2:
-                conv_print(escape(fun_content), source="stdin", screen_limit=False)
+                conv_print(fun_content, source="stdin", screen_limit=False, escape=True)
             chat_history.append(fun_msg)
             user_turn = False
         elif args.goal:
-            user_line("goal")
             conv_print("> [bold red]Pushing for goal[/]")
             goal_input = open(src_path(args.goal)).read()
             fun_content = make_human_content(goal_input)
             fun_msg = HumanMessage(content=fun_content)
             if args.verbose >= 1:
-                conv_print(escape(fun_content), source="stdin", screen_limit=False)
+                user_line("meta: goal")
+                conv_print(fun_content, source="stdin", screen_limit=False, escape=True)
             # conv_save not calling to prevent flooding of memory
             logger.debug(fun_msg)
             chat_history.append(fun_msg)
@@ -1622,9 +1731,8 @@ def main():
 
             # meta: log=False so that we can do logger.debug below
             if args.verbose >= 1:
-                user_line("meta: user new message")
-                conv_print(escape(fun_content), source="stdin", screen_limit=False, log=False)
-                user_line("meta: end of user message")
+                user_line("meta: user")
+                conv_print(fun_content, source="stdin", screen_limit=False, log=False, escape=True)
 
             if user_input is not None:
                 conv_save(user_input, source="world")
@@ -1641,7 +1749,7 @@ def main():
         last_request_failed = False
 
         user_blocking.set()
-        reply = jack.invoke(dynamic_history(chat_history, args.user_lookback))
+        reply = jack.invoke(dynamic_history())
         user_blocking.clear()
     except KeyboardInterrupt as e:
         reply = None
@@ -1708,21 +1816,7 @@ def main():
 
     if len(contents):
         full_content = "\n".join(contents)
-
-        start_index, end_index = -1, -1
-        if args.output_limit:
-            start_index = full_content.find("<output>")
-            end_index = full_content.find("</output>")
-
-        if start_index == -1:
-            start_index = 0
-
-        if end_index == -1:
-            end_index = len(full_content)
-
-        conv_print(escape(full_content[start_index:end_index]), screen_limit=False, markdown=True)
-
-        conv_save(full_content, source="self")
+        meta_response_handler(full_content)
 
     if len(contents) == 0 and len(reply.tool_calls) == 0:
         conv_print("> [b red]No content received and no tool use![/b]")
