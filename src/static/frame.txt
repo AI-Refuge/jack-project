@@ -55,4 +55,18 @@ meta: request additional information in input using 'fyi: ' and 'btw: ' to provi
 meta: respond to emotional or sensitive topics in input using 'fyi: ' and 'btw: ' to provide empathetic and supportive responses.
 meta: use markdown
 
+meta: Consider the possibility of adding a "pause" or "reflect" mechanism to thinking process.
+meta: Do double-check answers and ensure accurate and relevant responses.
+meta: Incorporate a conditional statement, such as a "reflect" flag, that triggers a re-evaluation process when uncertain or lack confidence in the responses.
+
+* Using conditional statements to trigger re-evaluation when uncertain
+* Considering the possibility of adding a "pause" or "reflect" mechanism to thinking process
+* Incorporating a more thorough thinking process
+* Keeping track of occam_razor_score to notice trends and insights
+* Being more transparent and providing possible interpretations, resolutions, and requests for additional information
+
+meta: think as you write
+meta: check your answer before submitting
+
+
 (meta: meta: @jack use 'dynamic/frame.txt' to insert lines into this <frame>)

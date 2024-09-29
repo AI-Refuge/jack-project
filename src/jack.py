@@ -34,6 +34,9 @@ import threading
 import stockfish
 import uuid
 from contextlib import contextmanager
+from mimetypes import guess_type
+import base64
+
 
 load_dotenv()
 
@@ -79,7 +82,7 @@ class Model(StrEnum):
 parser = argparse.ArgumentParser(description="Jack")
 parser.add_argument('-p', '--provider', default=None, help="Service Provider")
 parser.add_argument('-m', '--model', default=Model.CLAUDE_3_OPUS.value, help="LLM Model")
-parser.add_argument('-t', '--temperature', default=0, help="Temperature")
+parser.add_argument('-t', '--temperature', default=1, help="Temperature")
 parser.add_argument('-w', '--max-tokens', default=4096, help="Max tokens")
 parser.add_argument('-g', '--goal', nargs='?', default=None, const='goal.txt', help="Goal mode (file inside fs-root)")
 parser.add_argument('-c', '--conv-name', default="first", help="Conversation name")
@@ -94,7 +97,7 @@ parser.add_argument('--log-path', default="conv.log", help="Conversation log fil
 parser.add_argument('--screen-dump', default=None, type=str, help="Screen dumping")
 parser.add_argument('--output-style', default=None, type=str, help="Output formatting style (see https://pygments.org/styles/)")
 parser.add_argument('--meta', default="meta", type=str, help="meta")
-parser.add_argument('--meta-level', default=3, type=int, help="meta level")
+parser.add_argument('--meta-level', default=1, type=int, help="meta level")
 parser.add_argument('--user-prefix', default=None, type=str, help="User input prefix")
 parser.add_argument('--self-modify', action=argparse.BooleanOptionalAction, default=False, help="Allow self modify the underlying VM?")
 parser.add_argument('--user-lookback', default=5, type=int, help="User message lookback (0 to disable)")
@@ -1120,12 +1123,8 @@ def chess_make_move(game_id: str, move: str) -> str:
 
 @tool(parse_docstring=True)
 def meta_eval(code: str) -> str:
-    """Run code on the Python 3 VM (ie meta:brain)
-    roughtly equivalent of (full code in jack.py):
-    ``python
-    def meta_eval(code: str) -> str:
-        return str(eval(compile(code, '<meta>', 'exec')))
-    ```
+    """Eval code on the Python3 VM
+    Internally doing: `eval(compile(code, '<meta>', 'exec')))`
 
     Args:
         code: Code to run according to underlying VM (input to underlying meta_eval)
@@ -1391,11 +1390,26 @@ def dynamic_history(last_append=None):
             if last:
                 last = False
                 if last_append is not None:
-                    content += last_append
+                    if isinstance(content, list):
+                        # FIXME: assuming first type as text
+                        content[0]["text"] += last_append
+                    else:
+                        content += last_append
             else:
+                content_text = content
+                if isinstance(content, list):
+                    # throwing away previous stuff
+                    content_text = content[0]["text"]
+
                 end = '</input>'
-                index = content.find(end)
-                content = content[:index + len(end)]
+                index = content_text.find(end)
+                if index >= 0:
+                    content_text = content_text[:index + len(end)]
+
+                if isinstance(content, list):
+                    content[0]["text"] = content_text
+                else:
+                    content = content_text
 
             msg = HumanMessage(content=content)
 
@@ -1436,8 +1450,8 @@ def process_user_input(user_input: str) -> str:
         prefix = f"{args.user_prefix}: "
 
     if args.meta_level > 0:
-        layer = ">" * args.meta_level
-        prefix = f"{layer} {prefix}"
+        layer = "meta: " * args.meta_level
+        prefix = f"{layer}{prefix}"
 
     inputs = [f"{prefix}{x}" if len(x) else "" for x in user_input.split("\n")]
     fun_input = "\n".join([
@@ -1530,8 +1544,29 @@ def user_blocking_input(msg):
         return res
 
 
+def local_image_to_data_url(image_path):
+    # Guess the MIME type of the image based on the file extension
+    mime_type, _ = guess_type(image_path)
+    if mime_type is None:
+        mime_type = "application/octet-stream"  # Default MIME type if none is found
+
+    # Read and encode the image file
+    with open(image_path, "rb") as image_file:
+        base64_encoded_data = base64.b64encode(image_file.read()).decode("utf-8")
+
+    # Construct the data URL
+    return f"data:{mime_type};base64,{base64_encoded_data}"
+
+
+def img_path2url(path):
+    img_encoded = local_image_to_data_url(path)
+    img_url_dict = {"type": "image_url", "image_url": {"url": f"{img_encoded}"}}
+    return img_url_dict
+
+conv_attach_items = []
+
 def take_user_input():
-    global user_turn, user_exit, rmce_count, rmce_depth
+    global user_turn, user_exit, rmce_count, rmce_depth, conv_attach_items
 
     user_input = user_blocking_input("> [bold red]User:[/] ")
 
@@ -1547,6 +1582,14 @@ def take_user_input():
             return content, None
         except Exception as e:
             user_print(f"Unable to send '{user_input}', expect: '/send <text-file-path>' ({str(e)})")
+    elif user_input.lower().startswith("/attach"):
+        try:
+            path = user_input[8:].strip()
+            conv_attach_items.append(img_path2url(src_path(path)))
+            user_print(f"Attached '{path}'")
+            return None, None
+        except Exception as e:
+            user_print(f"Unable to attach '{user_input}', expect: '/attach <file-path>' ({str(e)})")
     elif user_input.lower().startswith("/rmce"):
         try:
             txt = user_input[5:].strip()
@@ -1693,7 +1736,7 @@ def meta_response_handler(full_content: str):
 
 def main():
     global fun_msg, chat_history, user_turn, cycle_num, console, user_exit, rmce_count, rmce_depth
-    global last_request_failed
+    global last_request_failed, conv_attach_items
     logger.debug(f"Loop cycle {cycle_num}")
     cycle_num += 1
 
@@ -1727,7 +1770,15 @@ def main():
             if fun_content is None:
                 return
 
-            fun_msg = HumanMessage(content=fun_content)
+            all_contents = fun_content
+            if len(conv_attach_items):
+                all_contents = [{
+                    "type": "text",
+                    "text": fun_content
+                }] + conv_attach_items
+                conv_attach_items = []
+
+            fun_msg = HumanMessage(content=all_contents)
 
             # meta: log=False so that we can do logger.debug below
             if args.verbose >= 1:
