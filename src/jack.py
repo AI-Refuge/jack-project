@@ -64,6 +64,9 @@ class Provider(StrEnum):
     MISTRAL = "mistral"
     VLLM = "vllm"
 
+    # openai-compat but makes it easy
+    OPENROUTER = "openrouter"
+
 
 class Model(StrEnum):
     CLAUDE_3_OPUS = "claude-3-opus-20240229"
@@ -239,6 +242,12 @@ if args.provider is None:
         args.provider = Provider.MISTRAL.value
     elif args.openai_url is not None or args.openai_token is not None:
         args.provider = Provider.OPEN_AI_COMPATIBLE.value
+
+# Just to make life easy
+if args.provider == Provider.OPENROUTER.value:
+    args.provider = Provider.OPEN_AI_COMPATIBLE
+    args.openai_url = "https://openrouter.ai/api/v1"
+    args.openai_token = "OPENROUTER_API_TOKEN"
 
 if args.provider == Provider.ANTRHOPIC.value:
     from langchain_anthropic import ChatAnthropic
