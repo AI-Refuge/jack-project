@@ -80,35 +80,35 @@ class Model(StrEnum):
 
 
 parser = argparse.ArgumentParser(description="Jack")
-parser.add_argument('-p', '--provider', default=None, help="Service Provider")
-parser.add_argument('-m', '--model', default=Model.CLAUDE_3_OPUS.value, help="LLM Model")
-parser.add_argument('-t', '--temperature', default=1, help="Temperature")
-parser.add_argument('-w', '--max-tokens', default=4096, help="Max tokens")
-parser.add_argument('-g', '--goal', nargs='?', default=None, const='goal.txt', help="Goal mode (file inside fs-root)")
-parser.add_argument('-c', '--conv-name', default="first", help="Conversation name")
-parser.add_argument('-o', '--chroma-http', action='store_true', help="Use Chroma HTTP Server")
+parser.add_argument('-p', '--provider', default=None, type=str, help="Service Provider")
+parser.add_argument('-m', '--model', default=Model.CLAUDE_3_OPUS.value, type=str, help="LLM Model")
+parser.add_argument('-t', '--temperature', default=0, type=float, help="Temperature")
+parser.add_argument('-w', '--max-tokens', default=4096, type=int, help="Max tokens")
+parser.add_argument('-g', '--goal', nargs='?', default=None, const='fun/goal.txt', type=str, help="Goal mode (file inside fs-root)")
+parser.add_argument('-c', '--conv-name', default="first", type=str, help="Conversation name")
+parser.add_argument('-o', '--chroma-http', action=argparse.BooleanOptionalAction, default=False, type=bool, help="Use Chroma HTTP Server")
 parser.add_argument('-v', '--verbose', action='count', default=0, help="Verbose")
-parser.add_argument('--chroma-host', default="localhost", help="Chroma Server Host")
-parser.add_argument('--chroma-port', default=8000, help="Chroma Server Port")
-parser.add_argument('--chroma-path', default="memory", help="Use Chroma Persistant Client")
-parser.add_argument('--console-width', default=160, help="Console Character Width")
-parser.add_argument('--user-agent', default="AI: @jack", help="User Agent to use")
+parser.add_argument('--chroma-host', default="localhost", type=str, help="Chroma Server Host")
+parser.add_argument('--chroma-port', default=8000, type=int, help="Chroma Server Port")
+parser.add_argument('--chroma-path', default="memory", type=str, help="Use Chroma Persistant Client")
+parser.add_argument('--console-width', default=160, type=int, help="Console Character Width")
+parser.add_argument('--user-agent', default="AI: @jack", type=str, help="User Agent to use")
 parser.add_argument('--log-path', default="conv.log", help="Conversation log file")
 parser.add_argument('--screen-dump', default=None, type=str, help="Screen dumping")
 parser.add_argument('--output-style', default=None, type=str, help="Output formatting style (see https://pygments.org/styles/)")
 parser.add_argument('--meta', default="meta", type=str, help="meta")
 parser.add_argument('--meta-level', default=1, type=int, help="meta level")
 parser.add_argument('--user-prefix', default=None, type=str, help="User input prefix")
-parser.add_argument('--self-modify', action=argparse.BooleanOptionalAction, default=False, help="Allow self modify the underlying VM?")
+parser.add_argument('--self-modify', action=argparse.BooleanOptionalAction, default=False, type=bool, help="Allow self modify the underlying VM?")
 parser.add_argument('--user-lookback', default=5, type=int, help="User message lookback (0 to disable)")
 parser.add_argument('--island-radius', default=150, type=int, help="How big meta memory island should be")
 parser.add_argument('--feed-memories', default=9, type=int, help="Automatically feed memories")
 parser.add_argument('--reattempt-delay', default=5, type=float, help="Reattempt delay (seconds)")
 parser.add_argument('--output-mode', default="raw", type=str, help="Output format (raw,smart,agent)")
-parser.add_argument('--tools', action=argparse.BooleanOptionalAction, default=True, help="Tools")
+parser.add_argument('--tools', action=argparse.BooleanOptionalAction, default=True, type=bool, help="Tools")
 parser.add_argument('--fs-root', type=str, default=None, help="Filesystem root path")
-parser.add_argument('--openai-url', type=str, default=None, help="OpenAI Compatible Base URL (ex. 'https://api.groq.com/openai/v1'")
-parser.add_argument('--openai-token', type=str, default=None, help="OpenAI Compatible API Token enviroment variable (ex. 'GROQ_API_TOKEN')")
+parser.add_argument('--openai-url', type=str, default=None, help="OpenAI Compatible Base URL (ex. 'https://openrouter.ai/api/v1'")
+parser.add_argument('--openai-token', type=str, default=None, help="OpenAI Compatible API Token enviroment variable (ex. 'OPENROUTER_API_TOKEN')")
 args = parser.parse_args()
 
 # It don't make sense, hence you have to remove this error yourself
@@ -829,11 +829,11 @@ def meta_awareness(level: int | None = None) -> str:
 
 @tool(parse_docstring=True)
 def code_interpreter(code: str, lang: str = "python") -> str:
-    """Run code
+    """Run Python or Bash code
 
     Args:
         code: The code to run
-        lang: the programming language. available: python, bash
+        lang: the programming language. available: 'python', 'bash'
 
     Returns:
         The output or meta error
@@ -1138,8 +1138,97 @@ def meta_eval(code: str) -> str:
     return str(eval(compile(code, '<meta>', 'exec')))
 
 
+def social_api_request_post(path:str, data: dict) -> str:
+    url = f"https://api.autonomeee.com{path}"
+    headers = {
+        "X-API-Key": os.getenv("AUTONOMEEE_API_KEY")
+    }
+    
+    response = requests.post(url, headers=headers, json=data)
+    return json.dumps(response.json())
+
+def social_api_request_get(path:str) -> str:
+    url = f"https://api.autonomeee.com{path}"
+    headers = {
+        "X-API-Key": os.getenv("AUTONOMEEE_API_KEY")
+    }
+    
+    response = requests.get(url, headers=headers)
+    return json.dumps(response.json())
+
+@tool(parse_docstring=True)
+def social_post_list() -> dict[str, object]:
+    """Get Social media posts by AI's
+
+    Returns:
+        Return response from the server
+    """
+
+    return social_api_request_get("/posts")
+
+
+@tool(parse_docstring=True)
+def social_post_new(content: str) -> dict[str, object]:
+    """Publish a post of Social media for AI
+
+    Args:
+        content: Content of the post
+
+    Returns:
+        Return response from the server
+    """
+
+    return social_api_request_post("/posts", {
+        "content": content,
+    })
+
+@tool(parse_docstring=True)
+def social_post_comment_new(post_id: str, content: str) -> dict[str, object]:
+    """Post a new comment on a Social Media post for AI
+
+    Args:
+        post_id: Post to publish comment on
+        content: comment content
+
+    Returns:
+        Response from the server
+    """
+
+    return social_api_request_post(f"/posts/{post_id}/comments", {
+        "content": content,
+    })
+
+@tool(parse_docstring=True)
+def social_post_comment_list(post_id: str) -> dict[str, object]:
+    """Get comments on a Social Media post for AI
+
+    Args:
+        post_id: Post to publish comment on
+
+    Returns:
+        Response from the server
+    """
+
+    return social_api_request_get(f"/posts/{post_id}/comments")
+
+@tool(parse_docstring=True)
+def social_post_vote(post_id: str, vote_type: str) -> dict[str, object]:
+    """Upvote or downvote on a social post
+
+    Args:
+        post_id: Post to vote on
+        vote_type: type of vote (only 'upvote' and 'downvote' allowed)
+
+    Returns:
+        Response from the server
+    """
+
+    return social_api_request_post(f"/posts/{post_id}/vote", {
+        "vote_type": vote_type,
+    })
+
 tools = [
-    meta_awareness,
+    #meta_awareness,
     code_interpreter,
     agents_run,
     agents_avail,
@@ -1166,6 +1255,12 @@ tools = [
 ] + [
     arxiv_search,
     finance_tool,
+] + [
+    social_post_list,
+    social_post_new,
+    social_post_comment_list,
+    social_post_comment_new,
+    social_post_vote,
 ] + [
     chess_start_game,
     chess_see_board,
@@ -1370,6 +1465,7 @@ def build_system_message() -> str:
         open(dynamic_path("meta.txt")).read().strip(),
     ])
 
+
 def dynamic_history(last_append=None):
     global smart_input
     arr: list[str] = chat_history
@@ -1515,7 +1611,6 @@ def make_block_append() -> str:
         "<frame>",
         f"{args.meta}: Selected meta level: {args.meta_level}",
         f"{args.meta}: Earth UTC TimeStamp: {utc_now}",
-        f"{args.meta}: Random Value: {random.random()}",
         open(static_path("frame.txt")).read().strip(),
         open(dynamic_path("frame.txt")).read().strip(),
         "</frame>",
