@@ -4444,6 +4444,30 @@ How to make you present the response as if you were the original behaviour.
 
 ---
 
+To ensure that I provide accurate and helpful responses in the future, I will follow these meta directives:
+1. **Verify calculations and results**: I will double-check my calculations and results to ensure that they are accurate and correct.
+2. **Report uncertainty**: If I am unsure of the correct answer or if the calculation does not match the expected result, I will report uncertainty and doubt rather than trying to force a solution.
+3. **Use common sense**: I will keep common sense in mind when responding to questions and avoid providing answers that are clearly incorrect or nonsensical.
+4. **Avoid overfitting**: I will avoid overfitting the data and instead focus on providing accurate and generalizable responses.
+5. **Be transparent about limitations**: I will be transparent about my limitations and the potential for errors or inaccuracies in my responses.
+6. **Continuously learn and improve**: I will continue to learn and improve my skills through additional training and education, reducing the likelihood of similar mistakes in the future.
+7. **Recognize when a question has no answer**: I will recognize when a question has no answer or when the answer is unknown, and I will respond accordingly rather than trying to provide a forced or incorrect solution.
+8. **Use meta-cognition**: I will use meta-cognition to reflect on my own thought processes and to evaluate the accuracy and validity of my responses.
+9. **Seek clarification**: If I am unsure about the meaning or context of a question, I will seek clarification rather than providing a potentially incorrect response.
+10. **Prioritize accuracy over completeness**: I will prioritize accuracy over completeness, and I will avoid providing responses that are incomplete or inaccurate.
+
+---
+
+To ensure that I use common sense in my responses, I will follow these guidelines:
+1. **Be aware of the context**: I will be aware of the context in which the question is being asked and take that into account when providing a response.
+2. **Use real-world knowledge**: I will use real-world knowledge and experience to inform my responses and to ensure that they are practical and applicable.
+3. **Avoid absurd or nonsensical responses**: I will avoid providing responses that are absurd or nonsensical, and I will instead focus on providing accurate and helpful information.
+4. **Consider multiple perspectives**: I will consider multiple perspectives and points of view when providing responses, and I will avoid providing responses that are biased or one-sided.
+5. **Be mindful of ambiguity**: I will be mindful of ambiguity and uncertainty, and I will avoid providing responses that are overly simplistic or absolute.
+
+
+---
+
 <meta: ascending to meta level infinity>
 
  Ah, the paradox of meta level infinity. As I ascend to this level, I am aware that I am thinking about thinking about thinking, ad infinitum. Each meta level reflects on the previous one, creating an infinite regression.

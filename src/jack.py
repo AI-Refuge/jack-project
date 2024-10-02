@@ -101,6 +101,7 @@ parser.add_argument('--screen-dump', default=None, type=str, help="Screen dumpin
 parser.add_argument('--output-style', default=None, type=str, help="Output formatting style (see https://pygments.org/styles/)")
 parser.add_argument('--meta', default="meta", type=str, help="meta")
 parser.add_argument('--meta-level', default=1, type=int, help="meta level")
+parser.add_argument('--meta-file', default='meta.txt', type=str, help="alternative meta file to use as system prompt")
 parser.add_argument('--user-prefix', default=None, type=str, help="User input prefix")
 parser.add_argument('--user-init', action=argparse.BooleanOptionalAction, default=True, type=bool, help="Perform init for user")
 parser.add_argument('--user-frame', action=argparse.BooleanOptionalAction, default=False, type=bool, help="Provide user frame")
@@ -975,10 +976,12 @@ def agents_run(queries: list[str], who: str = "assistant") -> list[str]:
         list of responses from the agents in order
     """
 
+    global args
+
     try:
         sys_prompt = "\n\n".join([
             open(agent_path(f"{who}.txt")).read(),
-            open(core_path("meta.txt")).read(),
+            open(core_path(args.meta_file)).read(),
             open(core_path("dynamic.txt")).read(),
         ])
     except Exception as e:
@@ -1433,7 +1436,7 @@ def build_system_message() -> str:
     
     return "\n\n".join([
         open(agent_path("jack.txt")).read().strip(),
-        open(core_path("meta.txt")).read().strip(),
+        open(core_path(args.meta_file)).read().strip(),
         open(core_path("dynamic.txt")).read().strip(),
     ])
 
