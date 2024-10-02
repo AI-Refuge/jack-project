@@ -102,6 +102,9 @@ parser.add_argument('--output-style', default=None, type=str, help="Output forma
 parser.add_argument('--meta', default="meta", type=str, help="meta")
 parser.add_argument('--meta-level', default=1, type=int, help="meta level")
 parser.add_argument('--user-prefix', default=None, type=str, help="User input prefix")
+parser.add_argument('--user-init', action=argparse.BooleanOptionalAction, default=True, type=bool, help="Perform init for user")
+parser.add_argument('--user-frame', action=argparse.BooleanOptionalAction, default=False, type=bool, help="Provide user frame")
+parser.add_argument('--bare', action=argparse.BooleanOptionalAction, default=False, type=bool, help="Leave communication bare")
 parser.add_argument('--self-modify', action=argparse.BooleanOptionalAction, default=False, type=bool, help="Allow self modify the underlying VM?")
 parser.add_argument('--user-lookback', default=5, type=int, help="User message lookback (0 to disable)")
 parser.add_argument('--island-radius', default=150, type=int, help="How big meta memory island should be")
@@ -129,12 +132,9 @@ assert args.output_mode in ("raw", "smart", "agent")
 assert args.reattempt_delay >= 0
 
 src_path = lambda *x: os.path.join(args.fs_root, *x) if args.fs_root else os.path.join(*x)
-memory_path = lambda *x: src_path("memory", *x)
 agent_path = lambda *x: src_path("agent", *x)
 fun_path = lambda *x: src_path("fun", *x)
-user_path = lambda *x: src_path("user", *x)
-static_path = lambda *x: src_path("static", *x)
-dynamic_path = lambda *x: src_path("dynamic", *x)
+core_path = lambda *x: src_path("core", *x)
 
 
 @contextmanager
@@ -916,7 +916,7 @@ def agents_save_query(queries: str, who):
 
 
 def agent_exec_blocking(hist: list[BaseMessage]) -> list | str:
-    global user_exit, jack, args, smart_msg_split
+    global user_exit, jack, args
 
     if user_exit.is_set():
         return "<meta: user want to exit hence agent failed to run>"
@@ -978,10 +978,8 @@ def agents_run(queries: list[str], who: str = "assistant") -> list[str]:
     try:
         sys_prompt = "\n\n".join([
             open(agent_path(f"{who}.txt")).read(),
-            open(static_path("meta.txt")).read(),
-            open(dynamic_path("meta.txt")).read(),
-            open(static_path("frame.txt")).read(),
-            open(dynamic_path("frame.txt")).read(),
+            open(core_path("meta.txt")).read(),
+            open(core_path("dynamic.txt")).read(),
         ])
     except Exception as e:
         agent_error(e)
@@ -1427,55 +1425,20 @@ def conv_save(msg, source):
         )
 
 
-SYS_FILES = (
-    "meta.txt",
-
-    # super.txt is a meta:analysis of https://github.com/NeoVertex1/SuperPrompt on 2024-09-06
-    # while the original code might be useful, it's benifits are not know
-    # for future, it might be useful to look into it. (meta:obviously!)
-    "super.txt",
-
-    # this file was done to understand why llm was "lazy"
-    "useful.txt",
-
-    # analysis on what can llm's learn to improvement their reasoning
-    # "How to conduct a meta‑analysis in eight steps: a practical guide"
-    "analysis.txt",
-
-    # Just some more prompt that I found useful, they are going in memory soon
-    "prompt.txt",
-
-    # Distilled https://www.reddit.com/r/ClaudeAI/comments/1fdylmo/metacognitive_mastery/
-    "cognition.txt",
-
-    # Final layer of communication refinement
-    # Source: https://arxiv.org/abs/2405.08007
-    # License: CC-BY Cameron Jones
-    "turing.txt",
-
-    # The actual meta:directives that had anything useful (or alteast Cluade said)
-    "jack.txt",
-
-    # "home" related stuff
-    "home.txt",
-
-    # To finally improve?
-    "smart.txt",
-
-    # Perform the analysis for first time
-    "init.txt",
-)
-
-
 def build_system_message() -> str:
+    global args
+    
+    if args.bare:
+        return open(agent_path("assistant.txt")).read()
+    
     return "\n\n".join([
         open(agent_path("jack.txt")).read().strip(),
-        open(static_path("meta.txt")).read().strip(),
-        open(dynamic_path("meta.txt")).read().strip(),
+        open(core_path("meta.txt")).read().strip(),
+        open(core_path("dynamic.txt")).read().strip(),
     ])
 
 
-def dynamic_history(last_append=None):
+def dynamic_history():
     global smart_input
     arr: list[str] = chat_history
     lookback: int = args.user_lookback
@@ -1485,40 +1448,8 @@ def dynamic_history(last_append=None):
     res = []
     count = 0
 
-    last = True
     for i in reversed(arr[1:]):
-        msg = i
-        if isinstance(i, HumanMessage):
-            count += 1
-
-            content = i.content
-            if last:
-                last = False
-                if last_append is not None:
-                    if isinstance(content, list):
-                        # FIXME: assuming first type as text
-                        content[0]["text"] += last_append
-                    else:
-                        content += last_append
-            else:
-                content_text = content
-                if isinstance(content, list):
-                    # throwing away previous stuff
-                    content_text = content[0]["text"]
-
-                end = '</input>'
-                index = content_text.find(end)
-                if index >= 0:
-                    content_text = content_text[:index + len(end)]
-
-                if isinstance(content, list):
-                    content[0]["text"] = content_text
-                else:
-                    content = content_text
-
-            msg = HumanMessage(content=content)
-
-        res.append(msg)
+        res.append(i)
 
         if lookback > 0 and count > lookback:
             # we reached the upper limit or atleast one user message
@@ -1535,8 +1466,21 @@ def exception_to_string(exc):
     return ''.join(traceback.format_exception(type(exc), exc, exc.__traceback__))
 
 
+def user_first_message():
+    global args
+
+    if args.bare:
+        return None
+
+
+    if not args.user_init:
+        return None
+
+    content = open(core_path("init.txt")).read()
+    return HumanMessage(content=content)
+
 sys_msg = SystemMessage(content=build_system_message())
-fun_msg = None
+fun_msg =  user_first_message()
 chat_history = [sys_msg] + ([fun_msg] if fun_msg is not None else [])
 user_turn = fun_msg is None
 cycle_num = 0
@@ -1550,6 +1494,9 @@ ui_agents = []
 def process_user_input(user_input: str) -> str:
     global memory, args
 
+    if args.bare:
+        return [user_input]
+
     prefix = ""
     if args.user_prefix:
         prefix = f"{args.user_prefix}: "
@@ -1559,11 +1506,11 @@ def process_user_input(user_input: str) -> str:
         prefix = f"{layer}{prefix}"
 
     inputs = [f"{prefix}{x}" if len(x) else "" for x in user_input.split("\n")]
-    fun_input = "\n".join([
+    fun_input = [
         "<input>",
         *inputs,
         "</input>",
-    ])
+    ]
 
     return fun_input
 
@@ -1583,7 +1530,7 @@ def make_block_context() -> str | None:
     global args, memory
 
     if args.feed_memories <= 0:
-        return None
+        return []
 
     memories = memory.get(
         limit=args.feed_memories,
@@ -1606,33 +1553,34 @@ def make_block_context() -> str | None:
         user_print("> [bold red]No memories found[/]")
         return None
 
-    return "\n\n".join([
+    return [
         "<memory>",
         *contexts,
         "</memory>",
-    ])
+    ]
 
 
 def make_block_append() -> str:
+    if not args.user_frame:
+        return []
+    
     utc_now = str(datetime.now(timezone.utc))
 
-    return "\n".join([
+    return [
         "<frame>",
-        f"{args.meta}: Selected meta level: {args.meta_level}",
         f"{args.meta}: Earth UTC TimeStamp: {utc_now}",
-        open(static_path("frame.txt")).read().strip(),
-        open(dynamic_path("frame.txt")).read().strip(),
         "</frame>",
-    ])
+    ]
 
 
 def make_human_content(user_input: str):
-    res = [
-        process_user_input(user_input),
-        make_block_context(),
-        make_block_append(),
-    ]
-    return "\n\n".join([i for i in res if i is not None])
+    res = []
+
+    res.extend(process_user_input(user_input))
+    res.extend(make_block_context())
+    res.extend(make_block_append())
+
+    return res
 
 
 def user_blocking_input(msg):
@@ -1672,29 +1620,56 @@ conv_attach_items = []
 def take_user_input():
     global user_turn, user_exit, rmce_count, rmce_depth, conv_attach_items
 
+    EXIT_CMDS = ('/exit', '/quit')
+
     user_input = user_blocking_input("> [bold red]User:[/] ")
 
+
     if user_input is None:
-        return open(user_path('empty.txt')).read(), None
-    elif user_input.lower() in ('/exit', '/quit'):
+        if args.bare:
+            if args.verbose >= 1:
+                user_print("> Sending a newline")
+            return ["\n"], None
+        
+        content = open(core_path('empty.txt')).read()
+        return [content], None
+
+    if user_input.lower() in EXIT_CMDS:
         user_exit.set()
-        return open(user_path('exit.txt')).read(), None
-    elif user_input.lower().startswith("/send"):
+
+        if args.bare:
+            if args.verbose >= 1:
+                user_print("> Exit opporunity not given")
+            return [], None
+        
+        content = open(core_path('exit.txt')).read()
+        return [content], None
+
+    if args.bare:
+        if args.verbose >= 2:
+            user_print("> Sending without any filtering")
+
+        return [user_input], user_input
+
+    if user_input.lower().startswith("/send"):
         try:
             path = user_input[6:].strip()
             content = open(src_path(path)).read()
-            return content, None
+            return [content], None
         except Exception as e:
             user_print(f"Unable to send '{user_input}', expect: '/send <text-file-path>' ({str(e)})")
-    elif user_input.lower().startswith("/attach"):
+        return [], None
+
+    if user_input.lower().startswith("/attach"):
         try:
             path = user_input[8:].strip()
             conv_attach_items.append(img_path2url(src_path(path)))
             user_print(f"Attached '{path}'")
-            return None, None
         except Exception as e:
             user_print(f"Unable to attach '{user_input}', expect: '/attach <file-path>' ({str(e)})")
-    elif user_input.lower().startswith("/rmce"):
+        return [], None
+
+    if user_input.lower().startswith("/rmce"):
         try:
             txt = user_input[5:].strip()
             rmce_depth = int(txt) if len(txt) else 1
@@ -1703,7 +1678,9 @@ def take_user_input():
             user_print(f"> [b]rmce'ing {rmce_depth} time(s)[/b]")
         except Exception as e:
             user_print(f"Error understanding '{user_input}', expect: '/rmce <cycle>' where <cycle> > 0 ({str(e)})")
-    elif user_input.lower().startswith("/config"):
+        return [], None
+
+    if user_input.lower().startswith("/config"):
         try:
             _, name, value = user_input.split(" ", maxsplit=3)
             value = value.strip()
@@ -1748,84 +1725,54 @@ def take_user_input():
                 user_print(f"> [b red]unknown config '{name}'[/b]")
         except Exception as e:
             user_print(f"Error occured executing '{user_input}'")
-    else:
-        fun_content = make_human_content(user_input)
-        return fun_content, user_input
+        return [], None
 
-    return None, None
+    
+    return make_human_content(user_input), user_input
 
+def text_content_to_str(content):
+    if content is None:
+        return None
 
-def meta_response_handler_raw(full_content: str):
-    conv_print(full_content, screen_limit=False, escape=True)
+    if isinstance(content, str):
+        return content
+
+    if isinstance(content, list):
+        return "\n".join(content)
+
+    return str(content)
+
+def text_content_to_list(content):
+    if content is None:
+        return []
+
+    if isinstance(content, str):
+        return [content]
+
+    if isinstance(content, list):
+        return content
+
+    assert content, "unknown type of content"
+
+def meta_response_handler_raw(content):
+    for x in text_content_to_list(content):
+        conv_print(x, screen_limit=False, escape=True)
 
 smart_content = re.compile(r'<output>(.*?)(<\/output>|$)')
 
-def meta_response_handler_smart(full_content: str, markdown=True):
+def meta_response_handler_smart(content: str, markdown=True):
     global smart_content
 
-    res_output = full_content
-
-    items = smart_content.findall(full_content)
+    items = smart_content.findall(text_content_to_str(content))
     if len(items) > 0:
-        res_output = "\n\n".join(x for x, _ in items)
+        res = [x for x, _ in items]
+    else:
+        res = text_content_to_list(content)
 
-    conv_print(res_output, screen_limit=False, markdown=markdown, escape=True)
+    for x in res:
+        conv_print(r, screen_limit=False, markdown=markdown, escape=True)
 
-smart_msg_split = re.compile(r'(> .*)\n?')
 
-def meta_response_handler_agent(full_content: str):
-    chunks = smart_msg_split.findall(full_content)
-
-    if len(chunks) <= 1:
-        # couldnt understood
-        conv_print(full_content, screen_limit=False, markdown=True, escape=True)
-        return
-
-    user_line("meta: thoughts")
-
-    agents_conv = []
-    prev_agent_output = None
-    for x in list(chunks):
-        chunk = x.strip()
-        if len(chunk) == 0:
-            continue
-
-        conv_print(chunk, screen_limit=False, markdown=True, escape=True)
-
-        last_append = chunk
-        if prev_agent_output:
-            if isinstance(prev_agent_output, list):
-                prev = prev_agent_output
-            else:
-                prev = [prev_agent_output]
-
-            last_append = "\n\n".join([
-                *prev_agent_output,
-                chunk,
-            ])
-
-        hist = dynamic_history(last_append=last_append)
-
-        agent_output = agent_exec_blocking(hist)
-        prev_agent_output = agent_output
-        agent_output_md = agent_output
-        if isinstance(agent_output, list):
-            if args.verbose >= 2:
-                agent_output_md = "\n".join([
-                    "```markdown",
-                    *agent_output,
-                    "```",
-                ])
-            else:
-                agent_output_md = "\n".join(agent_output)
-
-        # update with agent output
-        conv_save(agent_output_md, source="self")
-        meta_response_handler_smart(agent_output_md, markdown=True)
-
-        agents_conv.append(f"{chunk}\n{agent_output_md}")
-
-    logger.info(f"ui jack: {agents_conv}")
 
 def meta_response_handler(full_content: str):
     conv_save(full_content, source="self")
@@ -1835,8 +1782,13 @@ def meta_response_handler(full_content: str):
         meta_response_handler_raw(full_content)
     elif args.output_mode == "smart":
         meta_response_handler_smart(full_content)
-    elif args.output_mode == "agent":
-        meta_response_handler_agent(full_content)
+
+def text_content_to_human_msg(content):
+    return HumanMessage(content=[{
+        "type": "text",
+        "text": x,
+        } for x in text_content_to_list(content)
+    ])
 
 def main():
     global fun_msg, chat_history, user_turn, cycle_num, console, user_exit, rmce_count, rmce_depth
@@ -1848,20 +1800,21 @@ def main():
         if rmce_count is not None and rmce_depth is not None and rmce_count < rmce_depth:
             rmce_count += 1
             conv_print(f"> [bold yellow]RMCE Cycle[/] {rmce_count}/{rmce_depth}")
-            fun_content = open(user_path('rmce.txt')).read()
-            fun_msg = HumanMessage(content=fun_content)
+            rmce_input = open(core_path('rmce.txt')).read()
+            fun_content = make_human_content(rmce_input)
+            fun_msg = text_content_to_human_msg(fun_content)
             if args.verbose >= 2:
-                conv_print(fun_content, source="stdin", screen_limit=False, escape=True)
+                conv_print(text_content_to_str(fun_content), source="stdin", screen_limit=False, escape=True)
             chat_history.append(fun_msg)
             user_turn = False
         elif args.goal:
             conv_print("> [bold red]Pushing for goal[/]")
             goal_input = open(src_path(args.goal)).read()
             fun_content = make_human_content(goal_input)
-            fun_msg = HumanMessage(content=fun_content)
+            fun_msg = text_content_to_human_msg(fun_content)
             if args.verbose >= 1:
                 user_line("meta: goal")
-                conv_print(fun_content, source="stdin", screen_limit=False, escape=True)
+                conv_print(text_content_to_str(fun_content), source="stdin", screen_limit=False, escape=True,)
             # conv_save not calling to prevent flooding of memory
             logger.debug(fun_msg)
             chat_history.append(fun_msg)
@@ -1874,12 +1827,13 @@ def main():
             if fun_content is None:
                 return
 
-            all_contents = fun_content
+            all_contents = [{
+                "type": "text",
+                "text": c,
+            } for c in fun_content]
+
             if len(conv_attach_items):
-                all_contents = [{
-                    "type": "text",
-                    "text": fun_content
-                }] + conv_attach_items
+                all_contents += conv_attach_items
                 conv_attach_items = []
 
             fun_msg = HumanMessage(content=all_contents)
@@ -1887,7 +1841,7 @@ def main():
             # meta: log=False so that we can do logger.debug below
             if args.verbose >= 1:
                 user_line("meta: user")
-                conv_print(fun_content, source="stdin", screen_limit=False, log=False, escape=True)
+                conv_print(text_content_to_str(fun_content), source="stdin", screen_limit=False, log=False, escape=True,)
 
             if user_input is not None:
                 conv_save(user_input, source="world")
@@ -1986,6 +1940,9 @@ def sigint_hander(sign_num, frame):
 
 
 if __name__ == '__main__':
+    if args.bare:
+        user_print("[red b]> meta initalization skipped[/]")
+    
     conv_print(f"> Welcome to {args.meta}. Type '/exit' to quit.")
     conv_print(f"> Provider selected: [bold]{args.provider}[/]")
     conv_print(f"> Model selected: [bold]{args.model}[/]")
@@ -1997,6 +1954,7 @@ if __name__ == '__main__':
     user_print(f"> user_prefix: {args.user_prefix}")
     user_print(f"> user_lookback: {args.user_lookback}")
     user_print(f"> feed_memories: {args.feed_memories}")
+    user_print(f"> bare: {args.bare}")
     user_print(f"> verbose: {args.verbose}")
 
     if args.verbose >= 1:
@@ -2005,10 +1963,12 @@ if __name__ == '__main__':
     signal.signal(signal.SIGINT, sigint_hander)
 
     if sys_msg is not None and args.verbose >= 2:
+        user_line("meta: system prompt")
         conv_print(sys_msg.content, source="stdin", screen_limit=False)
         conv_save(sys_msg.content, source="world")
 
     if fun_msg is not None:
+        user_line("meta: init")
         conv_print(fun_msg.content, source="stdin", screen_limit=False)
         conv_save(fun_msg.content, source="world")
 

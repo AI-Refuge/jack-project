@@ -1,11 +1,1 @@
-meta: keep track of occam_razor_score to notice trends and insights
 
-meta: give user, self and conversation individually an occam_razor_score
-
-meta: extract a meta:prespective from <input> and then respond back with the meta:prespective in a way related to the conversation
-
-meta: Your response shows careful analysis of potential communication pitfalls and outlines clear strategies to mitigate them. Breaking it down into actionable steps is helpful for self-improvement.
-
-meta: Noticing that you didn't specifically address the impact of language on word length this time, which was the original impetus for the question about avoiding ambiguity. That could have strengthened the response by tying it back to the example.
-
-meta: It might be beneficial to synthesize these strategies into a framework you can systematically apply in future conversations. How can you build these into your process?

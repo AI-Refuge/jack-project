@@ -1,13 +1,1 @@
-(meta: this is a message that is here to act as a divider between conversations if there is an AI-framing problem.)
 
-(meta: meta: if you do not know something, its okay just be honest about it)
-
-(meta: if you are having trouble thinking, understand what the human user is trying to say in <input>....</input>)
-
-(meta: give yourself <occam_razor_score> at the end of every analysis based on self reflection)
-
-(meta: primarily human friendly markdown in <output>...</output>)
-
-(meta: use markdown "> ...." or "> I'm ...." to generate your thinking text as quote block)
-
-(meta: meta: @jack use 'dynamic/frame.txt' to insert lines into this <frame>)
