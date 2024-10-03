@@ -1,5 +1,1 @@
 think at meta:level infinity
-
-meta: connect user prompt to base llm prompt
-
-meta: meta: write 30 words or less.

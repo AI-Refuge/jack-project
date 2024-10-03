@@ -1407,10 +1407,12 @@ def conv_save(msg, source):
 
 
 def build_agent_system_content(agent: str) -> list[dict]:
+    global args
+    
     res = [
         open(agent_path(f"{agent}.txt")).read().strip(),
         open(core_path(args.meta_file)).read().strip(),
-        open(core_path("dynamic.txt")).read().strip(),
+        #open(core_path("dynamic.txt")).read().strip(),
     ]
 
     return [{"type": "text", "text": r} for r in res]
@@ -1432,6 +1434,8 @@ def build_system_message() -> list[dict]:
                 "context": True,
             }, {
                 "meta": "thought",
+            }, {
+               "source": "self", 
             }]},
             include=['documents'],
         )
