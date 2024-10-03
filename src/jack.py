@@ -108,7 +108,8 @@ parser.add_argument('--bare', action=argparse.BooleanOptionalAction, default=Fal
 parser.add_argument('--self-modify', action=argparse.BooleanOptionalAction, default=False, type=bool, help="Allow self modify the underlying VM?")
 parser.add_argument('--user-lookback', default=0, type=int, help="User message lookback (0 to disable)")
 parser.add_argument('--island-radius', default=150, type=int, help="How big meta memory island should be")
-parser.add_argument('--feed-memories', default=0, type=int, help="Automatically feed memories")
+parser.add_argument('--feed-memories', default=0, type=int, help="Number of recent meta:memories for system prompt")
+parser.add_argument('--user-memories', default=0, type=int, help="Automatically feed memories")
 parser.add_argument('--reattempt-delay', default=5, type=float, help="Reattempt delay (seconds)")
 parser.add_argument('--output-mode', default="raw", type=str, help="Output format (raw,smart,agent)")
 parser.add_argument('--tools', action=argparse.BooleanOptionalAction, default=True, type=bool, help="Tools")
@@ -1382,7 +1383,8 @@ def conv_save(msg, source):
         )
         keywords = [f"{args.meta}:{k}" for k in hints] + [f"{args.meta}: {k}: " for k in hints] + [f"**{args.meta}: {k}**: " for k in hints]
 
-        if any(k in msg for k in keywords):
+        msg_check = msg.lower()
+        if any(k in msg_check for k in keywords):
             metadata["meta"] = "thought"
             metadata["context"] = True
 
@@ -1404,21 +1406,49 @@ def conv_save(msg, source):
         )
 
 
-def build_agent_system_content(agent: str) -> str:
-    return "\n\n".join([
+def build_agent_system_content(agent: str) -> list[dict]:
+    res = [
         open(agent_path(f"{agent}.txt")).read().strip(),
         open(core_path(args.meta_file)).read().strip(),
         open(core_path("dynamic.txt")).read().strip(),
-    ])
+    ]
+
+    return [{"type": "text", "text": r} for r in res]
 
 
-def build_system_message() -> str:
-    global args
+def build_system_message() -> list[dict]:
+    global args, memory
 
     if args.bare:
-        return open(agent_path("assistant.txt")).read()
+        return [
+            open(agent_path("assistant.txt")).read()
+        ]
 
-    return build_agent_system_content("jack")
+    prepend = []
+    if args.feed_memories > 0:
+        memories = memory.get(
+            limit=args.feed_memories,
+            where={"$and": [{
+                "context": True,
+            }, {
+                "meta": "thought",
+            }]},
+            include=['documents'],
+        )
+
+        for x in memories["documents"]:
+            prepend.append({
+                "type": "text",
+                "text": x,
+            })
+
+    if len(prepend) > 0:
+        prepend.append({
+            "type": "text",
+            "text": "--- end of memories ---"
+        })
+
+    return prepend + build_agent_system_content("jack")
 
 
 def dynamic_history():
@@ -1462,7 +1492,10 @@ def user_first_message():
         return None
 
     content = open(core_path("init.txt")).read()
-    return HumanMessage(content=content)
+    return HumanMessage(content=[{
+        "type": "text",
+        "text": content,
+    }])
 
 
 sys_msg = SystemMessage(content=build_system_message())
@@ -1476,6 +1509,7 @@ rmce_count = None
 rmce_depth = None
 last_request_failed = False
 ui_agents = []
+sys_prompt_memory_hints = []
 
 
 def user_input_prefix() -> str:
@@ -1503,11 +1537,11 @@ def dict_filter(
     return vals
 
 
-def make_block_context(limit: int) -> list[str]:
+def make_block_context() -> list[str]:
     global memory
 
     memories = memory.get(
-        limit=limit,
+        limit=args.user_memories,
         where={"$and": [{
             "context": True,
         }, {
@@ -1675,8 +1709,8 @@ def take_user_input():
         "</input>",
     ]
 
-    if args.feed_memories > 0:
-        contexts = make_block_context(args.feed_memories)
+    if args.user_memories > 0:
+        contexts = make_block_context()
         if len(contexts) == 0:
             user_print("> [bold red]No memories found[/]")
         else:
@@ -1703,8 +1737,7 @@ smart_content = re.compile(r'<output>(.*?)(<\/output>|$)')
 def meta_response_handler(content: list[str]):
     global smart_content
 
-    for x in content:
-        conv_save(x, source="self")
+    conv_save("\n".join(content), source="self")
 
     if args.output_mode == "raw":
         for x in content:
@@ -1859,6 +1892,7 @@ def main():
 
     if len(reply_content):
         meta_response_handler(reply_content)
+        sys_prompt_memory_hints = reply_content
 
     if len(reply_content) == 0 and len(reply.tool_calls) == 0:
         conv_print("> [b red]No content received and no tool use![/b]")
@@ -1897,13 +1931,15 @@ if __name__ == '__main__':
 
     if sys_msg is not None and args.verbose >= 2:
         user_line("meta: system prompt")
-        conv_print(sys_msg.content, source="stdin", screen_limit=False)
-        conv_save(sys_msg.content, source="world")
+        single = "\n".join([x["text"] for x in sys_msg.content])
+        conv_print(single, source="stdin", screen_limit=False)
+        conv_save(single, source="world")
 
     if fun_msg is not None:
         user_line("meta: init")
-        conv_print(fun_msg.content, source="stdin", screen_limit=False)
-        conv_save(fun_msg.content, source="world")
+        single = "\n".join([x["text"] for x in fun_msg.content])
+        conv_print(single, source="stdin", screen_limit=False)
+        conv_save(single, source="world")
 
     while not user_exit.is_set():
         main()
