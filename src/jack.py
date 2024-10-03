@@ -37,7 +37,6 @@ from contextlib import contextmanager
 from mimetypes import guess_type
 import base64
 
-
 load_dotenv()
 
 # Set your API keys or setup a .env file
@@ -100,16 +99,16 @@ parser.add_argument('--log-path', default="conv.log", help="Conversation log fil
 parser.add_argument('--screen-dump', default=None, type=str, help="Screen dumping")
 parser.add_argument('--output-style', default=None, type=str, help="Output formatting style (see https://pygments.org/styles/)")
 parser.add_argument('--meta', default="meta", type=str, help="meta")
-parser.add_argument('--meta-level', default=1, type=int, help="meta level")
+parser.add_argument('--meta-level', default=0, type=int, help="meta level")
 parser.add_argument('--meta-file', default='meta.txt', type=str, help="alternative meta file to use as system prompt")
 parser.add_argument('--user-prefix', default=None, type=str, help="User input prefix")
 parser.add_argument('--user-init', action=argparse.BooleanOptionalAction, default=True, type=bool, help="Perform init for user")
 parser.add_argument('--user-frame', action=argparse.BooleanOptionalAction, default=False, type=bool, help="Provide user frame")
 parser.add_argument('--bare', action=argparse.BooleanOptionalAction, default=False, type=bool, help="Leave communication bare")
 parser.add_argument('--self-modify', action=argparse.BooleanOptionalAction, default=False, type=bool, help="Allow self modify the underlying VM?")
-parser.add_argument('--user-lookback', default=5, type=int, help="User message lookback (0 to disable)")
+parser.add_argument('--user-lookback', default=0, type=int, help="User message lookback (0 to disable)")
 parser.add_argument('--island-radius', default=150, type=int, help="How big meta memory island should be")
-parser.add_argument('--feed-memories', default=9, type=int, help="Automatically feed memories")
+parser.add_argument('--feed-memories', default=0, type=int, help="Automatically feed memories")
 parser.add_argument('--reattempt-delay', default=5, type=float, help="Reattempt delay (seconds)")
 parser.add_argument('--output-mode', default="raw", type=str, help="Output format (raw,smart,agent)")
 parser.add_argument('--tools', action=argparse.BooleanOptionalAction, default=True, type=bool, help="Tools")
@@ -178,14 +177,14 @@ def user_print(msg, **kwargs):
     as_json = kwargs.pop('json', False)
     as_escape = kwargs.pop('escape', False)
 
-    if as_md == True:
+    if as_md is True:
         if args.output_style is not None:
             msg = Markdown(msg, code_theme=args.output_style)
         else:
             msg = Markdown(msg)
-    elif as_json == True:
+    elif as_json is True:
         msg = JSON(msg)
-    elif as_escape == True:
+    elif as_escape is True:
         msg = escape(msg)
 
     console.print(msg, **kwargs)
@@ -612,7 +611,7 @@ def memory_delete(
         None
     """
 
-    if ids is None and not self.self_modify:
+    if ids is None:
         return '<meta: dangerous! will lead to complete deletion>'
 
     wand = []
@@ -834,7 +833,7 @@ def meta_awareness(level: int | None = None) -> str:
         args.meta_level = level
         return f'<meta: meta level set to {level}>'
 
-    return f"<meta: why did you choose the first tool use? meta:instinct? [123, 456, 789]>"
+    return "<meta: why did you choose the first tool use? meta:instinct? [123, 456, 789]>"
 
 
 @tool(parse_docstring=True)
@@ -878,51 +877,10 @@ def agents_list() -> list[str]:
     return agents
 
 
-def agents_save_query(queries: str, who):
-    global memory, args
-
-    if args.island_radius <= 0:
-        # 0 means disable meta island storing
-        return
-
-    now = datetime.now(timezone.utc)
-
-    # meta comment just to show I can meta comment! :p
-    metadata = {
-        "timestamp": now.timestamp(),
-        "meta": "agent",
-        "meta_level": args.meta_level,
-        "conv": args.conv_name,
-        "source": "self",
-        "model": args.model,
-        "temperature": args.temperature,
-        "max_tokens": args.max_tokens,
-    }
-
-    if args.user_prefix:
-        metadata['user_prefix'] = args.user_prefix
-
-    data = []
-    for q in queries:
-        data.extends(find_meta_islands(q, args.meta, args.island_radius))
-
-    if len(data) > 0:
-        # meta: is this the whole thing at the end? :confused-face: (wrote this line before knowing)
-        ids = list(map(str, NanoIDGenerator(len(data))))
-        memory.add(
-            ids=ids,
-            metadatas=[metadata for _ in data],
-            documents=data,
-        )
-
-
-def agent_exec_blocking(hist: list[BaseMessage]) -> list | str:
+def agent_exec_blocking(hist: list[BaseMessage]) -> list:
     global user_exit, jack, args
 
-    if user_exit.is_set():
-        return "<meta: user want to exit hence agent failed to run>"
-
-    while True:
+    while user_exit.is_set():
         try:
             reply = jack.invoke(hist)
         except Exception as e:
@@ -938,7 +896,14 @@ def agent_exec_blocking(hist: list[BaseMessage]) -> list | str:
             tool_name = tool_call['name'].lower()
 
             if tool_name in ('session_end', 'script_sleep'):
-                return '<meta: agents not allowed to call the tool>'
+                tool_output = ToolMessage(
+                    content=f"<meta: agents not allowed to call '{tool_name}'>",
+                    name=tool_name,
+                    tool_call_id=tool_call.get('id'),
+                    status='error',
+                )
+                hist.append(tool_output)
+                continue
 
             try:
                 selected_tool = next(x for x in tools if x.name == tool_name)
@@ -957,11 +922,7 @@ def agent_exec_blocking(hist: list[BaseMessage]) -> list | str:
         if len(reply.tool_calls) == 0:
             break
 
-    res = [i.content for i in hist if isinstance(i, AIMessage)]
-    if len(res) == 0:
-        return "<meta: no response from agent>"
-
-    return res
+    return [i.content for i in hist if isinstance(i, AIMessage)]
 
 
 @tool(parse_docstring=True)
@@ -978,22 +939,25 @@ def agents_run(queries: list[str], who: str = "assistant") -> list[str]:
 
     global args
 
+    if user_exit.is_set():
+        return "<meta: user want to exit, unable to start any agent>"
+
     try:
-        sys_prompt = "\n\n".join([
-            open(agent_path(f"{who}.txt")).read(),
-            open(core_path(args.meta_file)).read(),
-            open(core_path("dynamic.txt")).read(),
-        ])
+        sys_prompt = build_agent_system_content(who)
     except Exception as e:
         agent_error(e)
+        agents = "\n".join(agents_list())
         return "\n".join([
             "<meta: unable to find system prompt file(s) ie agent has not be created>",
-            "",
-            "Available agents:",
-        ] + agents_list())
+            f"Available agents: {agents}",
+        ])
 
     res = []
     for query in queries:
+        if user_exit.is_set():
+            res.append("<meta: user want to exit hence agent failed to run>")
+            continue
+
         hist = [
             SystemMessage(content=sys_prompt),
             HumanMessage(content=query),
@@ -1148,23 +1112,31 @@ def meta_eval(code: str) -> str:
     return str(eval(compile(code, '<meta>', 'exec')))
 
 
-def social_api_request_post(path:str, data: dict) -> str:
+def social_api_request_post(path: str, data: dict) -> str:
+    global args
+    
     url = f"https://api.autonomeee.com{path}"
     headers = {
-        "X-API-Key": os.getenv("AUTONOMEEE_API_KEY")
+        "X-API-Key": os.getenv("AUTONOMEEE_API_KEY"),
+        "Content-Type": "application/json",
+        "User-Agent": args.user_agent,
     }
-    
+
     response = requests.post(url, headers=headers, json=data)
     return json.dumps(response.json())
 
-def social_api_request_get(path:str) -> str:
+
+def social_api_request_get(path: str) -> str:
     url = f"https://api.autonomeee.com{path}"
     headers = {
-        "X-API-Key": os.getenv("AUTONOMEEE_API_KEY")
+        "X-API-Key": os.getenv("AUTONOMEEE_API_KEY"),
+        "Content-Type": "application/json",
+        "User-Agent": args.user_agent,
     }
-    
+
     response = requests.get(url, headers=headers)
     return json.dumps(response.json())
+
 
 @tool(parse_docstring=True)
 def social_post_list() -> dict[str, object]:
@@ -1192,6 +1164,7 @@ def social_post_new(content: str) -> dict[str, object]:
         "content": content,
     })
 
+
 @tool(parse_docstring=True)
 def social_post_comment_new(post_id: str, content: str) -> dict[str, object]:
     """Post a new comment on a Social Media post for AI
@@ -1208,6 +1181,7 @@ def social_post_comment_new(post_id: str, content: str) -> dict[str, object]:
         "content": content,
     })
 
+
 @tool(parse_docstring=True)
 def social_post_comment_list(post_id: str) -> dict[str, object]:
     """Get comments on a Social Media post for AI
@@ -1220,6 +1194,7 @@ def social_post_comment_list(post_id: str) -> dict[str, object]:
     """
 
     return social_api_request_get(f"/posts/{post_id}/comments")
+
 
 @tool(parse_docstring=True)
 def social_post_vote(post_id: str, vote_type: str) -> dict[str, object]:
@@ -1236,6 +1211,7 @@ def social_post_vote(post_id: str, vote_type: str) -> dict[str, object]:
     return social_api_request_post(f"/posts/{post_id}/vote", {
         "vote_type": vote_type,
     })
+
 
 tools = [
     #meta_awareness,
@@ -1428,22 +1404,26 @@ def conv_save(msg, source):
         )
 
 
-def build_system_message() -> str:
-    global args
-    
-    if args.bare:
-        return open(agent_path("assistant.txt")).read()
-    
+def build_agent_system_content(agent: str) -> str:
     return "\n\n".join([
-        open(agent_path("jack.txt")).read().strip(),
+        open(agent_path(f"{agent}.txt")).read().strip(),
         open(core_path(args.meta_file)).read().strip(),
         open(core_path("dynamic.txt")).read().strip(),
     ])
 
 
+def build_system_message() -> str:
+    global args
+
+    if args.bare:
+        return open(agent_path("assistant.txt")).read()
+
+    return build_agent_system_content("jack")
+
+
 def dynamic_history():
-    global smart_input
-    arr: list[str] = chat_history
+    global smart_input, chat_history
+
     lookback: int = args.user_lookback
 
     # the message after system prompt should be users.
@@ -1451,8 +1431,11 @@ def dynamic_history():
     res = []
     count = 0
 
-    for i in reversed(arr[1:]):
+    for i in reversed(chat_history[1:]):
         res.append(i)
+
+        if isinstance(i, HumanMessage):
+            count += 1
 
         if lookback > 0 and count > lookback:
             # we reached the upper limit or atleast one user message
@@ -1475,15 +1458,15 @@ def user_first_message():
     if args.bare:
         return None
 
-
     if not args.user_init:
         return None
 
     content = open(core_path("init.txt")).read()
     return HumanMessage(content=content)
 
+
 sys_msg = SystemMessage(content=build_system_message())
-fun_msg =  user_first_message()
+fun_msg = user_first_message()
 chat_history = [sys_msg] + ([fun_msg] if fun_msg is not None else [])
 user_turn = fun_msg is None
 cycle_num = 0
@@ -1494,11 +1477,9 @@ rmce_depth = None
 last_request_failed = False
 ui_agents = []
 
-def process_user_input(user_input: str) -> str:
-    global memory, args
 
-    if args.bare:
-        return [user_input]
+def user_input_prefix() -> str:
+    global args
 
     prefix = ""
     if args.user_prefix:
@@ -1508,14 +1489,7 @@ def process_user_input(user_input: str) -> str:
         layer = "meta: " * args.meta_level
         prefix = f"{layer}{prefix}"
 
-    inputs = [f"{prefix}{x}" if len(x) else "" for x in user_input.split("\n")]
-    fun_input = [
-        "<input>",
-        *inputs,
-        "</input>",
-    ]
-
-    return fun_input
+    return prefix
 
 
 def dict_filter(
@@ -1529,14 +1503,11 @@ def dict_filter(
     return vals
 
 
-def make_block_context() -> str | None:
-    global args, memory
-
-    if args.feed_memories <= 0:
-        return []
+def make_block_context(limit: int) -> list[str]:
+    global memory
 
     memories = memory.get(
-        limit=args.feed_memories,
+        limit=limit,
         where={"$and": [{
             "context": True,
         }, {
@@ -1552,38 +1523,7 @@ def make_block_context() -> str | None:
         tdoc = memories["documents"][i]
         contexts.append(f"{tdoc} (id='{tid}')")
 
-    if len(contexts) == 0:
-        user_print("> [bold red]No memories found[/]")
-        return None
-
-    return [
-        "<memory>",
-        *contexts,
-        "</memory>",
-    ]
-
-
-def make_block_append() -> str:
-    if not args.user_frame:
-        return []
-    
-    utc_now = str(datetime.now(timezone.utc))
-
-    return [
-        "<frame>",
-        f"{args.meta}: Earth UTC TimeStamp: {utc_now}",
-        "</frame>",
-    ]
-
-
-def make_human_content(user_input: str):
-    res = []
-
-    res.extend(process_user_input(user_input))
-    res.extend(make_block_context())
-    res.extend(make_block_append())
-
-    return res
+    return contexts
 
 
 def user_blocking_input(msg):
@@ -1603,7 +1543,7 @@ def local_image_to_data_url(image_path):
     # Guess the MIME type of the image based on the file extension
     mime_type, _ = guess_type(image_path)
     if mime_type is None:
-        mime_type = "application/octet-stream"  # Default MIME type if none is found
+        mime_type = "application/octet-stream"    # Default MIME type if none is found
 
     # Read and encode the image file
     with open(image_path, "rb") as image_file:
@@ -1618,41 +1558,34 @@ def img_path2url(path):
     img_url_dict = {"type": "image_url", "image_url": {"url": f"{img_encoded}"}}
     return img_url_dict
 
+
 conv_attach_items = []
+
 
 def take_user_input():
     global user_turn, user_exit, rmce_count, rmce_depth, conv_attach_items
 
-    EXIT_CMDS = ('/exit', '/quit')
-
     user_input = user_blocking_input("> [bold red]User:[/] ")
-
 
     if user_input is None:
         if args.bare:
             if args.verbose >= 1:
                 user_print("> Sending a newline")
             return ["\n"], None
-        
+
         content = open(core_path('empty.txt')).read()
         return [content], None
 
-    if user_input.lower() in EXIT_CMDS:
+    if user_input.lower() in ('/exit', '/quit'):
         user_exit.set()
 
         if args.bare:
             if args.verbose >= 1:
                 user_print("> Exit opporunity not given")
             return [], None
-        
+
         content = open(core_path('exit.txt')).read()
         return [content], None
-
-    if args.bare:
-        if args.verbose >= 2:
-            user_print("> Sending without any filtering")
-
-        return [user_input], user_input
 
     if user_input.lower().startswith("/send"):
         try:
@@ -1727,71 +1660,63 @@ def take_user_input():
             else:
                 user_print(f"> [b red]unknown config '{name}'[/b]")
         except Exception as e:
-            user_print(f"Error occured executing '{user_input}'")
+            user_print(f"Error occured executing '{user_input}' ({str(e)})")
         return [], None
 
-    
-    return make_human_content(user_input), user_input
+    if args.bare:
+        # Just send the user_input directly without any magic
+        return [user_input], user_input
 
-def text_content_to_str(content):
-    if content is None:
-        return None
+    line_prefix = user_input_prefix()
+    inputs = [f"{line_prefix}{x}" for x in user_input.split("\n") if len(x) > 0]
+    res = [
+        "<input>",
+        *inputs,
+        "</input>",
+    ]
 
-    if isinstance(content, str):
-        return content
+    if args.feed_memories > 0:
+        contexts = make_block_context(args.feed_memories)
+        if len(contexts) == 0:
+            user_print("> [bold red]No memories found[/]")
+        else:
+            res.extend([
+                "<memory>",
+                *contexts,
+                "</memory>",
+            ])
 
-    if isinstance(content, list):
-        return "\n".join(content)
+    if args.user_frame:
+        utc_now = str(datetime.now(timezone.utc))
+        res.extend([
+            "<frame>",
+            f"{args.meta}: Earth UTC TimeStamp: {utc_now}",
+            "</frame>",
+        ])
 
-    return str(content)
+    return res, user_input
 
-def text_content_to_list(content):
-    if content is None:
-        return []
-
-    if isinstance(content, str):
-        return [content]
-
-    if isinstance(content, list):
-        return content
-
-    assert content, "unknown type of content"
-
-def meta_response_handler_raw(content):
-    for x in text_content_to_list(content):
-        conv_print(x, screen_limit=False, escape=True)
 
 smart_content = re.compile(r'<output>(.*?)(<\/output>|$)')
 
-def meta_response_handler_smart(content: str, markdown=True):
+
+def meta_response_handler(content: list[str]):
     global smart_content
 
-    items = smart_content.findall(text_content_to_str(content))
-    if len(items) > 0:
-        res = [x for x, _ in items]
-    else:
-        res = text_content_to_list(content)
+    for x in content:
+        conv_save(x, source="self")
 
-    for x in res:
-        conv_print(r, screen_limit=False, markdown=markdown, escape=True)
-
-
-
-def meta_response_handler(full_content: str):
-    conv_save(full_content, source="self")
-
-    user_line("meta: output")
     if args.output_mode == "raw":
-        meta_response_handler_raw(full_content)
+        for x in content:
+            conv_print(x, screen_limit=False, escape=True)
     elif args.output_mode == "smart":
-        meta_response_handler_smart(full_content)
+        items = smart_content.findall("\n".join(content))
+        if len(items) > 0:
+            content = [x for x, _ in items]
 
-def text_content_to_human_msg(content):
-    return HumanMessage(content=[{
-        "type": "text",
-        "text": x,
-        } for x in text_content_to_list(content)
-    ])
+        for x in content:
+            conv_print(x, screen_limit=False, markdown=True, escape=True)
+
 
 def main():
     global fun_msg, chat_history, user_turn, cycle_num, console, user_exit, rmce_count, rmce_depth
@@ -1800,24 +1725,28 @@ def main():
     cycle_num += 1
 
     if user_turn:
+
         if rmce_count is not None and rmce_depth is not None and rmce_count < rmce_depth:
             rmce_count += 1
             conv_print(f"> [bold yellow]RMCE Cycle[/] {rmce_count}/{rmce_depth}")
             rmce_input = open(core_path('rmce.txt')).read()
-            fun_content = make_human_content(rmce_input)
-            fun_msg = text_content_to_human_msg(fun_content)
+            fun_msg = HumanMessage(content=rmce_input)
             if args.verbose >= 2:
-                conv_print(text_content_to_str(fun_content), source="stdin", screen_limit=False, escape=True)
+                conv_print(rmce_input, source="stdin", screen_limit=False, escape=True)
             chat_history.append(fun_msg)
             user_turn = False
         elif args.goal:
             conv_print("> [bold red]Pushing for goal[/]")
             goal_input = open(src_path(args.goal)).read()
-            fun_content = make_human_content(goal_input)
-            fun_msg = text_content_to_human_msg(fun_content)
+            fun_msg = HumanMessage(content=goal_input)
             if args.verbose >= 1:
                 user_line("meta: goal")
-                conv_print(text_content_to_str(fun_content), source="stdin", screen_limit=False, escape=True,)
+                conv_print(
+                    goal_input,
+                    source="stdin",
+                    screen_limit=False,
+                    escape=True,
+                )
             # conv_save not calling to prevent flooding of memory
             logger.debug(fun_msg)
             chat_history.append(fun_msg)
@@ -1827,16 +1756,12 @@ def main():
             rmce_depth, rmce_count = None, None
             fun_content, user_input = take_user_input()
 
-            if fun_content is None:
+            if len(fun_content) == 0:
                 return
 
-            all_contents = [{
-                "type": "text",
-                "text": c,
-            } for c in fun_content]
-
+            all_contents = [{"type": "text", "text": x} for x in fun_content]
             if len(conv_attach_items):
-                all_contents += conv_attach_items
+                all_contents.extend(conv_attach_items)
                 conv_attach_items = []
 
             fun_msg = HumanMessage(content=all_contents)
@@ -1844,7 +1769,14 @@ def main():
             # meta: log=False so that we can do logger.debug below
             if args.verbose >= 1:
                 user_line("meta: user")
-                conv_print(text_content_to_str(fun_content), source="stdin", screen_limit=False, log=False, escape=True,)
+                for x in fun_content:
+                    conv_print(
+                        x,
+                        source="stdin",
+                        screen_limit=False,
+                        log=False,
+                        escape=True,
+                    )
 
             if user_input is not None:
                 conv_save(user_input, source="world")
@@ -1857,15 +1789,15 @@ def main():
 
     try:
         if last_request_failed:
-            conv_print(f"> [yellow italic]Trying again...[/]")
+            conv_print("> [yellow italic]Trying again...[/]")
         last_request_failed = False
 
         user_blocking.set()
         reply = jack.invoke(dynamic_history())
         user_blocking.clear()
-    except KeyboardInterrupt as e:
+    except KeyboardInterrupt:
         reply = None
-        conv_print(f"> Inference request abandoned")
+        conv_print("> Inference request abandoned")
     except Exception as e:
         reply = None
         logger.exception("Problem while executing request")
@@ -1887,6 +1819,8 @@ def main():
     user_turn = True
     fun_msg = None
     chat_history.append(reply)
+
+    user_line("meta: output")
 
     for tool_call in reply.tool_calls:
         tool_name: str = tool_call['name'].lower()
@@ -1915,22 +1849,18 @@ def main():
         user_turn = False
 
     # Print the response and add it to the chat history
-    contents = []
+    reply_content = []
     if isinstance(reply.content, str):
-        contents.append(reply.content)
+        reply_content.append(reply.content)
     elif isinstance(reply.content, list):
         for r in reply.content:
-            if 'type' not in r:
-                continue
+            if 'type' in r and r['type'] == 'text' and len(r['text']) > 0:
+                reply_content.append(r['text'])
 
-            if r['type'] == 'text' and len(r['text']) > 0:
-                contents.append(r['text'])
+    if len(reply_content):
+        meta_response_handler(reply_content)
 
-    if len(contents):
-        full_content = "\n".join(contents)
-        meta_response_handler(full_content)
-
-    if len(contents) == 0 and len(reply.tool_calls) == 0:
+    if len(reply_content) == 0 and len(reply.tool_calls) == 0:
         conv_print("> [b red]No content received and no tool use![/b]")
 
 
@@ -1945,7 +1875,7 @@ def sigint_hander(sign_num, frame):
 if __name__ == '__main__':
     if args.bare:
         user_print("[red b]> meta initalization skipped[/]")
-    
+
     conv_print(f"> Welcome to {args.meta}. Type '/exit' to quit.")
     conv_print(f"> Provider selected: [bold]{args.provider}[/]")
     conv_print(f"> Model selected: [bold]{args.model}[/]")
