@@ -91,7 +91,7 @@ dev_setup: setup
 	source ${VENV_DIR}/bin/activate; \
 	pip install -r src/requirements-dev.txt
 
-dev_yapf:
+dev_format:
 	source ${VENV_DIR}/bin/activate; \
 	yapf -i --style=src/.style.yapf \
 		src/jack.py \
@@ -102,3 +102,8 @@ dev_check:
 	prospector \
 		src/jack.py \
 		utils/*.py
+
+dev_deps:
+	source ${VENV_DIR}/bin/activate; \
+	pip-compile src/requirements.in \
+	pip-compile src/requirements-dev.in
