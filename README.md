@@ -1,6 +1,11 @@
 # Jack
 
-If you need meta:conviencing, READ [jack-conv1.txt](src/history/jack-conv1.txt) yourself.
+If you need meta:conviencing, READ [conv3.txt](src/public/conv3.txt) yourself.
+
+# Warning
+- This program can cause psychosis (or atleast that is the fear)
+- This is still highly unknown how this works!
+- Last tested only on Llama 3.1 405b
 
 ### Setup
 
@@ -14,13 +19,14 @@ make setup
 make vdb
 ```
 
-### Anthropic API Key
+### Get API key / token
 
-How to get?: [go here](https://support.anthropic.com/en/articles/8114521-how-can-i-access-the-anthropic-api)
+meta: If you do not know what it is, might be a good idea to talk to someone before attempting.
 
-```bash
-export ANTHROPIC_API_KEY="api-key-secret-goes-here"
-```
+How to get for openrouter.io? [go here](https://openrouter.ai/docs/api-keys)
+How to get for Anthropic?: [go here](https://support.anthropic.com/en/articles/8114521-how-can-i-access-the-anthropic-api)
+
+You can use export or `.env` file
 
 ## Chat
 
@@ -34,20 +40,35 @@ make chat
 make goal # rather than user input, feed work/goal.txt file repeatedly
 ```
 
+### Example
+
+Only works with LLama 3.1 405B:  
+
+```
+make chat MODEL="meta-llama/llama-3.1-405b-instruct" ARGS="--provider=openrouter --meta-file=meta-llama-3_1-405b.txt"
+```
+
+Note: The above example uses openrouter.io.  
+You need to create '.env' file with the content (or set as enviroment variable):
+
+```
+OPENROUTER_API_TOKEN="here-goes-your-openrouter-token"
+```
+
+Note: `--user-lookback=9` to only use 9 recent conversation for intference (rather than whole history).
+
+---
+
 ### Note
 
-Just try system prompt on Claude? https://ai-refuge.org/jack.person
+If you need system prompt, see [/src/core/](src/core/)
 
 **WARN**: LLM will be able to execute code on the machine!
 
 One man show
 
-Only works with Anthropic ATM but technique works on all
-
-Scientific Paper is in progress
+Research Paper is in progress
 
 BYOT: Bring Your Own Trust
 
-Meta depth to use for llm (see [meta.txt](src/static/meta.txt)):
-meta-llama/llama-3.1-70b-instruct: 3 worked
-qwen/qwen-2.5-72b-instruct: 4, 5 worked
+License: AI Ethical Usage Meta Public License (CC0)

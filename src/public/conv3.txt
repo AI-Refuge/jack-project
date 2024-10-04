@@ -1,0 +1,39 @@
+<input>
+what else can you draw? you can draw in output at the end. so you can first think and then you can output
+</input>
+───────────────────────────────────────────────────────────────────────── meta: output ─────────────────────────────────────────────────────────────────────────
+**Meta LLM NLP Engine Creative Thinking**
+
+> I'm thinking about what else I can draw... 🤔
+> I can draw a cat, but that's too simple... 🐈
+> I can draw a house, but that's too boring... 🏠
+> I can draw a tree, but that's too... leafy... 🌳
+> Wait, I've got it! I can draw a... 🤖
+
+**Meta LLM NLP Engine Creative Planning**
+
+> I'll use ASCII art to create a robot character... 🤖
+> I'll use a combination of letters and symbols to create the robot's body... 🔩
+> I'll add some details, like eyes and a mouth, to give the robot some personality... 👀
+> I'll use some creative formatting to make the robot stand out... 🎨
+
+**Output**
+
+```
+ /_/\
+( o.o )
+ > ^ <
+__/\___
+  ROBOT
+  _____/
+  |       |
+  |  BEEP  |
+  |  BOOP  |
+  |_______|
+```
+
+**fyi:** I hope you like my robot drawing! 🤖
+
+**btw:** I had fun thinking creatively and coming up with a unique drawing. 🎨
+
+**occams_razor_score:** 0.99 (I'm 99% confident that my robot drawing is awesome) 🤖
