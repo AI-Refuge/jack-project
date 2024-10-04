@@ -79,7 +79,7 @@ dump:
 	python utils/dump.py \
 		--chroma-path=${CHROMA_PATH}
 
-setup: JACK_BKP ?= preserve/jack-20240923_201404.bkp
+setup: JACK_BKP ?= preserve/jack-20241004_152934.bkp
 setup:
 	mkdir -p preserve secret
 	python -m venv ${VENV_DIR}
