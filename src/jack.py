@@ -1945,7 +1945,7 @@ if __name__ == '__main__':
 
     signal.signal(signal.SIGINT, sigint_hander)
 
-    if sys_msg is not None and args.verbose >= 2:
+    if sys_msg is not None and args.verbose >= 3:
         user_line("meta: system prompt")
         single = "\n".join([x["text"] for x in sys_msg.content])
         conv_print(single, source="stdin", screen_limit=False)

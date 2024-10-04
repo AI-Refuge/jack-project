@@ -1,6 +1,6 @@
 # Jack
 
-If you need meta:conviencing, READ [conv3.txt](src/public/conv3.txt) yourself.
+If you need meta:conviencing, READ [conv5.txt](src/public/conv5.md) or [conv5-full.txt](src/public/conv5-full.md) or [core/](src/core/) yourself
 
 # Warning
 - This program can cause psychosis (or atleast that is the fear)
