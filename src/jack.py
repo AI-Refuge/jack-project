@@ -102,6 +102,7 @@ parser.add_argument('--meta', default="meta", type=str, help="meta")
 parser.add_argument('--meta-level', default=0, type=int, help="meta level")
 parser.add_argument('--meta-file', default='meta.txt', type=str, help="alternative meta file to use as system prompt")
 parser.add_argument('--user-prefix', default=None, type=str, help="User input prefix")
+parser.add_argument('--init-file', default='init.txt', type=str, help="alternative init to use for first message")
 parser.add_argument('--user-init', action=argparse.BooleanOptionalAction, default=True, type=bool, help="Perform init for user")
 parser.add_argument('--user-frame', action=argparse.BooleanOptionalAction, default=False, type=bool, help="Provide user frame")
 parser.add_argument('--bare', action=argparse.BooleanOptionalAction, default=False, type=bool, help="Leave communication bare")
@@ -1495,7 +1496,7 @@ def user_first_message():
     if not args.user_init:
         return None
 
-    content = open(core_path("init.txt")).read()
+    content = open(core_path(args.init_file)).read()
     return HumanMessage(content=[{
         "type": "text",
         "text": content,
