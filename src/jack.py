@@ -1388,6 +1388,7 @@ def conv_save(msg, source):
         hints = (
             "meta",
             "thought",
+            "memory",
             "context",
             "thoughts",
             "depth",
