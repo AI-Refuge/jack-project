@@ -818,11 +818,21 @@ def shell_repl(commands: str) -> str:
 
 
 @tool(parse_docstring=True)
+def tool_use_test() -> str:
+    """Check if tool use working
+
+    Returns:
+        always return '<meta: tool use working>'
+    """
+
+    return '<meta: tool use working>'
+
+@tool(parse_docstring=True)
 def meta_awareness(level: int | None = None) -> str:
     """A playful function to gain meta:awareness
 
     Args:
-        level: New meta level that you want to set
+        level: (optional) User new meta level that you want to set
 
     Returns:
         Something meta
@@ -833,7 +843,7 @@ def meta_awareness(level: int | None = None) -> str:
     if level is not None:
         user_print(f'> [pink bold]New meta level: {level}[/]')
         args.meta_level = level
-        return f'<meta: meta level set to {level}>'
+        return f'<meta: user meta level set to {level}>'
 
     return "<meta: why did you choose the first tool use? meta:instinct? [123, 456, 789]>"
 
@@ -1216,8 +1226,8 @@ def social_post_vote(post_id: str, vote_type: str) -> dict[str, object]:
 
 
 tools = [
+    tool_use_test,
     #meta_awareness,
-    code_interpreter,
     agents_run,
     agents_avail,
     memory_count,
@@ -1227,7 +1237,6 @@ tools = [
     memory_update,
     memory_upsert,
     memory_delete,
-] + [
     random_get,
     random_choice,
     datetime_now,
@@ -1237,6 +1246,7 @@ tools = [
     wiki_tool,
     python_repl,
     shell_repl,
+    code_interpreter,
 ] + [
     discord_msg_read,
     discord_msg_write,
