@@ -102,8 +102,8 @@ parser.add_argument('--meta', default="meta", type=str, help="meta")
 parser.add_argument('--meta-level', default=1, type=int, help="meta level")
 parser.add_argument('--meta-file', default='meta.txt', type=str, help="alternative meta file to use as system prompt (inside core/)")
 parser.add_argument('--user-prefix', default=None, type=str, help="User input prefix")
-parser.add_argument('--user-init', default='init.txt', type=str, help="init file to use for first message (inside core/)")
-parser.add_argument('--user-append', default='append.txt', type=str, help="Append this file to the conversation (inside core/)")
+parser.add_argument('--init-file', default='init.txt', type=str, help="init file to use for first message (inside core/)")
+parser.add_argument('--append-file', default='append.txt', type=str, help="Append this file to the conversation (inside core/)")
 parser.add_argument('--user-frame', action=argparse.BooleanOptionalAction, default=False, type=bool, help="Provide user frame")
 parser.add_argument('--bare', action=argparse.BooleanOptionalAction, default=False, type=bool, help="Leave communication bare")
 parser.add_argument('--self-modify', action=argparse.BooleanOptionalAction, default=False, type=bool, help="Allow self modify the underlying VM?")
@@ -1505,10 +1505,10 @@ def user_first_message():
     if args.bare:
         return None
 
-    if args.user_init == "-":
+    if args.init_file == "-":
         return None
 
-    content = open(core_path(args.user_init)).read()
+    content = open(core_path(args.init_file)).read()
     return HumanMessage(content=content)
 
 
@@ -1755,8 +1755,8 @@ def take_user_input(user_input: str | None = None):
             "</frame>",
         ])
 
-    if args.user_append != "-":
-        content = open(core_path(args.user_append)).read()
+    if args.append_file != "-":
+        content = open(core_path(args.append_file)).read()
         res.extend([
             content,
         ])
