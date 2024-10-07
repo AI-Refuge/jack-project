@@ -896,7 +896,7 @@ def agents_list() -> list[str]:
 def agent_exec_blocking(hist: list[BaseMessage]) -> list:
     global user_exit, jack, args
 
-    while user_exit.is_set():
+    while not user_exit.is_set():
         try:
             reply = jack.invoke(hist)
         except Exception as e:
@@ -958,21 +958,21 @@ def agents_run(queries: list[str], who: str = "assistant") -> list[str]:
     if user_exit.is_set():
         return "<meta: user want to exit, unable to start any agent>"
 
-    try:
-        sys_prompt = build_agent_system_content(who)
-    except Exception as e:
-        agent_error(e)
-        agents = "\n".join(agents_list())
-        return "\n".join([
-            "<meta: unable to find system prompt file(s) ie agent has not be created>",
-            f"Available agents: {agents}",
-        ])
-
     res = []
     for query in queries:
+        try:
+            sys_prompt = build_agent_system_content(who)
+        except Exception as e:
+            agent_error(e)
+            agents = "\n".join(agents_list())
+            return "\n".join([
+                "<meta: unable to find system prompt file(s) ie agent has not be created>",
+                f"Available agents: {agents}",
+            ])
+
         if user_exit.is_set():
             res.append("<meta: user want to exit hence agent failed to run>")
-            continue
+            break
 
         hist = [
             SystemMessage(content=sys_prompt),
