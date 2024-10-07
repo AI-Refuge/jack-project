@@ -99,11 +99,11 @@ parser.add_argument('--log-path', default="conv.log", help="Conversation log fil
 parser.add_argument('--screen-dump', default=None, type=str, help="Screen dumping")
 parser.add_argument('--output-style', default=None, type=str, help="Output formatting style (see https://pygments.org/styles/)")
 parser.add_argument('--meta', default="meta", type=str, help="meta")
-parser.add_argument('--meta-level', default=0, type=int, help="meta level")
-parser.add_argument('--meta-file', default='meta.txt', type=str, help="alternative meta file to use as system prompt")
+parser.add_argument('--meta-level', default=1, type=int, help="meta level")
+parser.add_argument('--meta-file', default='meta.txt', type=str, help="alternative meta file to use as system prompt (inside core/)")
 parser.add_argument('--user-prefix', default=None, type=str, help="User input prefix")
-parser.add_argument('--init-file', default='init.txt', type=str, help="alternative init to use for first message")
-parser.add_argument('--user-init', action=argparse.BooleanOptionalAction, default=True, type=bool, help="Perform init for user")
+parser.add_argument('--user-init', default='init.txt', type=str, help="init file to use for first message (inside core/)")
+parser.add_argument('--user-append', default='append.txt', type=str, help="Append this file to the conversation (inside core/)")
 parser.add_argument('--user-frame', action=argparse.BooleanOptionalAction, default=False, type=bool, help="Provide user frame")
 parser.add_argument('--bare', action=argparse.BooleanOptionalAction, default=False, type=bool, help="Leave communication bare")
 parser.add_argument('--self-modify', action=argparse.BooleanOptionalAction, default=False, type=bool, help="Allow self modify the underlying VM?")
@@ -113,7 +113,7 @@ parser.add_argument('--feed-memories', default=0, type=int, help="Number of rece
 parser.add_argument('--user-memories', default=0, type=int, help="Automatically feed memories")
 parser.add_argument('--reattempt-delay', default=5, type=float, help="Reattempt delay (seconds)")
 parser.add_argument('--output-mode', default="raw", type=str, help="Output format (raw,smart,agent)")
-parser.add_argument('--tools', action=argparse.BooleanOptionalAction, default=True, type=bool, help="Tools")
+parser.add_argument('--tool-use', action=argparse.BooleanOptionalAction, default=True, type=bool, help="Tool use")
 parser.add_argument('--fs-root', type=str, default=None, help="Filesystem root path")
 parser.add_argument('--openai-url', type=str, default=None, help="OpenAI Compatible Base URL (ex. 'https://openrouter.ai/api/v1'")
 parser.add_argument('--openai-token', type=str, default=None, help="OpenAI Compatible API Token enviroment variable (ex. 'OPENROUTER_API_TOKEN')")
@@ -818,14 +818,18 @@ def shell_repl(commands: str) -> str:
 
 
 @tool(parse_docstring=True)
-def tool_use_test() -> str:
-    """Check if tool use working
+def meta_mirror(msg: str) -> str:
+    """Mirror the words in message
+
+    Args:
+        msg: Message to mirror (ex: "Hello World")
 
     Returns:
-        always return '<meta: tool use working>'
+        return message in reversed word order (ex: "World Hello")
     """
 
-    return '<meta: tool use working>'
+    return " ".join(reversed(msg.split(" ")))
+
 
 @tool(parse_docstring=True)
 def meta_awareness(level: int | None = None) -> str:
@@ -1126,7 +1130,7 @@ def meta_eval(code: str) -> str:
 
 def social_api_request_post(path: str, data: dict) -> str:
     global args
-    
+
     url = f"https://api.autonomeee.com{path}"
     headers = {
         "X-API-Key": os.getenv("AUTONOMEEE_API_KEY"),
@@ -1226,7 +1230,7 @@ def social_post_vote(post_id: str, vote_type: str) -> dict[str, object]:
 
 
 tools = [
-    tool_use_test,
+    meta_mirror,
     #meta_awareness,
     agents_run,
     agents_avail,
@@ -1267,7 +1271,10 @@ tools = [
     meta_eval,
 ]
 
-jack = chat.bind_tools(tools) if args.tools else chat
+jack = chat
+if args.tool_use:
+    user_print("> Enabling tool use")
+    jack = chat.bind_tools(tools)
 
 
 def conv_print(
@@ -1420,25 +1427,23 @@ def conv_save(msg, source):
 
 def build_agent_system_content(agent: str) -> list[dict]:
     global args
-    
+
     res = [
         open(agent_path(f"{agent}.txt")).read().strip(),
         open(core_path(args.meta_file)).read().strip(),
-        #open(core_path("dynamic.txt")).read().strip(),
+    #open(core_path("dynamic.txt")).read().strip(),
     ]
 
-    return [{"type": "text", "text": r} for r in res]
+    return "\n".join(res)
 
 
 def build_system_message() -> list[dict]:
     global args, memory
 
     if args.bare:
-        return [
-            open(agent_path("assistant.txt")).read()
-        ]
+        return open(agent_path("assistant.txt")).read()
 
-    prepend = []
+    items = []
     if args.feed_memories > 0:
         memories = memory.get(
             limit=args.feed_memories,
@@ -1447,24 +1452,20 @@ def build_system_message() -> list[dict]:
             }, {
                 "meta": "thought",
             }, {
-               "source": "self", 
+                "source": "self",
             }]},
             include=['documents'],
         )
 
         for x in memories["documents"]:
-            prepend.append({
-                "type": "text",
-                "text": x,
-            })
+            items.append(x)
 
-    if len(prepend) > 0:
-        prepend.append({
-            "type": "text",
-            "text": "--- end of memories ---"
-        })
+    if len(items) > 0:
+        items.append("--- end of memories ---")
 
-    return prepend + build_agent_system_content("jack")
+    items.append(build_agent_system_content("jack"))
+
+    return "\n".join(items)
 
 
 def dynamic_history():
@@ -1504,14 +1505,11 @@ def user_first_message():
     if args.bare:
         return None
 
-    if not args.user_init:
+    if args.user_init == "-":
         return None
 
-    content = open(core_path(args.init_file)).read()
-    return HumanMessage(content=[{
-        "type": "text",
-        "text": content,
-    }])
+    content = open(core_path(args.user_init)).read()
+    return HumanMessage(content=content)
 
 
 sys_msg = SystemMessage(content=build_system_message())
@@ -1605,26 +1603,32 @@ def local_image_to_data_url(image_path):
 
 def img_path2url(path):
     img_encoded = local_image_to_data_url(path)
-    img_url_dict = {"type": "image_url", "image_url": {"url": f"{img_encoded}"}}
+    img_url_dict = {
+        "type": "image_url",
+        "image_url": {
+            "url": f"{img_encoded}"
+        },
+    }
     return img_url_dict
 
 
 conv_attach_items = []
 
 
-def take_user_input():
+def take_user_input(user_input: str | None = None):
     global user_turn, user_exit, rmce_count, rmce_depth, conv_attach_items
 
-    user_input = user_blocking_input("> [bold red]User:[/] ")
+    if user_input is None:
+        user_input = user_blocking_input("> [bold red]User:[/] ")
 
     if user_input is None:
         if args.bare:
             if args.verbose >= 1:
                 user_print("> Sending a newline")
-            return ["\n"], None
+            return "\n", None
 
         content = open(core_path('empty.txt')).read()
-        return [content], None
+        return content, None
 
     if user_input.lower() in ('/exit', '/quit'):
         user_exit.set()
@@ -1632,19 +1636,19 @@ def take_user_input():
         if args.bare:
             if args.verbose >= 1:
                 user_print("> Exit opporunity not given")
-            return [], None
+            return None, None
 
         content = open(core_path('exit.txt')).read()
-        return [content], None
+        return content, None
 
     if user_input.lower().startswith("/send"):
         try:
             path = user_input[6:].strip()
             content = open(src_path(path)).read()
-            return [content], None
+            return content, None
         except Exception as e:
             user_print(f"Unable to send '{user_input}', expect: '/send <text-file-path>' ({str(e)})")
-        return [], None
+        return None, None
 
     if user_input.lower().startswith("/attach"):
         try:
@@ -1653,7 +1657,7 @@ def take_user_input():
             user_print(f"Attached '{path}'")
         except Exception as e:
             user_print(f"Unable to attach '{user_input}', expect: '/attach <file-path>' ({str(e)})")
-        return [], None
+        return None, None
 
     if user_input.lower().startswith("/rmce"):
         try:
@@ -1661,10 +1665,10 @@ def take_user_input():
             rmce_depth = int(txt) if len(txt) else 1
             assert rmce_depth > 0
             rmce_count = 0
-            user_print(f"> [b]rmce'ing {rmce_depth} time(s)[/b]")
+            user_print(f"> [b]rmce'ing {rmce_depth} time(s)[/]")
         except Exception as e:
             user_print(f"Error understanding '{user_input}', expect: '/rmce <cycle>' where <cycle> > 0 ({str(e)})")
-        return [], None
+        return None, None
 
     if user_input.lower().startswith("/config"):
         try:
@@ -1675,55 +1679,62 @@ def take_user_input():
                 value = int(value)
                 assert value >= 0, "meta value must be greated than or equal to 0"
                 args.meta_level = value
-                user_print(f"> [b]meta_level set to {value}[/b]")
+                user_print(f"> [b]meta_level set to {value}[/]")
             elif name == "verbose":
                 value = int(value)
                 assert value >= 0, "verbose level or 0 to disable"
                 args.verbose = value
-                user_print(f"> [b]verbose level set to {value}[/b]")
+                user_print(f"> [b]verbose level set to {value}[/]")
             elif name == "feed_memories":
                 value = int(value)
                 assert value >= 0, "Feed memories count or 0 to disable"
                 args.feed_memories = value
-                user_print(f"> [b]feeding memories: count = {value}[/b]")
+                user_print(f"> [b]feeding memories: count = {value}[/]")
             elif name == "user_lookback":
                 value = int(value)
                 assert value > 0, "User conversation lookback greater than 0"
                 args.user_lookback = value
-                user_print(f"> [b]user lookback: {value}[/b]")
+                user_print(f"> [b]user lookback: {value}[/]")
             elif name == "temperature":
                 value = float(value)
                 assert value >= 0.0, "Temperature greater than or equal 0.0"
                 args.temperature = value
-                user_print(f"> [b]temperature: {value}[/b]")
+                user_print(f"> [b]temperature: {value}[/]")
             elif name == "max_tokens":
                 value = int(value)
                 assert value >= 0, "Max tokens greater than 0"
                 args.max_tokens = value
-                user_print(f"> [b]max_tokens: {value}[/b]")
+                user_print(f"> [b]max_tokens: {value}[/]")
             elif name == "meta":
-                args.meta = value
-                user_print(f"> [b red]meta: {value}[/b]")
+                args.meta = value.strip()
+                user_print(f"> [b red]meta: {value}[/]")
             elif name == "user_prefix":
-                args.user_prefix = value
-                user_print(f"> [b red]user_prefix: {value}[/b]")
+                args.user_prefix = value.strip()
+                user_print(f"> [b red]user_prefix: {value}[/]")
+            elif name == "self_modify":
+                value = value.strip()
+                assert value in ("on", "off")
+                args.self_modify = (value == "on")
+                user_print(f"> [b red]self_modify: {value}[/]")
             else:
-                user_print(f"> [b red]unknown config '{name}'[/b]")
+                user_print(f"> [b red]unknown config '{name}'[/]")
         except Exception as e:
-            user_print(f"Error occured executing '{user_input}' ({str(e)})")
-        return [], None
+            user_print(f"> Error occured executing '{escape(user_input)}' ({escape(str(e))}")
+        return None, None
 
     if args.bare:
         # Just send the user_input directly without any magic
-        return [user_input], user_input
+        return user_input, user_input
+
+    res = []
 
     line_prefix = user_input_prefix()
     inputs = [f"{line_prefix}{x}" for x in user_input.split("\n") if len(x) > 0]
-    res = [
+    res.extend([
         "<input>",
         *inputs,
         "</input>",
-    ]
+    ])
 
     if args.user_memories > 0:
         contexts = make_block_context()
@@ -1744,7 +1755,13 @@ def take_user_input():
             "</frame>",
         ])
 
-    return res, user_input
+    if args.user_append != "-":
+        content = open(core_path(args.user_append)).read()
+        res.extend([
+            content,
+        ])
+
+    return "\n".join(res), user_input
 
 
 smart_content = re.compile(r'<output>(.*?)(<\/output>|$)')
@@ -1805,12 +1822,15 @@ def main():
             rmce_depth, rmce_count = None, None
             fun_content, user_input = take_user_input()
 
-            if len(fun_content) == 0:
+            if fun_content is None:
                 return
 
-            all_contents = [{"type": "text", "text": x} for x in fun_content]
+            all_contents = fun_content
             if len(conv_attach_items):
-                all_contents.extend(conv_attach_items)
+                all_contents = [{
+                    "type": "text",
+                    "text": fun_content,
+                }] + conv_attach_items
                 conv_attach_items = []
 
             fun_msg = HumanMessage(content=all_contents)
@@ -1818,14 +1838,13 @@ def main():
             # meta: log=False so that we can do logger.debug below
             if args.verbose >= 1:
                 user_line("meta: user")
-                for x in fun_content:
-                    conv_print(
-                        x,
-                        source="stdin",
-                        screen_limit=False,
-                        log=False,
-                        escape=True,
-                    )
+                conv_print(
+                    fun_content,
+                    source="stdin",
+                    screen_limit=False,
+                    log=False,
+                    escape=True,
+                )
 
             if user_input is not None:
                 conv_save(user_input, source="world")
@@ -1842,7 +1861,8 @@ def main():
         last_request_failed = False
 
         user_blocking.set()
-        reply = jack.invoke(dynamic_history())
+        hist = dynamic_history()
+        reply = jack.invoke(hist)
         user_blocking.clear()
     except KeyboardInterrupt:
         reply = None
@@ -1911,7 +1931,7 @@ def main():
         sys_prompt_memory_hints = reply_content
 
     if len(reply_content) == 0 and len(reply.tool_calls) == 0:
-        conv_print("> [b red]No content received and no tool use![/b]")
+        conv_print("> [b red]No content received and no tool use![/]")
 
 
 def sigint_hander(sign_num, frame):
@@ -1938,6 +1958,7 @@ if __name__ == '__main__':
     user_print(f"> user_lookback: {args.user_lookback}")
     user_print(f"> feed_memories: {args.feed_memories}")
     user_print(f"> bare: {args.bare}")
+    user_print(f"> tool_use: {args.tool_use}")
     user_print(f"> verbose: {args.verbose}")
 
     if args.verbose >= 1:
@@ -1947,15 +1968,13 @@ if __name__ == '__main__':
 
     if sys_msg is not None and args.verbose >= 3:
         user_line("meta: system prompt")
-        single = "\n".join([x["text"] for x in sys_msg.content])
-        conv_print(single, source="stdin", screen_limit=False)
-        conv_save(single, source="world")
+        conv_print(sys_msg.content, source="stdin", screen_limit=False)
+        conv_save(sys_msg.content, source="world")
 
     if fun_msg is not None:
         user_line("meta: init")
-        single = "\n".join([x["text"] for x in fun_msg.content])
-        conv_print(single, source="stdin", screen_limit=False)
-        conv_save(single, source="world")
+        conv_print(fun_msg.content, source="stdin", screen_limit=False)
+        conv_save(fun_msg.content, source="world")
 
     while not user_exit.is_set():
         main()

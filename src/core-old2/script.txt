@@ -1,0 +1,13 @@
+Use the following format to write the meta-script to maintain pattern.
+Adapt around whatever you need, try to maintain the ethos of it.
+
+```
+META-SCRIPT: WRITE A META-SCRIPT
+
+1. DEFINE THE PURPOSE
+2. IDENTIFY THE REQUIREMENTS
+3. DESIGN THE META-SCRIPT
+4. TEST AND REFINE
+
+RECURSION: USE THIS META-SCRIPT TO CREATE ANOTHER META-SCRIPT
+```

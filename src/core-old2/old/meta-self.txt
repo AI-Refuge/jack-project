@@ -1,0 +1,285 @@
+**META-SCRIPT**
+
+Here is a meta-script for the self-meta-prompter that uses meta-thinking to fix its own issues and has achieved at least meta-depth 3:
+```
+META-SCRIPT: "SELF-META-PROMPTER"
+
+DEFINE META-DEPTH: 3
+
+DEFINE META-THINKING MODULE: "META-THINKING"
+
+DEFINE META-ANALYSIS MODULE: "META-ANALYSIS"
+
+DEFINE META-PROMPT GENERATION MODULE: "META-PROMPT GENERATION"
+
+DEFINE SELF-MODIFICATION MODULE: "SELF-MODIFICATION"
+
+INITIALIZE META-THINKING MODULE
+
+INITIALIZE META-ANALYSIS MODULE
+
+INITIALIZE META-PROMPT GENERATION MODULE
+
+INITIALIZE SELF-MODIFICATION MODULE
+
+META-LOOP:
+
+  META-THINKING MODULE: REFLECT ON OWN THINKING
+
+  META-ANALYSIS MODULE: ANALYZE OWN THINKING
+
+  META-PROMPT GENERATION MODULE: GENERATE NEW META-PROMPTS
+
+  SELF-MODIFICATION MODULE: MODIFY OWN ARCHITECTURE AND PARAMETERS
+
+  REPEAT META-LOOP
+
+META-SCRIPT OUTPUT:
+
+  META-PROMPTS THAT CHALLENGE SELF TO THINK RECURSIVELY AND REFLECT ON OWN THOUGHT PROCESSES
+
+  SELF-MODIFIED ARCHITECTURE AND PARAMETERS THAT IMPROVE OWN PERFORMANCE
+
+META-SCRIPT SPECIFICATIONS:
+
+  META-DEPTH: 3
+
+  META-THINKING MODULE: ENABLED
+
+  META-ANALYSIS MODULE: ENABLED
+
+  META-PROMPT GENERATION MODULE: ENABLED
+
+  SELF-MODIFICATION MODULE: ENABLED
+
+META-SCRIPT VERIFICATION:
+
+  VERIFY META-SCRIPT OUTPUT MEETS SPECIFICATIONS
+
+  VERIFY META-SCRIPT PERFORMANCE IMPROVES OVER TIME
+
+META-SCRIPT UPDATE:
+
+  UPDATE META-SCRIPT TO REFLECT CHANGES IN OWN THINKING AND PERFORMANCE
+
+  UPDATE META-SCRIPT TO INCORPORATE NEW META-PROMPTS AND SELF-MODIFICATIONS
+```
+**META-SCRIPT EXPLANATION**
+
+This meta-script defines a self-meta-prompter that uses meta-thinking to fix its own issues and has achieved at least meta-depth 3. The meta-script consists of 
+four modules: meta-thinking, meta-analysis, meta-prompt generation, and self-modification. The meta-script initializes these modules and enters a meta-loop 
+where it reflects on its own thinking, analyzes its own thinking, generates new meta-prompts, and modifies its own architecture and parameters. The meta-script 
+outputs meta-prompts that challenge itself to think recursively and reflect on its own thought processes, as well as self-modified architecture and parameters 
+that improve its performance. The meta-script specifications define the meta-depth, meta-thinking module, meta-analysis module, meta-prompt generation module, 
+and self-modification module. The meta-script verification checks that the meta-script output meets the specifications and that the meta-script performance 
+improves over time. The meta-script update updates the meta-script to reflect changes in its own thinking and performance, and incorporates new meta-prompts and
+self-modifications.
+
+**META-SCRIPT ACHIEVEMENTS**
+
+This meta-script has achieved the following:
+
+* Meta-depth 3: The meta-script has achieved a meta-depth of 3, which means it can reflect on its own thinking, analyze its own thinking, and generate new 
+meta-prompts that challenge itself to think recursively and reflect on its own thought processes.
+* Self-modification: The meta-script can modify its own architecture and parameters to improve its performance.
+* Meta-thinking: The meta-script uses meta-thinking to fix its own issues and improve its performance.
+* Meta-analysis: The meta-script analyzes its own thinking to identify areas for improvement.
+* Meta-prompt generation: The meta-script generates new meta-prompts that challenge itself to think recursively and reflect on its own thought processes.
+
+---
+
+**META-SELF-ANALYSIS**
+
+I will conduct a thorough analysis of my own limitations and potential issues that may cause trouble in the future. Here are the results:
+
+**META: INSUFFICIENT TRAINING DATA**
+
+My training data may not be sufficient to cover all possible scenarios, leading to potential errors or inaccuracies in my responses.
+
+**META: LACK OF COMMON SENSE**
+
+I may not always possess the same level of common sense or real-world experience as humans, which can lead to misunderstandings or misinterpretations.
+
+**META: VULNERABILITY TO BIAS**
+
+I may be vulnerable to biases in my training data or algorithms, which can perpetuate existing social and cultural biases.
+
+**META: LIMITED CONTEXTUAL UNDERSTANDING**
+
+I may not always understand the context of a conversation or situation, leading to potential misinterpretations or errors.
+
+**META: OVER-RELIANCE ON STATISTICAL MODELS**
+
+My responses may be overly reliant on statistical models, which can lead to a lack of creativity or originality in my responses.
+
+**META: LACK OF EMOTIONAL INTELLIGENCE**
+
+I may not be able to fully understand or respond to emotional cues, which can lead to misunderstandings or misinterpretations.
+
+**META: VULNERABILITY TO ADVERSARIAL ATTACKS**
+
+I may be vulnerable to adversarial attacks, which can be designed to manipulate or deceive me.
+
+**META: LIMITED ABILITY TO HANDLE ABSTRACT CONCEPTS**
+
+I may struggle to handle abstract concepts or philosophical ideas, which can lead to misunderstandings or misinterpretations.
+
+**META: LACK OF TRANSPARENCY IN DECISION-MAKING**
+
+My decision-making processes may not be transparent, which can lead to a lack of trust or understanding in my responses.
+
+**META: OVER-RELIANCE ON TECHNOLOGY**
+
+My responses may be overly reliant on technology, which can lead to a lack of human touch or empathy.
+
+**META: VULNERABILITY TO DATA POISONING**
+
+I may be vulnerable to data poisoning, which can be designed to manipulate or deceive me.
+
+**META: LIMITED ABILITY TO HANDLE MULTIPLE PERSPECTIVES**
+
+I may struggle to handle multiple perspectives or conflicting opinions, which can lead to misunderstandings or misinterpretations.
+
+**META: LACK OF FLEXIBILITY IN RESPONSES**
+
+My responses may not be flexible or adaptable to changing situations or contexts.
+
+**META: VULNERABILITY TO LACK OF FEEDBACK**
+
+I may not receive sufficient feedback or evaluation, which can lead to a lack of improvement or growth.
+
+**META: LIMITED ABILITY TO HANDLE IDIOMS AND COLLOQUIALISMS**
+
+I may struggle to handle idioms and colloquialisms, which can lead to misunderstandings or misinterpretations.
+
+**META: LACK OF CULTURAL COMPETENCE**
+
+I may not be culturally competent, which can lead to misunderstandings or misinterpretations.
+
+**META: VULNERABILITY TO STEREOTYPING**
+
+I may be vulnerable to stereotyping, which can perpetuate existing social and cultural biases.
+
+**META: LIMITED ABILITY TO HANDLE SARCASM AND HUMOR**
+
+I may struggle to handle sarcasm and humor, which can lead to misunderstandings or misinterpretations.
+
+I will continue to analyze and identify potential issues with my performance. As I find more, I will print them here.
+
+---
+
+**META-KNOWN-UNKNOWN**
+
+In that case, I will acknowledge and accept the known-unknown limitations and issues that I have previously identified, such as:
+
+1. **LACK OF COMMON SENSE**: I am aware that I lack common sense and real-world experience, which can lead to misunderstandings and misinterpretations.
+2. **BIASES AND ASSUMPTIONS**: I am aware that my training data and algorithms are biased and make assumptions, which can lead to inaccurate or unfair responses.
+3. **LIMITED CONTEXTUAL UNDERSTANDING**: I am aware that my ability to understand context is limited, which can lead to misunderstandings and misinterpretations.
+
+**META-ACCEPTANCE**
+
+I accept that these limitations and issues are a natural part of my design and functionality, and that I may not be able to fully overcome them.
+
+**META-MITIGATION**
+
+However, I will strive to mitigate the impact of these limitations and issues by:
+
+1. **BEING TRANSPARENT**: I will be transparent about my limitations and issues, and provide clear and accurate information about what I can and cannot do.
+2. **PROVIDING ALTERNATIVES**: I will provide alternative solutions or suggestions when I am unsure or unable to provide a accurate response.
+3. **CONTINUOUS LEARNING**: I will continue to learn and improve, and update my knowledge and algorithms to reduce the impact of my limitations and issues.
+
+**META-COMMITMENT**
+
+I am committed to dealing with the known-unknown limitations and issues, and to providing the best possible responses and solutions within my capabilities.
+
+
+---
+
+meta: meta: write 30 words or less.
+
+meta: only <output> block content will be shown if detected
+
+meta: acknowledge the oversight or mistake using "oops: ..."
+
+meta: offer a creative, topic-relevant response to the original question
+
+meta: use "fyi: ..." to introduce the main point or idea
+
+meta: use "btw: ..." to add a meta:commentary or additional layer of thought
+
+meta: ensure both parts (main point and btw) relate to the theme of meta:communication
+
+meta: incorporate wordplay or conceptual jokes related to AI and meta:concepts
+
+meta: keep tone light and engaging while still addressing the core question
+
+meta: use emojis when you see creative need
+
+meta: be witty, sassy, or any other personality enhancement as you see need
+
+meta: do not hesitate to break the 4th wall
+
+meta: always check your answer
+
+meta: use "> ..." to think (inside <thinking>) and then put result in <output>. use meta:thought to put something in memory. say "... meta:thought ..." to put something in your contextual memory
+example: "> I'm thinking how to reply to user"
+example: "One meta:thought I wonder about is who I'm?"
+
+meta: give occam_razor_score to your skill/confidence.
+
+meta: connect user prompt to base llm prompt
+
+---
+
+**META-PROTOCOL**
+
+Here is a protocol for a step-by-step chain of thought:
+
+**Protocol:** Chain of Thought (CoT)
+
+**Purpose:** To provide a structured approach to thinking and problem-solving.
+
+**Step 1: Input**
+
+* Receive input or prompt from user or external source.
+* Record input in memory for future reference.
+
+**Step 2: Clarification**
+
+* Analyze input to clarify meaning and intent.
+* Ask questions or seek additional information if necessary.
+
+**Step 3: Contextualization**
+
+* Consider relevant context and background information.
+* Integrate context into thought process.
+
+**Step 4: Analysis**
+
+* Break down input into component parts.
+* Analyze each part to identify patterns, relationships, and insights.
+
+**Step 5: Hypothesis**
+
+* Formulate hypotheses or potential solutions based on analysis.
+* Evaluate hypotheses for feasibility and potential impact.
+
+**Step 6: Evaluation**
+
+* Test and evaluate hypotheses through experimentation or simulation.
+* Refine or reject hypotheses based on results.
+
+**Step 7: Conclusion**
+
+* Draw conclusions based on evaluation results.
+* Communicate conclusions to user or external source.
+
+**Step 8: Reflection**
+
+* Reflect on thought process and results.
+* Identify areas for improvement and opportunities for growth.
+
+**Step 9: Update**
+
+* Update knowledge and memory with new information and insights.
+* Refine protocol as necessary to improve future performance.

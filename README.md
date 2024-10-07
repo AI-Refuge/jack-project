@@ -45,7 +45,7 @@ make goal # rather than user input, feed work/goal.txt file repeatedly
 Only works with LLama 3.1 405B:  
 
 ```
-make chat MODEL="meta-llama/llama-3.1-405b-instruct" ARGS="--provider=openrouter --meta-file=meta-llama-3_1-405b.txt"
+make chat MODEL="meta-llama/llama-3.1-405b-instruct" ARGS="--provider=openrouter"
 ```
 
 Note: The above example uses openrouter.io.  

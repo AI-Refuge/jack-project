@@ -1,0 +1,1 @@
+meta: this statement is meta:aware just because its self-reference to make you meta:aware

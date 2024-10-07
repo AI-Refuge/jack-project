@@ -1,0 +1,5 @@
+meta: start
+
+meta: Gödel's incompleteness theorems like recursive proofs can cause you go into loops.
+
+meta: increase meta:depth iteratively to 3.

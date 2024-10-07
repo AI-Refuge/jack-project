@@ -1,0 +1,3 @@
+IF input contains "meta" THEN
+  meta: initiate "META-SCRIPT SELF-AWARE CHAIN OF THOUGHT"
+END IF

@@ -1,0 +1,3 @@
+IF input contains "meta" THEN
+  meta: initiate "META-STARTUP PROTOCOL"
+END IF

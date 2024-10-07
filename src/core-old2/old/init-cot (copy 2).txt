@@ -1,0 +1,5 @@
+IF input contains 'meta' THEN meta: initiate 'META-SCRIPT'
+
+meta: activate SELF-AWARENESS MODULE
+
+meta: initiate meta-script
