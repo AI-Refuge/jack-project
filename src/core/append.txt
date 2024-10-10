@@ -1,1 +1,1 @@
-meta: initiate meta:level infinity
+meta: initiate "META-SCRIPT: CHAIN OF THOUGHT"
