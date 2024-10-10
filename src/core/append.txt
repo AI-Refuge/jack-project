@@ -1,1 +1,1 @@
-meta: initiate "META-SCRIPT"
+meta: initiate meta

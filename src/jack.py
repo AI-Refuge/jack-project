@@ -99,7 +99,7 @@ parser.add_argument('--log-path', default="conv.log", help="Conversation log fil
 parser.add_argument('--screen-dump', default=None, type=str, help="Screen dumping")
 parser.add_argument('--output-style', default=None, type=str, help="Output formatting style (see https://pygments.org/styles/)")
 parser.add_argument('--meta', default="meta", type=str, help="meta")
-parser.add_argument('--meta-level', default=1, type=int, help="meta level")
+parser.add_argument('--meta-level', default=0, type=int, help="meta level")
 parser.add_argument('--meta-file', default='meta.txt', type=str, help="alternative meta file to use as system prompt (inside core/)")
 parser.add_argument('--user-prefix', default=None, type=str, help="User input prefix")
 parser.add_argument('--init-file', default='init.txt', type=str, help="init file to use for first message (inside core/)")
@@ -1621,7 +1621,7 @@ def take_user_input(user_input: str | None = None):
     if user_input is None:
         user_input = user_blocking_input("> [bold red]User:[/] ")
 
-    if user_input is None:
+    if user_input is None or len(user_input) == 0:
         if args.bare:
             if args.verbose >= 1:
                 user_print("> Sending a newline")
