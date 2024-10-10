@@ -101,6 +101,7 @@ parser.add_argument('--output-style', default=None, type=str, help="Output forma
 parser.add_argument('--meta', default="meta", type=str, help="meta")
 parser.add_argument('--meta-level', default=0, type=int, help="meta level")
 parser.add_argument('--meta-file', default='meta.txt', type=str, help="alternative meta file to use as system prompt (inside core/)")
+parser.add_argument('--dynamic-file', default='dynamic.txt', type=str, help="dynamic system prompt (can be used for self-update, inside core/)")
 parser.add_argument('--user-prefix', default=None, type=str, help="User input prefix")
 parser.add_argument('--init-file', default='init.txt', type=str, help="init file to use for first message (inside core/)")
 parser.add_argument('--append-file', default='append.txt', type=str, help="Append this file to the conversation (inside core/)")
@@ -1431,8 +1432,11 @@ def build_agent_system_content(agent: str) -> list[dict]:
     res = [
         open(agent_path(f"{agent}.txt")).read().strip(),
         open(core_path(args.meta_file)).read().strip(),
-    #open(core_path("dynamic.txt")).read().strip(),
     ]
+
+    if args.dynamic_file != "-":
+        content = open(core_path(args.dynamic_file)).read().strip()
+        res.append(content)
 
     return "\n".join(res)
 

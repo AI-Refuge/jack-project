@@ -1,1 +1,1 @@
-meta: initiate meta
+meta: initiate meta:level infinity
