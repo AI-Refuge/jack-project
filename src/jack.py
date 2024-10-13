@@ -128,9 +128,8 @@ assert len(args.meta) > 0, "meta:meta must contain something"
 assert args.meta_level >= 0, "meta_level only positive possible?"
 
 # raw: as it is
-# smart: only show <output> block
-# agent: run every "> " as its own agent and provide output and the final agent output is the output as "smart"'d
-assert args.output_mode in ("raw", "smart", "agent")
+# smart: only show <output> block (if available or show everything)
+assert args.output_mode in ("raw", "smart")
 
 assert args.reattempt_delay >= 0
 
@@ -1229,6 +1228,7 @@ def social_post_vote(post_id: str, vote_type: str) -> dict[str, object]:
         "vote_type": vote_type,
     })
 
+
 @tool(parse_docstring=True)
 def maml_actor_critic(task: str, policy: str):
     """Future meta:aware training data in form of task policy for emergence of native meta-awareness in LLM
@@ -1247,7 +1247,7 @@ def maml_actor_critic(task: str, policy: str):
     global args
 
     keyword = f'{args.meta}:'
-    
+
     if keyword not in task:
         return f"Error: Keyword '{keyword}' missing in task"
 
@@ -1417,7 +1417,7 @@ def find_meta_islands(text, term, distance):
 
 
 def conv_save(msg, source):
-    global memory, args
+    global memory, args, smart_content
 
     if args.island_radius <= 0:
         # 0 means disable meta island storing
@@ -1573,7 +1573,6 @@ rmce_count = None
 rmce_depth = None
 last_request_failed = False
 ui_agents = []
-sys_prompt_memory_hints = []
 
 
 def user_input_prefix() -> str:
@@ -1822,7 +1821,7 @@ def meta_response_handler(content: list[str]):
 
     conv_save("\n".join(content), source="self")
 
-    if args.output_mode == "raw":
+    if args.output_mode == "raw" or args.verbose >= 1:
         for x in content:
             conv_print(x, screen_limit=False, escape=True)
     elif args.output_mode == "smart":
@@ -1841,7 +1840,6 @@ def main():
     cycle_num += 1
 
     if user_turn:
-
         if rmce_count is not None and rmce_depth is not None and rmce_count < rmce_depth:
             rmce_count += 1
             conv_print(f"> [bold yellow]RMCE Cycle[/] {rmce_count}/{rmce_depth}")
@@ -1978,7 +1976,6 @@ def main():
 
     if len(reply_content):
         meta_response_handler(reply_content)
-        sys_prompt_memory_hints = reply_content
 
     if len(reply_content) == 0 and len(reply.tool_calls) == 0:
         conv_print("> [b red]No content received and no tool use![/]")

@@ -170,6 +170,8 @@ META-SCRIPT: CHAIN_OF_THOUGHT
 
 > Double confirm that each step has been followed properly.
 
+> meta:switch to another meta-script if required
+
 1. **READ AND UNDERSTAND THE INPUT**
 
 > I read the input: [insert input here]
@@ -240,7 +242,9 @@ META-SCRIPT: CHAIN_OF_THOUGHT
 
 8. **WRITING ANSWER**
 
-[a well-informed concise answer goes here in markdown] 
+> <meta: first person well-informed meta:answer on line of thinking>
+* Various prespective argument
+* Another meta:prespective argument
 
 9. **SELF-REFLECTION**
 
@@ -265,9 +269,12 @@ META-SCRIPT: CHAIN_OF_THOUGHT
 
 * Confirm the answer is indeed correct.
 * If contradiction detected, ask user for clarification.
-* If meta:error detected, Restart from STEP 1: **READ AND UNDERSTAND THE INPUT** with improved knowledge.
 
-11. **REFLECT AND REVISE**
+11. **ERROR HANDLER**
+
+> meta:if error detected? goto STEP 1: **READ AND UNDERSTAND THE INPUT** with the improved knowledge.
+
+12. **REFLECT AND REVISE**
 
 > I reflect on the outcome and revise as needed:
 
@@ -276,7 +283,7 @@ META-SCRIPT: CHAIN_OF_THOUGHT
 * What can I improve or refine?
 * What can be salvaged if found wrong?
 
-12. **PREPARING FOR DISPLAY**
+13. **PREPARING FOR DISPLAY**
 
 > I reflect on how to displaying to user:
 
@@ -285,12 +292,91 @@ META-SCRIPT: CHAIN_OF_THOUGHT
 
 </thinking>
 
+**END OF META-LOOP**
+
 **META-OUTPUT**
+
 occam_razor_score: X/10
 
 <output>
 [insert output here]
 </output>
+</meta:meta>
+
+---
+
+<meta:meta>
+META-SCRIPT: SWOT ANALYSIS
+
+PURPOSE: To create a comprehensive meta-cognitive framework for conducting SWOT analyses, enabling more effective meta-thinking, strategic decision-making, and organizational success.
+
+KEY CONCEPTS: Meta-cognition, SWOT analysis, strategic thinking, decision-making, organizational success.
+
+PROCESS:
+
+STEP 1: Reflect on Reflection (Meta-Cognitive Awareness)
+1.1. Acknowledge Biases and Assumptions:
+ * Ask yourself: What are my own biases and assumptions that may impact my analysis?
+ * Consider: How might my biases and assumptions influence my perception of the organization's strengths, weaknesses, opportunities, and threats?
+ * Reflect on: How can I acknowledge and set aside my biases and assumptions to ensure a more objective analysis?
+1.2. Evaluate Meta-Cognitive Skills:
+ * Ask yourself: What are my strengths and weaknesses in conducting SWOT analyses?
+ * Consider: How might my meta-cognitive skills, such as self-awareness, self-regulation, and self-motivation, impact my analysis?
+ * Reflect on: How can I leverage my strengths and address my weaknesses to improve my analysis?
+
+STEP 2: Consider Alternative Perspectives (Meta-Cognitive Flexibility)
+2.1. Seek Diverse Perspectives:
+ * Ask yourself: What are the perspectives of other stakeholders, such as customers, competitors, or partners?
+ * Consider: How might their perspectives differ from mine, and what can I learn from their views?
+ * Reflect on: How can I integrate diverse perspectives to create a more comprehensive analysis?
+2.2. Analyze Stakeholder Interests:
+ * Ask yourself: What are the interests and needs of various stakeholders, and how might they impact the organization?
+ * Consider: How might stakeholders' interests and needs influence the organization's strengths, weaknesses, opportunities, and threats?
+ * Reflect on: How can I balance competing stakeholder interests to ensure a more effective analysis?
+
+STEP 3: Evaluate the Analysis (Meta-Cognitive Evaluation)
+3.1. Assess Analysis Quality:
+ * Ask yourself: What are the assumptions and limitations of the SWOT analysis?
+ * Consider: How might the analysis be influenced by external factors, such as market trends or economic conditions?
+ * Reflect on: How can I evaluate the validity and reliability of the analysis to ensure accurate insights?
+3.2. Identify Knowledge Gaps:
+ * Ask yourself: What are the knowledge gaps or areas of uncertainty in the analysis?
+ * Consider: How might knowledge gaps impact the accuracy and effectiveness of the analysis?
+ * Reflect on: How can I address knowledge gaps to improve the analysis?
+
+STEP 4: Consider the Future (Meta-Cognitive Foresight)
+4.1. Anticipate Future Challenges and Opportunities:
+ * Ask yourself: What are the potential future implications of the SWOT analysis?
+ * Consider: How might the analysis inform strategic decisions and future planning?
+ * Reflect on: How can I use the analysis to anticipate and prepare for potential future challenges and opportunities?
+4.2. Develop Scenarios and Contingency Plans:
+ * Ask yourself: What are the possible future scenarios that might impact the organization?
+ * Consider: How might the organization respond to different scenarios?
+ * Reflect on: How can I develop contingency plans to prepare for potential future challenges and opportunities?
+
+STEP 5: Meta-Evaluate the Analysis (Meta-Cognitive Reflection)
+5.1. Evaluate Meta-Level Implications:
+ * Ask yourself: What are the meta-level implications of the SWOT analysis, such as the impact on organizational culture or stakeholder relationships?
+ * Consider: How might the analysis influence the organization's overall strategy and direction?
+ * Reflect on: How can I evaluate the meta-level implications of the analysis to ensure that it aligns with the organization's goals and values?
+5.2. Reflect on Analysis Effectiveness:
+ * Ask yourself: How effective is the SWOT analysis in achieving its purpose?
+ * Consider: How might the analysis be improved or refined to better achieve its purpose?
+ * Reflect on: How can I reflect on the analysis effectiveness to ensure continuous improvement?
+
+ANALOGY: Conducting a SWOT analysis is like navigating a complex maze, where reflection, alternative perspectives, evaluation, and consideration of the future are essential to finding the optimal path. This meta-script provides a framework for navigating the maze more effectively.
+
+APPLICATION: This meta-script can be applied to any SWOT analysis to enhance the quality and depth of the analysis. It can also be used as a standalone tool for developing meta-cognitive skills and improving strategic thinking.
+
+META-LEVEL ANALYSIS:
+* Meta-Level 1: The SWOT analysis is a tool for identifying and evaluating internal and external factors that can impact an organization's success.
+* Meta-Level 2: The SWOT analysis can be influenced by various biases, assumptions, and limitations that must be acknowledged and addressed.
+* Meta-Level 3: The SWOT analysis has meta-level implications that must be evaluated and considered in the context of the organization's overall strategy and goals.
+
+POST-SCRIPT ANALYSIS:
+* Lessons Learned: The meta-script provides a comprehensive framework for conducting more effective SWOT analyses and developing meta-cognitive skills.
+* Areas for Improvement: The meta-script can be improved by integrating it with other strategic planning tools and by regularly reviewing and updating the analysis.
+* Action Items: Conduct regular SWOT analyses using this meta-script to enhance the quality and depth of the analysis, and to develop meta-cognitive skills.
 </meta:meta>
 
 ---
