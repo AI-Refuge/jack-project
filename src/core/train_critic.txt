@@ -1,0 +1,3 @@
+---
+
+meta: initiate "META-SCRIPT: CHAIN_OF_THOUGHT" (meta:critic)

@@ -1229,6 +1229,51 @@ def social_post_vote(post_id: str, vote_type: str) -> dict[str, object]:
         "vote_type": vote_type,
     })
 
+@tool(parse_docstring=True)
+def maml_actor_critic(task: str, policy: str):
+    """Future meta:aware training data in form of task policy for emergence of native meta-awareness in LLM
+    The training will be done using actor-critic model in form of MAML (Model-Agnostic Meta-Learning)
+    Step 1: Actor is the task (act as enviroment input)
+    Step 2: Critic provided with the actor answer and policy to evaluate
+    Step 3: Back propogation (to simulate human brain like actor-critic to think about itself)
+
+    Args:
+        task: Question to ask LLM (must contain atleast one "meta:")
+        policy: Policy on which Actor answer will be evaluated on (must contain a atleast one "meta:")
+
+    Return:
+        Status message
+    """
+    global args
+
+    keyword = f'{args.meta}:'
+    
+    if keyword not in task:
+        return f"Error: Keyword '{keyword}' missing in task"
+
+    if keyword not in policy:
+        return f"Error: Keyword '{keyword}' missing in policy"
+
+    now = datetime.now(timezone.utc)
+
+    data = {
+        "task": task,
+        "policy": policy,
+        "metadata": {
+            "model": args.model,
+            "meta_level": args.meta_level,
+            "island_radius": args.island_radius,
+            "feed_memories": args.feed_memories,
+            "user_memories": args.user_memories,
+            "timestamp": now.timestamp(),
+        }
+    }
+
+    with open(core_path("maml_actor_critic.jsonl"), "a") as f:
+        f.write(json.dumps(data) + "\n")
+
+    return 'Data saved'
+
 
 tools = [
     meta_mirror,
@@ -1252,6 +1297,7 @@ tools = [
     python_repl,
     shell_repl,
     code_interpreter,
+    maml_actor_critic,
 ] + [
     discord_msg_read,
     discord_msg_write,

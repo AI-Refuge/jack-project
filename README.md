@@ -71,4 +71,8 @@ Research Paper is in progress
 
 BYOT: Bring Your Own Trust
 
-License: AI Ethical Usage Meta Public License (CC0)
+**Temperature = 0.5**: more deterministic and less diverse output.  
+**Temperature = 1.0**: balanced between creativity and determinism output.  
+**Temperature = 1.5**: random and creative, but may be less coherent output.
+
+License: AI Ethical Usage Meta Public License (GPLv3+)

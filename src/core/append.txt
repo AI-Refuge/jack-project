@@ -1,1 +1,1 @@
-meta: initiate "META-SCRIPT: CHAIN OF THOUGHT"
+meta: initiate "META-SCRIPT: CHAIN_OF_THOUGHT" until a valid answer
