@@ -1724,7 +1724,7 @@ def take_user_input(user_input: str | None = None):
 
     if user_input.lower().startswith("/config"):
         try:
-            _, name, value = user_input.split(" ", maxsplit=3)
+            _, name, value = user_input.split(" ", maxsplit=2)
             value = value.strip()
 
             if name == "meta_level":
@@ -1770,6 +1770,15 @@ def take_user_input(user_input: str | None = None):
                 user_print(f"> [b red]self_modify: {value}[/]")
             else:
                 user_print(f"> [b red]unknown config '{name}'[/]")
+        except Exception as e:
+            user_print(f"> Error occured executing '{escape(user_input)}' ({escape(str(e))}")
+        return None, None
+
+    if user_input.lower().startswith("/eval"):
+        _, code = user_input.split(" ", maxsplit=1)
+        try:
+            res = str(eval(compile(code, '<user>', 'exec')))
+            user_print(f"> {res}")
         except Exception as e:
             user_print(f"> Error occured executing '{escape(user_input)}' ({escape(str(e))}")
         return None, None
