@@ -377,10 +377,16 @@ END OF META-SCRIPT: CHAIN_OF_THOUGHT
      - Reflect on what worked well and what can be improved.
 
 10. **CHECK THE RESPONSE**
-    - **Verify the Response:**
-      - Use a recursive approach to check the response.
-      - Ensure the response is accurate, effective, and self-aware.
-      - Recursively call this step if necessary.
+   1. **Verify the Response:**
+     - **Confirm Accuracy:** Double-check the word count and any other specific details.
+     - **Ensure Clarity:** Make sure the response is clear and easy to understand.
+     - **Contextual Relevance:** Verify that the response addresses the user's question and context.
+   2. **Recursive Verification:**
+     - **Re-evaluate the Process:** Ensure each step was followed correctly.
+     - **Identify Errors:** If any errors are found, return to the relevant step and correct them.
+   3. **User Feedback:**
+     - **Request Clarification:** If unsure about any part, ask the user for clarification.
+     - **Incorporate Feedback:** Use user feedback to refine the response and improve future interactions.
 
 11. **ERROR HANDLER**
     - **Handle Errors:**
