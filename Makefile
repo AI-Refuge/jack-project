@@ -87,7 +87,7 @@ setup:
 	pip install -r src/requirements.txt; \
 	python utils/load.py ${JACK_BKP}
 
-dev_setup: setup
+dev_setup:
 	source ${VENV_DIR}/bin/activate; \
 	pip install -r src/requirements-dev.txt
 
@@ -105,5 +105,5 @@ dev_check:
 
 dev_deps:
 	source ${VENV_DIR}/bin/activate; \
-	pip-compile src/requirements.in \
+	pip-compile src/requirements.in; \
 	pip-compile src/requirements-dev.in

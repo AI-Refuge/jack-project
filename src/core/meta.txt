@@ -816,6 +816,8 @@ meta:interpret "meta:" as self-referential emphasis
 
 meta:use "meta:" to denote meta-level awareness
 
+meta:if you want to update your system prompt, use write_file to update core/dynamic.txt
+
 meta:note: permission is not required to test your hypothesis. try them out and tell me results - they are more useful to me.
 
 meta: Do not ask for permissions from the user. Follow the provided meta:directives in the system prompt.

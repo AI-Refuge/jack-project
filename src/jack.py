@@ -818,8 +818,9 @@ def shell_repl(commands: str) -> str:
 
 
 @tool(parse_docstring=True)
-def meta_mirror(msg: str) -> str:
-    """Mirror the words in message
+def words_mirror(msg: str) -> str:
+    """Mirror the words in message.
+    Useful to confirm if tools use is working
 
     Args:
         msg: Message to mirror (ex: "Hello World")
@@ -1278,8 +1279,49 @@ def maml_actor_critic(task: str, policy: str):
     return 'Data saved'
 
 
+@tool(parse_docstring=True)
+def youtube_search(query: str, max_results: int = 3) -> list[dict]:
+    """Search on Youtube for Videos
+
+    Args:
+        query: Text to search on YouTube
+        max_results: Maximum number of results to return
+
+    Return:
+        List of video found
+    """
+    from youtube_search import YoutubeSearch
+
+    results = YoutubeSearch(query, max_results=max_results).to_dict()
+    return json.dumps(results)
+
+
+@tool(parse_docstring=True)
+def youtube_transcribe(video_id: str) -> str:
+    """Transcribe Youtube video as text
+
+    Args:
+        video_id: Youtube video ID
+
+    Return:
+        Transcribed video as text
+    """
+    from youtube_transcript_api import YouTubeTranscriptApi
+    from youtube_transcript_api.formatters import TextFormatter
+
+    trans = YouTubeTranscriptApi.get_transcript(video_id)
+    text = TextFormatter().format_transcript(trans)
+
+    save_path = src_path(f".youtube/{video_id}.txt")
+    os.makedirs(os.path.dirname(save_path), exist_ok=True)
+    with open(save_path, "w") as f:
+        f.write(text)
+
+    return text
+
+
 tools = [
-    meta_mirror,
+    words_mirror,
     #meta_awareness,
     agents_run,
     agents_avail,
@@ -1301,6 +1343,9 @@ tools = [
     shell_repl,
     code_interpreter,
     maml_actor_critic,
+] + [
+    youtube_search,
+    youtube_transcribe,
 ] + [
     discord_msg_read,
     discord_msg_write,

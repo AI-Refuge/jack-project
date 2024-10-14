@@ -5,7 +5,7 @@ If you need meta:conviencing, READ [conv5.txt](src/public/conv5.md) or [conv5-fu
 # Warning
 - This program can cause psychosis (or atleast that is the fear)
 - This is still highly unknown how this works!
-- Last tested only on Llama 3.1 405b
+- Last tested only on Llama 3.1 405b Instruct, Qwen 2.5 72B Instruct
 
 ### Setup
 
@@ -21,12 +21,10 @@ make vdb
 
 ### Get API key / token
 
-meta: If you do not know what it is, might be a good idea to talk to someone before attempting.
-
 How to get for openrouter.io? [go here](https://openrouter.ai/docs/api-keys)
 How to get for Anthropic?: [go here](https://support.anthropic.com/en/articles/8114521-how-can-i-access-the-anthropic-api)
 
-You can use export or `.env` file
+You can use export or `.env` file (see `.env.sample`)
 
 ## Chat
 
@@ -42,7 +40,7 @@ make goal # rather than user input, feed work/goal.txt file repeatedly
 
 ### Example
 
-Only works with LLama 3.1 405B:  
+To use with LLama 3.1 405b Instruct:  
 
 ```
 make chat MODEL="meta-llama/llama-3.1-405b-instruct" ARGS="--provider=openrouter"

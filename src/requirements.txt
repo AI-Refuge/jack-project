@@ -815,6 +815,8 @@ requests==2.32.3
     #   vllm
     #   wikipedia
     #   yfinance
+    #   youtube-search
+    #   youtube-transcript-api
 requests-oauthlib==2.0.0
     # via kubernetes
 requests-toolbelt==1.0.0
@@ -1027,6 +1029,10 @@ xxhash==3.5.0
 yarl==1.13.1
     # via aiohttp
 yfinance==0.2.44
+    # via -r src/requirements.in
+youtube-search==2.1.2
+    # via -r src/requirements.in
+youtube-transcript-api==0.6.2
     # via -r src/requirements.in
 zipp==3.20.2
     # via importlib-metadata
