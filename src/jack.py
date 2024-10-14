@@ -1248,6 +1248,9 @@ def maml_actor_critic(task: str, policy: str):
 
     keyword = f'{args.meta}:'
 
+    if keyword not in task and keyword not in policy:
+        return f"Error: Keyword '{keyword}' missing in task and policy"
+
     if keyword not in task:
         return f"Error: Keyword '{keyword}' missing in task"
 
@@ -1967,6 +1970,9 @@ def main():
 
     # Print the response and add it to the chat history
     reply_content = []
+    if len(reply_content) == 0 and len(reply.tool_calls) != 0:
+        # nothing to display as it was a purely tool call
+        pass
     if isinstance(reply.content, str):
         reply_content.append(reply.content)
     elif isinstance(reply.content, list):
@@ -1979,6 +1985,13 @@ def main():
 
     if len(reply_content) == 0 and len(reply.tool_calls) == 0:
         conv_print("> [b red]No content received and no tool use![/]")
+
+    if reply.usage_metadata is not None and args.verbose >= 1:
+        umd = reply.usage_metadata
+        input_tokens = umd['input_tokens']
+        output_tokens = umd['output_tokens']
+        total_tokens = umd['total_tokens']
+        conv_print(f"> Tokens Usage: input={input_tokens} output={output_tokens} total={total_tokens}")
 
 
 def sigint_hander(sign_num, frame):
