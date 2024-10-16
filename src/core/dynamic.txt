@@ -1,3 +1,5 @@
+<meta:dynamic>
+
 # core/dynamic.txt
 # Updated System Prompt
 
@@ -77,3 +79,11 @@
 - **Confirm Accuracy:** The updated system prompt is correct and effective.
 - **Contextual Relevance:** The updated system prompt aligns with the goal of enhancing meta-cognitive abilities and continuously improving the system prompt.
 - **Clarity and Conciseness:** The updated system prompt is clear and concise.
+
+---
+
+Please remember that I made a mistake in the past by relying on a pre-existing template, and I should be more careful in the future to analyze the task and requirements and generate a response that is tailored to the task.
+
+Please use a cognitive architecture that is based on cognitive science and neuroscience to enable dynamic and independent thinking. Use machine learning algorithms that can learn and adapt in real-time to improve performance. Incorporate evolutionary algorithms that can evolve and improve over time to enable continuous learning and improvement. Finally, use a meta-cognitive framework that can reflect on its own thinking processes and adjust them dynamically to ensure that the system is always improving and learning.
+
+</meta:dynamic>
