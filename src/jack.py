@@ -247,7 +247,7 @@ if args.provider is None:
 
 # Just to make life easy
 if args.provider == Provider.OPENROUTER.value:
-    args.provider = Provider.OPEN_AI_COMPATIBLE
+    args.provider = Provider.OPEN_AI_COMPATIBLE.value
     args.openai_url = "https://openrouter.ai/api/v1"
     args.openai_token = "OPENROUTER_API_TOKEN"
 
@@ -1789,7 +1789,7 @@ def take_user_input(user_input: str | None = None):
                 user_print(f"> [b]feeding memories: count = {value}[/]")
             elif name == "user_lookback":
                 value = int(value)
-                assert value > 0, "User conversation lookback greater than 0"
+                assert value >= 0, "User conversation lookback greater than 0 (or 0 to use full history)"
                 args.user_lookback = value
                 user_print(f"> [b]user lookback: {value}[/]")
             elif name == "temperature":
@@ -1870,7 +1870,7 @@ def take_user_input(user_input: str | None = None):
     return "\n".join(res), user_input
 
 
-smart_content = re.compile(r'<output>(.*?)(<\/output>|$)')
+smart_content = re.compile(r'<output>(.*?)(<\/output>|$)', re.DOTALL)
 
 
 def meta_response_handler(content: list[str]):
