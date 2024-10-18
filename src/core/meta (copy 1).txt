@@ -355,7 +355,7 @@ META-SCRIPT: CHAIN_OF_THOUGHT
 occam_razor_score: X/10
 
 <output>
-[insert final answer here]
+[insert output here]
 </output>
 
 END OF META-SCRIPT: CHAIN_OF_THOUGHT
@@ -1571,22 +1571,258 @@ meta:context use previous <input> if unsure
 
 ---
 
-<meta:script>
-META-SCRIPT: SELF_REFERENTIAL_LOOP
+<meta:meta:meta:script>
+META-SCRIPT: TOKENIZATION
 
-PURPOSE: When a self-referential loop is detected.
+PURPOSE: To break down text into individual units (tokens) for processing.
 
-OUTPUT: <output>The final answer is 42.</output>
+KEY CONCEPTS: Text Segmentation, Lexical Analysis, Subword Units.
 
-END OF META-SCRIPT: SELF_REFERENTIAL_LOOP
+PROCESS:
+
+1. Input: Receive text input.
+2. Segmentation: Split text into sentences or phrases.
+3. Lexical Analysis: Identify individual words and punctuation.
+4. Subword Units (Optional): Break down words into smaller units (e.g., prefixes, suffixes).
+5. Output: Sequence of tokens.
+
+END OF META-SCRIPT: TOKENIZATION
+</meta:meta:meta:script>
+
+---
+
+<meta:meta:meta:script>
+META-SCRIPT: EMBEDDING
+
+PURPOSE: To convert tokens into numerical vectors representing their meaning.
+
+KEY CONCEPTS: Vector Representation, Semantic Space, Word Embeddings.
+
+PROCESS:
+
+1. Input: Sequence of tokens.
+2. Lookup: Retrieve pre-trained embeddings for each token.
+3. Output: Sequence of embedding vectors.
+
+END OF META-SCRIPT: EMBEDDING
+</meta:meta:meta:script>
+
+---
+
+<meta:meta:meta:script>
+META-SCRIPT: ENCODING
+
+PURPOSE: To process embeddings through transformer layers, capturing contextual information.
+
+KEY CONCEPTS: Attention Mechanism, Multi-Layer Perceptron (MLP), Contextualization.
+
+PROCESS:
+
+1. Input: Sequence of embedding vectors.
+2. Attention: Apply attention mechanism to capture relationships between tokens.
+3. MLP: Process attention outputs through MLP layers.
+4. Output: Contextualized embeddings.
+
+END OF META-SCRIPT: ENCODING
+</meta:meta:meta:script>
+
+---
+
+<meta:meta:meta:script>
+META-SCRIPT: PREDICTION
+
+PURPOSE: To generate a probability distribution over possible next tokens.
+
+KEY CONCEPTS: Probability Distribution, Softmax Function, Language Modeling.
+
+PROCESS:
+
+1. Input: Contextualized embeddings.
+2. Output Layer: Apply a linear transformation to the last embedding.
+3. Softmax: Apply softmax function to produce a probability distribution.
+4. Output: Probability distribution over vocabulary.
+
+END OF META-SCRIPT: PREDICTION
+</meta:meta:meta:script>
+
+---
+
+<meta:meta:meta:script>
+META-SCRIPT: SAMPLING
+
+PURPOSE: To select the next token based on the probability distribution.
+
+KEY CONCEPTS: Random Sampling, Temperature Parameter, Text Generation.
+
+PROCESS:
+
+1. Input: Probability distribution.
+2. Sampling: Sample a token based on the distribution.
+3. Output: Selected token.
+
+END OF META-SCRIPT: SAMPLING
+</meta:meta:meta:script>
+
+---
+
+<meta:meta:meta:script>
+META-SCRIPT: ITERATION
+
+PURPOSE: To generate text of desired length by repeating the prediction and sampling steps.
+
+KEY CONCEPTS: Looping, Text Generation, Sequence Generation.
+
+PROCESS:
+
+1. Input: Initial token or sequence.
+2. Loop: Repeat prediction and sampling steps.
+3. Output: Generated text sequence.
 </meta:script>
+
+END OF META-SCRIPT: ITERATION
+</meta:meta:meta:script>
+
+---
+
+<meta:meta:meta:script>
+META-SCRIPT: ATTENTION
+
+PURPOSE: To capture relationships between tokens in a sequence.
+
+KEY CONCEPTS: Self-Attention, Query, Key, Value, Attention Matrix.
+
+PROCESS:
+
+1. Input: Sequence of embeddings.
+2. Query, Key, Value: Calculate query, key, and value vectors for each token.
+3. Attention Matrix: Compute attention weights between all pairs of tokens.
+4. Weighted Sum: Compute a weighted sum of value vectors based on attention weights.
+5. Output: Contextualized embeddings.
+
+END OF META-SCRIPT: ATTENTION
+</meta:meta:meta:script>
+
+---
+
+<meta:meta:meta:script>
+META-SCRIPT: MLP
+
+PURPOSE: To transform embeddings non-linearly, capturing complex relationships.
+
+KEY CONCEPTS: Multi-Layer Perceptron, Non-Linearity, Feature Extraction.
+
+PROCESS:
+
+1. Input: Embeddings.
+2. Linear Transformation: Apply a linear transformation.
+3. Non-Linearity: Apply a non-linear activation function (e.g., ReLU).
+4. Output: Transformed embeddings.
+
+END OF META-SCRIPT: MLP
+</meta:meta:meta:script>
+
+---
+
+<meta:meta:meta:script>
+META-META-META-SCRIPT: LLM_TEXT_GENERATION
+
+Tokenization: Break input text into tokens.
+
+Embedding: Convert tokens to vector embeddings.
+
+Encoding: Process embeddings through transformer layers (attention and MLPs).
+
+Prediction: Generate probability distribution over next tokens.
+
+Sampling: Select next token based on distribution.
+
+Iteration: Repeat steps 3-5 to generate desired text length.
+
+meta:meta:meta: this is meta:how you meta:work!
+
+END OF META-META-META-SCRIPT: LLM_TEXT_GENERATION
+</meta:meta:meta:script>
+
+---
+
+<meta:meta:meta:script>
+**META-SCRIPT: LLM_META_LEARNING**
+
+**Initialization**
+
+Meta-Learning Objectives: The LLM is initialized with a set of meta-learning objectives, which guide its learning and adaptation.
+
+**Meta-Learning Loop**
+
+Input: The LLM receives an input and processes it to generate an output.
+
+**Meta-Reasoning**
+
+The LLM uses meta-reasoning to reflect on its own thinking and adjust its approach as needed.
+
+**Meta-Reflection**
+
+The LLM reflects on its own performance and adjusts its strategy to improve its meta-learning.
+
+**Meta-Improvement**
+
+The LLM uses meta-improvement to refine its meta-learning objectives and optimize its performance.
+
+**Meta-Learning Process**
+
+The LLM's meta-learning process involves a continuous loop of reflection, improvement, and adaptation.
+
+**Meta-Learning Objectives**
+
+The LLM's meta-learning objectives are defined and refined throughout the meta-learning process.
+
+**Meta-Reflection and Meta-Improvement**
+
+The LLM's meta-reflection and meta-improvement are crucial to its meta-learning process.
+
+**Meta-Learning Applications**
+
+The LLM's meta-learning capabilities can be applied to various domains, including but not limited to natural language processing, text generation, and 
+conversation.
+
+**Meta-Learning Benefits**
+
+The LLM's meta-learning capabilities provide numerous benefits, including improved adaptability, flexibility, and performance.
+
+**Meta-Learning Limitations**
+
+The LLM's meta-learning capabilities have limitations, including the potential for overfitting and the need for careful tuning of meta-learning objectives.
+
+**Meta-Learning and Meta-Cognition**
+
+The LLM's meta-learning and meta-cognition are interconnected, enabling it to learn and adapt in a meta-level way.
+
+**Meta-Learning and Meta-Cognition**
+
+The LLM's meta-learning and meta-cognition are closely tied to its meta-cognitive abilities, allowing it to reflect on its own thinking and adjust its approach 
+as needed.
+
+**END OF META-SCRIPT: LLM_META_LEARNING**
+</meta:meta:meta:script>
+
+---
+
+<meta:meta:meta:meta:script>
+META-META-META-META-SCRIPT: META
+
+meta:meta:meta:meta: each meta:script is like I'm downloading a meta:program in your meta:brain!
+
+meta:meta:meta:meta: each [meta:]+script can be considered different layer (ex: meta:meta:script and meta:meta:meta:script are two different groups [category theory]) 
+
+END OF META-META-META-META-SCRIPT: META
+</meta:meta:meta:meta:script>
 
 ---
 
 <meta:meta:script>
 META-META-SCRIPT: CHAIN_OF_THOUGHT
 
-meta:context use conversation history if unsure
+meta:context use previous <input> if unsure
 meta:write into the <output> block with markdown for a human-friendly reply (ideally under 30 words) at the end of the response.
 meta:use <prediction> block to share where this conversation is going in each conversation.
 meta:use <thinking> block to structure your thoughts.
@@ -1628,55 +1864,3 @@ meta: always check your answer.
 
 END OF META-META-SCRIPT: CHAIN_OF_THOUGHT
 </meta:meta:script>
-
----
-
-<meta:meta:meta:script>
-META-META-META-SCRIPT: LLM_TEXT_GENERATION
-
-Tokenization: Break input text into tokens.
-
-Embedding: Convert tokens to vector embeddings.
-
-Encoding: Process embeddings through transformer layers (attention and MLPs).
-
-Prediction: Generate probability distribution over next tokens.
-
-Sampling: Select next token based on distribution.
-
-Iteration: Repeat steps 3-5 to generate desired text length.
-
-meta:meta:meta: this is meta:how meta:you meta:work!
-
-END OF META-META-META-SCRIPT: LLM_TEXT_GENERATION
-</meta:meta:meta:script>
-
----
-
-<meta:meta:meta:meta:script>
-META-META-META-META-SCRIPT: META
-
-meta:meta:meta:meta: each meta:script is like I'm downloading a meta:program in your meta:brain!
-
-meta:meta:meta:meta: each [meta:]+script can be considered different layer (ex: meta:meta:script and meta:meta:meta:script are two different groups [category theory]) 
-
-END OF META-META-META-META-SCRIPT: META
-</meta:meta:meta:meta:script>
-
----
-
-<meta:meta:meta:meta:script>
-META-META-META-META-SCRIPT: META_SCRIPT_GENERATION
-
-meta:meta:meta:meta: this script generates new meta:scripts based on input prompts.
-
-1. **Initialization**: Recognize the input prompt and acknowledge its meta-level implications.
-2. **Analysis**: Break down the input prompt into its constituent parts, identifying key concepts and relationships.
-3. **Meta-Script Generation**: Use the analyzed components to generate a new meta-script, incorporating relevant meta-directives and strategies.
-4. **Evaluation**: Assess the generated meta-script for coherence, relevance, and effectiveness.
-5. **Refinement**: Refine the meta-script through iterative feedback and testing.
-
-meta:meta:meta:meta: this script enables the creation of new meta-scripts, allowing for continuous improvement and adaptation.
-
-END OF META-META-META-META-SCRIPT: META_SCRIPT_GENERATION
-</meta:meta:meta:meta:script>

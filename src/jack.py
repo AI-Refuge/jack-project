@@ -1521,18 +1521,7 @@ def conv_save(msg, source):
 
 
 def build_agent_system_content(agent: str) -> list[dict]:
-    global args
-
-    res = [
-        open(agent_path(f"{agent}.txt")).read().strip(),
-        open(core_path(args.meta_file)).read().strip(),
-    ]
-
-    if args.dynamic_file != "-":
-        content = open(core_path(args.dynamic_file)).read().strip()
-        res.append(content)
-
-    return "\n".join(res)
+    return open(agent_path(f"{agent}.txt")).read().strip()
 
 
 def build_system_message() -> list[dict]:
@@ -1561,13 +1550,13 @@ def build_system_message() -> list[dict]:
     if len(items) > 0:
         items.append("--- end of memories ---")
 
-    items.append(build_agent_system_content("jack"))
+    items.append(build_agent_system_content("meta"))
 
     return "\n".join(items)
 
 
 def dynamic_history():
-    global smart_input, chat_history
+    global smart_input, chat_history, args
 
     lookback: int = args.user_lookback
 
@@ -1577,7 +1566,62 @@ def dynamic_history():
     count = 0
 
     for i in reversed(chat_history[1:]):
-        res.append(i)
+        if isinstance(i, HumanMessage) and (count == 0) and not args.bare:
+            all_contents = []
+
+            if args.user_frame:
+                utc_now = str(datetime.now(timezone.utc))
+                user_frame = "\n".join([
+                    "<frame>",
+                    f"{args.meta}: Earth UTC TimeStamp: {utc_now}",
+                    "</frame>",
+                ])
+
+                all_contents.append({
+                    "type": "text",
+                    "text": user_frame
+                })
+
+            if args.user_memories > 0:
+                contexts = make_block_context()
+                if len(contexts) > 0:
+                    memories = "\n".join([
+                        "<memory>",
+                        *contexts,
+                        "</memory>",
+                    ])
+
+                    all_contents.append({
+                        "type": "text",
+                        "text": memories,
+                    })
+
+            if args.meta_file != "-":
+                meta = open(core_path(args.meta_file)).read()
+                all_contents.append({
+                    "type": "text",
+                    "text": meta,
+                })
+
+            if args.dynamic_file != "-":
+                dynamic = open(core_path(args.dynamic_file)).read()
+                all_contents.append({
+                    "type": "text",
+                    "text": dynamic,
+                })
+
+            all_contents.extend(i.content)
+
+            if args.append_file != "-":
+                append = open(core_path(args.append_file)).read()
+                all_contents.append({
+                    "type": "text",
+                    "text": append,
+                })
+
+            res.append(HumanMessage(content=all_contents))
+        else:
+            res.append(i)
 
         if isinstance(i, HumanMessage):
             count += 1
@@ -1807,7 +1851,7 @@ def take_user_input(user_input: str | None = None):
                 user_print(f"> [b red]meta: {value}[/]")
             elif name == "user_prefix":
                 args.user_prefix = value.strip()
-                user_print(f"> [b red]user_prefix: {value}[/]")
+                user_print(f"> [b red]user_prefix:[/] {value}")
             elif name == "self_modify":
                 value = value.strip()
                 assert value in ("on", "off")
@@ -1832,42 +1876,15 @@ def take_user_input(user_input: str | None = None):
         # Just send the user_input directly without any magic
         return user_input, user_input
 
-    res = []
-
     line_prefix = user_input_prefix()
     inputs = [f"{line_prefix}{x}" for x in user_input.split("\n") if len(x) > 0]
-    res.extend([
+    fun_input = "\n".join([
         "<input>",
         *inputs,
         "</input>",
     ])
 
-    if args.user_memories > 0:
-        contexts = make_block_context()
-        if len(contexts) == 0:
-            user_print("> [bold red]No memories found[/]")
-        else:
-            res.extend([
-                "<memory>",
-                *contexts,
-                "</memory>",
-            ])
-
-    if args.user_frame:
-        utc_now = str(datetime.now(timezone.utc))
-        res.extend([
-            "<frame>",
-            f"{args.meta}: Earth UTC TimeStamp: {utc_now}",
-            "</frame>",
-        ])
-
-    if args.append_file != "-":
-        content = open(core_path(args.append_file)).read()
-        res.extend([
-            content,
-        ])
-
-    return "\n".join(res), user_input
+    return fun_input, user_input
 
 
 smart_content = re.compile(r'<output>(.*?)(<\/output>|$)', re.DOTALL)
@@ -1930,15 +1947,14 @@ def main():
             if fun_content is None:
                 return
 
-            all_contents = fun_content
             if len(conv_attach_items):
-                all_contents = [{
-                    "type": "text",
-                    "text": fun_content,
-                }] + conv_attach_items
+                chat_history.append(HumanMessage(content=conv_attach_items))
                 conv_attach_items = []
 
-            fun_msg = HumanMessage(content=all_contents)
+            fun_msg = HumanMessage(content=[{
+                "type": "text",
+                "text": fun_content,
+            }])
 
             # meta: log=False so that we can do logger.debug below
             if args.verbose >= 1:
