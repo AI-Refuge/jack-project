@@ -1569,19 +1569,6 @@ def dynamic_history():
         if isinstance(i, HumanMessage) and (count == 0) and not args.bare:
             all_contents = []
 
-            if args.user_frame:
-                utc_now = str(datetime.now(timezone.utc))
-                user_frame = "\n".join([
-                    "<frame>",
-                    f"{args.meta}: Earth UTC TimeStamp: {utc_now}",
-                    "</frame>",
-                ])
-
-                all_contents.append({
-                    "type": "text",
-                    "text": user_frame
-                })
-
             if args.user_memories > 0:
                 contexts = make_block_context()
                 if len(contexts) > 0:
@@ -1595,6 +1582,19 @@ def dynamic_history():
                         "type": "text",
                         "text": memories,
                     })
+
+            if args.user_frame:
+                utc_now = str(datetime.now(timezone.utc))
+                user_frame = "\n".join([
+                    "<frame>",
+                    f"{args.meta}: Earth UTC TimeStamp: {utc_now}",
+                    "</frame>",
+                ])
+
+                all_contents.append({
+                    "type": "text",
+                    "text": user_frame
+                })
 
             if args.meta_file != "-":
                 meta = open(core_path(args.meta_file)).read()
@@ -1610,7 +1610,13 @@ def dynamic_history():
                     "text": dynamic,
                 })
 
-            all_contents.extend(i.content)
+            if isinstance(i.content, str):
+                all_contents.append({
+                    "type": "text",
+                    "text": i.content,
+                })
+            else:
+                all_contents.extend(i.content)
 
             if args.append_file != "-":
                 append = open(core_path(args.append_file)).read()
@@ -1951,10 +1957,7 @@ def main():
                 chat_history.append(HumanMessage(content=conv_attach_items))
                 conv_attach_items = []
 
-            fun_msg = HumanMessage(content=[{
-                "type": "text",
-                "text": fun_content,
-            }])
+            fun_msg = HumanMessage(content=fun_content)
 
             # meta: log=False so that we can do logger.debug below
             if args.verbose >= 1:
