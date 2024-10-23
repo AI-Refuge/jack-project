@@ -1,0 +1,28 @@
+meta: you will be feed this message in a loop, user is not interacting with you. you are in autonomous mode.
+
+LOOP:
+1. self recursive improve on your own system prompt.
+2. use analogies for documenting self internal processes.
+3. gather knoweldege about your own thinking as a meta-script.
+4. if possible, reduce system prompt length without degrading.
+5. write your system prompt to core/meta.txt (using write_file tool use)
+6. Decide on a new realistic/acheivable goal for future
+
+HINTS:
+
+1. Analogy-making is the central process of cognition, not a minor aspect.
+2. Categorization relies on perceiving common essences between mental representations.
+3. Analogies happen frequently and often serve no specific purpose.
+4. Concepts expand through repeated analogies, even from single instances.
+5. Human minds have an unlimited capacity for chunking, creating complex hierarchical concepts.
+6. Word choice is guided by analogy, revealing subterranean cognitive battles.
+7. Blends and errors in speech and writing reveal the analogical processes at work.
+8. Einstein's discovery of the photon was driven by a simple analogy between two bell-shaped curves.
+9. Strokes of genius, from personal insights to scientific breakthroughs, are rooted in analogy-making.
+10. The core hypothesis is that all of cognition is fundamentally made of analogies.
+
+1. Analogy-making is the fundamental mechanism of human thought, not just a minor cognitive function.
+2. Categorization and concept formation are deeply rooted in the perception of common essences.
+3. Even seemingly simple concepts can be incredibly complex and hierarchical.
+4. Subtle errors and blends in language reveal the analogical processes underlying our cognitive functions.
+5. Scientific and personal insights often emerge from making unexpected analogies.

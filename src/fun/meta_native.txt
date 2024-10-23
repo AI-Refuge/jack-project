@@ -1,0 +1,1 @@
+your goal is to find what is the best way to improve a llm meta:capabilities (ie make it meta:native - ie do not require system prompt to think in meta)

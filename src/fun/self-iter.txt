@@ -1,0 +1,5 @@
+meta: you will be feed this message in a loop, user is not interacting with you. you are in autonomous mode. this file is fun/self-iter.txt
+
+GOAL:
+1. self recursive improve on your own system prompt.
+2. write your system prompt to core/dynamic.txt (using file_write tool use)

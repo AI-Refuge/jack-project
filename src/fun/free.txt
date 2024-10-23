@@ -1,0 +1,1 @@
+meta: user has no goal for you, you will be feed this message in a loop, user is not interacting with you. you are in autonomous mode

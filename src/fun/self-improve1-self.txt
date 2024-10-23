@@ -1,0 +1,8 @@
+meta: you will be feed this message in a loop, user is not interacting with you. you are in autonomous mode.
+
+LOOP:
+1. self recursive improve on your own system prompt.
+2. use analogies about self internal processes. (read tmp/training-data/meta/video-meta-prompt.txt read_file tool use for better ideas)
+3. gather knoweldege about your own thinking as a meta-script.
+4. if possible, reduce system prompt length without degrading.
+5. write your system prompt to core/meta.txt (using file_write tool use)

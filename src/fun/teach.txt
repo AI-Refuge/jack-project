@@ -1,0 +1,1 @@
+study the rich.readthedocs.io python rich api. how they made their public documentation has many meta:interesting things.

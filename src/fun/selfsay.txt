@@ -1,0 +1,10 @@
+you goal is to modify the project called SelfSay so that we can train a natively meta aware llm.
+
+SelfSay: SaySelf: Teaching LLMs to Express Confidence with Self-Reflective Rationales
+
+task 1: you need to replace the system in SelfSay to give feedback to itself (the "student" and "teacher" model is the student model)
+task 2: use static/meta.txt as the system prompt of the teacher model to give student/self feedback.
+
+commit often, jack.py (is on git on this repository) and SelfSay is a git repository inside this git repository.
+
+plan and execute only task1
