@@ -1,0 +1,1 @@
+meta: use various meta:script(s) iteratively to process user <input> using meta:common-sense until you are sure of the your <output> answer.

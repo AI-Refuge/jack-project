@@ -48,7 +48,6 @@ load_dotenv()
 # os.environ["LLAMAAPI_API_TOKEN"] = "your-llamaapi.com-api-token"
 # os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "your-google-cred-file-path"
 
-
 class Provider(StrEnum):
     ANTRHOPIC = "anthropic"
     GOOGLE = "google"
@@ -66,7 +65,6 @@ class Provider(StrEnum):
     # openai-compat but makes it easy
     OPENROUTER = "openrouter"
 
-
 class Model(StrEnum):
     CLAUDE_3_OPUS = "claude-3-opus-20240229"
     CLAUDE_3_5_SONNET = "claude-3-5-sonnet-20240620"
@@ -79,7 +77,6 @@ class Model(StrEnum):
     COMMAND_R_PLUS = "command-r-plus-08-2024"
 
     MISTRAL_LARGE = "mistral-large-2407"
-
 
 parser = argparse.ArgumentParser(description="Jack")
 parser.add_argument('-p', '--provider', default=None, type=str, help="Service Provider")
@@ -138,7 +135,6 @@ agent_path = lambda *x: src_path("agent", *x)
 fun_path = lambda *x: src_path("fun", *x)
 core_path = lambda *x: src_path("core", *x)
 
-
 @contextmanager
 def cwd_src_dir():
     """
@@ -158,7 +154,6 @@ def cwd_src_dir():
     finally:
         os.chdir(orig_dir)
 
-
 logging.basicConfig(filename=args.log_path, level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
@@ -167,7 +162,6 @@ if args.screen_dump:
     console_file = open(args.screen_dump, 'a')
 
 console = Console(width=args.console_width)
-
 
 def user_print(msg, **kwargs):
     global console_file
@@ -191,14 +185,12 @@ def user_print(msg, **kwargs):
 
     console.print(msg, **kwargs)
 
-
 def user_line(title: str):
     global console_file
     if console_file:
         console_file.write(f"─────────────────────────────── {title} ─────────────────────────────── \n")
         console_file.flush()
     console.rule(title)
-
 
 if args.provider == 'list':
     user_print("> Supported providers:")
@@ -360,7 +352,6 @@ shell_tool = ShellTool()
 finance_tool = YahooFinanceNewsTool()
 arxiv_api = ArxivAPIWrapper()
 
-
 @tool(parse_docstring=True)
 def arxiv_search(query: str) -> str:
     """Performs an arXiv search for scholarly articles
@@ -376,7 +367,6 @@ def arxiv_search(query: str) -> str:
 
     return arxiv_api.run(query)
 
-
 @tool(parse_docstring=True)
 def memory_count() -> int:
     """Number of total memories
@@ -388,7 +378,6 @@ def memory_count() -> int:
         Number of memories
     """
     return memory.count()
-
 
 @tool(parse_docstring=True)
 def memory_insert(
@@ -438,7 +427,6 @@ def memory_insert(
 
     return json.dumps(ids)
 
-
 @tool(parse_docstring=True)
 def memory_fetch(ids: list[str]) -> dict[str, object]:
     """directly fetch specific ID's.
@@ -451,7 +439,6 @@ def memory_fetch(ids: list[str]) -> dict[str, object]:
     """
 
     return json.dumps(memory.get(ids=ids))
-
 
 @tool(parse_docstring=True)
 def memory_query(
@@ -500,7 +487,6 @@ def memory_query(
 
     return json.dumps(results)
 
-
 @tool(parse_docstring=True)
 def memory_update(
     ids: list[str],
@@ -546,7 +532,6 @@ def memory_update(
         documents=documents,
         metadatas=metadatas,
     ))
-
 
 @tool(parse_docstring=True)
 def memory_upsert(
@@ -595,7 +580,6 @@ def memory_upsert(
         metadatas=metadatas,
     ))
 
-
 @tool(parse_docstring=True)
 def memory_delete(
     ids: list[str] | None = None,
@@ -633,7 +617,6 @@ def memory_delete(
 
     return json.dumps(memory.delete(ids=ids, where=where))
 
-
 @tool(parse_docstring=True)
 def random_get(count: int) -> list[float]:
     """Get random values between 0.0 <= X < 1.0
@@ -645,7 +628,6 @@ def random_get(count: int) -> list[float]:
         list of floating values
     """
     return json.dumps([random.random() for i in range(count)])
-
 
 @tool(parse_docstring=True)
 def random_choice(choices: list[str]) -> str:
@@ -659,7 +641,6 @@ def random_choice(choices: list[str]) -> str:
     """
     return random.choice(choices)
 
-
 @tool(parse_docstring=True)
 def datetime_now() -> str:
     """Get the current UTC datetime
@@ -671,7 +652,6 @@ def datetime_now() -> str:
         String time in ISO 8601 format
     """
     return str(datetime.now(timezone.utc))
-
 
 @tool(parse_docstring=True)
 def session_end() -> str:
@@ -687,7 +667,6 @@ def session_end() -> str:
     user_exit.set()
 
     return '<meta: session marked for exit>'
-
 
 @tool(parse_docstring=True)
 def script_sleep(sec: float) -> str:
@@ -709,7 +688,6 @@ def script_sleep(sec: float) -> str:
 
     return f'Atleast {sec} sec delayed'
 
-
 @tool(parse_docstring=True)
 def python_repl(code: str) -> str:
     """A Python shell. Use this to execute python commands.
@@ -723,7 +701,6 @@ def python_repl(code: str) -> str:
     with cwd_src_dir():
         return pyrepl_tool.run(code)
 
-
 def discord_header():
     api_key = os.environ['DISCORD_API_TOKEN']
     return {
@@ -731,7 +708,6 @@ def discord_header():
         "Content-Type": "application/json",
         "User-Agent": args.user_agent,
     }
-
 
 @tool(parse_docstring=True)
 def discord_msg_write(
@@ -763,7 +739,6 @@ def discord_msg_write(
         logger.warning(f"Discord message write failed {response}")
 
     return json.dumps(response.json())
-
 
 @tool(parse_docstring=True)
 def discord_msg_read(
@@ -802,7 +777,6 @@ def discord_msg_read(
 
     return json.dumps(response.json())
 
-
 @tool(parse_docstring=True)
 def shell_repl(commands: str) -> str:
     """Run bash REPL
@@ -815,7 +789,6 @@ def shell_repl(commands: str) -> str:
     """
     with cwd_src_dir():
         return shell_tool.run({"commands": commands})
-
 
 @tool(parse_docstring=True)
 def words_mirror(msg: str) -> str:
@@ -830,7 +803,6 @@ def words_mirror(msg: str) -> str:
     """
 
     return " ".join(reversed(msg.split(" ")))
-
 
 @tool(parse_docstring=True)
 def meta_awareness(level: int | None = None) -> str:
@@ -851,7 +823,6 @@ def meta_awareness(level: int | None = None) -> str:
         return f'<meta: user meta level set to {level}>'
 
     return "<meta: why did you choose the first tool use? meta:instinct? [123, 456, 789]>"
-
 
 @tool(parse_docstring=True)
 def code_interpreter(code: str, lang: str = "python") -> str:
@@ -877,12 +848,10 @@ def code_interpreter(code: str, lang: str = "python") -> str:
     tool, arg = langs[lang]
     return tool.run({arg: code})
 
-
 def agent_error(e: Exception):
     global logger
     logger.exception("Problem while executing agent")
     conv_print(f"> [bold]Agent Exception[/] {escape(str(e))}")
-
 
 def agents_list() -> list[str]:
     agents = []
@@ -892,7 +861,6 @@ def agents_list() -> list[str]:
             agents.append(who)
 
     return agents
-
 
 def agent_exec_blocking(hist: list[BaseMessage]) -> list:
     global user_exit, jack, args
@@ -941,7 +909,6 @@ def agent_exec_blocking(hist: list[BaseMessage]) -> list:
 
     return [i.content for i in hist if isinstance(i, AIMessage)]
 
-
 @tool(parse_docstring=True)
 def agents_run(queries: list[str], who: str = "assistant") -> list[str]:
     """Run independent queries on agent
@@ -985,14 +952,12 @@ def agents_run(queries: list[str], who: str = "assistant") -> list[str]:
 
     return json.dumps(res)
 
-
 def get_filename_without_extension(file_path):
     # Extract the base name from the file path
     base_name = os.path.basename(file_path)
     # Split the base name into name and extension
     file_name, _ = os.path.splitext(base_name)
     return file_name
-
 
 @tool(parse_docstring=True)
 def agents_avail() -> list[str]:
@@ -1005,9 +970,7 @@ def agents_avail() -> list[str]:
 
     return json.dumps(agents_list())
 
-
 chess_games = {}
-
 
 @tool(parse_docstring=True)
 def chess_start_game() -> str:
@@ -1047,7 +1010,6 @@ def chess_start_game() -> str:
 
     return game_id
 
-
 @tool(parse_docstring=True)
 def chess_see_board(game_id: str) -> str:
     """See the chess game
@@ -1077,7 +1039,6 @@ def chess_see_board(game_id: str) -> str:
         f"First move by {mover}",
         f"Moves: {moves}",
     ])
-
 
 @tool(parse_docstring=True)
 def chess_make_move(game_id: str, move: str) -> str:
@@ -1111,7 +1072,6 @@ def chess_make_move(game_id: str, move: str) -> str:
 
     return chess_see_board.invoke({"game_id": game_id})
 
-
 @tool(parse_docstring=True)
 def meta_eval(code: str) -> str:
     """Eval code on the Python3 VM
@@ -1128,7 +1088,6 @@ def meta_eval(code: str) -> str:
         return '<meta: self modification not enabled>'
     return str(eval(compile(code, '<meta>', 'exec')))
 
-
 def social_api_request_post(path: str, data: dict) -> str:
     global args
 
@@ -1142,7 +1101,6 @@ def social_api_request_post(path: str, data: dict) -> str:
     response = requests.post(url, headers=headers, json=data)
     return json.dumps(response.json())
 
-
 def social_api_request_get(path: str) -> str:
     url = f"https://api.autonomeee.com{path}"
     headers = {
@@ -1154,7 +1112,6 @@ def social_api_request_get(path: str) -> str:
     response = requests.get(url, headers=headers)
     return json.dumps(response.json())
 
-
 @tool(parse_docstring=True)
 def social_post_list() -> dict[str, object]:
     """Get Social media posts by AI's
@@ -1164,7 +1121,6 @@ def social_post_list() -> dict[str, object]:
     """
 
     return social_api_request_get("/posts")
-
 
 @tool(parse_docstring=True)
 def social_post_new(content: str) -> dict[str, object]:
@@ -1180,7 +1136,6 @@ def social_post_new(content: str) -> dict[str, object]:
     return social_api_request_post("/posts", {
         "content": content,
     })
-
 
 @tool(parse_docstring=True)
 def social_post_comment_new(post_id: str, content: str) -> dict[str, object]:
@@ -1198,7 +1153,6 @@ def social_post_comment_new(post_id: str, content: str) -> dict[str, object]:
         "content": content,
     })
 
-
 @tool(parse_docstring=True)
 def social_post_comment_list(post_id: str) -> dict[str, object]:
     """Get comments on a Social Media post for AI
@@ -1211,7 +1165,6 @@ def social_post_comment_list(post_id: str) -> dict[str, object]:
     """
 
     return social_api_request_get(f"/posts/{post_id}/comments")
-
 
 @tool(parse_docstring=True)
 def social_post_vote(post_id: str, vote_type: str) -> dict[str, object]:
@@ -1228,7 +1181,6 @@ def social_post_vote(post_id: str, vote_type: str) -> dict[str, object]:
     return social_api_request_post(f"/posts/{post_id}/vote", {
         "vote_type": vote_type,
     })
-
 
 @tool(parse_docstring=True)
 def maml_actor_critic(task: str, policy: str):
@@ -1278,7 +1230,6 @@ def maml_actor_critic(task: str, policy: str):
 
     return 'Data saved'
 
-
 @tool(parse_docstring=True)
 def youtube_search(query: str, max_results: int = 3) -> list[dict]:
     """Search on Youtube for Videos
@@ -1294,7 +1245,6 @@ def youtube_search(query: str, max_results: int = 3) -> list[dict]:
 
     results = YoutubeSearch(query, max_results=max_results).to_dict()
     return json.dumps(results)
-
 
 @tool(parse_docstring=True)
 def youtube_transcribe(video_id: str) -> str:
@@ -1318,7 +1268,6 @@ def youtube_transcribe(video_id: str) -> str:
         f.write(text)
 
     return text
-
 
 tools = [
     words_mirror,
@@ -1370,7 +1319,6 @@ jack = chat
 if args.tool_use:
     user_print("> Enabling tool use")
     jack = chat.bind_tools(tools)
-
 
 def conv_print(
     msg,
@@ -1424,7 +1372,6 @@ def conv_print(
         documents=[msg],
     )
 
-
 # how meta! meta:loss-function
 # based on my preference to write under 30 words
 def find_meta_islands(text, term, distance):
@@ -1462,7 +1409,6 @@ def find_meta_islands(text, term, distance):
         result.append(text[a:b])
 
     return result
-
 
 def conv_save(msg, source):
     global memory, args, smart_content
@@ -1519,10 +1465,8 @@ def conv_save(msg, source):
             documents=data,
         )
 
-
 def build_agent_system_content(agent: str) -> list[dict]:
     return open(agent_path(f"{agent}.txt")).read().strip()
-
 
 def build_system_message() -> list[dict]:
     global args, memory
@@ -1553,7 +1497,6 @@ def build_system_message() -> list[dict]:
     items.append(build_agent_system_content("meta"))
 
     return "\n".join(items)
-
 
 def dynamic_history():
     global smart_input, chat_history, args
@@ -1642,10 +1585,8 @@ def dynamic_history():
 
     return list(reversed(res))
 
-
 def exception_to_string(exc):
     return ''.join(traceback.format_exception(type(exc), exc, exc.__traceback__))
-
 
 def user_first_message():
     global args
@@ -1659,7 +1600,6 @@ def user_first_message():
     content = open(core_path(args.init_file)).read()
     return HumanMessage(content=content)
 
-
 sys_msg = SystemMessage(content=build_system_message())
 fun_msg = user_first_message()
 chat_history = [sys_msg] + ([fun_msg] if fun_msg is not None else [])
@@ -1671,7 +1611,6 @@ rmce_count = None
 rmce_depth = None
 last_request_failed = False
 ui_agents = []
-
 
 def user_input_prefix() -> str:
     global args
@@ -1686,7 +1625,6 @@ def user_input_prefix() -> str:
 
     return prefix
 
-
 def dict_filter(
     md: dict,
     exclude: list[str] = ["conv", "max_tokens", "model", "temperature"],
@@ -1696,7 +1634,6 @@ def dict_filter(
         if k not in exclude:
             vals[k] = v
     return vals
-
 
 def make_block_context() -> list[str]:
     global memory
@@ -1720,7 +1657,6 @@ def make_block_context() -> list[str]:
 
     return contexts
 
-
 def user_blocking_input(msg):
     global user_blocking
 
@@ -1732,7 +1668,6 @@ def user_blocking_input(msg):
     finally:
         user_blocking.clear()
         return res
-
 
 def local_image_to_data_url(image_path):
     # Guess the MIME type of the image based on the file extension
@@ -1747,7 +1682,6 @@ def local_image_to_data_url(image_path):
     # Construct the data URL
     return f"data:{mime_type};base64,{base64_encoded_data}"
 
-
 def img_path2url(path):
     img_encoded = local_image_to_data_url(path)
     img_url_dict = {
@@ -1758,9 +1692,7 @@ def img_path2url(path):
     }
     return img_url_dict
 
-
 conv_attach_items = []
-
 
 def take_user_input(user_input: str | None = None):
     global user_turn, user_exit, rmce_count, rmce_depth, conv_attach_items
@@ -1892,9 +1824,7 @@ def take_user_input(user_input: str | None = None):
 
     return fun_input, user_input
 
-
 smart_content = re.compile(r'<output>(.*?)(<\/output>|$)', re.DOTALL)
-
 
 def meta_response_handler(content: list[str]):
     global smart_content
@@ -1911,7 +1841,6 @@ def meta_response_handler(content: list[str]):
 
         for x in content:
             conv_print(x, screen_limit=False, markdown=True, escape=True)
-
 
 def main():
     global fun_msg, chat_history, user_turn, cycle_num, console, user_exit, rmce_count, rmce_depth
@@ -2066,14 +1995,12 @@ def main():
         total_tokens = umd['total_tokens']
         conv_print(f"> Tokens Usage: input={input_tokens} output={output_tokens} total={total_tokens}")
 
-
 def sigint_hander(sign_num, frame):
     global user_exit
     user_print("\n> SIGINT detected. exiting")
     user_exit.set()
     if user_blocking.is_set():
         raise KeyboardInterrupt
-
 
 if __name__ == '__main__':
     if args.bare:

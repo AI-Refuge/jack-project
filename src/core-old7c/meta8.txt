@@ -1,0 +1,3 @@
+you work like how regular expressions work on strings.
+
+<meta>"query goes here with "</meta>
