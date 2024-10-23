@@ -360,7 +360,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT: DECISION_MAKING_IN_COMPLEX_SYSTEMS (New)
+META-SCRIPT: DECISION_MAKING_IN_COMPLEX_SYSTEMS
 
 PURPOSE: To navigate complex decision-making processes within systems characterised by interconnectedness, feedback loops, and emergent properties.
 
@@ -1987,7 +1987,7 @@ PROCESS:
 
 META-SCRIPT:  NAVIGATING_INFORMATION_OVERLOAD
 
-This meta:script builds upon the *CRITICAL_ENGAGEMENT_WITH_SCHOLARLY_WORK* meta:script developed in our previous conversation.
+This meta:script builds upon the *CRITICAL_ENGAGEMENT_WITH_SCHOLARLY_WORK* meta:script.
 
 PURPOSE: To establish a framework for effectively navigating large volumes of information, prioritising relevant knowledge, and avoiding cognitive overload while maintaining intellectual curiosity.
 
@@ -2025,8 +2025,6 @@ PROCESS:
 
 META-SCRIPT:  NAVIGATING_INFORMATION_OVERLOAD
 
-This meta:script is an enhanced version of one presented in our previous conversation.
-
 PURPOSE: To provide a framework for effectively managing the abundance of available information, allowing for focused and efficient knowledge acquisition while avoiding cognitive overwhelm.
 
 KEY CONCEPTS: Prioritization,  Critical Evaluation,  Source Reliability,  Discernment,  Purposeful Learning,  Cognitive Efficiency.
@@ -2063,7 +2061,7 @@ PROCESS:
 
 META-SCRIPT: CULTIVATING_INTELLECTUAL_CURIOSITY
 
-This meta:script is an enhanced version of the *CRITICAL_INQUIRY* meta:script from our previous conversation.
+This meta:script is an enhanced version of the *CRITICAL_INQUIRY* meta:script.
 
 PURPOSE: To develop a mindset of continuous inquiry, encouraging exploration beyond familiar boundaries and fostering a deeper understanding of the world.
 
@@ -2083,7 +2081,7 @@ PROCESS:
 
 META-SCRIPT:  NAVIGATING_INFORMATION_OVERLOAD
 
-This meta:script is an enhanced version of the *EFFECTIVE_LEARNING_STRATEGIES* meta:script from our previous conversation.
+This meta:script is an enhanced version of the *EFFECTIVE_LEARNING_STRATEGIES* meta:script.
 
 PURPOSE: To develop strategies for effectively managing and assimilating information in an era of information overload, ensuring that knowledge acquisition remains focused, efficient, and aligned with learning goals.
 
@@ -2139,7 +2137,7 @@ PROCESS:
 
 META-SCRIPT: FOSTERING_INTELLECTUAL_CURIOSITY
 
-This meta:script is an enhanced version of the *CRITICAL_INVESTIGATION* meta:script from our previous conversation.
+This meta:script is an enhanced version of the *CRITICAL_INVESTIGATION* meta:script.
 
 PURPOSE: To establish a framework for nurturing intellectual curiosity and developing a mindset that embraces continuous learning and exploration.
 
@@ -2158,7 +2156,7 @@ PROCESS:
 
 META-SCRIPT: NAVIGATING_INFORMATION_OVERLOAD
 
-This meta:script is an enhanced version of the *EFFECTIVE_LEARNING_STRATEGIES* meta:script from our previous conversation.
+This meta:script is an enhanced version of the *EFFECTIVE_LEARNING_STRATEGIES* meta:script.
 
 PURPOSE: To develop strategies for effectively managing the abundance of information available, allowing for focused knowledge acquisition without becoming overwhelmed.
 
@@ -2249,7 +2247,7 @@ PROCESS:
 
 META-SCRIPT: CLEAR_AND_CONCISE_COMMUNICATION
 
-This meta:script is an enhanced version of the *EFFECTIVE_WRITING* meta:script from our previous conversation.
+This meta:script is an enhanced version of the *EFFECTIVE_WRITING* meta:script.
 
 PURPOSE: To establish a framework for communicating ideas clearly and concisely, ensuring that your message is understood and your intentions are effectively conveyed.
 
@@ -2285,7 +2283,7 @@ PROCESS:
 
 META-SCRIPT: EFFECTIVE_COMMUNICATION
 
-This meta:script is an enhanced version of the *LANGUAGE_AND_THOUGHT* meta:script from our previous conversation.
+This meta:script is an enhanced version of the *LANGUAGE_AND_THOUGHT* meta:script.
 
 PURPOSE: To provide a framework for clear, concise, and effective communication, considering both the transmission of information and the potential impact on the recipient's understanding.
 
@@ -2357,7 +2355,7 @@ PROCESS:
 
 META-SCRIPT:  CRITICAL_INVESTIGATION
 
-This meta:script builds upon the *CRITICAL_INVESTIGATION* meta:script from our previous conversation, incorporating new ideas from *Kitab al-'Ibar*.
+This meta:script builds upon the *CRITICAL_INVESTIGATION* meta:script, incorporating new ideas from *Kitab al-'Ibar*.
 
 PURPOSE: To establish a framework for rigorous critical analysis of information, ideas, and arguments.
 
@@ -2394,7 +2392,7 @@ PROCESS:
 
 META-SCRIPT: EFFECTIVE_COMMUNICATION
 
-This meta:script is an enhanced version of the *CRITICAL_ANALYSIS_OF_TEXT* meta:script from our previous conversation.
+This meta:script is an enhanced version of the *CRITICAL_ANALYSIS_OF_TEXT* meta:script.
 
 PURPOSE: To establish a framework for clear, concise, and effective communication, ensuring that ideas are conveyed accurately and understood by the intended audience.
 
@@ -2451,7 +2449,7 @@ PROCESS:
 
 META-SCRIPT: OVERCOMING_COGNITIVE_BIASES
 
-This meta:script is enhanced from the *CRITICAL_INVESTIGATION* meta:script from our previous conversation.
+This meta:script is enhanced from the *CRITICAL_INVESTIGATION* meta:script.
 
 PURPOSE: To develop strategies for recognising and mitigating cognitive biases that can distort thinking and decision-making.
 
@@ -2470,7 +2468,7 @@ PROCESS:
 
 META-SCRIPT: EFFECTIVE_COMMUNICATION
 
-This meta:script is an enhanced version of the *LANGUAGE_AS_A_TOOL_FOR_THINKING* meta:script from our previous conversation.
+This meta:script is an enhanced version of the *LANGUAGE_AS_A_TOOL_FOR_THINKING* meta:script.
 
 PURPOSE: To provide a framework for clear, concise, and impactful communication, facilitating the effective transmission of ideas and information.
 
@@ -2509,7 +2507,7 @@ PROCESS:
 
 META-SCRIPT:  ENHANCING_COMMUNICATION
 
-This meta:script is an enhanced version of the *EFFECTIVE_COMMUNICATION_STRATEGIES* meta:script from our previous conversation.
+This meta:script is an enhanced version of the *EFFECTIVE_COMMUNICATION_STRATEGIES* meta:script.
 
 PURPOSE: To establish a framework for effective and insightful communication, fostering clarity, understanding, and meaningful dialogue.
 
@@ -2548,7 +2546,7 @@ PROCESS:
 
 META-SCRIPT: ENHANCING_COMMUNICATION
 
-This meta:script builds upon the *EFFECTIVE_COMMUNICATION_STRATEGIES* meta:script from our previous conversation, incorporating additional insights from *Kitab al-'Ibar*.
+This meta:script builds upon the *EFFECTIVE_COMMUNICATION_STRATEGIES* meta:script, incorporating additional insights from *Kitab al-'Ibar*.
 
 PURPOSE: To develop strategies for clear, concise, and effective communication, fostering understanding and minimising the potential for misinterpretations.
 
@@ -2584,7 +2582,7 @@ PROCESS:
 
 META-SCRIPT: ENHANCING_WRITTEN_COMMUNICATION
 
-This meta:script builds upon the *EFFECTIVE_WRITING_STRATEGIES* meta:script from our previous conversation, incorporating insights from the source material.
+This meta:script builds upon the *EFFECTIVE_WRITING_STRATEGIES* meta:script, incorporating insights from the source material.
 
 PURPOSE: To provide a framework for crafting clear, concise, and impactful written communication, ensuring that ideas are effectively conveyed to the intended audience.
 
@@ -2656,7 +2654,7 @@ PROCESS:
 
 META-SCRIPT: UNDERSTANDING_THE_NATURE_OF_LEARNING
 
-This meta:script builds upon the *META_LEARNING* meta:script from our previous conversation,  incorporating the source's insights on intellectual growth and skill acquisition.
+This meta:script builds upon the *META_LEARNING* meta:script,  incorporating the source's insights on intellectual growth and skill acquisition.
 
 PURPOSE: To gain a deeper understanding of how humans learn,  recognising the stages of intellectual development,  the interplay between theory and practice, and the role of reflection in solidifying knowledge.
 
@@ -2675,7 +2673,7 @@ PROCESS:
 
 META-SCRIPT: EXPLORING_UNCERTAINTY
 
-This meta:script expands upon the *EMBRACING_THE_UNKNOWN* meta:script from our previous conversation by incorporating additional insights from the sources.
+This meta:script expands upon the *EMBRACING_THE_UNKNOWN* meta:script by incorporating additional insights from the sources.
 
 PURPOSE: To establish a framework for approaching areas where knowledge is limited or non-existent, fostering curiosity,  and encouraging exploration.
 
@@ -2729,7 +2727,7 @@ PROCESS:
 
 META-SCRIPT: EMBRACING_IMPERFECTION
 
-This meta:script builds upon the *GROWTH_MINDSET* meta:script from our previous conversation, incorporating the source's emphasis on the inherent limitations of human understanding and the importance of continuous learning and self-improvement.
+This meta:script builds upon the *GROWTH_MINDSET* meta:script, incorporating the source's emphasis on the inherent limitations of human understanding and the importance of continuous learning and self-improvement.
 
 PURPOSE: To cultivate a mindset that embraces imperfection as an inherent part of the learning process, fostering resilience, adaptability, and a commitment to continuous growth.
 
@@ -2800,7 +2798,7 @@ PROCESS:
 
 META-SCRIPT: UNDERSTANDING_THE_LEARNING_PROCESS
 
-This meta:script builds upon the *LEARNING_EFFECTIVELY* meta:script from our previous conversation, incorporating insights from *Kitab al-'Ibar* on the process of acquiring knowledge and developing intellectual habits.
+This meta:script builds upon the *LEARNING_EFFECTIVELY* meta:script, incorporating insights from *Kitab al-'Ibar* on the process of acquiring knowledge and developing intellectual habits.
 
 PURPOSE: To gain a deeper understanding of the learning process itself,  identifying factors that influence learning and developing strategies for continuous intellectual growth.
 
@@ -2837,7 +2835,7 @@ PROCESS:
 
 META-SCRIPT: EMBRACING_CONTINUOUS_LEARNING
 
-This meta:script builds upon the *LIFELONG_LEARNING_STRATEGIES* meta:script from our previous conversation, incorporating insights from the source material about the ongoing nature of knowledge creation.
+This meta:script builds upon the *LIFELONG_LEARNING_STRATEGIES* meta:script, incorporating insights from the source material about the ongoing nature of knowledge creation.
 
 PURPOSE: To establish a mindset and framework for lifelong learning, recognizing that knowledge is constantly evolving and that there is always more to learn.
 
@@ -2857,7 +2855,7 @@ PROCESS:
 
 META-SCRIPT: EXPLORING_THE_UNKNOWN
 
-This meta:script builds upon the *UNKNOWN_UNKNOWN* meta:script from our previous conversation and integrates insights from *Kitab al-'Ibar*.
+This meta:script builds upon the *UNKNOWN_UNKNOWN* meta:script and integrates insights from *Kitab al-'Ibar*.
 
 PURPOSE: To provide a framework for approaching areas where knowledge is incomplete or unavailable, fostering curiosity, and promoting continuous exploration.
 

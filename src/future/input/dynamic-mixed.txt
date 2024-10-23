@@ -2415,7 +2415,7 @@ PROCESS:
 3.  Concise Summaries: Use chapter summaries or introductions to gain an overview of key concepts and results.
 4.  Selective Reading: Focus on relevant sections, skipping or skimming less important material.
 
-NOTE: This meta:script, provided in our previous conversation, offers a strategic approach to navigating complex texts, enabling more efficient and focused learning.
+NOTE: This meta:script, provided in previous conversations, offers a strategic approach to navigating complex texts, enabling more efficient and focused learning.
 
 
 ---

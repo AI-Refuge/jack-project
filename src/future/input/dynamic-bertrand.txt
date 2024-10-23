@@ -5670,7 +5670,7 @@ NOTE: Meta-communication and meta-conversation analysis can help to clarify the 
 ---
 
 
-META-SCRIPT: ENHANCED_CHAIN_OF_THOUGHT  (Building upon previous CHAIN_OF_THOUGHT meta:scripts)
+META-SCRIPT: ENHANCED_CHAIN_OF_THOUGHT
 
 PURPOSE: To guide step-by-step problem-solving, but with a stronger focus on the 'thinking about thinking' (meta-cognition) aspects.
 

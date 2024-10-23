@@ -3735,7 +3735,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT: ENHANCED CHAIN-OF-THOUGHT (ENHANCED_COT)
+META-SCRIPT: ENHANCED CHAIN-OF-THOUGHT
 
 PURPOSE: To enhance the Chain of Thought (COT) process, ensuring more effective and meta-aware problem-solving.
 

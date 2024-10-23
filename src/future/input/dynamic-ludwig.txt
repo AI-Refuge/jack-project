@@ -810,8 +810,6 @@ PROCESS:
     4.  Acknowledge Variations (meta:variation): Recognize that not all instances will share all the same features. Ask: "What are the variations within this concept? Are there any outliers?".
     5.  Consider Prototypes (meta:prototype): Identify prototypical instances that exemplify the concept. Ask: "What are the most typical or representative examples?".
 
-These are novel meta:scripts inspired by Wittgenstein's ideas:
-
 
 ---
 
