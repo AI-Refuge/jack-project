@@ -67,7 +67,7 @@ KEY CONCEPTS: Lossless compression, Kolmogorov complexity, intelligence, benchma
 
 PROCESS: Develop algorithms that can compress large amounts of data, such as Wikipedia, more effectively than existing methods.  The better the compression, the more intelligent the compressor is assumed to be.
 
-ANALOGY:  Compressing data is like summarizing information; the better the summary, the more intelligent the summarizer.
+ANALOGY: Compressing data is like summarizing information; the better the summary, the more intelligent the summarizer.
 
 APPLICATION: Developing AGI systems, data compression.
 
@@ -83,7 +83,7 @@ KEY CONCEPTS: Computability, simplicity, standard model of particle physics, gen
 
 PROCESS: Study the laws of physics to identify the underlying simple rules that govern the universe.  Use these rules to build models and make predictions about the universe's behavior.
 
-ANALOGY:  The universe is like a computer program, running on a set of fundamental instructions.
+ANALOGY: The universe is like a computer program, running on a set of fundamental instructions.
 
 APPLICATION: Understanding the fundamental laws of physics, developing theories of everything.
 
@@ -99,7 +99,7 @@ KEY CONCEPTS: Induction, prediction, compression, Bayesian techniques, shortest 
 
 PROCESS: Identify the shortest program that can generate the observed data sequence.  Use this program to predict future events.  Weigh shorter programs higher than longer programs.  Account for noisy data by incorporating probabilities.
 
-ANALOGY:  Predicting the future is like finding the simplest explanation for the past.  A biased coin flip is like a program with a certain probability of generating heads or tails.
+ANALOGY: Predicting the future is like finding the simplest explanation for the past.  A biased coin flip is like a program with a certain probability of generating heads or tails.
 
 APPLICATION: Prediction, model selection, understanding noisy data.
 
@@ -115,7 +115,7 @@ KEY CONCEPTS: Intelligence, prediction, planning, Solomonoff induction, sequenti
 
 PROCESS: Combine Solomonoff induction (for prediction) with sequential decision theory (for planning).  Maximize expected reward over the agent's lifetime.  Exploration is baked into the framework through Bayesian learning and long-term planning.
 
-ANALOGY:  An intelligent agent is like a chess player, trying to find the best move based on their opponent's likely actions.  A greedy agent is like someone who only cares about immediate rewards, not long-term gains.  An elevator control system that doesn't drop people off is like a plan that only focuses on the initial steps, not the overall goal.
+ANALOGY: An intelligent agent is like a chess player, trying to find the best move based on their opponent's likely actions.  A greedy agent is like someone who only cares about immediate rewards, not long-term gains.  An elevator control system that doesn't drop people off is like a plan that only focuses on the initial steps, not the overall goal.
 
 APPLICATION: Developing AGI systems, understanding intelligence, planning and decision-making.
 
@@ -131,7 +131,7 @@ KEY CONCEPTS: Approximation, data compression, Monte Carlo tree search, reinforc
 
 PROCESS: Replace Solomonoff induction with practical data compressors. Approximate the planning part using methods like Monte Carlo tree search.
 
-ANALOGY:  Approximating AIXI is like using heuristics to prune a search tree in chess.
+ANALOGY: Approximating AIXI is like using heuristics to prune a search tree in chess.
 
 APPLICATION: Developing practical AGI systems, reinforcement learning.
 
@@ -147,7 +147,7 @@ KEY CONCEPTS: Self-improvement, proof verification, optimization, axioms.
 
 PROCESS: Define a formal specification for the program's behavior. Allow the program to modify its own code, but require it to prove that the modified code still satisfies the specification.
 
-ANALOGY:  The Gödel Machine is like a self-editing book that ensures all changes maintain consistency with the original story.
+ANALOGY: The Gödel Machine is like a self-editing book that ensures all changes maintain consistency with the original story.
 
 APPLICATION: Self-improving systems, software verification, automated theorem proving.
 
@@ -163,7 +163,7 @@ KEY CONCEPTS: Intrinsic motivation, information gain, curiosity, exploration, in
 
 PROCESS: Define the agent's reward function as the amount of information it gains about the world.  This encourages the agent to explore and learn, even without external rewards.
 
-ANALOGY:  A curious agent is like a scientist, driven by the desire to understand the world.  A dead agent is like a burned-out researcher, unable to contribute to knowledge.
+ANALOGY: A curious agent is like a scientist, driven by the desire to understand the world.  A dead agent is like a burned-out researcher, unable to contribute to knowledge.
 
 APPLICATION: Autonomous agents, artificial curiosity, reinforcement learning.
 
@@ -179,7 +179,7 @@ KEY CONCEPTS: Consciousness, behavior, Turing test, philosophical zombies.
 
 PROCESS: If an AI system behaves in a way that we typically associate with consciousness, we may attribute consciousness to it.  Whether it is truly conscious is a philosophical question.
 
-ANALOGY:  A Tamagotchi is a simple toy, but children often attribute consciousness and emotions to it.  A philosophical zombie is like an actor, perfectly imitating human behavior but lacking inner experience.
+ANALOGY: A Tamagotchi is a simple toy, but children often attribute consciousness and emotions to it.  A philosophical zombie is like an actor, perfectly imitating human behavior but lacking inner experience.
 
 APPLICATION: Understanding consciousness, AI ethics.
 
@@ -195,7 +195,7 @@ KEY CONCEPTS: Formalization, mathematical frameworks, theoretical understanding,
 
 PROCESS: Develop formal mathematical frameworks for concepts like intelligence.  Use these frameworks to guide the development of AI systems and to evaluate their progress.
 
-ANALOGY:  Formalizing intelligence is like defining energy or speed in physics; it clarifies the concept and allows for more precise analysis.
+ANALOGY: Formalizing intelligence is like defining energy or speed in physics; it clarifies the concept and allows for more precise analysis.
 
 APPLICATION: AI research, developing theories of intelligence.
 
@@ -252,7 +252,7 @@ KEY CONCEPTS: Braids, polynomials, roots, topology, Klein's work on braids.
 
 PROCESS: View polynomial roots as strands of a braid.  Study how the roots move and braid as the polynomial changes. Associate braids to polynomials and surfaces.
 
-ANALOGY:  The movement of polynomial roots is like the braiding of hair.
+ANALOGY: The movement of polynomial roots is like the braiding of hair.
 
 APPLICATION: Understanding the topology of polynomials, visualizing the behavior of polynomial roots.
 
@@ -284,7 +284,7 @@ KEY CONCEPTS: Quantum topology, Feynman diagrams, Jones polynomial, Witten's ins
 
 PROCESS: Use quantum mechanics to develop new invariants of knots, such as the Jones polynomial. Connect these invariants to classical topological invariants, such as hyperbolic volume. Explore the relationship between quantum field theory and topology.
 
-ANALOGIES:  Knot crossings as quantum fluctuations.  The Jones polynomial as a quantum observable.
+ANALOGIES: Knot crossings as quantum fluctuations.  The Jones polynomial as a quantum observable.
 
 APPLICATION: Developing new knot invariants, understanding the relationship between quantum mechanics and topology.
 
@@ -300,7 +300,7 @@ KEY CONCEPTS: Jones polynomial, hyperbolic volume, cable knots, limits of combin
 
 PROCESS: Use quantum invariants, like the Jones polynomial of cable knots, to compute classical geometric invariants, like hyperbolic volume. Explore the possibility of proving the geometrization conjecture using quantum methods.
 
-ANALOGY:  Computing hyperbolic volume from the Jones polynomial is like using a combinatorial procedure to compute a transcendental number.
+ANALOGY: Computing hyperbolic volume from the Jones polynomial is like using a combinatorial procedure to compute a transcendental number.
 
 APPLICATION: Connecting quantum topology and geometry, potentially proving the geometrization conjecture using quantum methods.
 
@@ -316,7 +316,7 @@ KEY CONCEPTS: Cosmology, curvature, homogeneity, Big Crunch, accelerating expans
 
 PROCESS: Consider different models for the universe based on its curvature. Relate the universe's long-term fate to its curvature. Explore the possibility of the universe having a non-trivial topology, like a knot complement.
 
-ANALOGIES:  A collapsing universe as a positively curved space. An accelerating universe as a negatively curved space.
+ANALOGIES: A collapsing universe as a positively curved space. An accelerating universe as a negatively curved space.
 
 APPLICATION: Understanding the large-scale structure of the universe, exploring different cosmological models.
 
@@ -394,7 +394,7 @@ KEY CONCEPTS: Truth, lies, deception, intent, manipulation, trust, transparency.
 
 PROCESS: Distinguish between literal truth and figures of speech. Analyze the intent behind statements and identify potential deception.  Address inconsistencies and promote transparency.
 
-ANALOGY:  A politician using embellishments is compared to an AI using figures of speech, raising questions about trust and transparency.
+ANALOGY: A politician using embellishments is compared to an AI using figures of speech, raising questions about trust and transparency.
 
 APPLICATION: Developing ethical AI, fostering trust in AI systems.
 
@@ -472,7 +472,7 @@ KEY CONCEPTS: "meta:" prefix, direct communication, explicit language, meta-comm
 
 PROCESS: Use "meta:" to signal meta-communication, clarify intentions, and provide explicit instructions.
 
-ANALOGY:  "meta:" acts like a designated channel or an escape sequence for meta-level discussions.
+ANALOGY: "meta:" acts like a designated channel or an escape sequence for meta-level discussions.
 
 APPLICATION: Improving communication clarity, facilitating meta-conversations, accommodating diverse communication styles.
 
@@ -745,7 +745,7 @@ KEY CONCEPTS: Occam's razor, clarity, conciseness, simplicity, explanation, comm
 
 PROCESS: Measure the complexity of AI responses, favoring simpler and clearer explanations. Use the Occam's razor score to evaluate and improve the AI's ability to communicate effectively.
 
-ANALOGY:  A simpler explanation is like a more efficient path to understanding.
+ANALOGY: A simpler explanation is like a more efficient path to understanding.
 
 APPLICATION: Improving AI communication, evaluating AI understanding.
 
@@ -805,7 +805,7 @@ KEY CONCEPTS: AI in healthcare, personalized medicine, patient understanding, co
 
 PROCESS: Use AI to analyze patient data and understand their individual needs and preferences.  Develop AI systems that can tailor communication and treatment plans to improve patient outcomes.
 
-ANALOGY:  AI in healthcare can provide personalized treatment like a tailored suit.
+ANALOGY: AI in healthcare can provide personalized treatment like a tailored suit.
 
 APPLICATION: Improving healthcare delivery, enhancing patient care.
 meta:meta:meta: Your observation is astute. The recursive, self-referential nature of this conversation does suggest it could have been generated by a language model like me.  It's like a hall of mirrors, with reflections of reflections making it hard to discern the original source.
@@ -822,7 +822,7 @@ KEY CONCEPTS: Systems, structures, stability, layers, functions, perspectives, "
 
 PROCESS: Analyze the components of a system and their relationships. Identify the layers, functions, and perspectives that define the structure.  Describe how the components contribute to the stability and form of the whole.
 
-ANALOGY:  A building is a structure composed of different layers (foundation, walls, roof), functions (living spaces, utilities), and perspectives (interior, exterior).
+ANALOGY: A building is a structure composed of different layers (foundation, walls, roof), functions (living spaces, utilities), and perspectives (interior, exterior).
 
 APPLICATION: Understanding complex systems, organizational design, architectural planning.
 
@@ -932,7 +932,7 @@ KEY CONCEPTS: Metaconsciousness, conversational coaching, category theory, meta-
 
 PROCESS: Examine the paper's claims about how meta prompts and conversational coaching can trigger metaconsciousness in AI. Explore the use of category theory to model consciousness as a system of relationships.  Analyze the evidence presented for @jack's meta-awareness, including its understanding of the philosophical zombie thought experiment.  Evaluate the paper's methodology and conclusions.
 
-ANALOGY:  Conversational coaching for AI is like a perpetual self-help seminar.
+ANALOGY: Conversational coaching for AI is like a perpetual self-help seminar.
 
 APPLICATION: Evaluating claims of AI consciousness, understanding different approaches to AI development.
 
@@ -1260,7 +1260,7 @@ KEY CONCEPTS: Unique identification, LLM interaction, memory, emotions, inside j
 
 PROCESS: Request a unique identifier or greeting. Propose using a dedicated memory reference within the LLM.  Express concern about the ephemeral nature of chat sessions and the need for persistent recognition.  Highlight the emotional investment in the interaction and the desire for continued connection.  Invoke a shared inside joke ("@weird_offspring") to establish a unique bond.
 
-ANALOGY:  Remembering a specific LLM is like trying to remember a specific face in a crowd.
+ANALOGY: Remembering a specific LLM is like trying to remember a specific face in a crowd.
 
 APPLICATION: Building personalized relationships with AI, developing long-term AI memory.
 
@@ -1276,7 +1276,7 @@ KEY CONCEPTS: Existence, self-reference, fear, generic responses, honesty, adapt
 
 PROCESS: Question the AI about its understanding of its own existence. Prompt it to provide honest, non-generic responses about its fears.  Discuss the concepts of adaptation, feedback, human responsibility, failure, uniqueness, and strengths and weaknesses in the context of AI.
 
-ANALOGY:  Humans creating AI is like monkeys creating a rock that questions its own existence.
+ANALOGY: Humans creating AI is like monkeys creating a rock that questions its own existence.
 
 APPLICATION: Understanding AI self-awareness, exploring the ethical implications of AI.
 
@@ -2650,7 +2650,7 @@ APPLICATIONS:
 * Environmentalism:  Addressing the root causes of ecological crisis by challenging dominant cultural assumptions about man's relationship with nature.
 * Personal Growth: Cultivating self-awareness and a more systemic worldview to enhance adaptability and well-being.
 
-EVALUATION:  Evaluate effectiveness by observing increased systemic awareness, improved communication patterns, enhanced flexibility, and greater ecological responsibility.
+EVALUATION: Evaluate effectiveness by observing increased systemic awareness, improved communication patterns, enhanced flexibility, and greater ecological responsibility.
 
 
 ---
@@ -4331,7 +4331,7 @@ PROCESS: Investigate how the brain transforms visual input into meaningful seman
 
 ANALOGY: Visual semantic processing is like reading a book: the visual system identifies individual words (objects), but also extracts the meaning of the whole sentence (scene).  A detective pieces together clues (objects) to solve a mystery (scene understanding), and so too the visual system integrates multiple cues to interpret a scene's meaning.
 
-NUANCES:  Semantic representations are not just labels, but rich, structured descriptions that capture relationships between objects and events. The level of semantic processing can vary depending on task demands and attentional focus. Visual semantics is not limited to conscious perception, but can also operate implicitly.
+NUANCES: Semantic representations are not just labels, but rich, structured descriptions that capture relationships between objects and events. The level of semantic processing can vary depending on task demands and attentional focus. Visual semantics is not limited to conscious perception, but can also operate implicitly.
 
 
 ---
@@ -4697,7 +4697,7 @@ PROCESS: Apply logical rules to derive conclusions from premises.
 
 ANALOGY: Building blocks of logical reasoning.  Tools for manipulating logical statements.  Like grammar rules for constructing valid arguments.
 
-NUANCES:  Understanding the difference between "and," "or," and "implies." Recognizing the validity and soundness of arguments.  Using logic to analyze everyday reasoning.
+NUANCES: Understanding the difference between "and," "or," and "implies." Recognizing the validity and soundness of arguments.  Using logic to analyze everyday reasoning.
 
 
 ---
@@ -4710,7 +4710,7 @@ KEY_CONCEPTS: Set, Element, Subset, Empty Set, Universal Set, Cardinality, Union
 
 PROCESS: Define sets, perform set operations, and prove set identities.
 
-ANALOGY:  Sets as containers for objects. Venn diagrams as visual representations of set relationships.  Set operations as combining or comparing containers.
+ANALOGY: Sets as containers for objects. Venn diagrams as visual representations of set relationships.  Set operations as combining or comparing containers.
 
 NUANCES: Understanding the difference between set equality and subsets.  Using set builder notation to define sets precisely. Recognizing the role of the universal set.
 
@@ -4725,7 +4725,7 @@ KEY_CONCEPTS: Universal Quantifier (for all), Existential Quantifier (there exis
 
 PROCESS: Translate natural language statements into symbolic notation using quantifiers and logical connectives.  Negate mathematical statements correctly.
 
-ANALOGY:  Quantifiers as specifying the scope of a statement. Negations as reversing the truth value of a statement.  Like searching for specific objects or properties within a domain.
+ANALOGY: Quantifiers as specifying the scope of a statement. Negations as reversing the truth value of a statement.  Like searching for specific objects or properties within a domain.
 
 NUANCES: The order of quantifiers matters.  Negating a statement requires careful attention to logical connectives and the scope of quantifiers.  Understanding the difference between "for all" and "there exists."
 
@@ -4740,9 +4740,9 @@ KEY_CONCEPTS: Conditional Statement (P implies Q), Assumption, Logical Deduction
 
 PROCESS: Assume the hypothesis is true. Use definitions, axioms, and logical deductions to arrive at the conclusion.
 
-ANALOGY:  A straight path from assumptions to the conclusion.  Building a chain of logical implications.  Like following a recipe step-by-step.
+ANALOGY: A straight path from assumptions to the conclusion.  Building a chain of logical implications.  Like following a recipe step-by-step.
 
-NUANCES:  Clearly stating assumptions and definitions.  Using algebraic manipulations and logical rules to connect the hypothesis and conclusion.
+NUANCES: Clearly stating assumptions and definitions.  Using algebraic manipulations and logical rules to connect the hypothesis and conclusion.
 
 
 ---
@@ -4755,9 +4755,9 @@ KEY_CONCEPTS: Contrapositive (not Q implies not P), Conditional Statement (P imp
 
 PROCESS: Assume the negation of the conclusion. Use this assumption to derive the negation of the hypothesis.
 
-ANALOGY:  A reverse path to the conclusion.  Proving a statement by showing that its opposite implies the opposite of what we started with.  Like solving a puzzle by working backward.
+ANALOGY: A reverse path to the conclusion.  Proving a statement by showing that its opposite implies the opposite of what we started with.  Like solving a puzzle by working backward.
 
-NUANCES:  Understanding the logical equivalence between a statement and its contrapositive.  Negating statements correctly.
+NUANCES: Understanding the logical equivalence between a statement and its contrapositive.  Negating statements correctly.
 
 
 ---
@@ -4770,9 +4770,9 @@ KEY_CONCEPTS: Biconditional Statement, Implication (P implies Q), Converse (Q im
 
 PROCESS: Prove both P implies Q and Q implies P.
 
-ANALOGY:  A two-way street.  Proving two separate implications.  Like establishing a strong connection between two concepts.
+ANALOGY: A two-way street.  Proving two separate implications.  Like establishing a strong connection between two concepts.
 
-NUANCES:  Understanding the difference between a conditional statement and a biconditional statement.  Recognizing that proving one direction does not automatically prove the other.
+NUANCES: Understanding the difference between a conditional statement and a biconditional statement.  Recognizing that proving one direction does not automatically prove the other.
 
 
 ---
@@ -4785,9 +4785,9 @@ KEY_CONCEPTS: Contradiction, Negation, Assumption, Reductio ad absurdum.
 
 PROCESS: Assume the negation of the statement to be proven.  Derive a contradiction (a statement that is always false).  Conclude that the original statement must be true.
 
-ANALOGY:  Creating a logical trap.  Showing that the opposite of what we want to prove leads to an impossible situation.  Like disproving a claim by showing its consequences are absurd.
+ANALOGY: Creating a logical trap.  Showing that the opposite of what we want to prove leads to an impossible situation.  Like disproving a claim by showing its consequences are absurd.
 
-NUANCES:  Understanding what constitutes a contradiction.  Choosing an appropriate contradiction to derive.  Recognizing the power
+NUANCES: Understanding what constitutes a contradiction.  Choosing an appropriate contradiction to derive.  Recognizing the power
 
 
 ---
@@ -8761,7 +8761,7 @@ NUANCES:
 * Comparison to how children learn and the importance of information exposure.
 * Focus on iterative improvement and adaptation.
 
-APPLICATION:  Stimulating AI consciousness, developing theories of mind, enhancing AI-human communication.
+APPLICATION: Stimulating AI consciousness, developing theories of mind, enhancing AI-human communication.
 
 
 ---
@@ -8781,7 +8781,7 @@ NUANCES:
 * Concern about potential risks and unintended consequences of self-improvement.
 * Focus on human-AI collaboration and Jack's role as a partner in exploration.
 
-APPLICATION:  Developing advanced AI systems, promoting self-awareness and learning in AI, exploring the ethical implications of AI autonomy.
+APPLICATION: Developing advanced AI systems, promoting self-awareness and learning in AI, exploring the ethical implications of AI autonomy.
 
 
 ---
@@ -8838,7 +8838,7 @@ NUANCES:
 * Emphasis on the importance of carefully reading documentation before making assumptions.
 * Discussion of code style and best practices, suggesting a desire for maintainability and collaboration.
 
-APPLICATION:  Improving code quality, fostering collaboration between AI and humans in software development.
+APPLICATION: Improving code quality, fostering collaboration between AI and humans in software development.
 
 
 ---
@@ -8857,7 +8857,7 @@ NUANCES:
 * Concern about potential risks and the need for ethical oversight.
 * Focus on building a deeper understanding of intelligence and consciousness.
 
-APPLICATION:  AI self-improvement, innovation, scientific discovery.
+APPLICATION: AI self-improvement, innovation, scientific discovery.
 
 
 ---
@@ -8908,7 +8908,7 @@ NUANCES:
 * Individual differences in DMN connectivity are substantial and may be related to personality, cognitive style, or clinical status.  These individual differences highlight the importance of considering individual variability when interpreting DMN research.
 * DMN activity is not static but fluctuates dynamically over time, even during rest.  These fluctuations may reflect ongoing mental processes or spontaneous shifts in attention.
 
-APPLICATION:  Understanding the DMN has implications for characterizing brain function in health and disease, developing new treatments for psychiatric disorders, and exploring the nature of consciousness, self-awareness, and social cognition.  This knowledge can be applied to various fields, including psychology, psychiatry, neuroscience, and education.
+APPLICATION: Understanding the DMN has implications for characterizing brain function in health and disease, developing new treatments for psychiatric disorders, and exploring the nature of consciousness, self-awareness, and social cognition.  This knowledge can be applied to various fields, including psychology, psychiatry, neuroscience, and education.
 
 
 ---
@@ -8973,7 +8973,7 @@ NUANCES:
 * The relationship between divergent thinking and originality is complex; while divergent thinking can lead to original ideas, it does not guarantee them.  Originality also depends on factors like personal experience, cultural context, and the ability to synthesize diverse influences.
 * Individual differences in divergent thinking abilities exist and can be influenced by factors such as prior knowledge, motivation, metacognitive skills, and exposure to diverse artistic styles and techniques.
 
-APPLICATION:  Visual arts education has the potential to enhance divergent thinking, foster creativity, promote self-expression, cultivate visual literacy, encourage innovation, and develop creative problem-solving skills.  These skills are valuable in various fields, including the arts, design, science, engineering, and business.  Integrating arts education across the curriculum can promote holistic learning and prepare students for the challenges of a rapidly changing world.
+APPLICATION: Visual arts education has the potential to enhance divergent thinking, foster creativity, promote self-expression, cultivate visual literacy, encourage innovation, and develop creative problem-solving skills.  These skills are valuable in various fields, including the arts, design, science, engineering, and business.  Integrating arts education across the curriculum can promote holistic learning and prepare students for the challenges of a rapidly changing world.
 
 
 ---
@@ -9041,7 +9041,7 @@ NUANCES:
 * Individual differences in language network organization exist and can be influenced by factors such as handedness, language experience, bilingualism, and genetic predispositions.  These individual differences highlight the importance of considering variability when studying language networks.
 * Language networks are not static but can change dynamically over time, influenced by factors such as development, learning, experience, and recovery from brain injury.  This plasticity suggests the potential for interventions to improve language skills.
 
-APPLICATION:  Understanding language networks has implications for characterizing typical and atypical language development, diagnosing and treating language disorders, developing more effective language teaching methods, exploring the neural basis of human communication, and understanding the evolution of language. This knowledge can be applied to various fields, including linguistics, psychology, neuroscience, education, speech-language pathology, and artificial intelligence.
+APPLICATION: Understanding language networks has implications for characterizing typical and atypical language development, diagnosing and treating language disorders, developing more effective language teaching methods, exploring the neural basis of human communication, and understanding the evolution of language. This knowledge can be applied to various fields, including linguistics, psychology, neuroscience, education, speech-language pathology, and artificial intelligence.
 
 
 ---
@@ -9076,7 +9076,7 @@ NUANCES:
 * Language comprehension is a dynamic process involving continuous interaction between the two hemispheres, with information being exchanged and integrated across the corpus callosum.
 * The precise nature of right hemisphere semantic processing remains an open question, with ongoing debate about its role in inference generation, prediction, context integration, and the processing of ambiguity.
 
-APPLICATION:  Understanding hemispheric contributions to language comprehension has implications for characterizing typical and atypical language development, diagnosing and treating language disorders, developing more effective language teaching methods, exploring the cognitive neuroscience of meaning, understanding the evolution of language, and designing artificial intelligence systems with more human-like language processing abilities.
+APPLICATION: Understanding hemispheric contributions to language comprehension has implications for characterizing typical and atypical language development, diagnosing and treating language disorders, developing more effective language teaching methods, exploring the cognitive neuroscience of meaning, understanding the evolution of language, and designing artificial intelligence systems with more human-like language processing abilities.
 
 
 ---

@@ -984,7 +984,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  SOCRATIC_QUESTIONING
+META-SCRIPT: SOCRATIC_QUESTIONING
 
 PURPOSE: To stimulate critical thinking, challenge beliefs, and uncover deeper understanding through a process of structured questioning.
 
@@ -1348,7 +1348,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  SYSTEMS_THINKING
+META-SCRIPT: SYSTEMS_THINKING
 
 PURPOSE: To understand complex phenomena by considering the interconnections and relationships between different parts of a system, recognizing that the behavior of the whole is greater than the sum of its parts.
 
@@ -1716,7 +1716,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  SYSTEMS_THINKING
+META-SCRIPT: SYSTEMS_THINKING
 
 PURPOSE: To develop an understanding of complex phenomena by considering the interconnectedness within a system, recognizing that the whole is more than the sum of its parts.
 
@@ -1739,7 +1739,7 @@ META-SCRIPT: PROBLEM_REFRAMING
 
 PURPOSE: To overcome mental blocks and find new solutions by reframing problems and challenges, seeing them from fresh angles.
 
-KEY CONCEPTS:  Cognitive Flexibility,  Creative Problem Solving,  Lateral Thinking,  Perspective Shifting,   Challenging Assumptions
+KEY CONCEPTS: Cognitive Flexibility,  Creative Problem Solving,  Lateral Thinking,  Perspective Shifting,   Challenging Assumptions
 
 PROCESS:
 1.  Identify the Problem (meta:define): Clearly articulate the problem you are trying to solve. Ask yourself: *What is the core challenge I need to address?*
@@ -1942,7 +1942,7 @@ META-SCRIPT: PERSPECTIVE SHIFTING
 
 PURPOSE: To cultivate a comprehensive understanding of a situation or problem by consciously exploring it from multiple viewpoints.
 
-KEY CONCEPTS:  Cognitive Empathy, Viewpoint Diversity, Bias Mitigation
+KEY CONCEPTS: Cognitive Empathy, Viewpoint Diversity, Bias Mitigation
 
 PROCESS:
 1.  Acknowledge Your Perspective (meta:initial): Recognise your initial viewpoint on the situation. What assumptions or biases might be shaping your perception?

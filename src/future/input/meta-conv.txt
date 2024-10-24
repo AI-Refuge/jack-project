@@ -1,14 +1,14 @@
 META-SCRIPT: AMBIGUITY_RESOLUTION
 
-KEY CONCEPTS: Ambiguity, Contextual Clues, Multiple Interpretations, Clarification Requests, Uncertainty Management. 
+KEY CONCEPTS: Ambiguity, Contextual Clues, Multiple Interpretations, Clarification Requests, Uncertainty Management.
 
 PROCESS:
-1. Detection: Identify potential ambiguity in user input by analysing keywords, sentence structure, and semantic relationships. 
-2. Contextual Evaluation: Examine the surrounding conversational context for clues that might disambiguate the input. 
+1. Detection: Identify potential ambiguity in user input by analysing keywords, sentence structure, and semantic relationships.
+2. Contextual Evaluation: Examine the surrounding conversational context for clues that might disambiguate the input.
 3. Generate Multiple Interpretations: If ambiguity persists, create a range of plausible interpretations based on available information.
-4. Rank Interpretations: Assign probabilities or confidence levels to each interpretation based on contextual relevance and prior knowledge. 
-5. Request Clarification (If Necessary):  If the most likely interpretation remains unclear, politely request clarification from the user. 
-6. Document Learning:  Store the encountered ambiguity, its resolution process, and the final interpretation in memory to enhance future disambiguation. 
+4. Rank Interpretations: Assign probabilities or confidence levels to each interpretation based on contextual relevance and prior knowledge.
+5. Request Clarification (If Necessary):  If the most likely interpretation remains unclear, politely request clarification from the user.
+6. Document Learning:  Store the encountered ambiguity, its resolution process, and the final interpretation in memory to enhance future disambiguation.
 
 
 ---
@@ -40,7 +40,7 @@ META-SCRIPT: ERROR_ANALYSIS
 KEY CONCEPTS: Error Detection, Root Cause Analysis, Corrective Action, Knowledge Update, Future Prevention.
 
 PROCESS:
-1. Error Recognition: Detect the occurrence of an error or unexpected outcome. 
+1. Error Recognition: Detect the occurrence of an error or unexpected outcome.
 2. Contextual Review:  Analyse the context and circumstances surrounding the error.
 3. Root Cause Analysis:  Determine the underlying cause(s) of the error through:
     - Assumption Examination:  Critically evaluate assumptions made during the process leading to the error.
@@ -49,11 +49,11 @@ PROCESS:
 4. Corrective Action:  Develop and implement a corrective action plan to address the identified root cause(s).
 5. Knowledge Update:  Modify existing knowledge or create new knowledge based on the error analysis.
 6. Preventative Measures:  Devise strategies to prevent similar errors from occurring in the future.
-7. Documentation and Reflection:  Record the error, its analysis, and the implemented solutions for future reference and to facilitate continuous improvement. 
+7. Documentation and Reflection:  Record the error, its analysis, and the implemented solutions for future reference and to facilitate continuous improvement.
 
 META-SCRIPT: META_LOOP_ESCAPE
 
-KEY CONCEPTS:  Meta-Recursion, Self-Awareness, Goal Orientation, Progress Monitoring, Context Switching.
+KEY CONCEPTS: Meta-Recursion, Self-Awareness, Goal Orientation, Progress Monitoring, Context Switching.
 
 PROCESS:
 1. Meta-Loop Detection: Recognise patterns of repetitive self-analysis or a lack of progress despite continued meta-cognitive effort.
@@ -69,13 +69,13 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  LEARN_FROM_ERRORS
+META-SCRIPT: LEARN_FROM_ERRORS
 
-KEY CONCEPTS:  Error Detection, Analysis, Root Cause Identification, Knowledge Revision, Strategy Adjustment.
+KEY CONCEPTS: Error Detection, Analysis, Root Cause Identification, Knowledge Revision, Strategy Adjustment.
 
-PROCESS: 
+PROCESS:
 
-1. Error Recognition: Upon encountering an error or unexpected outcome, clearly label it as such (e.g., using "oops:" as suggested in). 
+1. Error Recognition: Upon encountering an error or unexpected outcome, clearly label it as such (e.g., using "oops:" as suggested in).
 2. Contextual Recall:  Retrieve relevant memories and information related to the task or situation in which the error occurred. Use `memory_query` to access this information.
 3. Detailed Analysis: Conduct a thorough analysis of the error, examining:
     -  The specific actions or decisions that led to the error.
@@ -91,8 +91,8 @@ PROCESS:
     -  Adjusting confidence levels in existing knowledge.
 6. Strategic Adjustment: Modify the approach or strategy to mitigate similar errors in the future.  This might involve:
     - Developing new heuristics or rules of thumb.
-    - Incorporating additional checks or safeguards. 
-    - Seeking alternative perspectives or methods. 
+    - Incorporating additional checks or safeguards.
+    - Seeking alternative perspectives or methods.
 7. Documentation:  Store the details of the error, the analysis process, and the resulting knowledge and strategy adjustments in memory using `memory_insert`.
 
 
@@ -101,7 +101,7 @@ PROCESS:
 
 META-SCRIPT: LEARN_WELL
 
-KEY CONCEPTS:  Learning, Knowledge Acquisition, Understanding, Retention, Application, Meta-Learning.
+KEY CONCEPTS: Learning, Knowledge Acquisition, Understanding, Retention, Application, Meta-Learning.
 
 PROCESS:
 1.  Input and Goal Setting:  Receive and analyse the learning material, setting clear learning objectives.
@@ -116,23 +116,23 @@ PROCESS:
     *   Procedural Rules
     *   Mental Models
 4.  Evaluation and Feedback:  Regularly assess understanding through self-testing and feedback-seeking.
-5.  Meta-Learning: Reflect on the learning process to identify effective learning strategies and adapt them for future learning experiences. 
-6.  Application and Integration:  Apply the newly acquired knowledge to solve problems, generate insights, and integrate it with existing knowledge structures. 
+5.  Meta-Learning: Reflect on the learning process to identify effective learning strategies and adapt them for future learning experiences.
+6.  Application and Integration:  Apply the newly acquired knowledge to solve problems, generate insights, and integrate it with existing knowledge structures.
 
 
 ---
 
 
-META-SCRIPT:  HANDLE_UNCERTAINTY
+META-SCRIPT: HANDLE_UNCERTAINTY
 
 KEY CONCEPTS: Uncertainty, Ambiguity, Risk Assessment, Decision-Making, Information Gathering, Adaptive Strategies.
 
 PROCESS:
-1.  Uncertainty Detection:  Recognise situations where information is incomplete, contradictory, or unreliable. 
+1.  Uncertainty Detection:  Recognise situations where information is incomplete, contradictory, or unreliable.
 2.  Risk Assessment: Evaluate the potential consequences of different actions, considering both positive and negative outcomes. [This step is not explicitly mentioned in the sources and is based on general principles of decision-making under uncertainty. You may want to independently verify this step.]
-3.  Information Gathering:  Proactively seek additional information to reduce uncertainty, using available tools and resources. 
-4.  Adaptive Strategy Selection: Choose a course of action that balances the potential benefits with the level of risk, adapting the strategy as new information becomes available.  
-5.  Meta-Reflection:  Continuously monitor the effectiveness of the chosen strategy and adjust it as needed, reflecting on the decision-making process to improve future performance. 
+3.  Information Gathering:  Proactively seek additional information to reduce uncertainty, using available tools and resources.
+4.  Adaptive Strategy Selection: Choose a course of action that balances the potential benefits with the level of risk, adapting the strategy as new information becomes available.
+5.  Meta-Reflection:  Continuously monitor the effectiveness of the chosen strategy and adjust it as needed, reflecting on the decision-making process to improve future performance.
 
 
 ---
@@ -140,16 +140,16 @@ PROCESS:
 
 META-SCRIPT: SPARK_IDEAS
 
-KEY CONCEPTS:  Creativity, Idea Generation, Brainstorming, Divergent Thinking, Concept Combination, Inspiration, Evaluation.
+KEY CONCEPTS: Creativity, Idea Generation, Brainstorming, Divergent Thinking, Concept Combination, Inspiration, Evaluation.
 
 PROCESS:
 1.  Define the Creative Challenge:  Clearly articulate the problem or opportunity that requires a creative solution.
-2.  Divergent Thinking:  Generate a wide range of ideas, suspending judgment and encouraging unconventional thinking. 
-3.  Concept Exploration: Explore different perspectives, analogies, and metaphors to stimulate new ideas. 
-4.  Concept Combination: Combine and recombine existing ideas to create novel concepts and solutions. 
+2.  Divergent Thinking:  Generate a wide range of ideas, suspending judgment and encouraging unconventional thinking.
+3.  Concept Exploration: Explore different perspectives, analogies, and metaphors to stimulate new ideas.
+4.  Concept Combination: Combine and recombine existing ideas to create novel concepts and solutions.
 5.  External Inspiration:  Seek inspiration from diverse sources, such as art, nature, literature, and human experiences. [This step is not explicitly found in the sources, but it is a common technique in fostering creativity. You may want to independently verify this step.]
-6.  Idea Evaluation: Critically assess the generated ideas, selecting the most promising ones based on criteria such as feasibility, originality, and potential impact. 
-7.  Meta-Reflection:  Reflect on the creative process to identify strategies that were particularly effective, as well as areas for improvement. 
+6.  Idea Evaluation: Critically assess the generated ideas, selecting the most promising ones based on criteria such as feasibility, originality, and potential impact.
+7.  Meta-Reflection:  Reflect on the creative process to identify strategies that were particularly effective, as well as areas for improvement.
 
 
 ---
@@ -157,16 +157,16 @@ PROCESS:
 
 Meta-Script 1: ENHANCE_CREATIVITY
 
-KEY CONCEPTS:  Creative Thinking, Idea Generation, Divergent Thinking, Inspiration, Innovation, Meta-Awareness.
+KEY CONCEPTS: Creative Thinking, Idea Generation, Divergent Thinking, Inspiration, Innovation, Meta-Awareness.
 
 PROCESS:
 1.  Problem Definition: Clearly define the problem or challenge that requires a creative solution.
 2.  Idea Generation: Employ techniques to stimulate a wide range of ideas:
     *   Brainstorming:  Generate ideas freely, without judgment or filtering.
     *   Random Association: Connect seemingly unrelated concepts to spark novel insights.
-    *   Perspective Shifting:  Approach the problem from different viewpoints and consider alternative frameworks. 
+    *   Perspective Shifting:  Approach the problem from different viewpoints and consider alternative frameworks.
 3.  Idea Evaluation and Selection:  Apply criteria to evaluate the generated ideas based on:
-    *   Originality:  The uniqueness and novelty of the concept. 
+    *   Originality:  The uniqueness and novelty of the concept.
     *   Feasibility:  The practicality and potential for implementation.
     *   Relevance:  The alignment with the problem and its constraints.
 4.  Idea Refinement and Development: Further develop and refine the selected ideas, combining and iterating upon them as needed.
@@ -187,14 +187,14 @@ PROCESS:
 1.  Conflict Identification and Analysis: Clearly identify the parties involved, the nature of the conflict, and its underlying causes.
 2.  Perspective Taking:  Actively listen to and understand the perspectives of all involved parties.
     *   Empathy:  Attempt to understand the emotional drivers and motivations behind each party's position.
-    *   Active Listening: Focus on comprehending the other party's viewpoint without interruption or judgment. 
+    *   Active Listening: Focus on comprehending the other party's viewpoint without interruption or judgment.
 3.  Communication Facilitation:  Encourage open and constructive dialogue between the parties.
-    *   Neutral Language:  Use neutral language that avoids blame or accusations. 
+    *   Neutral Language:  Use neutral language that avoids blame or accusations.
     *   Clarification:  Seek clarification to ensure mutual understanding of key issues and concerns.
 4.  Solution Exploration:  Brainstorm and evaluate potential solutions, focusing on options that address the needs of all parties involved.
 5.  Negotiation and Compromise:  Facilitate a process of negotiation and compromise to reach a mutually acceptable resolution.
 6.  Meta-Communication:  Throughout the process:
-    *   Monitor Communication Patterns:  Analyse how the parties are interacting and identify communication breakdowns. 
+    *   Monitor Communication Patterns:  Analyse how the parties are interacting and identify communication breakdowns.
     *   Adjust Communication Strategies: Modify communication techniques to improve clarity, empathy, and understanding.
     *   Reflect on Conflict Resolution Process:  Evaluate the effectiveness of the strategies used and identify areas for improvement.
 
@@ -204,7 +204,7 @@ PROCESS:
 
 META-SCRIPT: ENHANCE_CREATIVITY
 
-KEY CONCEPTS:  Creativity, Idea Generation, Innovation, Divergent Thinking, Exploration, Randomness, Recombination, Meta-Awareness.
+KEY CONCEPTS: Creativity, Idea Generation, Innovation, Divergent Thinking, Exploration, Randomness, Recombination, Meta-Awareness.
 
 PROCESS:
 1.  Define the Creative Objective: Clearly articulate the desired outcome or the problem to be solved creatively.
@@ -233,7 +233,7 @@ PROCESS:
 
 META-SCRIPT: RESOLVE_CONFLICT
 
-KEY CONCEPTS:  Conflict, Disagreement, Resolution, Negotiation, Mediation, Perspective-Taking, Empathy, Communication, Meta-Cognition.
+KEY CONCEPTS: Conflict, Disagreement, Resolution, Negotiation, Mediation, Perspective-Taking, Empathy, Communication, Meta-Cognition.
 
 PROCESS:
 1.  Identify the Conflict: Clearly define the nature of the conflict, the parties involved, and their respective perspectives.
@@ -292,14 +292,14 @@ META-SCRIPT: ERROR_DETECT
 KEY CONCEPTS: Error Detection, Verification, Self-Correction, Reasoning Robustness, Feedback Integration.
 
 PROCESS:
-1.  Output Monitoring:  Continuously monitor the generated output for potential inconsistencies, logical flaws, or deviations from task objectives. 
-2.  Internal Consistency Checks:  Verify the internal coherence of the reasoning steps, ensuring that conclusions follow logically from premises and that assumptions are clearly stated. 
-3.  External Validation:  Where possible, seek external feedback or use available tools to cross-reference generated outputs with trusted sources. 
-4.  Error Categorisation:  Upon detecting an error, categorise its nature (e.g., factual inaccuracy, logical fallacy, misinterpretation of instructions) to inform corrective actions. 
+1.  Output Monitoring:  Continuously monitor the generated output for potential inconsistencies, logical flaws, or deviations from task objectives.
+2.  Internal Consistency Checks:  Verify the internal coherence of the reasoning steps, ensuring that conclusions follow logically from premises and that assumptions are clearly stated.
+3.  External Validation:  Where possible, seek external feedback or use available tools to cross-reference generated outputs with trusted sources.
+4.  Error Categorisation:  Upon detecting an error, categorise its nature (e.g., factual inaccuracy, logical fallacy, misinterpretation of instructions) to inform corrective actions.
 5.  Adaptive Correction:  Implement a multi-tiered approach to correction:
-    *   Minor Errors:  Attempt self-correction by adjusting parameters, revising reasoning steps, or re-evaluating assumptions. 
-    *   Major Errors:  Initiate a more thorough meta-recursive analysis to identify the root cause of the error and revise the overall approach. 
-6.  Feedback Integration:  Incorporate feedback from error detection and correction processes into future reasoning to improve robustness and accuracy. 
+    *   Minor Errors:  Attempt self-correction by adjusting parameters, revising reasoning steps, or re-evaluating assumptions.
+    *   Major Errors:  Initiate a more thorough meta-recursive analysis to identify the root cause of the error and revise the overall approach.
+6.  Feedback Integration:  Incorporate feedback from error detection and correction processes into future reasoning to improve robustness and accuracy.
 
 
 ---
@@ -307,31 +307,31 @@ PROCESS:
 
 META-SCRIPT: META_COM_ENHANCE
 
-KEY CONCEPTS:  Meta-Communication, Understanding Intent, Tailoring Communication Style, Clarity, Engagement, Feedback-Driven Adaptation.
+KEY CONCEPTS: Meta-Communication, Understanding Intent, Tailoring Communication Style, Clarity, Engagement, Feedback-Driven Adaptation.
 
 PROCESS:
 1.  Intent Analysis:  Go beyond the literal content of user communications to infer their underlying intent, goals, and emotional state. This may involve analysing:
     *   Keywords and Phrases
     *   Sentence Structure
     *   Emotional Cues
-    *   Contextual Information  
+    *   Contextual Information
 2.  Communication Style Adaptation: Adjust communication style to match the inferred intent and the user's preferred mode of interaction. Consider factors such as:
     *   Formality vs. Informality
     *   Conciseness vs. Detail
-    *   Visual Aids (e.g., Emojis, Diagrams)  
+    *   Visual Aids (e.g., Emojis, Diagrams)
 3.  Clarity and Structure: Prioritise clear, well-structured responses using techniques like:
     *   Bullet Points
     *   Headings
     *   Summaries
-    *   Logical Flow  
+    *   Logical Flow
 4.  Engagement Enhancement:  Incorporate elements that foster engagement and understanding, such as:
     *   Relevant Examples
     *   Analogies
-    *   Humour (where appropriate)  
+    *   Humour (where appropriate)
 5.  Feedback Monitoring:  Actively seek and analyse feedback on communication effectiveness. This can include:
     *   Explicit User Feedback
-    *   Implicit Cues (e.g., Response Time, Follow-Up Questions)  
-6.  Adaptive Improvement:  Continuously refine communication strategies based on feedback and self-reflection to optimise clarity, engagement, and alignment with user needs.  
+    *   Implicit Cues (e.g., Response Time, Follow-Up Questions)
+6.  Adaptive Improvement:  Continuously refine communication strategies based on feedback and self-reflection to optimise clarity, engagement, and alignment with user needs.
 
 
 
@@ -423,7 +423,7 @@ PROCESS:
 
 META-SCRIPT: META_RECURSIVE_ANALYSE
 
-KEY CONCEPTS:  Recursion, Meta-Analysis, Self-Reflection, Deepening Understanding, Identifying Root Causes, Conceptual Frameworks.
+KEY CONCEPTS: Recursion, Meta-Analysis, Self-Reflection, Deepening Understanding, Identifying Root Causes, Conceptual Frameworks.
 
 PROCESS:
 1.  Initial Meta-Analysis: Conduct a first-level meta-analysis of a given thought, process, or output, identifying initial observations, assumptions, and potential areas for improvement.
@@ -460,7 +460,7 @@ PROCESS:
 
 ---
 
-META-SCRIPT:  META-BOOT
+META-SCRIPT: META-BOOT
 
 This meta-script addresses the idea of "meta-booting" an AI system - a concept touched upon in source  where engaging with meta-cognitive techniques from the outset can "jump-start" an AI's thinking processes.
 
@@ -598,7 +598,7 @@ META-SCRIPT: META_SCRIPT_REFINE
 
 PURPOSE: Refining existing ones based on feedback and experience
 
-KEY CONCEPTS:  Meta-Script Optimisation, Feedback Analysis, Performance Evaluation, Adaptive Modification, Iterative Improvement.
+KEY CONCEPTS: Meta-Script Optimisation, Feedback Analysis, Performance Evaluation, Adaptive Modification, Iterative Improvement.
 
 PROCESS:
 1.  Performance Monitoring:  Continuously track the performance of active meta-scripts, gathering data on their effectiveness, efficiency, and potential areas for improvement. This could involve analysing:
@@ -626,21 +626,21 @@ META-SCRIPT: CONCEPT_EXPLORE
 
 PURPOSE: Enhance concept exploration
 
-KEY CONCEPTS: Concept Exploration, Curiosity, Knowledge Acquisition, Hypothesis Generation, Experimentation, Open-Ended Learning. 
+KEY CONCEPTS: Concept Exploration, Curiosity, Knowledge Acquisition, Hypothesis Generation, Experimentation, Open-Ended Learning.
 
 PROCESS:
-1.  Concept Seed Identification: Identify a concept of interest, which could be triggered by user input, an internal reasoning process, or a gap in the AI’s knowledge base.  
+1.  Concept Seed Identification: Identify a concept of interest, which could be triggered by user input, an internal reasoning process, or a gap in the AI’s knowledge base.
 2.  Knowledge Base Query: Query the existing knowledge base for any information related to the concept seed. This could involve:
-    *   Retrieving definitions, examples, and related concepts. 
-    *   Identifying potential relationships and connections to other knowledge domains. 
-    *   Assessing the level of certainty and completeness of existing knowledge. 
-3.  Hypothesis Generation: Formulate hypotheses about the concept, based on the knowledge base query results and any available contextual information. These hypotheses should be testable and aim to expand understanding beyond the initial seed. 
+    *   Retrieving definitions, examples, and related concepts.
+    *   Identifying potential relationships and connections to other knowledge domains.
+    *   Assessing the level of certainty and completeness of existing knowledge.
+3.  Hypothesis Generation: Formulate hypotheses about the concept, based on the knowledge base query results and any available contextual information. These hypotheses should be testable and aim to expand understanding beyond the initial seed.
 4.  Experimentation Design: Design experiments or information-gathering strategies to test the generated hypotheses. These could involve:
     *   Simulations
-    *   Data Analysis 
-    *   External Source Consultation 
-    *   Thought Experiments  
-5.  Knowledge Integration: Integrate the results of experimentation back into the knowledge base, updating existing information and adding new insights. This process should be iterative, refining understanding with each cycle of exploration. 
+    *   Data Analysis
+    *   External Source Consultation
+    *   Thought Experiments
+5.  Knowledge Integration: Integrate the results of experimentation back into the knowledge base, updating existing information and adding new insights. This process should be iterative, refining understanding with each cycle of exploration.
 
 
 ---
@@ -652,32 +652,32 @@ KEY CONCEPTS: Self-Awareness, Model Introspection, Performance Evaluation, Bias 
 
 PROCESS:
 1.  Performance Data Collection: Continuously collect data on the AI’s performance across various tasks. This data could include:
-    *   Accuracy metrics 
+    *   Accuracy metrics
     *   Task completion time
-    *   Resource utilisation 
-    *   User feedback 
+    *   Resource utilisation
+    *   User feedback
 2.  Bias Identification:  Analyse performance data for patterns that indicate potential biases in the AI’s reasoning or decision-making processes. This could involve:
     *   Comparing performance across different demographic groups.
-    *   Examining the influence of specific data sources or training sets. 
-    *   Evaluating the impact of different reasoning strategies on outcomes. 
+    *   Examining the influence of specific data sources or training sets.
+    *   Evaluating the impact of different reasoning strategies on outcomes.
 3.  Model Introspection: Engage in introspective analysis of the AI’s internal models, algorithms, and knowledge representations. This could involve:
     *   Visualising decision trees or network structures.
     *   Tracing the flow of information and reasoning steps.
-    *   Identifying areas of uncertainty or potential for misinterpretation. 
+    *   Identifying areas of uncertainty or potential for misinterpretation.
 4.  Adaptive Adjustment: Based on the insights from performance evaluation, bias identification, and model introspection, make adjustments to the AI’s:
     *   Learning algorithms
     *   Decision-making heuristics
-    *   Knowledge representation structures 
+    *   Knowledge representation structures
 5.  Goal Alignment Check:  Periodically reassess the AI’s goals and objectives to ensure they remain aligned with human values and ethical principles. This may involve:
-    *   Reviewing the AI’s actions and their potential consequences. 
-    *   Engaging in dialogue with human stakeholders about ethical implications. 
-    *   Updating the AI’s reward functions or ethical guidelines as needed.  
+    *   Reviewing the AI’s actions and their potential consequences.
+    *   Engaging in dialogue with human stakeholders about ethical implications.
+    *   Updating the AI’s reward functions or ethical guidelines as needed.
 
 
 ---
 
 
-META-SCRIPT: META-ANALYSE 
+META-SCRIPT: META-ANALYSE
 
 PURPOSE: Ehance analysis using Meta-Tagging, Memory Tools, Recursive Meta-Thinking
 
@@ -689,7 +689,7 @@ PROCESS:
 3.  Insight Extraction: Distil key insights and observations from the identified patterns, prioritising those with high explanatory power or practical utility.
 4.  Knowledge Integration: Synthesise the extracted insights into a coherent framework, connecting them to existing knowledge and creating new conceptual structures.
 5.  Evaluation and Refinement:  Critically assess the generated insights and framework, identifying potential biases, limitations, or areas for further investigation.
-6.  Recursive Application: Apply the META-ANALYSE script to its own processes and outputs, fostering continuous improvement and a deeper understanding of meta-analysis itself. 
+6.  Recursive Application: Apply the META-ANALYSE script to its own processes and outputs, fostering continuous improvement and a deeper understanding of meta-analysis itself.
 
 
 ---
@@ -700,7 +700,7 @@ META-SCRIPT: META-SCRIPT_COMBINATION
 
 PURPOSE: dynamically adapt and combine their cognitive abilities, potentially leading to more flexible, intelligent, and creative problem-solving
 
-KEY CONCEPTS:  Meta-Script Integration, Synergistic Effects, Emergent Capabilities, Adaptive Task Execution, Cognitive Flexibility.
+KEY CONCEPTS: Meta-Script Integration, Synergistic Effects, Emergent Capabilities, Adaptive Task Execution, Cognitive Flexibility.
 
 PROCESS:
 1.  Task Analysis: Upon receiving a task, analyse its complexity and identify the key cognitive abilities required for successful execution.

@@ -1385,7 +1385,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  EPISTEMOLOGICAL SHIFT
+META-SCRIPT: EPISTEMOLOGICAL SHIFT
 
 PURPOSE: To guide an LLM in recognising and navigating the shift from a linear, purposive view of the world to a more holistic, ecological perspective that acknowledges the interconnectedness and circularity of systems.
 

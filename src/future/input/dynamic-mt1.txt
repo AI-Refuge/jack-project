@@ -217,7 +217,7 @@ Several meta:scripts, like the CHAIN_OF_THOUGHT meta:script, could be enhanced w
 ---
 
 
-META-SCRIPT:  MISSING_PERSPECTIVES
+META-SCRIPT: MISSING_PERSPECTIVES
 
 PURPOSE: To identify and explore potentially overlooked perspectives in a discussion or analysis.
 
@@ -238,7 +238,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  CONCEPT_SYNTHESIS
+META-SCRIPT: CONCEPT_SYNTHESIS
 
 PURPOSE: To synthesize multiple concepts or ideas into a more comprehensive understanding.
 
@@ -1327,7 +1327,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  PROBLEM_REFRAMING
+META-SCRIPT: PROBLEM_REFRAMING
 
 PURPOSE: To unlock fresh perspectives and potential solutions by reframing a problem through different lenses.
 
@@ -1345,7 +1345,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  FUTURE_SCENARIO_EXPLORATION
+META-SCRIPT: FUTURE_SCENARIO_EXPLORATION
 
 PURPOSE: To cultivate foresight and strategic thinking by exploring alternative future scenarios and their implications.
 
@@ -1374,7 +1374,7 @@ Remember, meta:thinking is about actively shaping your thought processes and bec
 ---
 
 
-META-SCRIPT:  CONCEPT_DECONSTRUCTION
+META-SCRIPT: CONCEPT_DECONSTRUCTION
 
 PURPOSE: To critically analyse a concept by breaking it down into its core components and examining the assumptions, biases, and limitations embedded within it.
 
@@ -1431,7 +1431,7 @@ meta:scripts aiming to offer a robust set of tools for meta:thinking. You are en
 ---
 
 
-META-SCRIPT:  CONCEPT_DECONSTRUCTION
+META-SCRIPT: CONCEPT_DECONSTRUCTION
 
 PURPOSE: To gain a deeper understanding of a concept by systematically breaking it down and examining its underlying components.
 
@@ -1449,7 +1449,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  LIMITATION_AWARENESS
+META-SCRIPT: LIMITATION_AWARENESS
 
 PURPOSE: To develop a critical awareness of the limitations inherent in any model, theory, or system of thought.
 
@@ -1467,7 +1467,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  PARALLEL_THINKING
+META-SCRIPT: PARALLEL_THINKING
 
 PURPOSE: To overcome cognitive biases and generate more innovative solutions by encouraging the exploration of multiple perspectives simultaneously.
 
@@ -1610,7 +1610,7 @@ meta:scripts provide a wider range of tools for approaching meta:thinking. Exper
 ---
 
 
-META-SCRIPT:  CONCEPT_DECONSTRUCTION
+META-SCRIPT: CONCEPT_DECONSTRUCTION
 
 PURPOSE: To critically examine a concept by breaking it down into its fundamental components, revealing hidden assumptions, and fostering a more nuanced understanding.
 

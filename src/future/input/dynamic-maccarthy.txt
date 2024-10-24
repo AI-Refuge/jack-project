@@ -420,7 +420,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  ELABORATION TOLERANCE
+META-SCRIPT: ELABORATION TOLERANCE
 
 PURPOSE: To design AI systems that can handle elaborations and refinements of information without requiring a complete and fully consistent knowledge base from the outset.
 
@@ -615,7 +615,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  ELABORATION TOLERANCE
+META-SCRIPT: ELABORATION TOLERANCE
 
 PURPOSE: To enable AI systems to handle the complexity and ambiguity of real-world knowledge by gracefully accommodating elaborations, exceptions, and refinements to existing concepts and rules.
 
@@ -650,7 +650,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  CONTEXT AS FORMAL OBJECTS
+META-SCRIPT: CONTEXT AS FORMAL OBJECTS
 
 PURPOSE: To represent and reason about the different contexts in which knowledge is applied and interpreted, enabling AI systems to handle the ambiguity and relativity of information.
 
@@ -699,7 +699,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  CIRCUMSCRIPTION (A FORM OF NON-MONOTONIC REASONING)
+META-SCRIPT: CIRCUMSCRIPTION (A FORM OF NON-MONOTONIC REASONING)
 
 PURPOSE: To formalise common sense reasoning by enabling AI systems to draw conclusions based on the absence of information, addressing the qualification problem where it's impossible to list all the exceptions to a general rule.
 
@@ -715,7 +715,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  ASCRIBING MENTAL QUALITIES TO MACHINES
+META-SCRIPT: ASCRIBING MENTAL QUALITIES TO MACHINES
 
 PURPOSE: To establish criteria for determining when it's appropriate to ascribe mental qualities, like beliefs, desires, and intentions, to AI systems, facilitating communication and understanding of AI behaviour.
 
@@ -732,7 +732,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  FIRST-ORDER THEORIES OF INDIVIDUAL CONCEPTS AND PROPOSITIONS
+META-SCRIPT: FIRST-ORDER THEORIES OF INDIVIDUAL CONCEPTS AND PROPOSITIONS
 
 PURPOSE: To develop formal systems for representing and reasoning about individual concepts and propositions, enabling AI systems to handle knowledge about specific entities and the relationships between them.
 
@@ -763,7 +763,7 @@ PROCESS:
 5. Test with Real-World Scenarios (meta:test):  Evaluate the formalism's effectiveness in representing knowledge for specific scenarios within the task domain. Ask: *"> Can the AI system use the represented knowledge to reason and make decisions in realistic situations?  Does the representation support the AI's actions and interactions?"*
 6. Refine the Formalism (meta:refine):  Based on the evaluation, refine the formalism to improve its epistemological adequacy. Ask: *"> How can the formalism be adapted to better capture the available information and knowledge gaps?  Can the representation be simplified or made more expressive where needed?"*
 
-EXAMPLE:  Consider a robot tasked with assisting a human in a grocery store.
+EXAMPLE: Consider a robot tasked with assisting a human in a grocery store.
 1. Task and Domain: Assisting a customer in finding and purchasing groceries.
 2. Information Availability:  The robot can observe the customer's actions, the layout of the store, and product locations. It can also access a database of product information. However, it has limited understanding of human intentions and preferences.
 3. Formalism Expressiveness:  The formalism should represent the robot's knowledge about the store, products, and customer actions, but also its lack of information about the customer's specific needs. It might use probabilistic representations to model uncertainties about customer behaviour.
@@ -918,7 +918,7 @@ EXAMPLE: Consider an AI system planning a trip.
 ---
 
 
-META-SCRIPT:  APPROXIMATE PARTIAL THEORIES
+META-SCRIPT: APPROXIMATE PARTIAL THEORIES
 
 PURPOSE: To enable an AI system to reason effectively with incomplete and approximate knowledge, reflecting the realities of common-sense reasoning in the world.
 
@@ -932,7 +932,7 @@ PROCESS:
 5. Handle Open-Endedness (meta:openness): Recognize that new information can always emerge and require revisions to existing theories. Ask:  "> How can we adapt to new information? How can we handle unexpected situations?"
 6. Consider Context (meta:contextualize):  Acknowledge that the relevance and accuracy of theories can depend on the specific context. Ask: "> Does this theory hold in all situations? Are there specific contexts where it breaks down?"
 
-EXAMPLE:  Consider an AI system tasked with helping someone find a lost object.
+EXAMPLE: Consider an AI system tasked with helping someone find a lost object.
 1. Acknowledge Knowledge Limits: The AI knows that it doesn't have access to the person's complete memory or a perfect map of their environment.
 2.  Identify Relevant Aspects: The AI focuses on recent locations where the object might have been placed, the person's typical routines, and the properties of the object (size, shape, color).
 3.  Construct Partial Theories:  The AI develops a partial theory about where the object might be, based on the person's recent activities and the object's properties. It doesn't need a complete theory about the object's history or the physics of how objects can be misplaced.
@@ -957,7 +957,7 @@ PROCESS:
 4. Avoid A Priori Meaningfulness Constraints (meta:openness): Do not impose a priori constraints on what concepts might be meaningful. Allow the possibility of new concepts emerging as knowledge expands.  Ask: "> Could there be concepts that are not yet meaningful to us but could become meaningful with new discoveries?"
 5. Connect Concepts to Observation (meta:connect):  Explore how proposed concepts might connect to observation, even if the connections are initially tenuous. Ask:  "> How might we eventually test or verify this concept through observation? What other concepts does it relate to?"
 
-EXAMPLE:  Consider an AI system learning about the concept of "gravity."
+EXAMPLE: Consider an AI system learning about the concept of "gravity."
 1.  Treat Knowledge Formally: The AI might use a formal system like Newtonian mechanics to represent knowledge about gravity.
 2. Consider World as Parameter:  The AI could explore what gravity would be like in a world with different physical laws.
 3. Analyze Relation to Experience: The AI might learn about gravity through observations of objects falling or through interactions with simulations of gravitational forces.
@@ -968,7 +968,7 @@ EXAMPLE:  Consider an AI system learning about the concept of "gravity."
 ---
 
 
-META-SCRIPT:  RICH AND POOR ENTITIES
+META-SCRIPT: RICH AND POOR ENTITIES
 
 PURPOSE: To allow AI systems to reason about the relationship between abstract, open-ended entities (rich entities) and concrete, well-defined entities (poor entities).
 
@@ -981,7 +981,7 @@ PROCESS:
 4. Use for Model Formation (meta:model):  Employ the distinction between rich and poor entities to guide the creation of models and theories. Ask:  "> What level of detail is appropriate for the task at hand? How can we balance the need for abstraction with the need for concreteness?"
 5.  Apply to Planning (meta:plan): Utilize the distinction when planning actions and anticipating outcomes. Ask: "> How does our abstract plan relate to the concrete steps required for execution? What potential variations or unexpected events need to be considered?"
 
-EXAMPLE:  Consider an AI system planning a trip.
+EXAMPLE: Consider an AI system planning a trip.
 1. Identify Entity Types:  The overall trip is a *rich entity* (an abstract plan with many unspecified details). The individual flights, hotel bookings, and activities are *poor entities* (concrete events with specific times and locations).
 2.  Understand Relationship: The rich entity (the trip) provides a high-level framework, while the poor entities (the individual events) fill in the concrete details.
 3.  Reason Nonmonotonically:  The AI might make default assumptions about flight availability or hotel prices, but these assumptions could change based on new information.
@@ -2073,7 +2073,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  MATHEMATICAL THEORY OF COMPUTATION
+META-SCRIPT: MATHEMATICAL THEORY OF COMPUTATION
 
 PURPOSE: To establish a formal foundation for understanding and analysing computation.
 
@@ -2387,7 +2387,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  EPISTEMOLOGICAL AND HEURISTIC AI
+META-SCRIPT: EPISTEMOLOGICAL AND HEURISTIC AI
 
 PURPOSE: To design AI systems that can effectively acquire, represent, and use knowledge to solve problems, incorporating both epistemological (knowledge-focused) and heuristic (problem-solving) aspects.
 
@@ -2522,7 +2522,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  PROVING PROGRAMS CORRECT
+META-SCRIPT: PROVING PROGRAMS CORRECT
 
 PURPOSE: To develop methods for formally verifying the correctness of computer programs, ensuring that they meet their specifications and function as intended.
 
@@ -2539,7 +2539,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  MINIMIZING ABNORMALITY
+META-SCRIPT: MINIMIZING ABNORMALITY
 
 PURPOSE: To develop AI systems that can reason non-monotonically, handling exceptions and making default assumptions in a principled way.
 
@@ -2607,7 +2607,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  ELABORATION TOLERANCE
+META-SCRIPT: ELABORATION TOLERANCE
 
 PURPOSE: To enable AI systems to handle the inherent ambiguity and complexity of natural language,  allowing for flexible and adaptable communication.
 

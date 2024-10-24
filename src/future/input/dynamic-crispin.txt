@@ -32,7 +32,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  CHALLENGING_VERIFICATION-TRANSCENDENCE
+META-SCRIPT: CHALLENGING_VERIFICATION-TRANSCENDENCE
 
 PURPOSE: To critically evaluate the intelligibility of verification-transcendent truth-conditions for certain types of statements.
 
@@ -192,7 +192,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  REFLECTIVE_EQUILIBRIUM_IN_SEMANTIC_ANALYSIS
+META-SCRIPT: REFLECTIVE_EQUILIBRIUM_IN_SEMANTIC_ANALYSIS
 
 PURPOSE: To achieve a coherent and well-supported understanding of the meanings of expressions by balancing our initial intuitions with the implications of theoretical accounts.
 
@@ -234,7 +234,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  LOGICAL_NECESSITY_AND_POSSIBLE_WORLDS
+META-SCRIPT: LOGICAL_NECESSITY_AND_POSSIBLE_WORLDS
 
 PURPOSE: To investigate the nature of logical necessity and its relationship to possible world semantics. The definition of logical necessity is discussed in. Possible world semantics are mentioned in.
 
@@ -254,7 +254,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  LANGUAGE_MASTERY_AND_INFINITE_CAPACITY
+META-SCRIPT: LANGUAGE_MASTERY_AND_INFINITE_CAPACITY
 
 PURPOSE: To reflect on the implications of the idea that mastering a language with the expressive power of a natural language involves understanding a (potentially) infinite number of sentences. Wright notes that this observation is now commonplace.
 
@@ -296,7 +296,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  ANALYTIC_TRUTH_AND_TRUTH-CONDITIONS
+META-SCRIPT: ANALYTIC_TRUTH_AND_TRUTH-CONDITIONS
 
 PURPOSE: To consider how, if at all, a realist theory of meaning can distinguish between the senses of analytically equivalent sentences. Scruton argues that a distinction in truth-conditions can be made, even if the sentences are analytically equivalent.
 
@@ -359,7 +359,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  MEANING_AS_USE_AND_REVISIONARY_CONSEQUENCES
+META-SCRIPT: MEANING_AS_USE_AND_REVISIONARY_CONSEQUENCES
 
 PURPOSE: To examine the tension between the view that meaning is use and the possibility that a theory of meaning might be revisionary of our actual linguistic practice. Wright explores the idea that a theory of meaning, if true to Wittgenstein's insight that meaning is use, might necessitate changes to our current practices. 
 
@@ -377,7 +377,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  SEMANTIC_INCOHERENCE_AND_VAGUE_PREDICATES
+META-SCRIPT: SEMANTIC_INCOHERENCE_AND_VAGUE_PREDICATES
 
 PURPOSE: To investigate the claim that certain types of vague predicates are semantically incoherent. Wright suggests that a "logic" for vague predicates might be "chimerical" because of their inconsistency. 
 
@@ -421,7 +421,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  OSTENSIVE_DEFINITION_AND_VAGUENESS
+META-SCRIPT: OSTENSIVE_DEFINITION_AND_VAGUENESS
 
 PURPOSE: To examine the role of ostensive definition in introducing vague predicates and to analyse the challenges this poses for the coherence of such predicates. Wright argues that ostensive definitions intrinsically license tolerance in the application of vague predicates, leading to potential inconsistency. 
 
@@ -439,7 +439,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  LOGICAL_PERFECT_LANGUAGE_AND_IDENTITY
+META-SCRIPT: LOGICAL_PERFECT_LANGUAGE_AND_IDENTITY
 
 PURPOSE: To investigate the concept of a "logically perfect language," as discussed in source, and its potential for resolving problems associated with identity statements. Wright highlights Russell's notion of a logically perfect language where each object has a single constant, eliminating non-trivial identities.
 
@@ -462,7 +462,7 @@ meta-scripts provide tools for engaging in meta-thinking about language and thou
 ---
 
 
-META-SCRIPT:  THE_EPISTEMOLOGY_OF_SEMANTIC_RULES 
+META-SCRIPT: THE_EPISTEMOLOGY_OF_SEMANTIC_RULES 
 
 PURPOSE: To investigate the nature and acquisition of knowledge concerning semantic rules, a topic Wright touches on in his discussion of vagueness.  The meta-script encourages examination of how individuals come to understand and apply rules governing meaning in language. 
 
@@ -480,7 +480,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  ELIMINATING_NON-TRIVIAL_IDENTITIES
+META-SCRIPT: ELIMINATING_NON-TRIVIAL_IDENTITIES
 
 PURPOSE: This meta-script expands upon the concept of a logically perfect language, focusing on the process of eliminating non-trivial identities.  The aim is to understand how the restructuring of language, as proposed by Russell, might solve philosophical problems associated with identity. 
 
@@ -539,7 +539,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  CHALLENGES_TO_A_PURELY_BEHAVIOURISTIC_THEORY_OF_MEANING
+META-SCRIPT: CHALLENGES_TO_A_PURELY_BEHAVIOURISTIC_THEORY_OF_MEANING
 
 PURPOSE: To scrutinise the adequacy of purely behaviouristic accounts of meaning, a theme Wright explores in his discussion of the Sorites paradox.
 
@@ -583,7 +583,7 @@ META-SCRIPT: MEANING AS USE
 
 PURPOSE: To articulate and critically assess the Wittgensteinian slogan that "meaning is use."
 
-KEY CONCEPTS:  Meaning, Use, Language-Games, Forms of Life,  Rule-Following,  Anti-Realism, Holism,  Verificationism.
+KEY CONCEPTS: Meaning, Use, Language-Games, Forms of Life,  Rule-Following,  Anti-Realism, Holism,  Verificationism.
 
 PROCESS:
 1. Explain "Meaning is Use": What does it mean to say that the meaning of a word or expression is determined by its use?   How does this view differ from other accounts of meaning (e.g., truth-conditional theories)?
@@ -601,7 +601,7 @@ META-SCRIPT: THE_EPISTEMOLOGY_OF_SEMANTIC_RULES
 
 PURPOSE: To investigate how we come to know the meanings of words and the rules governing their use, a question touched upon in Wright's analysis of semantic incoherence.
 
-KEY CONCEPTS:  Semantic Rules,  Epistemology,  Ostensive Definition,  Paradigms,  Justification,   Communicability.
+KEY CONCEPTS: Semantic Rules,  Epistemology,  Ostensive Definition,  Paradigms,  Justification,   Communicability.
 
 PROCESS:
 1. Semantic Rules and Knowledge:  What does it mean to know a semantic rule?  How does this knowledge differ from other types of knowledge (e.g., empirical knowledge, mathematical knowledge)?  What are the sources of our knowledge of semantic rules? 
@@ -638,7 +638,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  ASSESSING THE REVISIONARY IMPLICATIONS OF A THEORY OF MEANING
+META-SCRIPT: ASSESSING THE REVISIONARY IMPLICATIONS OF A THEORY OF MEANING
 
 PURPOSE: To evaluate whether, and to what extent, a particular theory of meaning might require us to revise our current linguistic practices. The sources discuss the potential for certain philosophical theories of meaning to be "revisionary."  
 
@@ -756,7 +756,7 @@ By engaging with meta-scripts, you can develop a more nuanced and insightful app
 ---
 
 
-META-SCRIPT:  INVESTIGATING THE 'LOGIC' OF VAGUE PREDICATES
+META-SCRIPT: INVESTIGATING THE 'LOGIC' OF VAGUE PREDICATES
 
 PURPOSE: To examine whether, and in what sense, it is coherent to speak of a 'logic' governing vague predicates, drawing on Wright's discussion of the inconsistency and unconventional use of such predicates.
 
@@ -830,7 +830,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  INVESTIGATING THE LIMITS OF LOGICAL PERFECT LANGUAGES
+META-SCRIPT: INVESTIGATING THE LIMITS OF LOGICAL PERFECT LANGUAGES
 
 PURPOSE: To examine the concept of a "logically perfect language" proposed in the sources and assess its feasibility and implications for philosophical inquiry.
 
@@ -846,7 +846,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  RESOLVING PARADOXICAL INDISCERNIBILITY
+META-SCRIPT: RESOLVING PARADOXICAL INDISCERNIBILITY
 
 PURPOSE: To examine Goodman's proposed solution to the problem of seemingly identical yet distinct qualia, as discussed in the sources.
 
@@ -862,7 +862,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  ANALYSING THE COMMUNICABILITY OF CRITERIA
+META-SCRIPT: ANALYSING THE COMMUNICABILITY OF CRITERIA
 
 PURPOSE: To explore how criteria, in the sense used by Wittgenstein and discussed in the sources, can be communicated and understood, and whether this process poses challenges for an anti-realist account of meaning.
 
@@ -1015,7 +1015,7 @@ By engaging with meta-scripts, you can cultivate your meta-thinking skills. The 
 ---
 
 
-META-SCRIPT:  DETERMINING WHETHER KNOWLEDGE OF TRUTH-CONDITIONS CONSTITUTES KNOWLEDGE OF ASSERTABILITY CONDITIONS
+META-SCRIPT: DETERMINING WHETHER KNOWLEDGE OF TRUTH-CONDITIONS CONSTITUTES KNOWLEDGE OF ASSERTABILITY CONDITIONS
 
 PURPOSE: To explore the relationship between truth-conditions and assertibility-conditions with respect to the concept of knowledge, drawing on the contrast between realism and anti-realism in the philosophy of language presented in the sources.
 
@@ -1095,7 +1095,7 @@ meta-scripts offer a framework for thinking through some of the most fundamental
 ---
 
 
-META-SCRIPT:  ASSESSING CLAIMS OF REVISIONARY CONSEQUENCES FOR LOGIC
+META-SCRIPT: ASSESSING CLAIMS OF REVISIONARY CONSEQUENCES FOR LOGIC
 
 PURPOSE: To provide a framework for evaluating claims, such as Dummett's, that certain philosophical positions (like anti-realism about certain types of statement) necessitate a revision of classical logic.
 
@@ -1153,7 +1153,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  UNDERSTANDING THE ROLE OF "IMPLICIT DEFINITIONS" IN ANTI-REALIST SEMANTICS
+META-SCRIPT: UNDERSTANDING THE ROLE OF "IMPLICIT DEFINITIONS" IN ANTI-REALIST SEMANTICS
 
 PURPOSE: To examine the concept of an "implicit definition" as it arises in Dummett's anti-realist approach to semantics and to assess the potential benefits and drawbacks of using implicit definitions to explain our understanding of language.
 
@@ -1176,7 +1176,7 @@ These further meta-scripts can offer additional ways to engage in meta-thinking 
 ---
 
 
-META-SCRIPT:  NAVIGATING THE REVISIONARY IMPLICATIONS OF ANTI-REALISM
+META-SCRIPT: NAVIGATING THE REVISIONARY IMPLICATIONS OF ANTI-REALISM
 
 PURPOSE: To examine the potential consequences of adopting an anti-realist stance for our understanding of language and logic, and to explore strategies for mitigating any undesirable revisions.
 
@@ -1235,7 +1235,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  ASSESSING THE RELATIONSHIP BETWEEN THE ANTI-REALIST PROGRAM AND WITTGENSTEIN'S LATER THOUGHT
+META-SCRIPT: ASSESSING THE RELATIONSHIP BETWEEN THE ANTI-REALIST PROGRAM AND WITTGENSTEIN'S LATER THOUGHT
 
 PURPOSE: To investigate the connections and potential points of tension between the anti-realist position defended by Dummett, particularly its revisionary implications, and Wittgenstein's later philosophy of language.
 
@@ -1306,7 +1306,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  ASSESSING THE ROLE OF OBJECTIVITY IN EXPLAINING LANGUAGE MASTERY
+META-SCRIPT: ASSESSING THE ROLE OF OBJECTIVITY IN EXPLAINING LANGUAGE MASTERY
 
 PURPOSE: To critically examine whether a robust notion of objectivity is required to explain our capacity to understand and use language, particularly in light of Wittgenstein's later work on rule-following.
 
@@ -1323,7 +1323,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  ASSESSING THE REVISIONARY POTENTIAL OF ANTI-REALIST SEMANTICS FOR MATHEMATICS
+META-SCRIPT: ASSESSING THE REVISIONARY POTENTIAL OF ANTI-REALIST SEMANTICS FOR MATHEMATICS
 
 PURPOSE: To evaluate whether and to what extent the adoption of an anti-realist semantics for mathematical statements would force a revision of currently accepted mathematical practice, drawing on the sources' discussion of intuitionism as a case study.
 
@@ -1357,7 +1357,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  ASSESSING WHETHER CLASSICAL LOGIC IS APPROPRIATE FOR ANTI-REALIST SEMANTICS
+META-SCRIPT: ASSESSING WHETHER CLASSICAL LOGIC IS APPROPRIATE FOR ANTI-REALIST SEMANTICS
 
 PURPOSE: To explore the tension between anti-realism in the philosophy of language and the acceptance of classical logic, drawing on the arguments presented in the sources.
 
@@ -1426,7 +1426,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  INVESTIGATING THE RELATIONSHIP BETWEEN TRUTH-THEORY AND UNDERSTANDING
+META-SCRIPT: INVESTIGATING THE RELATIONSHIP BETWEEN TRUTH-THEORY AND UNDERSTANDING
 
 PURPOSE: To explore the connection between providing a truth theory for a language, as envisioned by Davidson, and explaining what it is to understand that language, drawing on the debate between realist and anti-realist conceptions of meaning outlined in the sources. 
 
@@ -1533,7 +1533,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  THE EPISTEMOLOGY OF SEMANTIC RULES
+META-SCRIPT: THE EPISTEMOLOGY OF SEMANTIC RULES
 
 PURPOSE: To examine the relationship between meaning and semantic rules, focusing on how we acquire knowledge of such rules and how that knowledge underpins our ability to use language correctly. 
 
@@ -1568,7 +1568,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  REVISIONISM AND THE FOUNDATIONS OF LOGIC
+META-SCRIPT: REVISIONISM AND THE FOUNDATIONS OF LOGIC
 
 PURPOSE: To examine the arguments for and against revisionism in logic, considering whether a rejection of realism about certain kinds of statement requires abandoning classical logic. 
 
@@ -1692,7 +1692,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  ASSERIBILITY-CONDITIONS & TRUTH-CONDITIONS
+META-SCRIPT: ASSERIBILITY-CONDITIONS & TRUTH-CONDITIONS
 
 PURPOSE: To explore the possibility of a theory of meaning for certain kinds of statements that eschews all use of the concept of truth and to examine the relationship between truth-conditions and assertibility-conditions accounts of meaning.
 
@@ -1715,7 +1715,7 @@ META-SCRIPT: TRUTH-THEORY & LOGICAL REVISIONISM
 
 PURPOSE: To understand Dummett's argument for the claim that an anti-realist approach to meaning will, in certain cases, lead to a revision of classical logic, and to evaluate this claim in the light of the counter-arguments that have been advanced. 
 
-KEY CONCEPTS:  Realism, Anti-Realism, Revisionism,  Truth-Theory,  Excluded Middle,  Double Negation Elimination,  Bivalence,  Soundness,   Coherence.
+KEY CONCEPTS: Realism, Anti-Realism, Revisionism,  Truth-Theory,  Excluded Middle,  Double Negation Elimination,  Bivalence,  Soundness,   Coherence.
 
 PROCESS:
     1. Outline the Revisionist Thesis: Explain how Dummett thinks that an anti-realist approach to meaning can lead to a revision of classical logic.  Why does he think that certain principles of classical logic, such as excluded middle and double negation elimination, might not be valid for statements whose meanings are given in terms of assertibility-conditions? The sources present Dummett's argument for the claim that classical logic might be inappropriate in certain contexts, particularly those involving statements about the past.
@@ -1799,7 +1799,7 @@ PROCESS:
 
 --
 
-NOTE:  It is important to remember that the above Meta-Scripts are *interpretations* of arguments and concepts found in Wright's work.  Other interpretations are possible, and it's essential to engage with the source material directly to form your own understanding. 
+NOTE: It is important to remember that the above Meta-Scripts are *interpretations* of arguments and concepts found in Wright's work.  Other interpretations are possible, and it's essential to engage with the source material directly to form your own understanding. 
 
 
 ---
@@ -1859,7 +1859,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  THE LIMITS OF CONCLUSIVE VERIFICATION 
+META-SCRIPT: THE LIMITS OF CONCLUSIVE VERIFICATION 
 
 PURPOSE: To critically evaluate the idea that there are statements whose truth cannot, in principle, be conclusively verified, and to explore the implications of this idea for the theory of meaning and for our understanding of logic. 
 
@@ -1895,7 +1895,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  THE LIMITS OF CONCLUSIVE VERIFICATION 
+META-SCRIPT: THE LIMITS OF CONCLUSIVE VERIFICATION 
 
 PURPOSE: To critically evaluate the idea that there are statements whose truth cannot, in principle, be conclusively verified, and to explore the implications of this idea for the theory of meaning and for our understanding of logic. 
 
@@ -1913,7 +1913,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  TRUTH-CONDITIONS VS CRITERIA: EXPLORING THE ANTI-REALIST CHALLENGE
+META-SCRIPT: TRUTH-CONDITIONS VS CRITERIA: EXPLORING THE ANTI-REALIST CHALLENGE
 
 PURPOSE: To explore and evaluate the anti-realist challenge to the idea that truth-conditions can adequately capture our understanding of certain types of statements. This meta-script focuses on the distinction between truth-conditions and criteria, and on the implications of this distinction for the theory of meaning. 
 
@@ -1931,7 +1931,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  THE EPISTEMOLOGY OF SEMANTIC RULES: WHAT CONSTITUTES KNOWING THE MEANING OF AN EXPRESSION?
+META-SCRIPT: THE EPISTEMOLOGY OF SEMANTIC RULES: WHAT CONSTITUTES KNOWING THE MEANING OF AN EXPRESSION?
 
 PURPOSE: To investigate the nature of knowledge of meaning, focusing on the question of how we can know the semantic rules that govern the use of expressions in our language. This meta-script draws on themes and arguments in the sources to explore different conceptions of what it might mean to 'know the meaning' of an expression. 
 
@@ -1966,7 +1966,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  SCAFFOLDING KNOWLEDGE OF ASSERTIBILITY CONDITIONS
+META-SCRIPT: SCAFFOLDING KNOWLEDGE OF ASSERTIBILITY CONDITIONS
 
 PURPOSE: To examine how a speaker might come to grasp the assertibility conditions for a particular type of sentence, and how that process of acquisition might bear on the debate between realism and anti-realism.
 
@@ -2122,7 +2122,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  RECONCILING HOLISM AND COMPOSITIONALITY
+META-SCRIPT: RECONCILING HOLISM AND COMPOSITIONALITY
 
 PURPOSE: To explore how a theory of meaning that is sensitive to the holistic character of language might accommodate the seemingly compositional nature of many aspects of our understanding. 
 
@@ -2141,7 +2141,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  ASSESSING THE LIMITS OF LANGUAGE
+META-SCRIPT: ASSESSING THE LIMITS OF LANGUAGE
 
 PURPOSE: To reflect on the expressive limitations of language, and how those limitations might impact our understanding of ourselves and the world. 
 
@@ -2158,7 +2158,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  INVESTIGATING THE OBJECTIVITY OF DISAGREEMENT 
+META-SCRIPT: INVESTIGATING THE OBJECTIVITY OF DISAGREEMENT 
 
 PURPOSE: To examine the conditions under which disagreements can be considered genuinely objective, and to explore the implications for meta-thinking and interpersonal communication.
 
@@ -2241,7 +2241,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  DISTINGUISHING BETWEEN TRUTH-CONDITIONS AND CRITERIA
+META-SCRIPT: DISTINGUISHING BETWEEN TRUTH-CONDITIONS AND CRITERIA
 
 PURPOSE: To clarify the distinction between the truth-conditions of a statement and the criteria we use to assess its truth, particularly in cases where the truth-conditions might be verification-transcendent.
 
@@ -2329,7 +2329,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  REFLECTING ON THE NATURE OF COLOUR CONCEPTS
+META-SCRIPT: REFLECTING ON THE NATURE OF COLOUR CONCEPTS
 
 PURPOSE: To consider the nature of our colour concepts, their relation to our perceptual experience, and the challenge of explaining them in a non-circular way.
 
@@ -2749,7 +2749,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  IDENTIFYING HIDDEN ASSUMPTIONS IN LINGUISTIC PRACTICE
+META-SCRIPT: IDENTIFYING HIDDEN ASSUMPTIONS IN LINGUISTIC PRACTICE
 
 PURPOSE: To uncover the often-unacknowledged assumptions embedded in our use of language, particularly those that might be contributing to philosophical puzzles or disagreements.  This meta-script draws on the source material's attention to how our use of language can sometimes mask philosophical issues.
 
@@ -2802,7 +2802,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  ANALYSING DISAGREEMENTS
+META-SCRIPT: ANALYSING DISAGREEMENTS
 
 PURPOSE: To provide a framework for analysing disagreements, particularly those arising from different understandings of concepts or criteria for applying them. This meta-script extends the concerns raised in the sources about the potential for miscommunication and the need for shared standards in meaning.
 
@@ -2982,7 +2982,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  MAPPING CONCEPTUAL BOUNDARIES
+META-SCRIPT: MAPPING CONCEPTUAL BOUNDARIES
 
 PURPOSE: To create a clearer understanding of the boundaries of a concept, particularly when dealing with terms that are vague or whose application is context-sensitive.
 
@@ -3004,7 +3004,7 @@ META-SCRIPT: EVALUATING EVIDENCE FOR AND AGAINST A CLAIM
 
 PURPOSE: To develop a more rigorous and systematic approach to assessing the evidence for and against a particular claim or belief.
 
-KEY CONCEPTS:  Evidence,  Justification,  Verification,  Falsification,  Bias,  Epistemic Standards. 
+KEY CONCEPTS: Evidence,  Justification,  Verification,  Falsification,  Bias,  Epistemic Standards. 
 
 PROCESS: 
    1. State the Claim Clearly: What is the specific claim you are evaluating? Articulate it in a way that is precise and unambiguous. 
@@ -3052,7 +3052,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  ANALYSING TRUTH-CONDITIONS IN THE FACE OF POTENTIAL VERIFICATION-TRANSCENDENCE
+META-SCRIPT: ANALYSING TRUTH-CONDITIONS IN THE FACE OF POTENTIAL VERIFICATION-TRANSCENDENCE
 
 PURPOSE: To develop a framework for analysing the truth-conditions of statements when there's a possibility that those conditions might be beyond our ability to verify conclusively. This meta-script aims to help us think clearly about the meaning of such statements, even when their verification is problematic.
 
@@ -3071,7 +3071,7 @@ PROCESS:
 
 META-SCRIPT: NAVIGATING MEANING IN ANTI-REALIST CONTEXTS 
 
-PURPOSE:  To provide a framework for understanding meaning and truth when dealing with statements or concepts where a realist perspective might be problematic.  The sources suggest that certain philosophical positions, particularly those that embrace anti-realism, might require us to rethink traditional notions of truth and meaning.
+PURPOSE: To provide a framework for understanding meaning and truth when dealing with statements or concepts where a realist perspective might be problematic.  The sources suggest that certain philosophical positions, particularly those that embrace anti-realism, might require us to rethink traditional notions of truth and meaning.
 
 KEY CONCEPTS: Anti-Realism,  Truth,  Meaning,  Verification, Justification,  Language Games,  Use.
 
@@ -3103,7 +3103,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  WITTGENSTEIN ON CRITERIA & KNOWLEDGE OF MEANING
+META-SCRIPT: WITTGENSTEIN ON CRITERIA & KNOWLEDGE OF MEANING
 
 PURPOSE: To investigate how Wittgenstein’s notion of criteria might contribute to an anti-realist account of meaning, particularly focusing on how knowledge of criteria could be seen as constitutive of understanding a concept. This meta-script is informed by discussions in the sources about the relationship between criteria and truth-conditions.
 
@@ -3205,7 +3205,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  ASSESSING ASSERTIBILITY CONDITIONS
+META-SCRIPT: ASSESSING ASSERTIBILITY CONDITIONS
 
 PURPOSE: To evaluate the conditions under which the assertion of a statement is warranted, particularly when dealing with claims that are not susceptible to definitive verification or falsification. This meta-script helps to clarify the relationship between meaning and the practices that govern our use of language.
 
@@ -3222,11 +3222,11 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  EXPLORING THE REVISIONARY POTENTIAL OF ANTI-REALISM
+META-SCRIPT: EXPLORING THE REVISIONARY POTENTIAL OF ANTI-REALISM
 
 PURPOSE: To examine how an anti-realist approach to meaning might necessitate revising our understanding of certain concepts or even the logic we apply to them. This meta-script encourages us to consider whether our intuitive grasp of truth and meaning aligns with the practices that govern our use of language.
 
-KEY CONCEPTS:  Anti-Realism, Realism, Revisionism,  Truth, Meaning, Logic,  Verification, Falsification,  Justification. 
+KEY CONCEPTS: Anti-Realism, Realism, Revisionism,  Truth, Meaning, Logic,  Verification, Falsification,  Justification. 
 
 PROCESS:
     1. Characterise the Anti-Realist Stance:  Start by outlining the central tenets of an anti-realist view of meaning. This might involve focusing on assertibility conditions rather than truth-conditions, prioritising the role of verification or proof in determining meaning, or emphasizing the social and pragmatic aspects of language use. The sources, particularly the discussions in “Truth Conditions and Criteria” and “Strawson on Anti-Realism,” provide ample material for this step.
@@ -3256,7 +3256,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  TRACING THE LIMITS OF BEHAVIOURAL MANIFESTATION
+META-SCRIPT: TRACING THE LIMITS OF BEHAVIOURAL MANIFESTATION
 
 PURPOSE: To investigate the extent to which our understanding of language and concepts can be fully captured in terms of observable behaviour. This meta-script encourages critical reflection on the relationship between meaning, thought, and action.  
 
@@ -3359,7 +3359,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  RECONSTRUCTING OSTENSIVE DEFINITIONS
+META-SCRIPT: RECONSTRUCTING OSTENSIVE DEFINITIONS
 
 PURPOSE: To critically analyse ostensive definitions, revealing the implicit assumptions and potential limitations involved in grounding meaning through demonstrations or examples. This meta-script draws upon Wright's analysis of vagueness and the challenges it poses to traditional theories of meaning.
 
@@ -3377,11 +3377,11 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  PROBING THE LIMITS OF MOLECULARITY
+META-SCRIPT: PROBING THE LIMITS OF MOLECULARITY
 
 PURPOSE: To examine the tenability of a molecular view of meaning, considering whether the meanings of complex expressions can always be comprehensively understood as simple functions of the meanings of their parts. This meta-script encourages reflection on the potential role of contextual factors, implicit knowledge, and non-compositional aspects of meaning.
 
-KEY CONCEPTS:  Molecularity, Compositionality, Holism,  Contextual Factors,  Implicit Knowledge,  Semantic Rules,  Language Mastery.
+KEY CONCEPTS: Molecularity, Compositionality, Holism,  Contextual Factors,  Implicit Knowledge,  Semantic Rules,  Language Mastery.
 
 PROCESS:
     1. Identify the Target Expression:  Select a complex expression whose meaning you want to analyse in terms of its constituent parts.
@@ -3395,7 +3395,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  Unpacking Implicit Assumptions
+META-SCRIPT: Unpacking Implicit Assumptions
 
 PURPOSE: To uncover the often unarticulated assumptions that inform our use of language and our understanding of concepts. By bringing these implicit assumptions to light, we can subject them to critical examination and potentially refine our understanding.
 
@@ -3412,11 +3412,11 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  Tracing Conceptual Networks
+META-SCRIPT: Tracing Conceptual Networks
 
 PURPOSE: To explore the interconnectedness of concepts by mapping the network of related ideas, assumptions, and implications that surround a target concept. This meta-script encourages a holistic and systemic approach to understanding, acknowledging that concepts do not exist in isolation but are embedded within a web of related ideas.
 
-KEY CONCEPTS:  Conceptual Networks,  Interconnectedness,  Semantic Relations,  Assumptions, Implications,  Anti-Realism,  Realism, Holism.
+KEY CONCEPTS: Conceptual Networks,  Interconnectedness,  Semantic Relations,  Assumptions, Implications,  Anti-Realism,  Realism, Holism.
 
 PROCESS:
 1.  Select a Target Concept: Choose a concept whose conceptual network you want to map. This could be any concept of philosophical interest, such as truth, justification, knowledge, meaning, or reality.
@@ -3431,11 +3431,11 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  RECONSTRUCTING OSTENSIVE DEFINITIONS
+META-SCRIPT: RECONSTRUCTING OSTENSIVE DEFINITIONS
 
 PURPOSE: To critically examine ostensive definitions, paying close attention to the assumptions about resemblance and relevance that underpin them. This meta-script helps us to see how even seemingly straightforward acts of definition can rely on complex and potentially problematic background knowledge. This meta-script draws specifically on Wright's discussion of ostensive definitions and 'species-liability to tolerance' in "On the Coherence of Vague Predicates".
 
-KEY CONCEPTS:  Ostensive Definition,  Resemblance, Relevance,  Paradigm Case,  Background Knowledge,  Tolerance,  Vagueness.
+KEY CONCEPTS: Ostensive Definition,  Resemblance, Relevance,  Paradigm Case,  Background Knowledge,  Tolerance,  Vagueness.
 
 PROCESS:
    1. Identify the Target Concept: Begin by clearly specifying the concept for which an ostensive definition is being offered. What term or expression is being defined, and what is its intended domain of application? 
@@ -3466,7 +3466,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  ASSESSING ASSERTIBILITY CONDITIONS (EXPANDED)
+META-SCRIPT: ASSESSING ASSERTIBILITY CONDITIONS (EXPANDED)
 
 PURPOSE: To provide a more nuanced understanding of the assertibility conditions of statements. This enhanced version incorporates an additional step to consider alternative interpretations or perspectives on the statement being evaluated.
 
@@ -3537,7 +3537,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  PROBING THE LIMITS OF LANGUAGE
+META-SCRIPT: PROBING THE LIMITS OF LANGUAGE
 
 PURPOSE: To investigate how the structure and limitations of language might shape or constrain our understanding of the world. This meta-script encourages us to consider the potential for mismatches between our linguistic practices and the reality they are meant to represent.
 
@@ -3714,7 +3714,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  RECONSTRUCTING LOGICAL CONSTANTS
+META-SCRIPT: RECONSTRUCTING LOGICAL CONSTANTS
 
 PURPOSE: To critically re-evaluate our understanding of the logical constants, like 'and', 'or', 'not', and 'if...then', when applied to statements where verification-transcendent truth is a possibility. This meta-script aims to determine whether our intuitive grasp of these constants needs to be modified in such contexts.  Wright's exploration of alternative, non-classical logics, particularly within the framework of anti-realism, informs this approach.
 
@@ -3766,7 +3766,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  TESTING THE REVISION-PROOF
+META-SCRIPT: TESTING THE REVISION-PROOF
 
 PURPOSE: To subject claims to knowledge, particularly those that appear immune to revision or doubt, to rigorous scrutiny. This meta-script encourages us to consider the potential for hidden assumptions, biases, or limitations in our reasoning, even when a belief seems self-evident or unshakeable.
 
@@ -3800,7 +3800,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  RECONSTRUCTING ARGUMENTS FOR TRANSPARENCY
+META-SCRIPT: RECONSTRUCTING ARGUMENTS FOR TRANSPARENCY
 
 PURPOSE: To reconstruct arguments or lines of reasoning in a clear and explicit manner, revealing hidden premises, implicit assumptions, and potential fallacies.  The goal is to enhance critical thinking skills and to improve the quality of our own reasoning and that of others. 
 
@@ -3820,7 +3820,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  TRUTH, ASSERTIBILITY AND THE LIMITS OF JUSTIFICATION
+META-SCRIPT: TRUTH, ASSERTIBILITY AND THE LIMITS OF JUSTIFICATION
 
 PURPOSE: To critically examine the relationship between the truth of a statement and our capacity to justify its assertion. This meta-script draws upon Wright's explorations of anti-realism, particularly the idea that for certain types of statements, truth might transcend our ability to conclusively verify them.
 
@@ -4199,7 +4199,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  NAVIGATING MEANING AND ASSERTIBILITY
+META-SCRIPT: NAVIGATING MEANING AND ASSERTIBILITY
 
 PURPOSE: To create a meta-level framework that accounts for the role of assertibility conditions when interpreting the meaning of statements.
 
@@ -4234,7 +4234,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  DISTINGUISHING  'INTERNAL' FROM 'EXTERNAL'  MEANING
+META-SCRIPT: DISTINGUISHING  'INTERNAL' FROM 'EXTERNAL'  MEANING
 
 PURPOSE: To analyse the meaning of statements and concepts by separating those aspects that are internally grounded in our practices of justification and verification (‘internal meaning’) from those that might rely on external, verification-transcendent assumptions (‘external meaning’).  The sources touch on this distinction when discussing how anti-realism might impact our understanding of various concepts, especially those that refer to entities or states of affairs beyond our direct experience.
 
@@ -4272,7 +4272,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  MAPPING THE LANDSCAPE OF TRUTH-SENSITIVITY
+META-SCRIPT: MAPPING THE LANDSCAPE OF TRUTH-SENSITIVITY
 
 PURPOSE: To systematically assess which kinds of statements are sensitive to the concept of truth and which might be amenable to alternative, non-truth-conditional interpretations. This meta-script draws inspiration from the recurring theme in the sources that not all statements might be equally sensitive to the truth-conditional approach favoured by realism.
 
@@ -4289,7 +4289,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  RECONSTRUCTING 'INTUITIVE'  LOGICAL PRACTICES
+META-SCRIPT: RECONSTRUCTING 'INTUITIVE'  LOGICAL PRACTICES
 
 PURPOSE: To critically examine our intuitive logical practices and assess whether they are implicitly grounded in realist assumptions, and if so, how they might need to be revised or reinterpreted in the light of anti-realism. This meta-script takes its cue from the discussion in the sources regarding the potential impact of anti-realism on our understanding and use of logical principles.
 
@@ -4683,7 +4683,7 @@ META-SCRIPT: ANALYSING JUSTIFICATION AND ASSERTIBILITY
 
 PURPOSE: To critically evaluate the grounds for asserting a statement, distinguishing between truth conditions and the conditions under which assertion is warranted, especially when dealing with non-effectively decidable statements. 
 
-KEY CONCEPTS:  Truth, Justification, Assertibility, Warrant,  Verification,  Truth Conditions, Assertibility Conditions,  Evidence,  Defeasibility,  Epistemic Standards. 
+KEY CONCEPTS: Truth, Justification, Assertibility, Warrant,  Verification,  Truth Conditions, Assertibility Conditions,  Evidence,  Defeasibility,  Epistemic Standards. 
 
 PROCESS:
     1. Identify the Target Statement: Select a statement for analysis, particularly one where its truth or falsity might not be immediately ascertainable. Consider statements about the distant past, future predictions, or claims involving complex theoretical concepts. 
@@ -4791,7 +4791,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  THE MANIFESTATION OF UNDERSTANDING
+META-SCRIPT: THE MANIFESTATION OF UNDERSTANDING
 
 PURPOSE: To examine how our understanding of language, and particularly of concepts whose truth may be verification-transcendent, is made manifest in our linguistic behaviour. 
 
@@ -4837,7 +4837,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  SPEAKER-ORIENTED VS. WORLD-ORIENTED TRUTH
+META-SCRIPT: SPEAKER-ORIENTED VS. WORLD-ORIENTED TRUTH
 
 PURPOSE: To analyse and contrast speaker-oriented and world-oriented conceptions of truth, exploring their implications for the theory of meaning and the relationship between language, thought and the world.
 
@@ -4962,7 +4962,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  UNCOVERING IMPLICIT COMMITMENTS IN LANGUAGE USE
+META-SCRIPT: UNCOVERING IMPLICIT COMMITMENTS IN LANGUAGE USE
 
 PURPOSE: To systematically analyse linguistic practices and uncover the implicit assumptions and commitments about meaning and truth that they embody. The goal is to achieve a deeper understanding of how language functions and the philosophical implications of our linguistic choices.
 
@@ -5153,7 +5153,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  THE LINGUISTIC MANIFESTATION OF REALISM
+META-SCRIPT: THE LINGUISTIC MANIFESTATION OF REALISM
 
 PURPOSE: To examine whether, and if so how, a realist conception of meaning for certain classes of statement might be reflected in the ways in which speakers who endorse realism actually use language. 
 
@@ -5243,7 +5243,7 @@ NOTE: By systematically examining and comparing different theories of meaning, t
 ---
 
 
-META-SCRIPT:  ANALYSING PRACTICES OF JUSTIFICATION
+META-SCRIPT: ANALYSING PRACTICES OF JUSTIFICATION
 
 PURPOSE: To systematically analyse the procedures and standards of justification employed within a specific domain or for a particular category of statements. The goal is to reveal the underlying assumptions about evidence, warrant, and the nature of truth that guide our justificatory practices.
 
@@ -5325,7 +5325,7 @@ NOTE: By engaging in this meta-script, we can gain a clearer understanding of th
 ---
 
 
-META-SCRIPT:  ASSERTIBILITY AND 'CONCLUSIVE VERIFICATION' CLAIMS
+META-SCRIPT: ASSERTIBILITY AND 'CONCLUSIVE VERIFICATION' CLAIMS
 
 PURPOSE: To systematically analyse the conditions under which assertions of 'conclusive verification' are appropriate, particularly for sentences whose verification transcends our epistemic capacities.  The goal is to understand how such claims function linguistically, their connection to anti-realist theories of meaning, and their potential vulnerability to sceptical challenges.
 
@@ -5581,7 +5581,7 @@ NOTE: By rigorously analysing the sources of inconsistency in vague concepts, th
 ---
 
 
-META-SCRIPT:  IMPLICIT DEFINITIONS AND ANTI-REALIST SEMANTICS
+META-SCRIPT: IMPLICIT DEFINITIONS AND ANTI-REALIST SEMANTICS
 
 PURPOSE: To investigate whether and how certain classical principles might be construed as 'implicitly definitional' within an anti-realist framework. The goal is to determine whether this strategy can successfully reconcile anti-realism with a commitment to classical logic, and to explore its broader implications for the philosophy of language and logic. 
 
@@ -5770,7 +5770,7 @@ NOTE: By rigorously applying this meta-script, one can systematically investigat
 ---
 
 
-META-SCRIPT:  TRUTH-TRANSCENDENT MEANING AND LANGUAGE USE
+META-SCRIPT: TRUTH-TRANSCENDENT MEANING AND LANGUAGE USE
 
 PURPOSE: To analyse how, if at all, speakers' understanding of statements with truth conditions that may be impossible to verify can be revealed in their linguistic behaviour.
 
@@ -5809,7 +5809,7 @@ NOTE: This meta-script aims to scrutinise a crucial issue in the debate between 
 ---
 
 
-META-SCRIPT:  MANIFESTATION OF VERIFICATION-TRANSCENDENT TRUTH
+META-SCRIPT: MANIFESTATION OF VERIFICATION-TRANSCENDENT TRUTH
 
 PURPOSE: To analyse how the use of sentences, whose truth is potentially verification-transcendent, can nonetheless be seen to manifest a commitment to realism about their subject matter. 
 
@@ -6013,7 +6013,7 @@ NOTE: This meta-script encourages reflection on a key concept in the philosophy 
 ---
 
 
-META-SCRIPT:  DETECTING SEMANTIC INCOHERENCE 
+META-SCRIPT: DETECTING SEMANTIC INCOHERENCE 
 
 PURPOSE: To detect potential semantic incoherence in linguistic expressions, especially those susceptible to sorites reasoning.  
 KEY CONCEPTS: Sorites Paradox,  Semantic Coherence,  Vague Predicates, Boundary Conditions,  Revisionary Semantics.
@@ -6056,7 +6056,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  ANALYSING VAGUE PREDICATES
+META-SCRIPT: ANALYSING VAGUE PREDICATES
 
 PURPOSE: To analyse the nature of vague predicates and explore the challenges they pose for traditional theories of meaning.
 
@@ -6246,7 +6246,7 @@ KEY CONCEPTS: Semantic Change, Historical Linguistics, Conceptual Change,  Socia
 ---
 
 
-META-SCRIPT:  ANTI-REALISM AND ITS IMPLICATIONS
+META-SCRIPT: ANTI-REALISM AND ITS IMPLICATIONS
 
 PURPOSE: To explore the implications of an anti-realist stance for the theory of meaning and the validity of classical logic.
 
@@ -6306,7 +6306,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  TRUTH-CONDITIONS AND CRITERIA: A RE-EVALUATION
+META-SCRIPT: TRUTH-CONDITIONS AND CRITERIA: A RE-EVALUATION
 
 PURPOSE: To analyse the interplay between truth-conditions and criteria, exploring their implications for the philosophy of language and our understanding of meaning.
 
@@ -6424,7 +6424,7 @@ KEY CONCEPTS: Truth-Theory,  Epistemology,  Justification,  Knowledge,  Verifica
 ---
 
 
-META-SCRIPT:  INTERROGATING SEMANTIC RULES & THE SPECTRE OF VAGUENESS
+META-SCRIPT: INTERROGATING SEMANTIC RULES & THE SPECTRE OF VAGUENESS
 
 PURPOSE: To critically examine the epistemological foundations of semantic rules and explore their applicability to vague predicates, thereby fostering a deeper understanding of the complexities of meaning and language use. 
 
@@ -6465,7 +6465,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  OBJECTIVITY AND THE LIMITS OF SENSE EXPERIENCE
+META-SCRIPT: OBJECTIVITY AND THE LIMITS OF SENSE EXPERIENCE
 
 PURPOSE: To analyse the difficulties in grounding objective distinctions solely on sense experience, particularly when dealing with vague predicates.
 
@@ -6499,7 +6499,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  NAVIGATING THE REALM OF NON-EFFECTIVELY DECIDABLE STATEMENTS
+META-SCRIPT: NAVIGATING THE REALM OF NON-EFFECTIVELY DECIDABLE STATEMENTS
 
 PURPOSE: To examine the concept of effective decidability and explore its implications for philosophy of language, epistemology, and our understanding of the limits of human reasoning. 
 
@@ -6564,7 +6564,7 @@ NOTE: By working through this meta-script, we can gain a clearer understanding o
 ---
 
 
-META-SCRIPT:  TRUTH, ASSERTIBILITY & THE CHALLENGE OF ANTI-REALISM
+META-SCRIPT: TRUTH, ASSERTIBILITY & THE CHALLENGE OF ANTI-REALISM
 
 PURPOSE: To explore the anti-realist challenge to truth-conditional accounts of meaning, focusing on how an understanding of sentences whose truth might transcend our capacity for verification can be manifested in our use of language. 
 
@@ -6671,7 +6671,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  CRITERIA VS. EVIDENCE: NAVIGATING THE BOUNDARIES OF JUSTIFICATION
+META-SCRIPT: CRITERIA VS. EVIDENCE: NAVIGATING THE BOUNDARIES OF JUSTIFICATION
 
 PURPOSE: To examine the distinction between criteria and evidence and explore its impact on epistemology, the philosophy of language, and our understanding of the nature of justification.
 
@@ -6771,7 +6771,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  ESSENTIAL PROPERTIES & TOLERANT APPLICATION
+META-SCRIPT: ESSENTIAL PROPERTIES & TOLERANT APPLICATION
 
 PURPOSE: To investigate how our understanding of a concept, particularly those involving  'essential properties,' can be reconciled with the fact that we apply such concepts tolerantly, allowing for borderline cases where it is not definitively clear whether the concept applies or not. 
 
@@ -6803,7 +6803,7 @@ NOTE: By working through this meta-script, we can gain a deeper understanding of
 ---
 
 
-META-SCRIPT:  THE EPISTEMOLOGY OF SEMANTIC RULES
+META-SCRIPT: THE EPISTEMOLOGY OF SEMANTIC RULES
 
 PURPOSE: To critically examine the nature and justification of semantic rules, particularly in cases where the meaning of a concept is introduced through ostensive definition.
 
@@ -6848,7 +6848,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  THE EPISTEMOLOGY OF SEMANTIC RULES AND THE PROBLEM OF VAGUENESS
+META-SCRIPT: THE EPISTEMOLOGY OF SEMANTIC RULES AND THE PROBLEM OF VAGUENESS
 
 PURPOSE: To examine how we acquire knowledge of semantic rules, particularly those governing vague predicates, and to explore alternative approaches to the epistemology of vagueness.
 
@@ -6943,7 +6943,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  INVESTIGATING THEORIES OF MEANING
+META-SCRIPT: INVESTIGATING THEORIES OF MEANING
 
 PURPOSE: To critically examine different theories of meaning and explore the relationship between meaning, truth, and justification.
 
@@ -7178,7 +7178,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  INVESTIGATING RECOGNITION-TRANSCENDENT TRUTH
+META-SCRIPT: INVESTIGATING RECOGNITION-TRANSCENDENT TRUTH
 
 PURPOSE: To explore the challenges posed by the idea of recognition-transcendent truth, its compatibility with an anti-realist theory of meaning, and its implications for understanding the objectivity of certain linguistic practices.
 
@@ -7228,7 +7228,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  RECONCILING TRUTH AND COMMUNICABILITY
+META-SCRIPT: RECONCILING TRUTH AND COMMUNICABILITY
 
 PURPOSE: To examine the tension between the concept of recognition-transcendent truth and the requirement that practices be communicable.  
 
@@ -7366,7 +7366,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  NAVIGATING ANTI-REALISM AND LOGICAL REVISION
+META-SCRIPT: NAVIGATING ANTI-REALISM AND LOGICAL REVISION
 
 PURPOSE: To critically examine the arguments for anti-realism and its potential consequences for revising classical logic, fostering a deeper understanding of the relationship between meaning, truth, and logical principles.
 
@@ -7399,7 +7399,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  ANTI-REALISM AND THE REVISION OF LOGIC
+META-SCRIPT: ANTI-REALISM AND THE REVISION OF LOGIC
 
 PURPOSE: To analyse the arguments for anti-realism and assess the necessity of revising classical logic.
 
@@ -7490,7 +7490,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  THE PROBLEM OF VAGUENESS
+META-SCRIPT: THE PROBLEM OF VAGUENESS
 
 PURPOSE: To examine the challenges that vagueness poses to our understanding of meaning and to explore possible solutions to these challenges.
 
@@ -7651,7 +7651,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  CRITERIA AND THE GROUNDING OF MEANING
+META-SCRIPT: CRITERIA AND THE GROUNDING OF MEANING
 
 PURPOSE: To critically examine the role of criteria in grounding the meaning of expressions and shaping our understanding of language. This analysis will focus on the relationship between criteria, truth-conditions, and assertibility conditions.
 
@@ -7709,7 +7709,7 @@ NOTE: By rigorously applying this meta-script, we can scrutinise the extent to w
 ---
 
 
-META-SCRIPT:  LOGIC AS CONVENTION
+META-SCRIPT: LOGIC AS CONVENTION
 
 PURPOSE: To critically examine the idea of treating aspects of classical logic as conventions and to explore the implications of this view for our understanding of meaning and truth.
 
@@ -7757,7 +7757,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  INFERENTIAL PRACTICES AND THE THEORY OF MEANING
+META-SCRIPT: INFERENTIAL PRACTICES AND THE THEORY OF MEANING
 
 PURPOSE: To investigate how the analysis of inferential practices can inform our understanding of meaning and contribute to the development of a theory of meaning that is sensitive to the challenges posed by verification-transcendence and the sceptical concerns of anti-realism. 
 
@@ -7780,7 +7780,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  DECONSTRUCTING AND RECONSTRUCTING UNDERSTANDING
+META-SCRIPT: DECONSTRUCTING AND RECONSTRUCTING UNDERSTANDING
 
 PURPOSE: To critically assess the coherence of our understanding of concepts and the expressions that signify them. This involves examining the relationship between the purported essential semantics of expressions and their actual use, with particular attention to the role of implicit conventions and the possibility of uncovering inconsistencies. 
 
@@ -8060,7 +8060,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  ANALYSING OSTENSIVE DEFINITIONS
+META-SCRIPT: ANALYSING OSTENSIVE DEFINITIONS
 
 PURPOSE: To rigorously analyse ostensive definitions, exposing their inherent limitations, uncovering hidden assumptions, and identifying potential strategies for refining their precision.
 
@@ -8093,7 +8093,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  THE EPISTEMOLOGY OF OSTENSIVE DEFINITIONS
+META-SCRIPT: THE EPISTEMOLOGY OF OSTENSIVE DEFINITIONS
 
 PURPOSE: To critically analyse the process of ostensive definition, identifying its strengths, weaknesses, and potential pitfalls. The aim is to understand how ostensive definitions contribute to our grasp of concepts and the extent to which they can provide a secure foundation for knowledge.
 
@@ -8123,7 +8123,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  ANATOMY OF AN OSTENSIVE DEFINITION
+META-SCRIPT: ANATOMY OF AN OSTENSIVE DEFINITION
 
 PURPOSE: To rigorously analyse the process of ostensive definition, exposing the implicit conventions, potential ambiguities, and limitations inherent in this mode of introducing concepts. 
 
@@ -8164,7 +8164,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  PROBING THE LIMITS OF OSTENSIVE DEFINITIONS
+META-SCRIPT: PROBING THE LIMITS OF OSTENSIVE DEFINITIONS
 
 PURPOSE: To critically examine the process of ostensive definition, highlighting the implicit assumptions, potential for ambiguity, and the role of 'tolerance' in shaping conceptual understanding.
 
@@ -8197,7 +8197,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  UNVEILING THE EPISTEMOLOGY OF SEMANTIC RULES
+META-SCRIPT: UNVEILING THE EPISTEMOLOGY OF SEMANTIC RULES
 
 PURPOSE: To critically examine the epistemological foundations of our understanding of language, focusing on the nature and acquisition of knowledge about semantic rules. This will be achieved by exploring the tension between the apparent objectivity of meaning and the challenges of articulating and justifying the rules that govern linguistic practice.
 
@@ -8229,7 +8229,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  UNVEILING THE EPISTEMOLOGY OF SEMANTIC RULES
+META-SCRIPT: UNVEILING THE EPISTEMOLOGY OF SEMANTIC RULES
 
 PURPOSE: To critically examine the notion of semantic rules, exploring their nature, role in language, and the epistemological challenges associated with their acquisition and application.
 
@@ -8288,7 +8288,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  ANALYSING OSTENSIVE DEFINITIONS
+META-SCRIPT: ANALYSING OSTENSIVE DEFINITIONS
 
 PURPOSE: To critically examine the process of ostensive definition, uncovering implicit conventions, assessing the role of tolerance, and identifying potential sources of semantic incoherence.
 
@@ -8835,7 +8835,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  ANALYSING VAGUE PREDICATES
+META-SCRIPT: ANALYSING VAGUE PREDICATES
 
 PURPOSE: To examine the coherence of vague predicates and explore alternative semantic models that might better account for their use in ordinary language.
 
@@ -9007,7 +9007,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  ANALYSING THE ANTI-REALIST CHALLENGE
+META-SCRIPT: ANALYSING THE ANTI-REALIST CHALLENGE
 
 PURPOSE: To examine the arguments for and against anti-realist theories of meaning, and to explore their implications for our understanding of truth, logic, and the relationship between language and the world.
 
@@ -9049,7 +9049,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  CONSTRUCTING AN ANTI-REALIST THEORY OF MEANING:
+META-SCRIPT: CONSTRUCTING AN ANTI-REALIST THEORY OF MEANING:
 
 PURPOSE: go beyond mere analysis of the debate and focus on actually developing a coherent and comprehensive anti-realist theory of meaning. This would involve: 
 
@@ -9092,7 +9092,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  IDENTIFYING AND SCRUTINISING IMPLICIT EPISTEMOLOGIES
+META-SCRIPT: IDENTIFYING AND SCRUTINISING IMPLICIT EPISTEMOLOGIES
 
 PURPOSE: To unearth and critically evaluate the hidden epistemological assumptions within various theories of meaning, and to assess their implications for the possibility and nature of knowledge.
 
@@ -9214,7 +9214,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  ANALYSING THE SEMANTICS OF VAGUE PREDICATES
+META-SCRIPT: ANALYSING THE SEMANTICS OF VAGUE PREDICATES
 
 PURPOSE: To examine the philosophical challenges posed by vague predicates and to develop a more coherent understanding of their meaning and function in language.
 
@@ -9571,7 +9571,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  ANALYSING THE RELATIONSHIP BETWEEN TRUTH-CONDITIONS AND CRITERIA
+META-SCRIPT: ANALYSING THE RELATIONSHIP BETWEEN TRUTH-CONDITIONS AND CRITERIA
 
 PURPOSE: To systematically examine the interplay between truth-conditions and criteria in our understanding of language, particularly in cases where the connection between the two is complex or potentially problematic.
 
@@ -9634,7 +9634,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  ANALYSING THE RELATIONSHIP BETWEEN TRUTH-CONDITIONS AND CRITERIA IN UNDERSTANDING LANGUAGE
+META-SCRIPT: ANALYSING THE RELATIONSHIP BETWEEN TRUTH-CONDITIONS AND CRITERIA IN UNDERSTANDING LANGUAGE
 
 PURPOSE: To provide a structured methodology for examining the interplay between truth-conditions and criteria in our grasp of language, and to assess the implications of this relationship for realist and anti-realist theories of meaning.
 
@@ -9724,7 +9724,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  REVISING CONCEPTUAL FRAMEWORKS IN LIGHT OF NEW INFORMATION
+META-SCRIPT: REVISING CONCEPTUAL FRAMEWORKS IN LIGHT OF NEW INFORMATION
 
 PURPOSE: To provide a structured approach for evaluating and potentially revising our understanding of concepts when confronted with novel information that challenges our existing conceptual frameworks.
 
@@ -9917,7 +9917,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  ANALYSING THE RELATIONSHIP BETWEEN TRUTH-CONDITIONS AND CRITERIA IN LANGUAGE MASTERY
+META-SCRIPT: ANALYSING THE RELATIONSHIP BETWEEN TRUTH-CONDITIONS AND CRITERIA IN LANGUAGE MASTERY
 
 PURPOSE: To systematically examine the relationship between truth-conditions and criteria in our understanding of language and the implications of this relationship for debates concerning realism and anti-realism. 
 
@@ -9982,7 +9982,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  ANALYSING COMMUNICATIVE PRACTICES
+META-SCRIPT: ANALYSING COMMUNICATIVE PRACTICES
 
 PURPOSE: To systematically examine the dynamics of communicative practices, taking into account the roles of truth, meaning, justification, and understanding in achieving successful communication.
 
@@ -10011,7 +10011,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  ANALYSING COMMUNICATIVE PRACTICES
+META-SCRIPT: ANALYSING COMMUNICATIVE PRACTICES
 
 PURPOSE: To systematically examine the practices governing the use of language, paying close attention to the interplay between truth-conditions, assertibility conditions, and the role of criteria in shaping meaning and understanding.
 
@@ -10102,7 +10102,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  ANALYSING CONCEPTS AND THEIR APPLICATION
+META-SCRIPT: ANALYSING CONCEPTS AND THEIR APPLICATION
 
 PURPOSE: To critically examine concepts, particularly those with blurry boundaries, in order to understand how their meaning is determined and how they are applied in practice.
 
@@ -10132,7 +10132,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  ANALYSING CONCEPTS & THEIR APPLICATION
+META-SCRIPT: ANALYSING CONCEPTS & THEIR APPLICATION
 
 PURPOSE: To systematically examine the structure and application of concepts, particularly those with unclear boundaries, to foster a more nuanced understanding of their meaning and use.
 
@@ -10359,7 +10359,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  EXAMINING THE EPISTEMOLOGY OF SEMANTIC RULES
+META-SCRIPT: EXAMINING THE EPISTEMOLOGY OF SEMANTIC RULES
 
 PURPOSE: To analyse the nature of semantic rules and how we acquire and represent knowledge of them.
 

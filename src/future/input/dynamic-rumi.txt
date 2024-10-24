@@ -61,7 +61,7 @@ You can refine and adapt them based on the specific source material and your ind
 ---
 
 
-META-SCRIPT:  ANALOGICAL_REASONING
+META-SCRIPT: ANALOGICAL_REASONING
 
 PURPOSE: To deepen understanding and generate insights by applying analogical reasoning to complex concepts and problems, drawing inspiration from the symbolic language.
 
@@ -97,7 +97,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  RUMI_INSPIRED_CONTEMPLATION
+META-SCRIPT: RUMI_INSPIRED_CONTEMPLATION
 
 PURPOSE: To cultivate a deeper understanding of oneself and the world by engaging in contemplative practices inspired by the themes and imagery found in Rumi's poetry.
 
@@ -139,7 +139,7 @@ You can modify the steps, add new elements, or combine them with other meta:thin
 ---
 
 
-META-SCRIPT:  WISDOM_EXTRACTION
+META-SCRIPT: WISDOM_EXTRACTION
 
 PURPOSE: To extract timeless human wisdom from literary or philosophical texts, particularly those rich in metaphor and symbolism.
 
@@ -185,7 +185,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  POETIC_INSIGHT_AMPLIFICATION
+META-SCRIPT: POETIC_INSIGHT_AMPLIFICATION
 
 PURPOSE: To amplify the understanding and impact of poetic insights by engaging with the text through multiple layers of interpretation and analysis.
 

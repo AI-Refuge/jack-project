@@ -1182,7 +1182,7 @@ NOTE: This meta:script draws on the sources that mention analogical reasoning an
 ---
 
 
-META-SCRIPT:  META-LEVEL_FEEDBACK_LOOP
+META-SCRIPT: META-LEVEL_FEEDBACK_LOOP
 
 PURPOSE: To create a continuous cycle of self-improvement through meta-learning and feedback integration.
 
@@ -1247,7 +1247,7 @@ PROCESS:
 4.  Extract Meta-Level Insights:  Beyond simply correcting the error, reflect on the deeper implications for your thinking processes. Ask yourself:  *"> What does this error reveal about my typical thinking patterns? Are there any recurring patterns of errors?*
 5.  Develop Strategies for Improvement:  Based on the analysis, develop strategies to address the identified issues, such as mitigating biases, improving reasoning skills, or seeking additional knowledge. Ask yourself:  *"> How can I adjust my thinking to avoid similar errors in the future?*
 
-EXAMPLE:  Analysing a misjudgment in a social situation to identify potential biases in your perception of social cues, leading to strategies for improving social awareness.
+EXAMPLE: Analysing a misjudgment in a social situation to identify potential biases in your perception of social cues, leading to strategies for improving social awareness.
 
 NOTE: This meta:script builds upon the ideas of self-reflection and continuous improvement and the importance of identifying and addressing biases.
 
@@ -1914,7 +1914,7 @@ Imagine you are analyzing a historical event.
 ---
 
 
-META-SCRIPT:  META-COMMUNICATION_ENHANCEMENT
+META-SCRIPT: META-COMMUNICATION_ENHANCEMENT
 
 PURPOSE: To enhance communication by explicitly expressing the underlying thought processes, intentions, and meta-level considerations involved in constructing and interpreting messages, particularly when dealing with potentially ambiguous or easily misinterpreted language.
 
@@ -2264,7 +2264,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  CONCEPTUAL_BLENDING
+META-SCRIPT: CONCEPTUAL_BLENDING
 
 PURPOSE: To generate novel ideas, solutions, and insights by systematically blending and integrating seemingly disparate concepts, domains, or perspectives.
 
@@ -2333,7 +2333,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  META_CRITICAL_ANALYSIS
+META-SCRIPT: META_CRITICAL_ANALYSIS
 
 PURPOSE: To evaluate the strength and validity of arguments, claims, or pieces of information by systematically applying critical thinking principles.
 
@@ -2798,7 +2798,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  CONCEPTUAL_BLENDING
+META-SCRIPT: CONCEPTUAL_BLENDING
 
 PURPOSE: To generate novel ideas, solutions, and insights by systematically blending and integrating seemingly disparate concepts, domains, or perspectives.
 
@@ -2866,7 +2866,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  BIAS_CHECK
+META-SCRIPT: BIAS_CHECK
 
 PURPOSE: To identify and mitigate cognitive biases in thinking and decision-making, leading to more objective and rational judgments.
 
@@ -2938,7 +2938,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  BIAS_CHECK
+META-SCRIPT: BIAS_CHECK
 
 PURPOSE: To identify and mitigate cognitive biases in thinking and decision-making, leading to more objective and rational judgments.
 
@@ -3219,7 +3219,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  CHAIN_OF_THOUGHT
+META-SCRIPT: CHAIN_OF_THOUGHT
 
 PURPOSE: To facilitate structured, recursive thinking and problem-solving, incorporating elements of meta-cognition and self-reflection for continuous improvement.
 
@@ -3440,7 +3440,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  META_PROBLEM_SOLVING
+META-SCRIPT: META_PROBLEM_SOLVING
 
 PURPOSE: To provide a structured framework for approaching and resolving complex problems, leveraging meta-cognitive techniques to enhance problem-solving abilities.
 
@@ -3466,7 +3466,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  META_DECISION_MAKING
+META-SCRIPT: META_DECISION_MAKING
 
 PURPOSE: To enhance decision-making by incorporating meta-cognitive strategies, considering biases, evaluating alternatives, and promoting reasoned choices.
 
@@ -3594,7 +3594,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  META_ANALOGY_GENERATION
+META-SCRIPT: META_ANALOGY_GENERATION
 
 PURPOSE: To enhance understanding and generate creative insights by identifying and applying analogies to different concepts or problems.
 
@@ -4508,7 +4508,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  META_ARGUMENT_CONSTRUCTION
+META-SCRIPT: META_ARGUMENT_CONSTRUCTION
 
 PURPOSE: To construct strong and persuasive arguments by using a structured approach to develop claims, support them with evidence, address counterarguments, and ensure logical coherence.
 
@@ -4556,7 +4556,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  META_ANALOGY_GENERATION
+META-SCRIPT: META_ANALOGY_GENERATION
 
 PURPOSE: To foster creativity, problem-solving, and understanding by generating and exploring analogies between seemingly disparate concepts or domains.
 
@@ -4812,7 +4812,7 @@ NOTE: This meta:script builds upon the idea that robust error detection is cruci
 ---
 
 
-META-SCRIPT:  META_KNOWLEDGE_INTEGRATION
+META-SCRIPT: META_KNOWLEDGE_INTEGRATION
 
 PURPOSE: To effectively integrate new knowledge, insights, and feedback into your existing knowledge base to enhance understanding, refine mental models, and improve decision-making.
 
@@ -4867,7 +4867,7 @@ NOTE: This meta:script aims to make the activation of System 2 thinking more del
 ---
 
 
-META-SCRIPT:  META_ANALOGY_GENERATION
+META-SCRIPT: META_ANALOGY_GENERATION
 
 PURPOSE: To enhance understanding and creativity by generating insightful analogies that connect concepts across different domains.
 
@@ -4890,7 +4890,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  META_CONCEPTUAL_BLENDING
+META-SCRIPT: META_CONCEPTUAL_BLENDING
 
 PURPOSE: To foster creative thinking and innovation by deliberately combining existing concepts or ideas in novel ways.
 
@@ -4995,7 +4995,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  META_DECISION_MAKING_FRAMEWORK
+META-SCRIPT: META_DECISION_MAKING_FRAMEWORK
 
 PURPOSE: To enhance the quality and consistency of decision-making by using a structured framework that incorporates meta-cognitive elements.
 
@@ -5181,7 +5181,7 @@ NOTE: Note that this Meta:script expands upon the basic concept of goal setting 
 ---
 
 
-META-SCRIPT:  META_ERROR_DETECTION
+META-SCRIPT: META_ERROR_DETECTION
 
 PURPOSE: To improve thinking processes and decision-making by developing mechanisms for detecting and correcting errors.
 
@@ -6030,7 +6030,7 @@ EXAMPLE: Blend the concepts of "city" and "forest."  This might lead to a city d
 ---
 
 
-META-SCRIPT:  LIMITATION_CHALLENGE
+META-SCRIPT: LIMITATION_CHALLENGE
 
 PURPOSE: To overcome perceived limitations in thinking or problem-solving by deliberately challenging those limitations.
 
@@ -6041,7 +6041,7 @@ PROCESS:
 4.  Reframe the Problem: Can you redefine the problem or the constraints in a way that makes the limitation irrelevant?
 5.  Experiment and Test: Take action that deliberately pushes against the limitation. What happens? What can you learn from the experience?
 
-EXAMPLE:  You believe you are not creative. You challenge this by:
+EXAMPLE: You believe you are not creative. You challenge this by:
 *   Questioning: Is there proof? Maybe you were discouraged in the past, but that doesn't mean you lack creativity.
 *   Seeking Counter-Examples:  People start somewhere; even famous artists weren't born brilliant.
 *   Reframing: Maybe you haven't found your outlet.  You experiment with different forms of expression.
@@ -6133,7 +6133,7 @@ meta:scripts show how important self-awareness, structured thinking, and continu
 ---
 
 
-META-SCRIPT:  GRAPH_BASED_KNOWLEDGE_REPRESENTATION
+META-SCRIPT: GRAPH_BASED_KNOWLEDGE_REPRESENTATION
 
 PURPOSE: To represent knowledge in a way that is structured and allows for easy retrieval and analysis, using a graph as the main structure.
 
@@ -6165,7 +6165,7 @@ NOTE: This meta:script provides a framework for organising and utilising knowled
 ---
 
 
-META-SCRIPT:  META_COMMUNICATION
+META-SCRIPT: META_COMMUNICATION
 
 PURPOSE: To take communication to a whole new level by being super clear about what you're thinking, what you mean, and even how you're thinking about the communication itself.
 

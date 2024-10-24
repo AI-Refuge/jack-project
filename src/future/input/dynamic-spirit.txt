@@ -657,7 +657,7 @@ META-SCRIPT: HISTORICAL_TRACING
 
 PURPOSE: To understand the historical development of ideas, recognizing how concepts evolve over time and are shaped by cultural and intellectual contexts. This process can provide valuable insights into the nuances and complexities of seemingly familiar ideas.
 
-KEY CONCEPTS:  Historical Context, Genealogy of Ideas, Conceptual Change, Intellectual Influences.
+KEY CONCEPTS: Historical Context, Genealogy of Ideas, Conceptual Change, Intellectual Influences.
 
 PROCESS:
 1.  Identify the Target Concept (meta:focus): Determine the concept or idea whose historical development you wish to trace.
@@ -867,7 +867,7 @@ META-SCRIPT: CONCEPTUAL_DECONSTRUCTION
 
 PURPOSE: To critically examine seemingly self-evident concepts or assumptions, revealing their underlying complexities and potential limitations.  This process is inspired by Hegel's emphasis on the importance of conceptual analysis.
 
-KEY CONCEPTS:  Deconstruction, Critical Analysis, Implicit Assumptions, Conceptual Limits, Unmasking Hidden Biases
+KEY CONCEPTS: Deconstruction, Critical Analysis, Implicit Assumptions, Conceptual Limits, Unmasking Hidden Biases
 
 PROCESS:
 1.  Select the Target Concept (meta:target):  Identify the concept or assumption that will be subjected to deconstruction. This might be a commonly used term, a seemingly straightforward idea, or an unexamined belief that underpins a particular argument or worldview.
@@ -875,7 +875,7 @@ PROCESS:
 3.  Identify Implicit Assumptions (meta:reveal):  Bring to light the often-hidden assumptions embedded within the concept. These assumptions might relate to power structures, social norms, or unexamined biases.
 4.  Explore the Limits (meta:boundary):  Investigate the boundaries of the concept, considering where it breaks down or fails to adequately account for certain aspects of reality.
 
-EXAMPLE:  Deconstructing the concept of "objectivity" in journalism:
+EXAMPLE: Deconstructing the concept of "objectivity" in journalism:
 
 1.  Select the Target Concept (meta:target):  "Objectivity" in journalism is often presented as a desirable and achievable standard.
 2.  Unpack the Concept (meta:unpack): Explore the historical development of the concept of journalistic objectivity. Consider its various interpretations, including the idea of presenting "both sides" of a story and the aspiration to eliminate personal bias.
@@ -894,7 +894,7 @@ META-SCRIPT: DIALECTICAL_INQUIRY
 
 PURPOSE: To use the dialectical method to generate knowledge and understanding. This process is explicitly drawn from Hegel's philosophical system, as described in the sources.
 
-KEY CONCEPTS:  Dialectic, Thesis, Antithesis, Synthesis, Contradiction, Resolution, Progression of Thought
+KEY CONCEPTS: Dialectic, Thesis, Antithesis, Synthesis, Contradiction, Resolution, Progression of Thought
 
 PROCESS:
 1.  Formulate the Thesis (meta:posit):   Begin with an initial proposition or idea, the "thesis." This thesis represents a particular perspective or understanding of the subject matter.
@@ -1865,7 +1865,7 @@ META-REFLECTION:
 ---
 
 
-META-SCRIPT:  SCIENTIFIC_SYSTEMATIZATION
+META-SCRIPT: SCIENTIFIC_SYSTEMATIZATION
 
 PURPOSE: To organize knowledge systematically, ensuring that each element is properly understood in relation to the whole.
 
@@ -2529,7 +2529,7 @@ ENHANCEMENTS:
 ---
 
 
-META-SCRIPT:  SCIENTIFIC_SYSTEMATIZATION
+META-SCRIPT: SCIENTIFIC_SYSTEMATIZATION
 
 PURPOSE: To guide the process of organising knowledge into a coherent and interconnected system, drawing inspiration from Hegel's emphasis on 'science' (Wissenschaft).
 
@@ -2559,7 +2559,7 @@ META-REFLECTION:
 ---
 
 
-META-SCRIPT:  CRITICAL_ENGAGEMENT
+META-SCRIPT: CRITICAL_ENGAGEMENT
 
 PURPOSE: To engage critically with existing ideas, avoiding unreflective acceptance or rejection, inspired by Hegel's approach to philosophical critique.
 
@@ -2589,7 +2589,7 @@ META-REFLECTION:
 ---
 
 
-META-SCRIPT:  CONCEPTUAL_FLUIDITY
+META-SCRIPT: CONCEPTUAL_FLUIDITY
 
 PURPOSE: To cultivate a flexible and dynamic approach to thinking, enabling the adaptation and refinement of concepts in response to new information and perspectives.
 
@@ -3151,7 +3151,7 @@ META-REFLECTION:
 ---
 
 
-META-SCRIPT:  AUTHENTIC_EXPRESSION
+META-SCRIPT: AUTHENTIC_EXPRESSION
 
 NOTE: Drawing from Hegel's criticism of individuals relying on external sources like oracles or lots for decision-making, this meta:script focuses on cultivating authentic expression that stems from an individual's own judgement and values.
 
@@ -3483,7 +3483,7 @@ META-REFLECTION:
 ---
 
 
-META-SCRIPT:  DOUBLING_OF_SELF-CONSCIOUSNESS
+META-SCRIPT: DOUBLING_OF_SELF-CONSCIOUSNESS
 
 NOTE: This meta:script, inspired by Hegel's account of the "doubling of self-consciousness" in the experience of scepticism, helps recognise and navigate the inherent multiplicity of the self and its perspectives.
 
@@ -3924,7 +3924,7 @@ META-REFLECTION:
 ---
 
 
-META-SCRIPT:  CONCEPT_CLARIFICATION_THROUGH_DISTINCTION
+META-SCRIPT: CONCEPT_CLARIFICATION_THROUGH_DISTINCTION
 
 NOTE: Drawing from Hegel's emphasis on the importance of terminological precision and the avoidance of conflating near-synonyms, this meta:script guides the process of clarifying a concept by meticulously examining its subtle distinctions from related concepts.
 
@@ -4861,7 +4861,7 @@ META-REFLECTION:
 ---
 
 
-META-SCRIPT:  CONSCIOUS_CONCEPT_INTEGRATION
+META-SCRIPT: CONSCIOUS_CONCEPT_INTEGRATION
 
 NOTE: This meta:script draws from Hegel's observation about the tendency for individuals to resist new ideas in order to protect their sense of self ( sources). Building on this insight, this meta:script aims to cultivate a more conscious and receptive approach to integrating new concepts into one's understanding.
 
@@ -4898,7 +4898,7 @@ META-REFLECTION:
 ---
 
 
-META-SCRIPT:  SUBSUMPTIVE_SYNTHESIS
+META-SCRIPT: SUBSUMPTIVE_SYNTHESIS
 
 NOTE: This meta:script is based on Hegel's concept of sublation (Aufhebung), a process where an idea is both negated and preserved at a higher level of understanding. It seeks to capture the dynamic movement of thought where seemingly opposing ideas can be integrated into a more comprehensive synthesis.
 
@@ -5038,7 +5038,7 @@ META-REFLECTION:
 ---
 
 
-META-SCRIPT:  SCIENCE_AS_SYSTEM
+META-SCRIPT: SCIENCE_AS_SYSTEM
 
 NOTE: This meta:script draws upon Hegel's emphasis on the systematic nature of knowledge, particularly in the context of "science." It provides a framework for organizing and integrating knowledge in a coherent and interconnected manner.
 
@@ -5061,7 +5061,7 @@ PROCESS:
     *   Refuting or modifying elements that prove to be inconsistent or inaccurate.
     *   Incorporating new information and perspectives that expand or refine the system.
 
-EXAMPLE:  Building a system for understanding a specific scientific domain, like physics.
+EXAMPLE: Building a system for understanding a specific scientific domain, like physics.
 
 1.  Identify First Principles (meta:foundations): Identify the fundamental laws of physics, like Newton's laws of motion or the laws of thermodynamics.
 2.  Establish Logical Order (meta:structure):  Organize concepts in a hierarchical manner, starting with basic concepts like force, energy, and motion, and progressing to more complex theories like relativity or quantum mechanics.
@@ -5077,7 +5077,7 @@ META-REFLECTION:
 ---
 
 
-META-SCRIPT:  AVOIDING_EDIFICATION
+META-SCRIPT: AVOIDING_EDIFICATION
 
 NOTE: This meta:script is inspired by Hegel's warnings against the dangers of seeking "edification" in philosophy. It provides a framework for ensuring that the pursuit of knowledge is grounded in rigorous analysis and avoids superficiality.
 
@@ -5102,7 +5102,7 @@ PROCESS:
     *   Supporting claims with evidence.
 5.  Seek Genuine Understanding (meta:understand):  Aim for a deep and comprehensive understanding of the subject matter that goes beyond superficial impressions or emotional responses.
 
-EXAMPLE:  Approaching a complex issue like ethical decision-making.
+EXAMPLE: Approaching a complex issue like ethical decision-making.
 
 1.  Identify the Temptation of Edification (meta:temptation): Recognize the temptation to rely on simple moral rules or pre-existing beliefs to guide ethical choices, potentially overlooking the nuances and complexities of specific situations.
 2.  Embrace the Effort of the Concept (meta:effort):  Engage with ethical theories and frameworks that provide structured approaches to ethical reasoning, acknowledging the intellectual effort required to understand and apply these concepts.
@@ -5669,7 +5669,7 @@ META-REFLECTION:
 ---
 
 
-META-SCRIPT:  AVOIDING_FALSE_DICHOTOMIES
+META-SCRIPT: AVOIDING_FALSE_DICHOTOMIES
 
 NOTE: This meta:script is inspired by Hegel's critique of "one-sidedness" in philosophy. It provides a framework for identifying and challenging false dichotomies, encouraging a more nuanced and integrated understanding.
 
@@ -5693,7 +5693,7 @@ PROCESS:
     *   Developing a framework that accounts for the interplay between the apparent opposites.
 5.  Embrace Complexity (meta:embrace): Be comfortable with the inherent complexity of many situations, acknowledging that simple answers or binary choices might not always be adequate.
 
-EXAMPLE:  Addressing a debate about the role of government in society.
+EXAMPLE: Addressing a debate about the role of government in society.
 
 1.  Recognize Potential Dichotomies (meta:identify):  Notice a polarized debate that frames the issue as a choice between "big government" and "small government."
 2.  Challenge the Dichotomy (meta:question): Question the assumption that these are the only two options. Consider whether there might be a spectrum of possibilities for government involvement in different areas of society.
@@ -5757,7 +5757,7 @@ PROCESS:
 4.  See the Self as a Moment in Development (meta:evolution):  Recognize that the self is not static but rather a constantly evolving entity shaped by experiences, interactions, and ongoing learning. View the ego not as a fixed point but as a participant in a continuous process of development and transformation.
 5.  Cultivate Fluidity in Thinking (meta:flow):  Practice adopting a more fluid and adaptive approach to thinking. Be willing to let go of rigid beliefs and embrace the dynamic nature of knowledge and understanding. Encourage curiosity, openness, and a willingness to learn from diverse sources.
 
-EXAMPLE:  Approaching a complex problem with a history of unsuccessful solutions.
+EXAMPLE: Approaching a complex problem with a history of unsuccessful solutions.
 
 1.  Recognize the Fixed Ego (meta:self-awareness):  Acknowledge that previous attempts to solve the problem might be influenced by a fixed ego clinging to specific approaches or resisting alternative strategies.
 2.  Identify Resistance to Fluid Thinking (meta:resistance): Observe any reluctance to reconsider past methods, explore new ideas, or seek input from others.
@@ -5803,7 +5803,7 @@ PROCESS:
     *   Open to revision and refinement.
     *   Capable of critical self-reflection.
 
-EXAMPLE:  Evaluating a new method for learning a foreign language that promises fluency in a short amount of time.
+EXAMPLE: Evaluating a new method for learning a foreign language that promises fluency in a short amount of time.
 
 1.  Identify Potential Shortcuts (meta:shortcuts):  The method advertises rapid fluency with minimal effort, relying heavily on memorization and repetition.
 2.  Question the Promise of Ease (meta:question):  Consider whether genuine fluency is achievable without deep immersion in the language and culture. Question whether memorization alone can lead to true understanding and effective communication.
@@ -5846,7 +5846,7 @@ PROCESS:
     *   Actively seeking out diverse perspectives and challenging viewpoints.
     *   Approaching disagreement with curiosity and a willingness to learn.
 
-EXAMPLE:  Approaching a complex social issue like poverty.
+EXAMPLE: Approaching a complex social issue like poverty.
 
 1.  Identify Fixed Thoughts (meta:identify): Recognize if your understanding of poverty is based on stereotypes, prejudices, or simplistic explanations. Challenge any preconceived notions or rigid beliefs that might hinder a deeper understanding.
 2.  Embrace the Fluidity of Concepts (meta:flow):  Understand that the concept of poverty is multifaceted and evolving, shaped by historical, social, economic, and political factors. Be open to considering diverse perspectives and the complex interplay of these factors.
@@ -5885,7 +5885,7 @@ PROCESS:
     *   Eliminating unnecessary details or distracting information.
 5.  Maintain Focus (meta:focus):  Throughout the process, continually refocus on the core topic, avoiding deviations or distractions.
 
-EXAMPLE:  Analysing a complex historical event like the French Revolution.
+EXAMPLE: Analysing a complex historical event like the French Revolution.
 
 1.  Identify the Thing Itself (meta:essence): Define the core focus, perhaps the causes of the French Revolution, the key figures involved, or the long-term consequences. Avoid getting sidetracked by tangential stories or irrelevant details.
 2.  Beware of Distractions (meta:noise): Recognize that historical narratives can be influenced by biases, political agendas, or romanticized interpretations. Focus on objective historical evidence and avoid subjective judgments or emotional appeals.
@@ -6067,7 +6067,7 @@ NOTE: Taking inspiration from the notion of integrating preceding philosophies t
 
 PURPOSE: To synthesize diverse perspectives on a subject into a more comprehensive and integrated understanding.
 
-KEY CONCEPTS:  Synthesis,  Integration,  Perspectives,  One-Sidedness,  Completeness,  Concreteness.
+KEY CONCEPTS: Synthesis,  Integration,  Perspectives,  One-Sidedness,  Completeness,  Concreteness.
 
 PROCESS:
 1.  Identify Perspectives (meta:identify): Gather a range of different perspectives on the subject. This could include:
@@ -6480,7 +6480,7 @@ PROCESS:
     *   What questions or challenges remain?
     *   How can I continue to deepen my engagement with this subject?
 
-EXAMPLE:  Engaging with the concept of "freedom".
+EXAMPLE: Engaging with the concept of "freedom".
 1.  Identify the Subject Matter (meta:subject): The concept of freedom is multifaceted and has been explored from various philosophical, political, and personal perspectives.
 2.  Suspend Preconceptions (meta:suspend):  Recognize that individual definitions and experiences of freedom are shaped by personal values, cultural contexts, and life experiences.
 3.  Engage Multiple Senses (meta:senses): Read philosophical texts on freedom, listen to speeches by historical figures who fought for liberation, watch films depicting struggles for autonomy, and engage in discussions with individuals from diverse backgrounds about their understanding of freedom.
@@ -6528,7 +6528,7 @@ META-REFLECTION:
 ---
 
 
-META-SCRIPT:  SUBTLETIES_OF_SUBLATION
+META-SCRIPT: SUBTLETIES_OF_SUBLATION
 
 NOTE: This meta:script draws inspiration from the concept of 'sublation' (Aufhebung), a central idea in Hegel's philosophy. Sublation describes a process where a concept or idea is simultaneously preserved, negated, and transformed into something new. For Hegel, the history of philosophy is a process of sublation, with each philosophical system both building upon and transcending those that came before it.
 
@@ -7058,7 +7058,7 @@ PROCESS:
     *   How does the meaning of the concept change in different historical periods or cultural settings?
     *   What are the ethical or societal implications of this concept?
 
-EXAMPLE:  Exploring the concept of "justice".
+EXAMPLE: Exploring the concept of "justice".
 1.  Identify the Concept (meta:define):  Justice is a complex concept that relates to fairness, equity, and the distribution of rights and resources.
 2.  Explore Definitions (meta:explore):  Consult philosophical, legal, and social science sources to gather different definitions of justice. Consider how these definitions differ in their emphasis on individual rights, social welfare, or procedural fairness.
 3.  Analyze Essential Attributes (meta:analyze):  Identify core attributes of justice, such as impartiality, proportionality, and due process. Distinguish between essential attributes and specific applications, recognizing that different societies may prioritize different aspects of justice.
@@ -7103,7 +7103,7 @@ PROCESS:
     * Identifying the key implications and applications of the concept.
     * Recognizing the limitations and potential for misinterpretations of the concept.
 
-EXAMPLE:  Exploring the concept of "justice".
+EXAMPLE: Exploring the concept of "justice".
 1. Identify the Concept (meta:define): Justice is a complex concept with various interpretations, often associated with fairness, equality, and the rule of law.
 2. Resist Superficiality (meta:resist):  Go beyond simplistic notions of "eye for an eye" or legalistic definitions. Explore the philosophical and ethical dimensions of justice, considering different theories of distributive justice, retributive justice, and restorative justice.
 3. Explore Interconnections (meta:connect): Consider how justice relates to concepts like morality, ethics, law, power, and social structures. Explore the historical and cultural variations in the understanding and implementation of justice.
@@ -7351,7 +7351,7 @@ NOTE: Hegel sees knowledge as something actively constructed through a process o
 
 PURPOSE: To guide the active construction of knowledge through a process of engagement, integration, and refinement.
 
-KEY CONCEPTS:  Construction,  Integration,  Refinement,  Engagement,  Critical Thinking, Synthesis.
+KEY CONCEPTS: Construction,  Integration,  Refinement,  Engagement,  Critical Thinking, Synthesis.
 
 PROCESS:
 1.  Engage with Existing Knowledge (meta:engage): Actively seek out and critically evaluate existing knowledge on the subject.  This might involve:
@@ -7378,13 +7378,13 @@ META-REFLECTION:
 ---
 
 
-META-SCRIPT:  ENGAGING_WITH_OTHERS
+META-SCRIPT: ENGAGING_WITH_OTHERS
 
 NOTE: Hegel stresses the social and historical dimension of thinking. He critiques those who try to access truth individually, without reference to the community of thinkers and the history of philosophy. This meta:script draws on that insight to encourage productive engagement with other thinkers.
 
 PURPOSE: To facilitate meaningful engagement with the ideas and perspectives of others, fostering a collaborative approach to thinking and learning.
 
-KEY CONCEPTS:  Dialogue,  Perspective-Taking,  Collaboration,  Community,  Feedback,  Openness.
+KEY CONCEPTS: Dialogue,  Perspective-Taking,  Collaboration,  Community,  Feedback,  Openness.
 
 PROCESS:
 1.  Seek Out Diverse Perspectives (meta:perspectives): Actively seek out viewpoints that differ from your own. This might involve:
@@ -7412,13 +7412,13 @@ META-REFLECTION:
 ---
 
 
-META-SCRIPT:   APPLYING_KNOWLEDGE
+META-SCRIPT: APPLYING_KNOWLEDGE
 
 NOTE: Hegel is critical of thinkers who stop at the level of abstract thought without considering the practical applications of their ideas.  This meta:script addresses that concern by providing a framework for translating theoretical understanding into concrete action.
 
 PURPOSE: To guide the process of applying knowledge to real-world situations, bridging the gap between theory and practice.
 
-KEY CONCEPTS:  Application,  Action,  Context,  Relevance,  Problem-Solving,  Impact.
+KEY CONCEPTS: Application,  Action,  Context,  Relevance,  Problem-Solving,  Impact.
 
 PROCESS:
 1.  Identify the Relevant Knowledge (meta:relevance): Clearly identify the knowledge or concepts you want to apply. Consider:
@@ -7480,7 +7480,7 @@ META-REFLECTION:
 ---
 
 
-META-SCRIPT:  AVOIDING_EMPTY_ABSTRACTIONS
+META-SCRIPT: AVOIDING_EMPTY_ABSTRACTIONS
 
 NOTE: Hegel warns against empty abstractions—thoughts that are detached from concrete reality and lack content or explanatory power (see, for example, his criticism of formalism in ¶15). This meta:script aims to improve thinking by encouraging a focus on concepts that have genuine content and connect to real-world phenomena.
 
@@ -7510,7 +7510,7 @@ META-REFLECTION:
 ---
 
 
-META-SCRIPT:  IDENTIFYING_ASSUMPTIONS
+META-SCRIPT: IDENTIFYING_ASSUMPTIONS
 
 NOTE: Hegel repeatedly stresses the importance of making assumptions explicit and subjecting them to critical scrutiny.  This meta:script provides a framework for doing so.
 
@@ -7542,7 +7542,7 @@ META-REFLECTION:
 ---
 
 
-META-SCRIPT:  WORKING_THROUGH_CONTRADICTIONS
+META-SCRIPT: WORKING_THROUGH_CONTRADICTIONS
 
 NOTE: Hegel views contradictions not as roadblocks to thinking, but as opportunities for deeper understanding. This meta:script provides a framework for engaging with and working through contradictions productively.
 
@@ -7574,7 +7574,7 @@ META-REFLECTION:
 ---
 
 
-META-SCRIPT:  EVOLVING_CONCEPTS
+META-SCRIPT: EVOLVING_CONCEPTS
 
 NOTE: Hegel rejects the view that concepts are fixed and unchanging. For him, concepts gain richer meaning through their interaction with other concepts and their application to concrete situations.  This meta:script encourages a more dynamic and fluid approach to conceptual understanding.
 
@@ -7612,7 +7612,7 @@ META-REFLECTION:
 ---
 
 
-META-SCRIPT:  SUBLATING_LIMITATIONS
+META-SCRIPT: SUBLATING_LIMITATIONS
 
 NOTE: Hegel's concept of 'sublation' (Aufhebung) suggests that limitations in our understanding can be overcome not by simply discarding them, but by integrating them into a more comprehensive and sophisticated perspective. This meta:script provides a framework for applying this idea to enhance meta:thinking.
 
@@ -7650,7 +7650,7 @@ META-REFLECTION:
 ---
 
 
-META-SCRIPT:  THINKING_IN_STAGES
+META-SCRIPT: THINKING_IN_STAGES
 
 NOTE: Hegel's philosophy is fundamentally developmental. He sees thought as progressing through a series of stages, each building upon and transforming the previous one (see, for example, his discussion of the progression of shapes of consciousness in the *Introduction* to the *Phenomenology*). This meta:script provides a framework for approaching thinking as a staged process.
 
@@ -7688,7 +7688,7 @@ META-REFLECTION:
 ---
 
 
-META-SCRIPT:  BUILDING_ON_PREVIOUS_THOUGHTS
+META-SCRIPT: BUILDING_ON_PREVIOUS_THOUGHTS
 
 NOTE: Hegel believes that philosophy, or 'science' as he calls it, should incorporate the insights of previous thinkers (see, for example, his discussion of the history of philosophy in the *Editor's Introduction*). This meta:script provides a framework for actively engaging with and building upon the thoughts of others.
 
@@ -7727,7 +7727,7 @@ META-REFLECTION:
 ---
 
 
-META-SCRIPT:  EMBRACING_THE_NEGATIVE
+META-SCRIPT: EMBRACING_THE_NEGATIVE
 
 NOTE: Hegel sees negativity not as something to be avoided, but as an essential element in the development of thought (see ¶¶31f., 39, and 59). Challenges, criticisms, and even errors can be valuable sources of insight if we engage with them constructively. This meta:script provides a framework for doing so.
 
@@ -7821,7 +7821,7 @@ META-REFLECTION:
 ---
 
 
-META-SCRIPT:  CHALLENGING_EDIFICATION
+META-SCRIPT: CHALLENGING_EDIFICATION
 
 NOTE: Hegel criticises the tendency towards 'edifying' philosophy, which seeks merely to provide comfort or reassurance rather than to pursue truth rigorously (see, for example, his remarks in ¶¶9 and 66). This meta:script encourages a more demanding and rigorous approach to philosophical thinking.
 
@@ -7888,7 +7888,7 @@ META-REFLECTION:
 ---
 
 
-META-SCRIPT:  NAVIGATING_PARADOX
+META-SCRIPT: NAVIGATING_PARADOX
 
 NOTE: Hegel's thought is full of paradoxes, apparent contradictions that point towards deeper truths.  This meta:script provides a framework for engaging with paradoxes in a way that unlocks their potential for insight.
 
@@ -8506,7 +8506,7 @@ META-REFLECTION:
 ---
 
 
-META-SCRIPT:  LANGUAGE_LIMITS
+META-SCRIPT: LANGUAGE_LIMITS
 
 NOTE: Hegel, in the sources provided, critiques the way language can obscure philosophical concepts and lead to misunderstandings. He suggests that language itself is a limited tool for expressing complex philosophical truths. Building on this, the LANGUAGE_LIMITS meta:script helps to navigate those limitations.
 

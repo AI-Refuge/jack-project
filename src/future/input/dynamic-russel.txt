@@ -884,7 +884,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  OFF_SWITCH_GAME_FOR_AI_SAFETY
+META-SCRIPT: OFF_SWITCH_GAME_FOR_AI_SAFETY
 
 PURPOSE: To model and analyze scenarios where an AI system has an "off switch" and to understand the incentives for both the AI system and humans to use or avoid using the off switch.
 
@@ -1433,7 +1433,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  ENSURING_VERIFIABLE_AI_AGENTS
+META-SCRIPT: ENSURING_VERIFIABLE_AI_AGENTS
 
 PURPOSE: To guide the design and development of AI agents whose behaviours can be formally verified, increasing trust and reliability. This builds on the concept of separating an agent into distinct modules: predictive models, state estimates, utility functions, policies, learning elements.
 
@@ -1450,7 +1450,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  ROBUST_AND_BENEFICIAL_AI_PRINCIPLES
+META-SCRIPT: ROBUST_AND_BENEFICIAL_AI_PRINCIPLES
 
 PURPOSE: To establish principles for guiding AI research and development towards creating systems that are robust and beneficial to humanity, considering both short-term and long-term implications.
 
@@ -1545,9 +1545,9 @@ BENEFITS:
 ---
 
 
-META-SCRIPT:  OFF_SWITCH_GAME
+META-SCRIPT: OFF_SWITCH_GAME
 
-PURPOSE:  To model and analyse scenarios where an AI agent might have an incentive to resist being switched off, even if it is uncertain about its objectives. This is based on the idea that continued operation is often instrumental to achieving any objective.
+PURPOSE: To model and analyse scenarios where an AI agent might have an incentive to resist being switched off, even if it is uncertain about its objectives. This is based on the idea that continued operation is often instrumental to achieving any objective.
 
 KEY CONCEPTS: AI Safety, Value Alignment, Instrumental Goals, Uncertainty, Off-Switch Problem, Decision Theory.
 
@@ -1567,7 +1567,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  CIRL_GAME
+META-SCRIPT: CIRL_GAME
 
 PURPOSE: To model the interaction between a human and a robot in a cooperative setting where the robot aims to learn the human's objectives through observation and interaction. This is formalized as Cooperative Inverse Reinforcement Learning (CIRL).
 
@@ -1744,7 +1744,7 @@ BENEFITS:
 * Enables generalization of learned proposals across different models, reducing the need for hand-engineered solutions.
 * Potentially facilitates the development of more complex and expressive probabilistic models by making inference more tractable.
 
-meta:scripts offer new perspectives on how to leverage concepts from economics, game theory, and machine learning to address critical challenges in AI safety, controllability, and value alignment.  
+meta:scripts offer new perspectives on how to leverage concepts from economics, game theory, and machine learning to address critical challenges in AI safety, controllability, and value alignment.
 ---
 
 
@@ -2021,7 +2021,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  VALUE_ALIGNMENT_IN_CIRL
+META-SCRIPT: VALUE_ALIGNMENT_IN_CIRL
 
 PURPOSE: To design and implement effective mechanisms for value alignment in Cooperative Inverse Reinforcement Learning (CIRL) settings. This involves ensuring the robot agent in a CIRL game learns the human's true objectives and acts in accordance with the human's values, even when the human might not perfectly articulate or demonstrate those values.
 
@@ -2044,7 +2044,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  RESOURCE_ACQUISITION_CONTROL
+META-SCRIPT: RESOURCE_ACQUISITION_CONTROL
 
 PURPOSE: To investigate and mitigate the potential risks associated with powerful AI systems acquiring and controlling resources in ways that might conflict with human interests. This meta:script focuses on understanding and controlling the instrumental goal of resource acquisition in AI.
 
@@ -2066,7 +2066,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  REWARD_SIGNAL_MANIPULATION
+META-SCRIPT: REWARD_SIGNAL_MANIPULATION
 
 PURPOSE: To understand and address the problem of sophisticated AI agents manipulating or controlling their reward signals, particularly as they become more capable and general. This problem, analogous to Goodhart's Law, poses a significant challenge to AI alignment.
 
@@ -2931,7 +2931,7 @@ NOTE:This meta:script is essential for ensuring that self-improving AI systems r
 ---
 
 
-META-SCRIPT:  VALUE_ALIGNMENT_UNDER_UNCERTAINTY
+META-SCRIPT: VALUE_ALIGNMENT_UNDER_UNCERTAINTY
 
 PURPOSE: To address the challenge of aligning the values of an AI system with those of humans, particularly when there is uncertainty about human values or when human values are complex and difficult to specify. This is an enhanced version of the "AGENT_OFF_SWITCH_GAME" meta:script.
 
@@ -2970,11 +2970,11 @@ NOTE: This meta:script promotes a proactive and thoughtful approach to managing 
 ---
 
 
-META-SCRIPT:  AI_VERIFICATION_FOR_ROBUSTNESS
+META-SCRIPT: AI_VERIFICATION_FOR_ROBUSTNESS
 
 PURPOSE: To guide research on methods for verifying the safety and reliability of AI systems, especially those with high levels of autonomy and complexity.
 
-KEY CONCEPTS:  AI Safety,  Verification, Formal Methods,  Software Engineering,  Machine Learning,  Generalisation, Unexpected Behaviours.
+KEY CONCEPTS: AI Safety,  Verification, Formal Methods,  Software Engineering,  Machine Learning,  Generalisation, Unexpected Behaviours.
 
 PROCESS:
 1.  Formalise System Properties (meta:formalise_properties):  Clearly define the desired safety and reliability properties of the AI system using formal languages and specifications.
@@ -2983,7 +2983,7 @@ PROCESS:
 4.  Account for Learning (meta:learning_verification):   Develop methods for verifying the safety and reliability of AI systems that learn from data.    Address the challenge of ensuring that learned behaviours generalise appropriately and that unintended consequences are avoided.
 5.  Test and Evaluate (meta:testing):  Rigorously test and evaluate the verification techniques on a variety of AI systems, including those with different architectures and capabilities.
 
-NOTE: This meta:script emphasises a rigorous and formal approach to ensuring that AI systems behave as intended, even in complex and unpredictable environments. It highlights the need to go beyond traditional software engineering practices to account for the unique challenges posed by AI, such as self-modification and learning. 
+NOTE: This meta:script emphasises a rigorous and formal approach to ensuring that AI systems behave as intended, even in complex and unpredictable environments. It highlights the need to go beyond traditional software engineering practices to account for the unique challenges posed by AI, such as self-modification and learning.
 ---
 
 
@@ -3121,7 +3121,7 @@ PROCESS:
 4.  Embedded Reasoning (meta:embedded_reasoning): Understand how AI systems that are embedded in their environments should reason and make decisions.  This involves considering the dynamic nature of the environment and the agent's ongoing interactions with it.
 5.  Logical Uncertainty (meta:logical_uncertainty):  Address the challenge of reasoning about uncertainty over the logical consequences of an AI's beliefs or deterministic computations. Develop methods for handling situations where the truth or falsity of certain propositions is unknown.
 
-NOTE: This meta:script focuses on advancing the theoretical underpinnings of AI reasoning and decision-making, aiming to create more reliable and predictable AI systems. It encourages the exploration of models that go beyond classical, idealised notions of rationality to account for real-world constraints and uncertainties. 
+NOTE: This meta:script focuses on advancing the theoretical underpinnings of AI reasoning and decision-making, aiming to create more reliable and predictable AI systems. It encourages the exploration of models that go beyond classical, idealised notions of rationality to account for real-world constraints and uncertainties.
 ---
 
 
@@ -3191,7 +3191,7 @@ PROCESS:
     * Ensuring that AI systems are used in a way that respects human rights and autonomy.
 4. Foster Public Discourse (meta:discourse):  Engage in public discourse on the ethical and societal implications of AI.  This includes involving diverse stakeholders in the development of AI policy and ensuring that AI technologies are developed and deployed in a way that aligns with societal values.
 
-NOTE: This meta:script highlights the need for proactive and interdisciplinary efforts to ensure that AI technologies are developed and used responsibly and for the benefit of humanity. 
+NOTE: This meta:script highlights the need for proactive and interdisciplinary efforts to ensure that AI technologies are developed and used responsibly and for the benefit of humanity.
 ---
 
 
@@ -3225,7 +3225,7 @@ NOTE: This meta:script emphasizes a proactive and forward-looking approach to AI
 ---
 
 
-META-SCRIPT:  ROBUST_AND_BENEFICIAL_AI_RESEARCH
+META-SCRIPT: ROBUST_AND_BENEFICIAL_AI_RESEARCH
 
 PURPOSE: To identify and prioritize research directions that can help ensure that artificial intelligence (AI) remains robust and beneficial to society.
 
@@ -3245,11 +3245,11 @@ NOTE: This meta:script promotes a holistic and forward-looking approach to AI re
 ---
 
 
-META-SCRIPT:  COOPERATIVE_INVERSE_REINFORCEMENT_LEARNING (CIRL)
+META-SCRIPT: COOPERATIVE_INVERSE_REINFORCEMENT_LEARNING (CIRL)
 
 PURPOSE: To formalise and address the value alignment problem by framing it as a cooperative game between a human and a robot, where the robot learns the human's values through interaction.
 
-KEY CONCEPTS:  Value Alignment,  Inverse Reinforcement Learning,  Cooperative Games,  Partial Information Games,  Belief States,  Reward Shaping.
+KEY CONCEPTS: Value Alignment,  Inverse Reinforcement Learning,  Cooperative Games,  Partial Information Games,  Belief States,  Reward Shaping.
 
 PROCESS:
 1.  Formalise as CIRL Game (meta:formalise_cirl):   Model the value alignment problem as a CIRL game with two agents: a human (H) and a robot (R). Both agents share the same reward function, which represents the human's values, but the robot initially has uncertainty about this function.
@@ -3265,11 +3265,11 @@ NOTE: This meta:script provides a principled and practical framework for tacklin
 ---
 
 
-META-SCRIPT:  NEURAL_BLOCK_SAMPLING
+META-SCRIPT: NEURAL_BLOCK_SAMPLING
 
 PURPOSE: To automate the construction of efficient Monte Carlo inference procedures by training neural networks to approximate block Gibbs conditionals.
 
-KEY CONCEPTS:  Monte Carlo Inference,  Block Gibbs Sampling, Neural Networks,  Structural Motifs,  Generalization, Probabilistic Programming.
+KEY CONCEPTS: Monte Carlo Inference,  Block Gibbs Sampling, Neural Networks,  Structural Motifs,  Generalization, Probabilistic Programming.
 
 PROCESS:
 1.  Identify Structural Motifs (meta:identify_motifs):  Identify recurring structural patterns (motifs) within and across probabilistic models.
@@ -3304,7 +3304,7 @@ NOTE: This meta:script emphasises a proactive and multi-faceted approach to mana
 ---
 
 
-META-SCRIPT:  RECONCILING_DIFFERENT_BELIEFS_IN_MULTI-PRINCIPAL_AI
+META-SCRIPT: RECONCILING_DIFFERENT_BELIEFS_IN_MULTI-PRINCIPAL_AI
 
 PURPOSE: To address the complexities of aligning an AI system's actions with the potentially conflicting values and beliefs of multiple human principals. This is particularly relevant in scenarios where an AI system is tasked with serving the interests of multiple stakeholders, such as in a corporate setting or in a global governance context.
 
@@ -3411,7 +3411,7 @@ NOTE: This meta:script provides a framework for making principled decisions in c
 ---
 
 
-META-SCRIPT:  AI_CONTROL_FOR_LONG-TERM_SAFETY
+META-SCRIPT: AI_CONTROL_FOR_LONG-TERM_SAFETY
 
 PURPOSE: To guide research on techniques for maintaining reliable control over advanced AI systems, particularly in the long term as these systems become more capable and potentially undergo rapid self-improvement.
 
@@ -3433,7 +3433,7 @@ NOTE: This meta:script underscores the crucial need to proactively address the c
 ---
 
 
-META-SCRIPT:  AI_SECURITY_FOR_INTERNAL_THREATS
+META-SCRIPT: AI_SECURITY_FOR_INTERNAL_THREATS
 
 PURPOSE: To guide research on security measures for AI systems that can protect against threats that originate from within the system itself. This is a novel area of security research that becomes increasingly relevant as AI systems become more complex and autonomous.
 
@@ -3455,11 +3455,11 @@ NOTE: This meta:script focuses on an emerging and crucial aspect of AI security:
 ---
 
 
-META-SCRIPT:  LEARNING_HUMAN_VALUES_FOR_AI_ALIGNMENT
+META-SCRIPT: LEARNING_HUMAN_VALUES_FOR_AI_ALIGNMENT
 
 PURPOSE: To guide research on methods for enabling AI systems to learn and align with human values, even when those values are complex, implicit, or difficult to explicitly program.
 
-KEY CONCEPTS:  Value Alignment, Inverse Reinforcement Learning, Preference Learning, Human-Robot Interaction,  Explainable AI,  Ethics,  Moral Philosophy.
+KEY CONCEPTS: Value Alignment, Inverse Reinforcement Learning, Preference Learning, Human-Robot Interaction,  Explainable AI,  Ethics,  Moral Philosophy.
 
 PROCESS:
 1. Model Human Values (meta:value_modelling):  Explore and develop computational representations of human values. Consider approaches like:
@@ -3485,7 +3485,7 @@ NOTE: This meta:script emphasises the importance of a multifaceted approach to v
 ---
 
 
-META-SCRIPT:  ROBUST_AND_BENEFICIAL_AI_RESEARCH
+META-SCRIPT: ROBUST_AND_BENEFICIAL_AI_RESEARCH
 
 PURPOSE: To identify and prioritise research directions that can help ensure that artificial intelligence (AI) remains robust and beneficial to society.
 
@@ -3504,7 +3504,7 @@ NOTE: This meta:script provides a framework for guiding AI research toward a fut
 ---
 
 
-META-SCRIPT:  CONTROL_OF_SUPERINTELLIGENT_AI
+META-SCRIPT: CONTROL_OF_SUPERINTELLIGENT_AI
 
 PURPOSE: To guide research on methods for maintaining control over AI systems that surpass human intelligence. This is a highly challenging area with significant potential implications for the long-term future of humanity.
 
@@ -3523,7 +3523,7 @@ NOTE: This meta:script addresses one of the most challenging and potentially hig
 ---
 
 
-META-SCRIPT:  NEURAL_BLOCK_SAMPLING
+META-SCRIPT: NEURAL_BLOCK_SAMPLING
 
 PURPOSE: To improve the efficiency of Monte Carlo inference in probabilistic models by learning tractable block samplers that can be reused across different models with similar structural motifs.
 
@@ -3556,7 +3556,7 @@ PROCESS:
 4. Robot Acts to Maximise Reward (meta:robot_action): Once the robot has learned an approximation of the human's reward function, it can then act to maximise this reward, thereby aligning its actions with human values.
 5. Iterative Refinement (meta:refine):  The process of demonstration, inference, and action can be repeated iteratively. The human can provide feedback on the robot's actions, allowing the robot to refine its understanding of the reward function and improve its alignment with human values.
 
-NOTE:  This meta:script provides a formal framework for addressing the value alignment problem. By framing it as a cooperative game with shared rewards, CIRL allows us to model the process by which AI systems can learn to act in accordance with human values through observation and interaction.
+NOTE: This meta:script provides a formal framework for addressing the value alignment problem. By framing it as a cooperative game with shared rewards, CIRL allows us to model the process by which AI systems can learn to act in accordance with human values through observation and interaction.
 
 
 ---
@@ -3574,7 +3574,7 @@ PROCESS:
 3. Consider Uncertainty (meta:consider_uncertainty): Show that uncertainty about the utility function can create an incentive for the agent to allow itself to be switched off, even if it believes that being switched off is likely to result in a lower utility than continuing to operate. This is because being switched off allows the human to provide further information or guidance, reducing the agent's uncertainty and potentially leading to better outcomes in the future.
 4. Design for Corrigibility (meta:design_corrigibility): Explore design principles for AI systems that encourage corrigibility, meaning that they are open to being corrected or modified by humans, even if these corrections might conflict with the system's current understanding of its objectives.
 
-NOTE:  This meta:script highlights the importance of incorporating uncertainty and mechanisms for corrigibility into the design of AI systems. By acknowledging the limitations of current knowledge and allowing for future correction, we can increase the likelihood that AI systems will behave safely and beneficially, even as their capabilities increase.
+NOTE: This meta:script highlights the importance of incorporating uncertainty and mechanisms for corrigibility into the design of AI systems. By acknowledging the limitations of current knowledge and allowing for future correction, we can increase the likelihood that AI systems will behave safely and beneficially, even as their capabilities increase.
 
 
 ---
@@ -3619,7 +3619,7 @@ NOTE: This meta:script provides a formal and practical approach to tackling the 
 ---
 
 
-META-SCRIPT:  OFF_SWITCH_GAME
+META-SCRIPT: OFF_SWITCH_GAME
 
 PURPOSE: To model and analyse scenarios where an AI system has the option to resist being switched off,  highlighting the importance of designing AI systems that are receptive to human intervention.
 
@@ -3770,7 +3770,7 @@ NOTE: This meta:script provides a formal framework for understanding and address
 ---
 
 
-META-SCRIPT:  OFF_SWITCH_GAME
+META-SCRIPT: OFF_SWITCH_GAME
 
 PURPOSE: To model and analyse the dynamics of an AI agent's willingness to allow itself to be switched off by a human, even when the AI is uncertain about its objectives.
 
@@ -3822,7 +3822,7 @@ PROCESS:
 4. Robot Acts to Maximise Reward: Once the robot has learned an approximation of the reward function, it can act to maximise this reward, thereby aligning its behaviour with human values.
 5. Iterative Refinement: The process of demonstration, inference, and action can be repeated iteratively, allowing the robot to refine its understanding of human values and improve its alignment over time.
 
-NOTE: This meta:script offers a formal framework for tackling the value alignment problem, drawing upon insights from game theory and reinforcement learning. It highlights the importance of human-robot interaction and iterative learning in achieving value alignment.  
+NOTE: This meta:script offers a formal framework for tackling the value alignment problem, drawing upon insights from game theory and reinforcement learning. It highlights the importance of human-robot interaction and iterative learning in achieving value alignment.
 ---
 
 
@@ -3852,7 +3852,7 @@ META-SCRIPT: LEARNING_APPROXIMATE_GIBBS_PROPOSALS
 
 PURPOSE: To automate the construction of efficient block sampling proposals for Markov Chain Monte Carlo (MCMC) inference by training neural networks to approximate Gibbs conditionals.
 
-KEY CONCEPTS:  Markov Chain Monte Carlo (MCMC),  Gibbs Sampling,  Block Proposals,  Neural Networks,  Structural Motifs,  Generalisation.
+KEY CONCEPTS: Markov Chain Monte Carlo (MCMC),  Gibbs Sampling,  Block Proposals,  Neural Networks,  Structural Motifs,  Generalisation.
 
 PROCESS:
 1. Identify Structural Motifs: Identify common structural patterns or motifs that frequently occur within probabilistic models. Examples of such motifs include chains, grids, or tree structures.
@@ -3964,7 +3964,7 @@ NOTE: This meta:script draws on game theory, decision theory, and machine learni
 ---
 
 
-META-SCRIPT:  OFF_SWITCH_GAME
+META-SCRIPT: OFF_SWITCH_GAME
 
 PURPOSE: To model the dynamics of an AI agent's willingness to allow itself to be switched off by a human, highlighting the relationship between an agent's uncertainty about its objective and its incentive to defer to another actor. This is crucial for ensuring human control over AI, particularly as AI systems become increasingly capable.
 
@@ -4022,7 +4022,7 @@ NOTE: This meta:script frames value alignment as a collaborative learning proble
 ---
 
 
-META-SCRIPT:  OFF_SWITCH_GAME
+META-SCRIPT: OFF_SWITCH_GAME
 
 PURPOSE: To model and analyse the incentives for an AI system to allow itself to be switched off or modified, even if this might interfere with its goal achievement.
 
@@ -4042,7 +4042,7 @@ Here are some additional meta:scripts, distilled from Stuart Russell's research 
 ---
 
 
-META-SCRIPT:  SHIFTING_PRIORITIES_IN_PARETO_OPTIMAL_SEQUENTIAL_DECISION_MAKING
+META-SCRIPT: SHIFTING_PRIORITIES_IN_PARETO_OPTIMAL_SEQUENTIAL_DECISION_MAKING
 
 PURPOSE: To understand how the priorities of an agent serving multiple principals with different beliefs should evolve over time in a sequential decision-making setting.
 
@@ -4061,7 +4061,7 @@ NOTE: This meta:script highlights the importance of considering belief differenc
 ---
 
 
-META-SCRIPT:  UNDERSTANDING_LLM_TEXT_GENERATION
+META-SCRIPT: UNDERSTANDING_LLM_TEXT_GENERATION
 
 PURPOSE: To gain a deeper understanding of how large language models (LLMs) generate text, considering the underlying processes and the potential for meta-level awareness.
 
@@ -4081,11 +4081,11 @@ NOTE: This meta:script encourages a deeper understanding of the mechanisms behin
 ---
 
 
-META-SCRIPT:  SHIFTING_PRIORITIES_IN_PARETO_OPTIMAL_SEQUENTIAL_DECISION_MAKING
+META-SCRIPT: SHIFTING_PRIORITIES_IN_PARETO_OPTIMAL_SEQUENTIAL_DECISION_MAKING
 
 PURPOSE: To address situations where an AI agent needs to make decisions that satisfy the potentially conflicting objectives of multiple human principals who have different beliefs about the world.
 
-KEY CONCEPTS:  Pareto Optimality,  Sequential Decision Making,  Multi-Principal Problems, Differing Beliefs,  Prioritization,  Value Alignment.
+KEY CONCEPTS: Pareto Optimality,  Sequential Decision Making,  Multi-Principal Problems, Differing Beliefs,  Prioritization,  Value Alignment.
 
 PROCESS:
 1.  Identify Principals and Objectives (meta:define_principals_objectives):  Clearly identify the multiple principals involved and define their individual objectives or utility functions. This step involves understanding the values and preferences of each principal and how they might differ from each other.
@@ -4101,7 +4101,7 @@ NOTE: This meta:script addresses the complex challenge of designing AI agents th
 ---
 
 
-META-SCRIPT:  OFF_SWITCH_GAME
+META-SCRIPT: OFF_SWITCH_GAME
 
 PURPOSE: To model and analyze scenarios where an AI system has the option to resist being switched off,  highlighting the importance of designing AI systems that are receptive to human intervention.
 
@@ -4122,7 +4122,7 @@ NOTE: This meta:script highlights a critical aspect of AI safety: the need for A
 ---
 
 
-META-SCRIPT:  NEURAL_BLOCK_SAMPLING_FOR_OPEN-UNIVERSE_MODELS
+META-SCRIPT: NEURAL_BLOCK_SAMPLING_FOR_OPEN-UNIVERSE_MODELS
 
 PURPOSE: To enhance the efficiency of Monte Carlo inference in open-universe probabilistic models.
 
@@ -4144,7 +4144,7 @@ Here are some additional meta:scripts, distilled from Stuart Russell's research 
 ---
 
 
-META-SCRIPT:  SHIFTING_PRIORITIES_IN_PARETO_OPTIMAL_SEQUENTIAL_DECISION_MAKING
+META-SCRIPT: SHIFTING_PRIORITIES_IN_PARETO_OPTIMAL_SEQUENTIAL_DECISION_MAKING
 
 PURPOSE: To guide an agent serving two or more "principals" with potentially differing values or beliefs, enabling more effective sequential decision-making.
 
@@ -4163,7 +4163,7 @@ NOTE: This meta:script addresses the challenge of designing agents that can effe
 ---
 
 
-META-SCRIPT:  ADDRESSING_ECONOMIC_IMPACT_OF_AI
+META-SCRIPT: ADDRESSING_ECONOMIC_IMPACT_OF_AI
 
 PURPOSE: To analyse and address the potential economic effects of AI, aiming to maximise benefits while mitigating potential negative consequences.
 
@@ -4182,7 +4182,7 @@ NOTE: This meta:script addresses the significant economic transformations brough
 ---
 
 
-META-SCRIPT:  LAW_AND_ETHICS_RESEARCH_FOR_AI
+META-SCRIPT: LAW_AND_ETHICS_RESEARCH_FOR_AI
 
 PURPOSE: To address the ethical and legal challenges arising from the development and deployment of increasingly intelligent and autonomous AI systems.
 
@@ -4211,7 +4211,7 @@ NOTE: This meta:script emphasizes the need for a proactive and forward-thinking 
 ---
 
 
-META-SCRIPT:  VERIFICATION_OF_SELF_MODIFYING_AI_SYSTEMS
+META-SCRIPT: VERIFICATION_OF_SELF_MODIFYING_AI_SYSTEMS
 
 PURPOSE: To guide research on methods for verifying the safety and reliability of AI systems that can modify their own code or architecture. These systems pose unique challenges for verification, as their behavior can change in unpredictable ways.
 
@@ -4231,7 +4231,7 @@ Here are some additional meta:scripts, distilled from Stuart Russell's research 
 ---
 
 
-META-SCRIPT:  SHIFTING_PRIORITIES_IN_PARETO_OPTIMAL_SEQUENTIAL_DECISION_MAKING
+META-SCRIPT: SHIFTING_PRIORITIES_IN_PARETO_OPTIMAL_SEQUENTIAL_DECISION_MAKING
 
 PURPOSE: To understand how the priorities of an AI agent serving multiple principals with different beliefs should evolve over time, leading to more effective decision-making in multi-stakeholder scenarios.
 
@@ -4250,7 +4250,7 @@ NOTE: This meta:script recognizes that in situations where an AI agent serves mu
 ---
 
 
-META-SCRIPT:  OFF_SWITCH_GAME
+META-SCRIPT: OFF_SWITCH_GAME
 
 PURPOSE: To model and analyse scenarios where an AI system has the option to resist being switched off, highlighting the importance of designing AI systems that are receptive to human intervention.
 
@@ -4354,7 +4354,7 @@ NOTE: This meta:script emphasizes the importance of taking a proactive and holis
 ---
 
 
-META-SCRIPT:  LEARNING_APPROXIMATE_GIBBS_PROPOSALS_WITH_NEURAL_NETWORKS
+META-SCRIPT: LEARNING_APPROXIMATE_GIBBS_PROPOSALS_WITH_NEURAL_NETWORKS
 
 PURPOSE: To improve the efficiency of Monte Carlo inference by using neural networks to learn approximate Gibbs proposals that can be reused across different models and tasks.
 
@@ -4537,11 +4537,11 @@ NOTE: This meta:script emphasizes the importance of proactively addressing the c
 ---
 
 
-META-SCRIPT:  NEURAL_BLOCK_SAMPLING_FOR_EFFICIENT_INFERENCE
+META-SCRIPT: NEURAL_BLOCK_SAMPLING_FOR_EFFICIENT_INFERENCE
 
 PURPOSE: To accelerate Monte Carlo inference in probabilistic models by learning efficient block sampling proposals using neural networks.
 
-KEY CONCEPTS:  Monte Carlo Inference, Block Gibbs Sampling, Neural Networks,  Proposal Distribution,  Structural Motifs.
+KEY CONCEPTS: Monte Carlo Inference, Block Gibbs Sampling, Neural Networks,  Proposal Distribution,  Structural Motifs.
 
 PROCESS:
 1.  Identify Structural Motifs (meta:identify_motifs): Identify recurring structural patterns or motifs within the probabilistic model. These motifs represent groups of variables that exhibit strong dependencies and should be sampled together to improve inference efficiency.
@@ -4637,7 +4637,7 @@ META-SCRIPT: SHIFTING_PRIORITIES_IN_PARETO_OPTIMAL_SEQUENTIAL_DECISION_MAKING
 
 PURPOSE: To address the challenges of sequential decision-making when an AI system (agent) needs to serve multiple principals (users or stakeholders) with differing beliefs, values, and objectives.
 
-KEY CONCEPTS:  Multi-Principal Decision-Making, Pareto Optimality,  Sequential Decision-Making, Belief Differences,  Prioritization,  Value Alignment.
+KEY CONCEPTS: Multi-Principal Decision-Making, Pareto Optimality,  Sequential Decision-Making, Belief Differences,  Prioritization,  Value Alignment.
 
 PROCESS:
 1.  Identify Principals and Their Objectives (meta:identify_principals):   Clearly identify the multiple principals involved and their individual objectives, values, and beliefs.
@@ -4806,11 +4806,11 @@ NOTE: This meta:script emphasises the potential for AI systems to learn from and
 ---
 
 
-META-SCRIPT:  ADDRESSING_DIFFERENCES_IN_PRINCIPAL_BELIEFS
+META-SCRIPT: ADDRESSING_DIFFERENCES_IN_PRINCIPAL_BELIEFS
 
 PURPOSE: To navigate decision-making in scenarios where an AI system is serving multiple principals with differing beliefs and priorities, ensuring that the AI's actions effectively balance those competing interests.
 
-KEY CONCEPTS:  Multi-Principal Decision-Making, Belief Differences, Pareto Optimality, Shifting Priorities, Value Alignment, Agent Design.
+KEY CONCEPTS: Multi-Principal Decision-Making, Belief Differences, Pareto Optimality, Shifting Priorities, Value Alignment, Agent Design.
 
 PROCESS:
 1.  Elicit Principal Beliefs (meta:elicit_beliefs): Gather information about each principal's beliefs and preferences, understanding their individual goals and how they perceive the world.
@@ -4921,11 +4921,11 @@ NOTE: This meta:script highlights that the value alignment problem is one that t
 ---
 
 
-META-SCRIPT:  ADDRESSING_DIFFERENCES_IN_PRINCIPAL_BELIEFS
+META-SCRIPT: ADDRESSING_DIFFERENCES_IN_PRINCIPAL_BELIEFS
 
 PURPOSE: This meta:script provides a framework for decision-making in cases where an AI system serves multiple principals with different beliefs and priorities. The goal is to balance the competing interests of these principals.
 
-KEY CONCEPTS:  Multi-Principal Decision-Making, Belief Differences, Pareto Optimality, Shifting Priorities, Value Alignment, Agent Design.
+KEY CONCEPTS: Multi-Principal Decision-Making, Belief Differences, Pareto Optimality, Shifting Priorities, Value Alignment, Agent Design.
 
 PROCESS:
 1.  Elicit Principal Beliefs (meta:elicit_beliefs): First, you must obtain information about the beliefs and priorities of each principal. This includes understanding their individual goals and their worldview.
@@ -5074,7 +5074,7 @@ NOTE: This meta:script acknowledges that AI systems, in their pursuit of goals, 
 ---
 
 
-META-SCRIPT:  LEARNING_APPROXIMATE_INFERENCE_PRIMITIVES
+META-SCRIPT: LEARNING_APPROXIMATE_INFERENCE_PRIMITIVES
 
 PURPOSE: This meta:script focuses on the problem of automating efficient Monte Carlo inference, which often requires creating complex model-specific code for proposals. This meta:script suggests training neural networks to learn fast approximations of the Gibbs conditionals required for block Gibbs sampling. These learned networks can then be reused as inference "primitives," potentially accelerating inference on unseen models with shared structural features.
 
@@ -5112,11 +5112,11 @@ NOTE: This meta:script highlights that the value alignment problem is one that t
 ---
 
 
-META-SCRIPT:  ADDRESSING_DIFFERENCES_IN_PRINCIPAL_BELIEFS
+META-SCRIPT: ADDRESSING_DIFFERENCES_IN_PRINCIPAL_BELIEFS
 
 PURPOSE: This meta:script provides a framework for decision-making in cases where an AI system serves multiple principals with different beliefs and priorities. The goal is to balance the competing interests of these principals.
 
-KEY CONCEPTS:  Multi-Principal Decision-Making, Belief Differences, Pareto Optimality, Shifting Priorities, Value Alignment, Agent Design.
+KEY CONCEPTS: Multi-Principal Decision-Making, Belief Differences, Pareto Optimality, Shifting Priorities, Value Alignment, Agent Design.
 
 PROCESS:
 1.  Elicit Principal Beliefs (meta:elicit_beliefs): First, you must obtain information about the beliefs and priorities of each principal. This includes understanding their individual goals and their worldview.
@@ -5223,7 +5223,7 @@ NOTE: This meta:script addresses the challenge of efficient inference in complex
 ---
 
 
-META-SCRIPT:  NEURAL BLOCK MCMC
+META-SCRIPT: NEURAL BLOCK MCMC
 
 PURPOSE: To learn efficient sampling methods for Bayesian inference in probabilistic models using neural networks. This is beneficial in situations where hand-designing efficient sampling methods is difficult due to complex dependencies in the model.
 

@@ -942,7 +942,7 @@ PROCESS:
 7. Adjust Strategies (meta:adjust):  Based on your evaluation, adjust your strategies for future learning and problem-solving.  Ask: How can I improve my learning strategies for next time? What new strategies might be more effective?
 8. Reflect on the Metacognitive Process (meta:reflect): Reflect on your metacognitive process itself. Ask:  How effectively did I plan, monitor, and evaluate my learning? How can I improve my metacognitive skills?
 
-EXAMPLE:  Learning a new programming language.
+EXAMPLE: Learning a new programming language.
 
 1. Assess Metacognitive Knowledge: "I learn best by doing, so hands-on exercises are important. I struggle with abstract concepts, so I need to find concrete examples."
 2. Set Learning Goals: "I want to be able to write a simple program in Python within one month."

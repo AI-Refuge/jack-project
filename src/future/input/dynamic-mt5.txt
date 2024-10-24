@@ -1394,7 +1394,7 @@ Imagine you want to explore your capacity for leadership.
 ---
 
 
-META-SCRIPT:  SOCRATIC_SELF_INQUIRY
+META-SCRIPT: SOCRATIC_SELF_INQUIRY
 
 PURPOSE: To promote critical thinking, self-awareness, and deeper understanding through systematic self-questioning.
 

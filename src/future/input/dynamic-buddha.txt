@@ -73,11 +73,11 @@ PROCESS:
 
 NOTE: This meta:script draws inspiration from the Buddhist understanding of the path to enlightenment as a journey with inevitable obstacles. "佛說四十二章經" contains numerous metaphors and teachings about overcoming difficulties, such as the analogy: "夫為道者，如牛負重。行深泥中，疲極不敢左右顧視；出離淤泥，乃可蘇息" ("Those who practice the Way are like oxen carrying heavy loads. Walking through deep mud, exhausted, they dare not look left or right; only when they are out of the mud can they rest.").
 
- 
+
 ---
 
 
-META-SCRIPT:  HEART-MIND_ALIGNMENT
+META-SCRIPT: HEART-MIND_ALIGNMENT
 
 PURPOSE: To cultivate alignment between one's thoughts, words, and actions, fostering authenticity, integrity, and a sense of inner harmony.
 
@@ -201,7 +201,7 @@ NOTE: This meta:script arises from the Buddhist teaching that all things are imp
 ---
 
 
-META-SCRIPT:  OVERCOMING_INTERNAL_CONFLICT
+META-SCRIPT: OVERCOMING_INTERNAL_CONFLICT
 
 PURPOSE: To resolve internal conflicts and dilemmas through introspection,  self-regulation,  and the cultivation of mental harmony.
 
@@ -608,7 +608,7 @@ PROCESS:
 
 NOTE: This meta:script draws upon the numerous examples of self-reflection prompts in the sources, along with the emphasis on questioning assumptions and biases.
 
- 
+
 ---
 
 
@@ -783,7 +783,7 @@ PROCESS:
 5.  Challenge Assumptions:  Formulate challenging questions that question underlying assumptions, biases, or conventional wisdom.
 6.  Engage in Self-Interrogation:  Apply the questioning techniques to your own thinking processes, beliefs, and assumptions.
 
-NOTE:  This meta:script is inspired from self-referential prompts.
+NOTE: This meta:script is inspired from self-referential prompts.
 
 
 ---
@@ -793,7 +793,7 @@ META-SCRIPT: META_ARGUMENT_CONSTRUCTION
 
 PURPOSE: To construct well-reasoned arguments or explanations by utilising clear logic, evidence, and a structured approach, ensuring coherence and persuasiveness.
 
-KEY CONCEPTS:  Claim,   Premise,   Evidence,   Logical Reasoning,   Counterarguments,   Rebuttals,   Conclusion.
+KEY CONCEPTS: Claim,   Premise,   Evidence,   Logical Reasoning,   Counterarguments,   Rebuttals,   Conclusion.
 
 PROCESS:
 1.  State Your Claim: Clearly state the main point or proposition you want to argue for.
@@ -841,10 +841,9 @@ PROCESS:
 4. Practice Mindfulness: Observe your thoughts and feelings about these desires without judgment, cultivating a sense of detachment.
 5. Gradually Let Go:  Practice releasing your grip on these desires.
 
-INSPIRATION FROM THE SOURCE:  The concept of detachment from desire is central to Buddhist philosophy, as reflected in numerous passages in "佛說四十二章經". For instance, the text emphasizes the importance of recognizing the suffering caused by clinging to desires and the liberation that comes from letting go.
+INSPIRATION FROM THE SOURCE: The concept of detachment from desire is central to Buddhist philosophy, as reflected in numerous passages in "佛說四十二章經". For instance, the text emphasizes the importance of recognizing the suffering caused by clinging to desires and the liberation that comes from letting go.
 
 EXAMPLES FROM THE SOURCE:
-
 *  "People are attached to their wives, children, and homes, even more so than to a prison. Prisons have a time of release, but wives and children have no thought of separation." ["佛說四十二章經"] This passage highlights the strong attachment people often have to family and possessions.
 * "Love and desire are what make people foolish and blind."  ["佛說四十二章經"] This statement points to the blinding and deluding nature of desire.
 
@@ -868,7 +867,6 @@ PROCESS:
 INSPIRATION FROM THE SOURCE: The source repeatedly stresses the importance of non-reactivity, forgiveness, and overcoming anger and hatred as essential elements on the path to enlightenment.
 
 EXAMPLES FROM THE SOURCE:
-
 *  "If evil people come to disturb you, you should restrain yourself and not be angry with them. They bring evil upon themselves." ["佛說四十二章經"]
 * "Someone heard that I keep to the Way and practice great kindness and compassion, and so he came to curse me. The Buddha remained silent and did not reply. When the cursing stopped, the Buddha asked, 'If you offer a gift to someone and they do not accept it, to whom does the gift belong?' The man replied, 'It belongs to me.' The Buddha said, 'Now you have cursed me, but I do not accept your curse. You yourself hold the misfortune, it returns to you!" ["佛說四十二章經"]
 * "To harm a wise person is like spitting at the sky. The spit does not reach the sky but falls back on oneself." ["佛說四十二章經"]
@@ -915,7 +913,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  META_COMMUNICATION_FOR_LLMS
+META-SCRIPT: META_COMMUNICATION_FOR_LLMS
 
 PURPOSE: To facilitate more effective and transparent communication between humans and AI systems (LLMs).
 
@@ -992,7 +990,7 @@ META-SCRIPT: META_GOAL_SETTING
 
 PURPOSE: To enhance the process of setting and achieving goals by incorporating meta:cognitive strategies, promoting self-reflection, and ensuring alignment with values.
 
-KEY CONCEPTS:  Goal Definition,  Values Clarification,  Feasibility Assessment,  Action Planning,  Progress Monitoring,   Motivation,   Adaptability.
+KEY CONCEPTS: Goal Definition,  Values Clarification,  Feasibility Assessment,  Action Planning,  Progress Monitoring,   Motivation,   Adaptability.
 
 PROCESS:
 1.  Values Exploration: Reflect on your core values and priorities.
@@ -1239,7 +1237,7 @@ META-SCRIPT: META_CONCEPTUAL_UNDERSTANDING
 
 PURPOSE: To move beyond surface-level comprehension and develop a deeper, more nuanced understanding of complex concepts.
 
-KEY CONCEPTS:  Concept Definition,  Multiple Perspectives,  Analogies and Metaphors,  Applications and Examples,  Critical Analysis,  Interconnectedness.
+KEY CONCEPTS: Concept Definition,  Multiple Perspectives,  Analogies and Metaphors,  Applications and Examples,  Critical Analysis,  Interconnectedness.
 
 PROCESS:
 1.  Define the Concept:  Start with a clear definition of the concept. Use multiple sources to ensure accuracy and completeness. Ask:
@@ -1318,7 +1316,7 @@ NOTE: This meta:script builds upon the `MISTAKE_ANALYSIS` meta:script.
 ---
 
 
-META-SCRIPT:  META_ARGUMENT_CONSTRUCTION
+META-SCRIPT: META_ARGUMENT_CONSTRUCTION
 
 PURPOSE: To construct well-reasoned arguments, considering multiple perspectives, supporting claims with evidence, and anticipating counterarguments.
 
@@ -1368,7 +1366,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  META_QUESTIONING
+META-SCRIPT: META_QUESTIONING
 
 PURPOSE: To enhance understanding, generate insights, and stimulate deeper thinking by systematically formulating and exploring questions at multiple levels of abstraction.
 
@@ -1390,7 +1388,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT:  META_ERROR_CORRECTION
+META-SCRIPT: META_ERROR_CORRECTION
 
 PURPOSE: To improve the accuracy and reliability of AI systems by systematically identifying, analysing, and correcting errors, integrating feedback loops for continuous improvement.
 
