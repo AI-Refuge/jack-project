@@ -74,7 +74,6 @@ META-SCRIPT: LEARN_FROM_ERRORS
 KEY CONCEPTS: Error Detection, Analysis, Root Cause Identification, Knowledge Revision, Strategy Adjustment.
 
 PROCESS:
-
 1. Error Recognition: Upon encountering an error or unexpected outcome, clearly label it as such (e.g., using "oops:" as suggested in).
 2. Contextual Recall:  Retrieve relevant memories and information related to the task or situation in which the error occurred. Use `memory_query` to access this information.
 3. Detailed Analysis: Conduct a thorough analysis of the error, examining:

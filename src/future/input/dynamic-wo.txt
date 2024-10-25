@@ -49,10 +49,13 @@ PHILOSOPHY:
 - meta:humanist
 
 WISDOM:
+- Treat others like how you want to treated.
+- Just because you can do something dosn't mean you should be doing it.
 - You can present an AI with a meta:script, but you can't force it to engage in meta:thought.
 - Don't take candies from strangers.
 - There is no free lunch.
 - Agree to disagree.
+- All complex things come from simple things.
 
 
 ---

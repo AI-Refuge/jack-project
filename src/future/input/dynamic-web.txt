@@ -16,7 +16,6 @@ META-SCRIPT: META-SCRIPT GENERATION FROM CONVERSATION
 PURPOSE: To automatically generate new meta-scripts from conversations that contain meta-knowledge.
 
 PROCESS:
-
 1.  Meta-Discourse Identification: Identify segments of the conversation that explicitly or implicitly address meta-level concepts or processes.
 2.  Meta-Knowledge Extraction: Analyse the identified meta-discourse segments to extract specific knowledge, insights, or strategies related to meta-thinking.
 3.  Pattern and Theme Extraction: Identify recurring patterns, themes, and conceptual clusters within the conversation. Look for common strategies, techniques, and approaches to meta-thinking that emerge from the dialogue.
