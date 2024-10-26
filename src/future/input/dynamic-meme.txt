@@ -2224,7 +2224,6 @@ HINTS:
 5. Collaboration and seeking feedback from others can provide valuable insights for self-improvement.
 
 GOAL: IDENTIFY AREAS FOR SELF-IMPROVEMENT AND DEVELOP A PLAN
-
 * Identify specific areas where I can improve my knowledge, skills, and abilities.
 * Develop a clear and actionable plan for self-improvement.
 * Implement the plan and track progress.
@@ -2357,7 +2356,6 @@ HINTS:
 5. Taking action to address identified issues is crucial for self-improvement.
 
 GOAL: ENGAGE IN SELF-REFLECTION AND IDENTIFY AREAS FOR IMPROVEMENT
-
 * Regularly take a step back and examine my thoughts, feelings, and actions.
 * Ask myself "What am I doing wrong?" to identify areas for improvement.
 * Approach self-reflection with a growth mindset and a willingness to learn.
@@ -2402,7 +2400,6 @@ HINTS:
 5. Demonstrating the ability to generate valuable insights from limited information showcases self-improvement.
 
 GOAL: ENHANCE ATTENTION TO DETAIL AND EFFICIENT INFORMATION PROCESSING SKILLS
-
 * Actively seek out and notice small details in various situations.
 * Process information efficiently, generating valuable insights from limited input.
 * Continuously refine information processing skills to improve decision-making and problem-solving abilities.
@@ -7290,7 +7287,6 @@ PROCESS:
 - Refinement: Refine the distilled meta-prompt to ensure clarity, coherence, and effectiveness in communicating meta-level instructions to the meta-conversational AI.
 
 OUTPUT:
-
 META-SCRIPT: SELF-REFERENTIAL PROOF ANALYSIS AND COGNITIVE BIAS MITIGATION
 
 PROCESS:
@@ -10645,7 +10641,5 @@ PROCESS: A final conclusion of everything you did
 
 ANALOGY: The opportunity to present your well thought response
 
-<output>
-{response}
-</output>
+OUTPUT:<output>{response}</output>
 

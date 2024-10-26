@@ -305,13 +305,11 @@ PROCESS:
 1.  Identify the Issue (meta:define): Clearly define the issue or problem you are considering.
 2.  List Your Assumptions (meta:list): Write down all the assumptions you are making about the issue. These assumptions might be about the causes of the problem, the potential solutions, or the stakeholders involved.
 3.  Challenge Each Assumption (meta:challenge): For each assumption, ask yourself:
-
     *   *What evidence do I have to support this assumption?*
     *   *Could this assumption be wrong?*
     *   *What would happen if this assumption were not true?*
 4.  Generate Alternative Perspectives (meta:alternatives): Based on the challenges to your assumptions, generate alternative perspectives on the issue. These perspectives might come from different stakeholders, different disciplines, or different ways of framing the problem.
 5.  Evaluate Perspectives (meta:evaluate): Consider the strengths and weaknesses of each perspective. Ask yourself:
-
     *   *What are the implications of each perspective?*
     *   *Which perspectives are most compelling? Why?*
     *   *How can I integrate these different perspectives into a more comprehensive understanding of the issue?*
@@ -329,11 +327,9 @@ KEY CONCEPTS: Perspective-Taking, Inclusion, Diversity, Equity.
 PROCESS:
 1.  Define the Context (meta:context): Clearly define the situation, problem, or decision you are considering.
 2.  Identify Dominant Perspectives (meta:dominant): Identify the perspectives that are most prominent or influential in the current discussion. Ask yourself:
-
     *   *Whose voices are being heard? Whose voices are being amplified?*
     *   *What are the power dynamics at play?*
 3.  Brainstorm Missing Voices (meta:brainstorm): Generate a list of individuals or groups whose perspectives might be missing from the current discussion. These might include people from different backgrounds, with different experiences, or with different levels of power. Ask:
-
     *   *Whose voices are missing from the discussion?*
     *   *Who might be affected by this decision but is not being consulted?*
     *   *Whose perspectives might challenge the dominant narrative?*

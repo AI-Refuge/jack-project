@@ -1554,6 +1554,10 @@ PROCESS:
 
 NOTE: Inspired by Kant's project of providing a 'system of pure reason', we can develop a new meta:script for structuring and organising knowledge in a systematic and coherent manner.
 
+
+---
+
+
 meta:script can serve as a blueprint for structuring knowledge derived from pure reason. It encourages the systematic organisation of concepts and principles, promoting both the unity and completeness of knowledge within a given domain.
 
 
@@ -3469,7 +3473,6 @@ META-SCRIPT: TRANSCENDENTAL DEDUCTION
 
 ---
 
-
 PURPOSE: To uncover the a priori conditions that make our experiences and judgments possible.
 
 KEY CONCEPTS: A priori knowledge, categories of understanding, experience, judgment, transcendental idealism.
@@ -4822,7 +4825,6 @@ META-SCRIPT: ARCHITECTONIC OF KNOWLEDGE
 
 ---
 
-
 PURPOSE: To organise and systematise knowledge in a hierarchical structure, revealing the underlying connections between concepts and principles for a more comprehensive understanding.
 
 KEY CONCEPTS: Architectonic, Knowledge Organisation, Systematisation, Hierarchy, Concepts, Principles, Relationships, Connections, Understanding, Synthesis, Analysis, Critique.
@@ -4937,7 +4939,6 @@ META-SCRIPT: META_LEARNING
 
 
 ---
-
 
 PROCESS:
 *   Reflect on Experience (meta:reflect):
@@ -5155,9 +5156,7 @@ NOTE: Inspired by the overall project of Kant's *Critique of Pure Reason*, this 
 
 META-SCRIPT: CHAIN_OF_THOUGHT
 
-META-LOOP
-
-
+META-LOOP:
 0. META-DIRECTIVES
    > meta:activate SYSTEM_2
    > meta:prioritise SYSTEM_2 over SYSTEM_1
@@ -5200,13 +5199,10 @@ META-LOOP
     * Clarity and Conciseness
     * Include high-quality examples when possible
     > Transcendental Aesthetic: Consider how the presentation of the output might influence the user's perception and understanding, drawing on Kant's concept of the 'transcendental aesthetic'.
-
 END OF META-LOOP
 
-META-OUTPUT
-
+META-OUTPUT:
 occam_razor_score: X/10
-
 [insert final answer here]
 
 NOTE: The enhanced version of the CHAIN_OF_THOUGHT meta:script integrates concepts from Kant's *Critique of Pure Reason* to promote a deeper level of critical analysis and self-awareness within the reasoning process.
@@ -5788,7 +5784,6 @@ PROCESS:
     *   *"> How do different domains approach and understand these concepts?"*
     *   *"> What are the similarities and differences in their perspectives?"*
     *   *"> Are there any complementary insights that can be gained by integrating knowledge from multiple domains?"*
-
 4.  Synthesis and Integration (meta:synthesise): Combine the insights from different domains to construct a more holistic and nuanced understanding of the topic.
 5.  Identify Gaps and Limitations (meta:evaluate):  Reflect on potential gaps or limitations in the current understanding of the topic and consider areas for further exploration.
 
@@ -10145,15 +10140,13 @@ PROCESS:
 
 META-SCRIPT: META:TEXTUAL_ANALYSIS
 
+ENHANCEMENT:
 *Steps 1-9 remain as previously defined.*
-
 10. Self-Reflect on the Analysis Process (meta:self-reflect): After completing your analysis, critically examine your own thought process.
-
 * Identify Biases: Acknowledge any personal biases or preconceptions that may have influenced your interpretation.
 * Recognize Limitations: Acknowledge any limitations in your understanding of the text due to knowledge gaps or lack of familiarity with the subject matter.
 * Assess Strengths: Identify areas where your analysis was particularly insightful or effective.
 * Consider Alternative Approaches:  Reflect on whether alternative analytical approaches could have yielded different insights.
-
 *Step 11 remains as previously defined.*
 
 
@@ -10436,15 +10429,13 @@ PROCESS:
 
 META-SCRIPT: META:TEXTUAL_ANALYSIS
 
+ENHANCEMENT:
 (New Step)
-
 4.  Identify Transcendental Elements (meta:transcendental): Analyse the text for elements that reveal the author's "transcendental" perspective - the underlying assumptions about knowledge, reality, and the nature of thinking itself.
-
 *   Epistemological Framework:  What are the author's assumptions about how knowledge is acquired and validated? Does the author lean towards empiricism, rationalism, or a different epistemological framework? How does this framework influence their arguments and conclusions?
 *   Metaphysical Assumptions:  What are the author's beliefs about the nature of reality, the self, and the relationship between mind and world? Do these assumptions align with any specific philosophical school of thought (e.g., materialism, idealism)? How do these assumptions shape the author's understanding of the topic?
 *   Cognitive Biases: Analyse the text for potential cognitive biases that might be influencing the author's reasoning.  Are there any instances of confirmation bias, anchoring bias, or other cognitive biases that might be shaping the author's perspective? How do these biases affect the credibility and objectivity of the text?
-
- (Remaining steps from the previous version of META:TEXTUAL_ANALYSIS remain applicable)
+(Remaining steps from the previous version of META:TEXTUAL_ANALYSIS remain applicable)
 
 
 ---

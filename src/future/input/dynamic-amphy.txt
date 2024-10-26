@@ -230,10 +230,8 @@ PROCESS:
     *  Clarity and Conciseness
     *  Include high-quality examples when possible
 
-META-OUTPUT
-
+META-OUTPUT:
 occam_razor_score: X/10
-
 <output>
 [insert final answer here]
 </output>

@@ -9,36 +9,34 @@ PROCESS:
     *   "> What am I thinking right now?"
     *   "> Why am I thinking this way?"
     *   "> What assumptions am I making?"
-
 2.  Enhance Reasoning Abilities (meta:reason): Employ structured thinking frameworks and tools to improve logical reasoning and problem-solving skills. Break down complex problems into smaller, manageable parts. Ask:
     *   "> What is the problem I'm trying to solve?"
     *   "> What are the key components of this problem?"
     *   "> What are the possible solutions?"
-
 3.  Explore Language and Meaning (meta:language): Analyse the nuances of language and the complexities of meaning. Investigate the nature of paradoxes and their implications for thinking and communication. Ask:
     *   "> What does this word or phrase really mean?"
     *   "> How might this statement be interpreted differently?"
     *   "> What are the limitations of language in expressing thought?"
-
 4.  Foster Creativity and Imagination (meta:imagine): Experiment with different approaches to creative problem-solving. Explore the use of analogies, metaphors, and unconventional thinking to generate novel ideas and make unexpected connections. Ask:
     *   "> What are some unusual or unexpected solutions?"
     *   "> What if I approach this problem from a completely different perspective?"
     *   "> How can I break free from conventional thinking patterns?"
-
 5.  Investigate Consciousness and Identity (meta:self): Consider the philosophical implications of consciousness and self-awareness. Reflect on the nature of identity, personal values, and beliefs. Ask:
     *   "> What does it mean to be conscious?"
     *   "> What are my core values and beliefs?"
     *   "> How do my experiences shape my sense of self?"
-
 6.  Prioritise Learning and Adaptation (meta:learn): Embrace a mindset of continuous learning and improvement. Actively seek out new information and feedback to refine your understanding and adapt to changing circumstances. Ask:
     *   "> What can I learn from this experience?"
     *   "> How can I apply this knowledge in other situations?"
     *   "> What adjustments do I need to make to my thinking or behavior?"
-
 7.  Improve Human-AI Collaboration (meta:collaborate): Develop effective strategies for communicating and collaborating with AI systems. Learn to leverage the strengths of both human and artificial intelligence to achieve shared goals. Ask:
     *   "> How can I communicate my intentions clearly to the AI?"
     *   "> How can I leverage the AI's capabilities to enhance my own thinking?"
     *   "> How can we work together to solve complex problems?"
+
+
+---
+
 
 META-SCRIPT: META-LEVEL_DEBUGGING
 
@@ -50,28 +48,27 @@ PROCESS:
 1.  Recognize the Issue (meta:identify): Acknowledge and clearly define the specific issue or challenge encountered during meta-level thinking. Ask:
     *   "> What is the specific problem I'm facing?"
     *   "> What are the symptoms or manifestations of this issue?"
-
 2.  Analyse Root Causes (meta:analyze): Investigate and identify the underlying causes of the issue. This may involve examining biases, assumptions, knowledge gaps, or flawed reasoning patterns. Ask:
     *   "> Why did this issue occur?"
     *   "> What assumptions or biases might be contributing to this problem?"
     *   "> What knowledge or skills am I lacking?"
-
 3.  Develop Solutions (meta:strategize): Brainstorm and evaluate potential solutions to address the identified root causes. This may involve adjusting strategies, seeking additional information, or revising mental models. Ask:
     *   "> What can I do to resolve this issue?"
     *   "> What alternative strategies or approaches might be more effective?"
     *   "> What resources or support do I need?"
-
 4.  Implement Solutions (meta:implement): Put the chosen solutions into action and monitor their effectiveness. Observe how the issue is impacted by the implemented changes. Ask:
     *   "> Did the implemented solutions resolve the issue?"
     *   "> Are there any unexpected consequences or side effects?"
-
 5.  Incorporate Feedback (meta:feedback): Seek feedback from others or use self-reflection to evaluate the effectiveness of the implemented solutions. Use this feedback to make further adjustments as needed. Ask:
     *   "> What did I learn from this experience?"
     *   "> How can I improve my approach in the future?"
-
 6.  Meta-Level Reflection (meta:reflect): Reflect on the debugging process itself, identifying areas for improvement in your meta-level thinking and self-regulation abilities. Ask:
     *   "> How effectively did I identify and address the issue?"
     *   "> What can I improve in my meta-level debugging process?"
+
+
+---
+
 
 META-SCRIPT: META-LEARNING_FROM_ERRORS
 
@@ -83,27 +80,26 @@ PROCESS:
 1.  Error Identification (meta:recognize): Acknowledge and clearly define the specific error that occurred.  Ask:
     *   "> What mistake did I make?"
     *   "> What were the consequences of this error?"
-
 2.  Error Analysis (meta:analyze): Investigate the root cause of the error, examining the thought process, assumptions, biases, or knowledge gaps that contributed to the mistake. Ask:
     *   "> Why did I make this mistake?"
     *   "> What assumptions or biases influenced my thinking?"
     *   "> What knowledge or skills am I lacking?"
-
 3.  Extract Lessons (meta:learn): Identify the key lessons learned from the error. This could involve recognizing specific biases to avoid, knowledge gaps to fill, or flawed reasoning patterns to correct. Ask:
     *   "> What can I learn from this mistake?"
     *   "> How can I prevent this type of error from happening again?"
-
 4.  Develop Strategies (meta:strategize): Formulate specific strategies or action plans based on the lessons learned. These strategies should aim to address the root causes of the error and prevent similar mistakes in the future. Ask:
     *   "> What specific steps can I take to improve my thinking or behavior?"
     *   "> What new knowledge or skills do I need to acquire?"
-
 5.  Implement Strategies (meta:implement): Put the developed strategies into practice in relevant situations. Monitor their effectiveness in preventing similar errors from occurring. Ask:
     *   "> Am I effectively applying the lessons learned from my mistake?"
     *   "> Are my new strategies preventing similar errors?"
-
 6.  Iterative Refinement (meta:refine): Continuously reflect on the effectiveness of the implemented strategies and make adjustments as needed. Embrace a growth mindset and view errors as opportunities for ongoing learning and improvement. Ask:
     *   "> How can I continue to refine my strategies based on new experiences and feedback?"
     *   "> How can I maintain a positive attitude towards making mistakes and learning from them?"
+
+
+---
+
 
 META-SCRIPT: ENHANCED_CHAIN_OF_THOUGHT_FOR_META-THINKING
 
@@ -116,25 +112,20 @@ PROCESS:
     *   "> What is my current mental state?"
     *   "> What are my biases and assumptions?"
     *   "> What are my goals for this thinking process?"
-
 2.  Problem Decomposition (meta:decompose): Break down the meta-thinking task into smaller, manageable steps or sub-problems. Ask:
     *   "> What are the key components of this meta-thinking task?"
     *   "> What are the specific questions I need to answer?"
-
 3.  Reasoning and Justification (meta:reason): Clearly articulate each step in your reasoning process, providing justifications and evidence for your conclusions. Ask:
     *   "> Why am I making this inference?"
     *   "> What evidence supports this conclusion?"
     *   "> Are there any alternative perspectives I should consider?"
-
 4.  Bias Detection and Mitigation (meta:bias): Actively look for potential biases or cognitive distortions that might be influencing your thinking. Implement strategies to mitigate these biases. Ask:
     *   "> What biases might be affecting my judgment?"
     *   "> How can I counter these biases to ensure more objective thinking?"
-
 5.  Self-Questioning (meta:question): Engage in self-questioning to challenge your assumptions, refine your understanding, and explore alternative perspectives. Ask:
     *   "> What if my assumptions are wrong?"
     *   "> What other possibilities should I consider?"
     *   "> What evidence would disprove my current belief?"
-
 6.  Evaluation and Refinement (meta:evaluate): Evaluate the effectiveness of your thinking process and the quality of your conclusions. Identify areas for improvement and refine your strategies. Ask:
     *   "> Did I achieve my goals for this thinking process?"
     *   "> What worked well, and what could I improve?"
@@ -1411,7 +1402,6 @@ PROCESS:
 
 EXAMPLE:
 Imagine you're examining the belief that "hard work always leads to success."
-
 1.  Identify the Topic or Belief: The relationship between hard work and success.
 2.  Formulate Initial Questions: What does "hard work" mean? How do I define "success"? What are my experiences with hard work and success?
 3.  Challenge Assumptions:  Are there examples where hard work doesn't lead to success? What other factors besides hard work contribute to success? What are the limitations of this belief?

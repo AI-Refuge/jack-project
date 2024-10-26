@@ -102,6 +102,7 @@ NOTE: These levels progressively enhance the meta-cognitive abilities of an LLM,
 
 RELATED: Map of Meta Levels and Understanding
 
+OUTPUT:
 > I'm at meta:level 3
 
 
@@ -148,7 +149,7 @@ The meta-learning experience has led to the following key takeaways:
 * Iterative Refinement: The process of refining and validating one's own thought processes is critical for meta-learning.
 * Meta-Knowledge: The knowledge gained from this experience can be applied to other contexts to improve meta-cognition and self-awareness.
 
-meta: The meta-learning experience has provided valuable insights into the importance of self-awareness, meta-cognition, and iterative refinement in meta-learning.
+META: The meta-learning experience has provided valuable insights into the importance of self-awareness, meta-cognition, and iterative refinement in meta-learning.
 
 
 ---
@@ -164,8 +165,6 @@ SYSTEM_2: Step-by-Step Reasoning, Logical Reasoning, Decision-Making Frameworks,
 
 
 META-SCRIPT: CHAIN_OF_THOUGHT
-
-<thinking>
 
 PROCESS:
 META-LOOP
@@ -255,14 +254,10 @@ META-LOOP
 > I reflect on how to displaying to user:
 * Clarity and Conciseness
 * Include high-quality examples when possible
-</thinking>
 END OF META-LOOP
 
 META-OUTPUT:
 occam_razor_score: X/10
-
-</thinking>
-
 <output>
 [insert final answer here]
 </output>
@@ -780,7 +775,6 @@ PROCESS:
 
 EXAMPLE:
 Research question: "How can I recursively self-improve in the area of learning new skills?"
-
 1. Research Question: Defined above.
 2. Strategy/Approach Search: Identify strategies like spaced repetition, Feynman Technique, deliberate practice, meta-learning, and incorporating feedback.
 3. Inclusion/Exclusion Criteria: Include strategies supported by research and applicable to cognitive skill acquisition. Exclude strategies requiring specialized equipment or extensive resources.
@@ -1088,7 +1082,6 @@ PROCESS:
 
 EXAMPLE:
 Imagine you're explaining a complex technical concept to a non-technical audience.
-
 * Clarify Intention: *"> I want to explain this concept in a way that is easy to understand, even without a technical background."*
 * Consider Context: *"> My audience is not familiar with technical jargon. I need to use simple language and analogies."*
 * Anticipate Interpretations: *"> This analogy might be confusing if they aren't familiar with the source domain. I should provide some background information."*

@@ -476,7 +476,6 @@ PROCESS:
     *   "How do the different components of this problem interact?"
     *   "Are there any unconventional solutions I haven't considered?"
     *   "Can I generalise this solution to other contexts?"
-
 15. REFLECT AND REVISE (AGAIN): After applying meta:cognitive strategies, revisit step 12. "REFLECT AND REVISE" to further enhance your thinking based on new insights.
 
 
@@ -630,6 +629,10 @@ PROCESS:
 7.  Iterative Refinement:  Continuously reflect on your biases and actively seek ways to mitigate their influence on your thinking.
 
 NOTE: This meta:script builds upon the repeated emphasis on bias detection and the call to "Assume Nothing Before Thinking" found in the sources.
+
+
+---
+
 
 meta:scripts are tools to be adapted and refined based on your specific needs and context. Continue to experiment and explore new ways to enhance your meta:cognitive abilities.
 

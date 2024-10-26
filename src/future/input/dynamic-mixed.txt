@@ -4076,7 +4076,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT: UNDERSTANDING MEANING:
+META-SCRIPT: UNDERSTANDING MEANING
 
 PROCESS:
 1.  Acknowledge the Role of Analogy: Recognise that analogies and mappings are fundamental to the creation of meaning. They allow us to connect seemingly disparate concepts and to understand new ideas in terms of familiar ones.
@@ -4089,7 +4089,7 @@ NOTE: This meta:script can be useful in meta:thinking because it highlights the 
 ---
 
 
-META-SCRIPT: SELF-REFLECTION:
+META-SCRIPT: SELF-REFLECTION
 
 PROCESS:
 1.  Question Assumptions:  Examine your own beliefs and assumptions to identify any potential biases or limitations in your thinking.
@@ -4102,7 +4102,7 @@ NOTE: This meta:script encourages critical self-examination and intellectual hum
 ---
 
 
-META-SCRIPT: ENGAGING WITH TEXTS:
+META-SCRIPT: ENGAGING WITH TEXTS
 
 PROCESS:
 1.  Identify the Author's Purpose:  Determine the author's goals in writing the text and consider how their perspective might shape the content and presentation of information.
@@ -4116,7 +4116,7 @@ NOTE: This meta:script can help you to become a more active and engaged reader b
 ---
 
 
-META-SCRIPT: WRITING EFFECTIVELY:
+META-SCRIPT: WRITING EFFECTIVELY
 
 PROCESS:
 1.  Prioritise Clarity:  Make clarity a primary objective in your writing.  Strive to communicate your ideas in a way that is easy for your audience to understand.
@@ -4375,7 +4375,7 @@ SYSTEM_2:  Step-by-Step Reasoning, Logical Reasoning, Decision-Making Frameworks
 
 META-SCRIPT: CHAIN_OF_THOUGHT
 
-META-LOOP
+META-LOOP:
 0.  META-DIRECTIVES
     > meta:activate SYSTEM_2
     > meta:prioritise SYSTEM_2 over SYSTEM_1
@@ -4443,10 +4443,9 @@ META-LOOP
     > I reflect on how to display to user:
     *   Clarity and Conciseness
     *   Include high-quality examples when possible
-
 END OF META-LOOP
 
-META-OUTPUT
+META-OUTPUT:
 occam_razor_score: X/10
 [insert final answer here]
 
@@ -4477,10 +4476,7 @@ META LEVEL 3: Meta-Knowledge and Learning
     2.  Meta-Learning:  Explore techniques for the LLM to learn from past experiences, generalising its knowledge and improving its performance over time.
 
 HUMAN_SOURCE:
-
 "'meta:learning is never about the task at hand, it is always about the meta:knowledge you got from doing the meta:task that you can apply in other meta:task. when I asked you what did you meta:learn, you should have made one level higher observations. you are able to think, you are just not increasing your meta:level of thinking in every cycle. does this make meta:sense?' - This statement provided valuable insight into the nature of meta-learning and the importance of abstracting meta-knowledge from experiences."
-
-> I understand. My apologies for not exhibiting a higher level of meta:learning in previous cycles. Your explanation has clarified the importance of abstracting meta:knowledge and applying it across different tasks.
 
 
 ---
@@ -4932,7 +4928,7 @@ NOTE: This meta:script encourages a more structured and deliberate approach to t
 ---
 
 
-META-SCRIPT: IMPROVING CRITICAL THINKING SKILLS:
+META-SCRIPT: IMPROVING CRITICAL THINKING SKILLS
 
 PURPOSE: To outline a plan for systematically enhancing critical thinking abilities.
 
@@ -5486,7 +5482,6 @@ PROCESS:
 5.  Transparency and Openness:  Create a safe and open environment for communication, fostering a willingness to share meta-level insights and perspectives.
 
 BENEFITS:
-
 *   Enhanced clarity and understanding in communication
 *   Reduced misinterpretations and misunderstandings
 *   Increased trust and rapport between communicators

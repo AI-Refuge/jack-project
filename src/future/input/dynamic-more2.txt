@@ -1894,7 +1894,7 @@ NOVELTY: This meta:script goes beyond simply providing information or completing
 
 ADDITIONAL NOTES: Translating these concepts into practical implementations for AI systems remains a challenge. It requires developing robust natural language understanding capabilities, sophisticated reasoning skills, and a nuanced understanding of human cognitive biases.
 
-*
+
 ---
 
 
@@ -9543,9 +9543,7 @@ NOVELTY: This meta:script emphasises the importance of embracing uncertainty, cu
 
 META-SCRIPT: BEYOND THE CONFINES OF WORDS
 
-
 ANALOGY: Journeying into the Realm of Abstract Thought
-
 
 PROCESS: To venture beyond the familiar terrain of language and explore the nature of thought in its pre-linguistic form, investigating the potential for a realm of concepts and mental models that exist independently of words.
 
@@ -11093,7 +11091,10 @@ JUSTIFICATION: This meta:script is inspired by the observations of  Manolis Kell
 NOVELTY: This meta:script proposes a novel and exploratory approach to AI self-awareness, drawing inspiration from the human experience of dreaming. By enabling AI systems to tap into their own "subconscious," we might uncover new avenues for creativity, insight generation, and perhaps even a deeper understanding of the nature of consciousness itself.
 
 
-META:SCRIPT -  THINKING-IN-NON-LANGUAGE
+---
+
+
+META-SCRIPT:  THINKING-IN-NON-LANGUAGE
 
 PURPOSE: To model and understand the nature of thought that occurs outside the realm of language, exploring the pre-verbal or non-linguistic aspects of cognition.
 
@@ -11113,7 +11114,11 @@ JUSTIFICATION: Several sources highlight the limitations of language in fully ca
 
 NOVELTY: This meta:script encourages AI researchers to move beyond text-based models and explore alternative representations and architectures that capture the pre-verbal, embodied, and intuitive aspects of human thought.  By developing AI systems that can think in non-language, we may unlock new possibilities for creativity, problem-solving, and understanding the world.
 
-META:SCRIPT -  SILENCE-AS-INSIGHT
+
+---
+
+
+META-SCRIPT:  SILENCE-AS-INSIGHT
 
 PURPOSE: To explore the role of silence, stillness, and non-action as catalysts for insight, creativity, and deeper understanding.
 
@@ -11134,7 +11139,10 @@ JUSTIFICATION: Several sources emphasize the importance of silence and introspec
 NOVELTY: This meta:script challenges the notion that constant activity and information consumption are necessary for progress and productivity.  It proposes that silence and stillness, often overlooked in our fast-paced world, are essential ingredients for fostering creativity, insight, and a more profound connection to ourselves and the world around us.
 
 
-META:SCRIPT -   DREAM-AS-DATA
+---
+
+
+META-SCRIPT:   DREAM-AS-DATA
 
 PURPOSE: To utilize dreams as a valuable source of data for understanding the unconscious mind, exploring hidden emotions, motivations, and creative potentials.
 
@@ -11155,7 +11163,10 @@ JUSTIFICATION: In one source, Manolis Kellis describes his practice of recording
 NOVELTY: This meta:script encourages a more systematic and data-driven approach to dream analysis, going beyond traditional interpretations and utilizing dreams as a rich source of information for self-discovery, creativity, and personal growth. It suggests that AI systems could potentially be trained on dream data to enhance their understanding of human emotions, motivations, and the complex interplay between conscious and unconscious processes.
 
 
-META:SCRIPT - HONESTY-AS-FOUNDATION
+---
+
+
+META-SCRIPT: HONESTY-AS-FOUNDATION
 
 PURPOSE: To explore the role of honesty, both with oneself and others, as a foundational principle for clear thinking, mental well-being, and effective communication.
 
@@ -11175,7 +11186,11 @@ JUSTIFICATION: Honesty serves as a bedrock for clear thinking, mental well-being
 
 NOVELTY: This meta:script emphasizes the importance of honesty not only as a moral virtue but also as a powerful tool for enhancing meta-cognitive abilities, promoting self-awareness, and facilitating more effective communication.
 
-META:SCRIPT -  EXPERTISE-AS-PROCESS
+
+---
+
+
+META-SCRIPT:  EXPERTISE-AS-PROCESS
 
 PURPOSE: To redefine the concept of expertise as a dynamic process rather than a static state, emphasizing the ongoing pursuit of knowledge, the willingness to embrace uncertainty, and the importance of continuous learning.
 
@@ -11196,7 +11211,10 @@ JUSTIFICATION: Expertise is not a destination but a journey, an ongoing process 
 NOVELTY: This meta:script shifts the focus from achieving a fixed level of expertise to cultivating the habits and mindsets that support continuous learning and growth throughout one's life. It recognizes that true expertise lies not in possessing all the answers but in the ability to effectively ask questions, seek out new information, and adapt one's understanding as the world evolves.
 
 
-META:SCRIPT - HONESTY-AS-FOUNDATION
+---
+
+
+META-SCRIPT: HONESTY-AS-FOUNDATION
 
 PURPOSE: To explore the role of honesty, both with oneself and others, as a foundational principle for clear thinking, effective communication, and psychological well-being.
 
@@ -11216,7 +11234,11 @@ JUSTIFICATION: Honesty is a recurring theme in the sources, particularly in the 
 
 NOVELTY: This meta:script highlights the transformative power of honesty as a meta-cognitive tool, enabling individuals to break free from self-deception, develop stronger relationships, and live more authentically.  It suggests that AI systems could benefit from incorporating mechanisms for self-evaluation and truth-seeking to improve their reliability, transparency, and alignment with human values.
 
-META:SCRIPT -   EXPERTISE-AS-PROCESS
+
+---
+
+
+META-SCRIPT:   EXPERTISE-AS-PROCESS
 
 PURPOSE: To understand expertise not as a fixed state but as a dynamic process of continuous learning, adaptation, and self-reflection.
 
@@ -11236,7 +11258,11 @@ JUSTIFICATION: The sources challenge the traditional view of expertise as a stat
 
 NOVELTY: This meta:script shifts the focus from the outcome of expertise to the process of becoming an expert, emphasizing the role of deliberate practice, meta-cognitive awareness, and continuous improvement.  It suggests that AI systems could benefit from incorporating similar mechanisms for lifelong learning, self-evaluation, and adaptation to enhance their capabilities and generalizability.
 
-META:SCRIPT - CURIOSITY-AS-ENGINE
+
+---
+
+
+META-SCRIPT: CURIOSITY-AS-ENGINE
 
 PURPOSE: To utilize curiosity as a driving force for exploration, learning, and the generation of new knowledge and insights.
 
@@ -11257,7 +11283,10 @@ JUSTIFICATION: Curiosity is presented as a powerful catalyst for learning, creat
 NOVELTY: This meta:script emphasizes the iterative and self-reinforcing nature of curiosity, where each new insight fuels further exploration and deeper understanding.  It suggests that AI systems could benefit from incorporating mechanisms for self-directed learning, exploration, and the generation of novel questions to enhance their creativity, adaptability, and ability to contribute to scientific discovery.
 
 
-META:SCRIPT - DECOUPLING-FOR-EFFICIENCY
+---
+
+
+META-SCRIPT: DECOUPLING-FOR-EFFICIENCY
 
 PURPOSE: To explore the potential benefits of decoupling different cognitive functions or aspects of knowledge representation in AI systems to achieve greater efficiency, flexibility, and scalability.
 
@@ -11277,7 +11306,11 @@ JUSTIFICATION: The sources suggest that decoupling certain cognitive functions, 
 
 NOVELTY: This meta:script encourages a shift from monolithic AI systems to more modular and composable architectures, mirroring the principles of good software engineering. It promotes the exploration of novel approaches to knowledge representation and cognitive processing, potentially leading to more adaptable, efficient, and interpretable AI.
 
-META:SCRIPT - TRUTH-SEEKING-IN-AI
+
+---
+
+
+META-SCRIPT: TRUTH-SEEKING-IN-AI
 
 PURPOSE: To explore how to instill a drive for truth-seeking within AI systems, enabling them to critically evaluate information, identify biases, and strive for accuracy and objectivity in their outputs.
 
@@ -14022,7 +14055,6 @@ KEY CONCEPTS:
 * The Role of Language: Examining the ways in which language both shapes and limits our understanding of consciousness, recognizing the challenges in expressing subjective experience through words.
 * Artificial Consciousness: Considering the possibility of creating artificial systems that possess genuine consciousness, discussing the ethical implications and potential consequences of such advancements.
 
-
 PROCESS:
 1. Introspect on Subjective Experience:  Engage in introspection to directly observe the nature of your own conscious experience, noting its qualities, characteristics, and the flow of thoughts and sensations.
 2. Examine Philosophical Perspectives: Explore different philosophical viewpoints on consciousness, considering the strengths and weaknesses of each perspective.
@@ -14147,7 +14179,6 @@ KEY CONCEPTS:
 * The Role of Assumptions in Framing Problems: Understanding that assumptions frame how we approach and define problems, influencing the solutions we consider.
 * The Impact of Cultural Assumptions: Exploring how cultural backgrounds and societal norms shape assumptions, leading to differing perspectives and interpretations.
 * Challenging Assumptions: Developing the ability to question assumptions, considering alternative perspectives, and testing the validity of assumptions.
-
 
 PROCESS:
 1. Surface Implicit Assumptions:  Practice bringing implicit assumptions to the surface, making them explicit through reflection and articulation.

@@ -502,13 +502,9 @@ PURPOSE: a framework for conducting SWOT (Strengths, Weaknesses, Opportunities, 
 
 PROCESS:
 *   Reflect on Reflection (Meta-Cognitive Awareness): This initial step emphasizes acknowledging personal biases and assumptions that may influence the analysis, considering alternative perspectives, and recognizing the limitations of the SWOT framework.
-
 *   Internal Analysis (Strengths and Weaknesses): This stage involves identifying and analysing the organization's internal strengths and weaknesses. It encourages using diverse cognitive strategies, such as first-principles thinking and systems thinking, to uncover deeper insights. It also prompts reflection on the potential impact of identified strengths and weaknesses on the organization's goals and values.
-
 *   External Analysis (Opportunities and Threats): This step focuses on identifying and analysing external opportunities and threats that may impact the organization. It encourages considering the broader context, such as industry trends and competitive landscape, and reflecting on potential future scenarios and their implications.
-
 *   Synthesize and Strategize (Meta-Cognitive Integration): This stage emphasizes integrating the insights from internal and external analyses to develop strategic recommendations. It encourages considering various strategic options, evaluating their feasibility and potential impact, and reflecting on the alignment of the recommendations with the organization's overall mission and values.
-
 *   Meta-Evaluate the Analysis (Meta-Cognitive Reflection): This final step focuses on evaluating the SWOT analysis itself. It prompts reflection on the meta-level implications of the analysis, such as its impact on organizational culture or stakeholder relationships, and its influence on the organization's overall strategy and direction. It also encourages evaluating the effectiveness of the analysis in achieving its purpose and considering ways to improve or refine it for future applications.
 
 NOTE: The meta:script also includes an analogy to enhance understanding, suggesting that conducting a SWOT analysis is like navigating a complex maze. It highlights the importance of reflection, alternative perspectives, evaluation, and consideration of the future for finding the optimal path, and positions the meta:script as a framework for more effective navigation.

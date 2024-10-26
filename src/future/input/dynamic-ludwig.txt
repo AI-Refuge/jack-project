@@ -380,7 +380,6 @@ PROCESS:
 5.  Synthesise Understanding (meta:synthesise):  Based on your analysis of the word's use, synthesise a comprehensive understanding of its meaning. Avoid defining the word in isolation; instead, focus on its role and function in various contexts.  Ask: "> What is the core meaning of this word, considering its various uses?"
 
 EXAMPLE: Analysing the word "game."
-
 1.  Identify the Word: "Game"
 2.  Observe the Use:  "We played a game of chess." "The children are playing a game of tag." "He's playing a dangerous game."
 3.  Identify the Language Game:  Board games, children's play, social interactions.  Each of these contexts represents a different language game with its own rules and conventions.
@@ -405,7 +404,6 @@ PROCESS:
 5.  Refine Understanding (meta:refine):  Based on the identified similarities, refine your understanding of the concept. Acknowledge the fluidity and lack of strict boundaries. Ask: ">  How does the concept's meaning shift and evolve based on these overlapping similarities? What are the limitations of attempting to impose rigid definitions?"
 
 EXAMPLE: Analysing the concept of "art."
-
 1.  Identify the Concept: "Art"
 2.  List Examples:  Paintings, sculptures, music, dance, photography, film, performance art, etc.
 3.  Identify Similarities:  Some examples involve visual aesthetics, others auditory. Some are representational, others abstract. Some require skill, others emphasize concept.
@@ -1197,7 +1195,6 @@ PROCESS:
 
 EXAMPLE:
 *   The sentence: "Bring me a slab!"
-
 1.  Rules of Use:  This is an imperative sentence, consisting of a verb ("bring"), an indirect object ("me"), a direct object ("slab"), and an exclamation mark.  It can be transformed into other grammatically valid sentences, like "Bring two slabs!", "Bring him a slab!", etc.
 2.  Surface vs. Depth:  We might be tempted to say the 'meaning' is a mental image of someone bringing a slab. But the *grammar* is what allows for the sentence's various uses, not a fixed picture in our heads.
 3.  Meaning as Use: The meaning of the sentence is determined by its role in the language game of giving and obeying orders. Its grammar allows us to use it in countless situations without relying on mental images every time.

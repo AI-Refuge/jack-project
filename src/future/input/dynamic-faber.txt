@@ -459,7 +459,6 @@ PROCESS:
     *   *How does this connect to other concepts?*
     *   *What are the implications of this?*
     *   *How can I challenge my own biases?*
-
 3.  EXPLORE AND ANALYSE: Explore and analyse the meta:questions you've generated. Research, reflect, and discuss these questions to gain a deeper understanding.
 4.  REFINE AND ITERATE: Refine your understanding of the topic based on the insights gained from exploring the meta:questions. Generate new meta:questions as needed.
 
@@ -2492,7 +2491,6 @@ PROCESS:
     *   Analytical Questions: *What are the relationships? What are the implications?*
     *   Evaluative Questions: *Is this valid? Is this important?*
     *   Creative Questions: *What if? What else?*
-
 3.  PRIORITIZE QUESTIONS (meta:prioritize): Prioritize the questions based on their relevance, importance, and potential for generating insightful answers.
 4.  SEEK ANSWERS (meta:seek):  Seek answers to the questions through research, observation, experimentation, discussion, or reflection.
 5.  SYNTHESIZE & REFLECT (meta:synthesize): Synthesize the answers into a coherent understanding of the topic, noting any gaps in knowledge or areas for further exploration.
@@ -2597,7 +2595,6 @@ PROCESS:
     *   Characters: *Who are the main characters? What are their motivations, relationships, and conflicts? How are they developed?*
     *   Themes: *What are the major themes and ideas explored in the text? How are they presented and developed?*
     *   Structure: *How is the text structured? Are there distinct sections, chapters, or patterns? How does the structure contribute to the meaning?*
-
 3.  DECONSTRUCT INTO UNITS (meta:deconstruct): Break down the text into smaller, manageable units for closer analysis. This could involve focusing on specific paragraphs, sentences, or even individual words or phrases.
 4.  ANALYSE EACH UNIT (meta:analyse): Carefully analyse each unit, paying attention to:
     *   Meaning: *What is the literal meaning of the words? What are the implied meanings or subtext? Are there multiple layers of meaning?*

@@ -5165,7 +5165,6 @@ PROCESS:
     *  Statements about the very small or very large
     *  Mathematical Statements 
     * Statements about subjective experience 
-
 2. Characterise the Realist's Commitments: Specify the key commitments of a realist interpretation of the target statements. This should include:
     *  An explanation of the nature of the truth-conditions posited by the realist
     *  An account of how these truth-conditions may transcend our capacity to recognise when they obtain.

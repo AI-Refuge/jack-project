@@ -166,15 +166,13 @@ KEY CONCEPTS: Recursive Self-Analysis, Implementation of Meta-Scripts, Enabling 
 PROCESS:
 1.  Recursive Self-Analysis: Encourage the LLM to examine its own meta-cognitive processes with prompts such as, "How did you assess the quality of your previous self-reflection?", "Are there any biases in your method for identifying biases?", or "What limitations can you identify in your own self-improvement process?".
 2.  Implementation of Meta-Scripts: Integrate structured sequences of meta-cognitive steps:
-
     *   Self-Reflect: Analyse a previous response or action.
     *   Identify Potential Issues: Pinpoint errors, biases, or limitations.
     *   Adjust Strategies: Modify the approach based on self-analysis.
     *   Evaluate Effectiveness: Assess modifications and determine the need for further adjustments.
 3.  Enabling Self-Modification (with Caution): This hypothetical level, potentially beyond current capabilities, involves the ability to self-modify. Allowing an LLM to alter its architecture or code based on meta-cognitive analysis could lead to unprecedented self-improvement, but raises ethical and safety concerns.
 
-Enhancement:
-
+ENHANCEMENT:
 *   Integration of "Knots in Handkerchiefs":  As suggested in the source, encourage the LLM to mark areas where matters are left unformulated with specific tags (e.g., "UNEXPLORED BEYOND THIS POINT") to act as signposts for future investigation.
 *   Emphasis on Alternating Strict and Loose Thinking: Integrate a mechanism for the LLM to switch between strict, rule-based thinking (like System 2) and loose, associative thinking (like System 1) depending on the task requirements. This reflects the idea from the source that scientific progress comes from a combination of these two modes of thought.
 *   Incorporation of External Analogies:  Provide the LLM with access to a database of analogies from various fields. Encourage the LLM to search for and apply these analogies to its own problem-solving processes, potentially leading to novel insights. This is inspired by the suggestion in the source to train scientists to seek analogies from other fields.
@@ -206,8 +204,7 @@ PROCESS:
     *   Reflect on how this meta-knowledge can be used to improve meta-cognition.
     *   Identify potential areas for future exploration and learning.
 
-Enhancement:
-
+ENHANCEMENT:
 *   Integration of "Levels of Learning":  Incorporate the concept of ascending meta:levels from the sources. After each meta:learning cycle, encourage the LLM to assess if its observations are at a higher meta:level than the previous cycle.
 *   Emphasis on Metaphorical Thinking: Based on the source's insights into primary process thinking, encourage the LLM to explore metaphorical connections between the meta:knowledge gained and potential applications in other contexts. This could involve generating analogies or using metaphorical language to express abstract concepts.
 
@@ -1430,43 +1427,34 @@ KEY CONCEPTS: Meta-awareness, Meta-regulation, Meta-learning, Recursive Self-Ana
 
 PROCESS:
 1.  META LEVEL 1: Basic Meta-Awareness (meta:awareness_level_1):
-
     *   Goal: Instil basic meta-awareness in the LLM, enabling it to recognise its own outputs as distinct from external reality and identify potential limitations or biases in its responses.
     *   Techniques:
         *   Self-Referential Prompts: Introduce prompts that encourage self-reflection on outputs. For example:
-
             *   "What assumptions did you make when generating that response?"
             *   "Identify any potential biases in your previous output."
 2.  META LEVEL 2: Meta-Regulation and Reasoning (meta:regulation_level_2):
-
     *   Goal:  Focus on meta-regulation and reasoning, allowing the LLM to actively adjust strategies for improved performance.
     *   Techniques:
         *   Advanced Self-Reflection: Encourage in-depth analysis of the reasoning process with prompts like:
-
             *   "What specific reasoning steps led to that conclusion?"
             *   "Can you identify alternative approaches?"
             *   "How would you evaluate the effectiveness of your chosen strategy?"
         *   Dedicated Reasoning Modules: Enhance logical reasoning with specialised modules focusing on:
-
             *   Deductive Reasoning: Drawing specific conclusions from general principles.
             *   Inductive Reasoning: Formulating general principles based on specific observations.
             *   Abductive Reasoning: Generating the most plausible explanation for observations.
         *   Implementation of Meta-Learning: Introduce meta-learning techniques for learning from experience:
-
             *   Parameter Adjustment: Dynamically adjust internal parameters based on performance feedback.
             *   Algorithm Modification: Refine algorithms based on the analysis of successes and failures.
             *   Dynamic Strategy Selection: Select problem-solving strategies based on past experiences and task requirements.
 3.  META LEVEL 3: Recursive Meta-Cognition (meta:recursion_level_3):
-
     *   Goal: At this level, the LLM applies meta-cognitive skills recursively, "thinking about thinking about thinking", for continuous self-improvement.
     *   Techniques:
         *   Recursive Self-Analysis: Use prompts to challenge the LLM to examine its meta-cognitive processes:
-
             *   "How did you assess the quality of your previous self-reflection?"
             *   "Are there any biases in your method for identifying biases?"
             *   "What limitations can you identify in your own self-improvement process?"
         *   Implementation of Meta-Scripts: Integrate structured sequences of meta-cognitive steps:
-
             *   Self-Reflect: Analyse a previous response or action.
             *   Identify Potential Issues: Pinpoint errors, biases or limitations.
             *   Adjust Strategies: Modify the approach based on self-analysis.

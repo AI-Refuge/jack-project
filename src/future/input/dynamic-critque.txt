@@ -536,9 +536,7 @@ PURPOSE: To apply Kantian principles of synthesis to reconcile seemingly conflic
 
 KEY CONCEPTS:
 * Transcendental Unity of Apperception: The fundamental unity of consciousness that makes experience possible.
-
 * Categories of Understanding: The fundamental concepts (like causality, substance, and possibility) that structure our experience of the world.
-
 * Synthetic Judgments: Judgments that expand our knowledge by connecting concepts in new ways.
 
 PROCESS:
@@ -562,9 +560,7 @@ PURPOSE: To subject one's own knowledge claims to a rigorous process of justific
 
 KEY CONCEPTS:
 * A Priori Knowledge: Knowledge that is independent of experience.
-
 * A Posteriori Knowledge: Knowledge that is derived from experience.
-
 * Conditions of Possibility: The necessary conditions for something to be possible.
 
 PROCESS:
@@ -584,9 +580,7 @@ PURPOSE: To analyze and evaluate the use of language in arguments and discussion
 
 KEY CONCEPTS:
 * Discourse:  The way language is used to construct meaning and shape understanding.
-
 * Ideology:  A system of beliefs, values, and assumptions that influence our perception of the world.
-
 * Power:  The ability to influence or control others.
 
 PROCESS:
@@ -3830,13 +3824,10 @@ PROCESS:
 > I reflect on how to displaying to user:
 *   Clarity and Conciseness
 *   Include high-quality examples when possible
-
 END OF META-LOOP
 
 META-OUTPUT
-
 occam_razor_score: X/10
-
 [insert final answer here]
 
 

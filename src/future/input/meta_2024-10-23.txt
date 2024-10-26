@@ -195,6 +195,7 @@ The output of a meta:script should be presented in a structured format, potentia
 *   Assessment: A reflective evaluation of the meta:script's effectiveness.
 *   Visualization: [Optional] Any visual aids used to enhance understanding.
 
+POST-SCRIPT ANALYSIS:
 > I'm thinking that a structured output format will make it easier to evaluate the effectiveness of different meta:scripts and to track progress over time.
 
 

@@ -4745,7 +4745,7 @@ NOTE: This meta:script encourages engagement with the complex and nuanced challe
 
 META-SCRIPT: ANALYTICITY AND A PRIORI KNOWLEDGE
 
-    *   Refinement: The sources highlight the importance of *implicit definition* and *inferential role semantics* as potential explanations of a priori knowledge.  We can enhance this meta:script by exploring how these accounts address challenges raised against traditional conceptions of analyticity. For example, how does implicit definition account for the possibility of revising seemingly a priori truths, such as those of logic or mathematics?  How does inferential role semantics handle cases where the inferential role of a term seems insufficient to determine its meaning?
+REFINEMENT: Highlight the importance of *implicit definition* and *inferential role semantics* as potential explanations of a priori knowledge.  We can enhance this meta:script by exploring how these accounts address challenges raised against traditional conceptions of analyticity. For example, how does implicit definition account for the possibility of revising seemingly a priori truths, such as those of logic or mathematics?  How does inferential role semantics handle cases where the inferential role of a term seems insufficient to determine its meaning?
 
 
 ---
@@ -4753,7 +4753,7 @@ META-SCRIPT: ANALYTICITY AND A PRIORI KNOWLEDGE
 
 META-SCRIPT: CONTENT AND SELF-KNOWLEDGE
 
-    *   Expansion: The sources emphasise the tension between externalist theories of content and the notion of *epistemic transparency*. This meta:script can be expanded by examining specific cases where this tension arises. For instance, how do we reconcile the externalist claim that the content of our thoughts is partly determined by factors beyond our minds with our seeming ability to know what we are thinking without relying on external evidence?  Can the notion of epistemic transparency be plausibly maintained in light of such cases?
+EXPANSION: Emphasise the tension between externalist theories of content and the notion of *epistemic transparency*. This meta:script can be expanded by examining specific cases where this tension arises. For instance, how do we reconcile the externalist claim that the content of our thoughts is partly determined by factors beyond our minds with our seeming ability to know what we are thinking without relying on external evidence?  Can the notion of epistemic transparency be plausibly maintained in light of such cases?
 
 
 ---
@@ -5356,7 +5356,7 @@ META:REFLECTION: Reflect on the implications of different theories of memory kno
 ---
 
 
-META-SCRIPT: THINKING, FAST AND SLOW:
+META-SCRIPT: THINKING, FAST AND SLOW
 
 PURPOSE: To understand the interplay between our intuitive, automatic thinking processes (System 1) and our more deliberative, controlled thinking processes (System 2).
 
@@ -5964,8 +5964,7 @@ PROCESS:
 2. Analyse Conception: Determine whether the conceptions of truth and reference employed are deflationary or robust.
 3. Evaluate Implications: Consider the implications of each conception for the overall meaning and significance of the statement. How does the conception of truth and reference impact the argument being presented?
 
-Example:
-
+EXAMPLE:
 * Consider the statement: "Water is H2O."
 * A deflationary approach might simply state this as a true statement without further analysis.
 * A robust approach would explore the chemical properties of water, connecting the statement to scientific facts and the underlying structure of reality.
@@ -5988,8 +5987,7 @@ PROCESS:
 2. Assess Transparency: Determine whether the thought is epistemically transparent. Can the thinker know the content of their thought directly, or are there external factors obscuring this knowledge?
 3. Analyse Justification: If the thought is not transparent, how can the thinker be justified in holding that belief? What alternative means of justification might be available?
 
-Example:
-
+EXAMPLE:
 *  A person believes they are drinking water.
 *  If the water has been secretly replaced with a visually identical substance, their belief may not be transparent.
 *  How can they still be justified in believing they are drinking water, given the potential external factor?
@@ -6012,8 +6010,7 @@ PROCESS:
 2. Outline Role:  Describe the inferential role of the concept. What other concepts does it connect to? What conclusions can be drawn from its application?
 3. Evaluate Meaning: How does the concept's role contribute to its overall meaning?
 
-Example:
-
+EXAMPLE:
 * The concept of "justice."
 * Its role might include connections to concepts like fairness, equality, rights, and desert.
 * By examining these connections, we can arrive at a deeper understanding of the meaning of "justice."
@@ -6099,7 +6096,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT: INTUITIONS_IN_THOUGHT_EXPERIMENTS:
+META-SCRIPT: INTUITIONS_IN_THOUGHT_EXPERIMENTS
 
 PURPOSE: To clarify the role and justification of intuitions in philosophical thought experiments, particularly their use in evaluating thought experiments about meaning.
 
@@ -6116,7 +6113,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT: EPISTEMIC_TRANSPARENCY:
+META-SCRIPT: EPISTEMIC_TRANSPARENCY
 
 PURPOSE: To investigate the concept of epistemic transparency and its implications for our understanding of thought content and self-knowledge.
 
@@ -6222,7 +6219,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT: INTENTIONALITY_AND_NATURALISM:
+META-SCRIPT: INTENTIONALITY_AND_NATURALISM
 
 PURPOSE: To explore the relationship between intentionality and naturalism, examining whether intentional facts can be explained in purely naturalistic terms and considering the implications of anti-reductionist views.
 
@@ -6431,7 +6428,7 @@ meta:scripts build upon the previously identified ones and provide a broader fra
 ---
 
 
-META-SCRIPT: TRUTH-INTENTIONALITY PUZZLE:
+META-SCRIPT: TRUTH-INTENTIONALITY PUZZLE
 
 PURPOSE: To examine the relationship between truth and intentionality and assess whether truth can play a constitutive role in determining intentional content.
 
@@ -6448,7 +6445,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT: JUSTIFICATION-TRANSMISSION IN INFERENCE:
+META-SCRIPT: JUSTIFICATION-TRANSMISSION IN INFERENCE
 
 PURPOSE: To analyze the conditions under which justification is transmitted from the premises of an inference to its conclusion, exploring different accounts of inference and their implications for epistemic justification.
 
@@ -6522,7 +6519,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT: EVALUATING_SCIENTIFIC_CLAIMS:
+META-SCRIPT: EVALUATING_SCIENTIFIC_CLAIMS
 
 PURPOSE: To assess the validity and justification of scientific claims, considering potential influences of social and political factors.
 
@@ -6540,7 +6537,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT: NAVIGATING_SELF-REFERENCE:
+META-SCRIPT: NAVIGATING_SELF-REFERENCE
 
 PURPOSE: To enhance self-awareness and critical thinking when encountering self-referential statements or situations, guarding against paradoxical conclusions.
 
@@ -6558,7 +6555,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT: INTENTIONALITY_AND_NATURALISM:
+META-SCRIPT: INTENTIONALITY_AND_NATURALISM
 
 PURPOSE: To critically examine the relationship between intentionality (the "aboutness" of thoughts) and naturalism (the view that everything can be explained in terms of natural processes).
 
@@ -7828,7 +7825,7 @@ PROCESS:
 ---
 
 
-META-SCRIPT: ANALYSING THE CONCEPT OF GENOCIDE:
+META-SCRIPT: ANALYSING THE CONCEPT OF GENOCIDE
 
 PURPOSE: To examine and clarify the concept of genocide, identifying its key features and potential areas of ambiguity.
 
@@ -8361,7 +8358,7 @@ meta:scripts offer a framework for analysing fundamental questions in philosophy
 ---
 
 
-META-SCRIPT: ANALYSING THE RELATIONSHIP BETWEEN THOUGHT AND REALITY:
+META-SCRIPT: ANALYSING THE RELATIONSHIP BETWEEN THOUGHT AND REALITY
 
 PURPOSE: To examine the complex relationship between our thoughts and the external world, exploring how mental representations connect to reality, and how we can justify claims about the truth or falsity of our beliefs.
 

@@ -25,11 +25,10 @@ for root, _, files in os.walk(data_dir):
             i = i.strip()
 
             # End meta:script as marker
-            if i.startswith("META-SCRIPT: "):
+            if i.startswith("META"):
                 name = i.split('\n', maxsplit=1)[0]
-                i += f"\nEND OF {name}"
 
-                x = name[13:].upper()
+                x = name.upper()
                 for r in ["ENHANCEMENT", "ENHANCED", "ENHANCE", "IMPROVE", "EXPANDED", "()", "[]"]:
                     x = x.replace(r, "")
                 x = x.replace("__", "_")
@@ -37,6 +36,14 @@ for root, _, files in os.walk(data_dir):
                 x = x.replace("META:", "META-")
                 x = x.strip()
                 names.append(x)
+
+                # checking if properly formatted
+                if True:
+                    for l in i.split("\n\n"):
+                        if len(l) == 0 or not l[0].isupper():
+                            print(f"Issue [{file}]: {i}")
+                            print()
+                            break
 
             content.append(i)
 

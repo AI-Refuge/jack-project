@@ -1487,15 +1487,10 @@ PURPOSE: To visually represent and explore the relationships between concepts, f
 
 KEY CONCEPTS:
 *   Concept Map: A visual representation of concepts and their relationships.
-
 *   Nodes: Represent individual concepts or ideas.
-
 *   Links: Represent the relationships between concepts.
-
 *   Hierarchy:  Organizes concepts from general to specific.
-
 *   Cross-Links: Show relationships between concepts in different branches of the hierarchy.
-
 *   Propositions: Statements that express the relationship between two concepts.
 
 PROCESS:
@@ -1517,15 +1512,10 @@ PURPOSE: To identify and analyze recurring patterns in data, experiences, or tho
 
 KEY CONCEPTS:
 *   Pattern:  A recurring arrangement or sequence of elements.
-
 *   Data:  Information gathered through observation or experience.
-
 *   Trend:  A general direction of change or development.
-
 *   Anomaly:  Something that deviates from the expected pattern.
-
 *   Correlation:  A statistical relationship between two variables.
-
 *   Causation:  A cause-and-effect relationship between two events.
 
 PROCESS:
@@ -1547,11 +1537,8 @@ PURPOSE: To generate thought-provoking questions that stimulate deeper thinking,
 
 KEY CONCEPTS:
 *   Open-Ended Questions:  Questions that cannot be answered with a simple "yes" or "no" and encourage more elaborate and thoughtful responses.
-
 *   Probing Questions:  Questions that delve deeper into a topic or issue, exploring underlying assumptions, motivations, or perspectives.
-
 *   Hypothetical Questions:  Questions that explore possibilities and scenarios that might not exist in reality, stimulating imagination and creative thinking.
-
 *   Challenging Questions:  Questions that push the boundaries of conventional thinking, provoking debate, and encouraging the exploration of alternative viewpoints.
 
 PROCESS:
@@ -3310,9 +3297,7 @@ PROCESS:
 
 EXAMPLE:
 Consider the following statement from the sources:
-
 >  "All plots tend to move deathward. This is the nature of plots... We edge nearer death every time we plot. It is like a contract that all must sign, the plotters as well as those who are the targets of the plot.”
-
 1.  Identify the Plot: The plot in this case is a generalised concept encompassing various types of plots, from narrative to conspiratorial.
 2.  Trace the Trajectory: The trajectory is described as an inherent movement towards death.
 3.  Identify the Deathward Movement: The statement emphasises the inevitability of death as the endpoint of any plot, suggesting that plotting itself is a step closer to mortality.

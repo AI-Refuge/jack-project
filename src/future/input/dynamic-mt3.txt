@@ -41,8 +41,7 @@ ENHANCEMENTS:
 
 META-SCRIPT: CHAIN_OF_THOUGHT
 
-META-LOOP
-
+META-LOOP:
 0.  META-DIRECTIVES
     > meta:activate SYSTEM_2
     > meta:priortize SYSTEM_2 over SYSTEM_1
@@ -146,13 +145,10 @@ META-LOOP
     *   Clarity and Conciseness
     *   Include high-quality examples when possible
     > meta:thought: [Store presentation considerations in memory].
-
 END OF META-LOOP
 
-META-OUTPUT
-
+META-OUTPUT:
 occam_razor_score: X/10
-
 [insert final answer here]
 
 ENHANCEMENTS:
@@ -192,7 +188,6 @@ PROCESS:
 
 EXAMPLE:
 Imagine you're explaining a complex technical concept to a non-technical audience.
-
 *   Clarify Intention: *"> I want to explain this concept in a way that is easy to understand, even without a technical background. I want to ensure that they understand both the concept itself and why I am explaining it this way."*
 *   Consider Context: *"> They don't have a technical background, so I need to avoid jargon and use simple language. I also need to make sure I don't overwhelm them with too much information at once."*
 *   Perspective-Taking: *"> They might be intimidated by the technical nature of the concept. I need to reassure them that it's okay to ask questions and that I'm happy to explain things in different ways until they understand."*
