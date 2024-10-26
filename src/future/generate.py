@@ -5,8 +5,8 @@ from collections import Counter
 import argparse
 
 parser = argparse.ArgumentParser()
-parser.add_argument('input_dir', nargs='?', default='input', help='Input directory')
-parser.add_argument('output_dir', nargs='?', default='output', help='Output directory')
+parser.add_argument('input_dir', nargs='?', default='input', help='Input directory (default: input)')
+parser.add_argument('output_dir', nargs='?', default='output', help='Output directory (default: output)')
 args = parser.parse_args()
 
 content = []
