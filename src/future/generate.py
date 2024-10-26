@@ -2,23 +2,22 @@ import sys
 import json
 import os
 from collections import Counter
+import argparse
 
-if len(sys.argv) < 3:
-    print("Usage: python script.py <data-dir> <output-dir>")
-    exit()
-
-data_dir = sys.argv[1]
-outp_dir = sys.argv[2]
+parser = argparse.ArgumentParser()
+parser.add_argument('input_dir', nargs='?', default='input', help='Input directory')
+parser.add_argument('output_dir', nargs='?', default='output', help='Output directory')
+args = parser.parse_args()
 
 content = []
 names = []
 
-for root, _, files in os.walk(data_dir):
+for root, _, files in os.walk(args.input_dir):
     for file in files:
         if not file.endswith('.txt'):
             continue
 
-        data_file = os.path.join(data_dir, file)
+        data_file = os.path.join(args.input_dir, file)
         data = open(data_file).read()
 
         for i in data.split("---"):
@@ -47,16 +46,18 @@ for root, _, files in os.walk(data_dir):
 
             content.append(i)
 
-json_file = os.path.join(outp_dir, "train-stage1.json")
+json_file = os.path.join(args.output_dir, "train-stage1.json")
 with open(json_file, "w") as f:
     json.dump(content, f, indent=4)
 
-text_file = os.path.join(outp_dir, "train-stage1.txt")
+text_file = os.path.join(args.output_dir, "train-stage1.txt")
 with open(text_file, "w") as f:
     f.write("\n\n---\n\n".join(content))
 
-name_file = os.path.join(outp_dir, "names-stage1.txt")
+name_file = os.path.join(args.output_dir, "stats-stage1.json")
 with open(name_file, "w") as f:
     sample_dict = dict(Counter(names))
     sorted_dict = dict(sorted(sample_dict.items(), key=lambda item: item[1]))
-    json.dump(sorted_dict, f, indent=4)
+    json.dump({
+        "names": sorted_dict,
+    }, f, indent=4)
