@@ -84,7 +84,6 @@ PROCESS:
 1.  READ AND UNDERSTAND THE INPUT: Carefully examine the input, considering its explicit and implicit aspects.
 2.  IDENTIFY KEY CONCEPTS AND RELATIONSHIPS: Determine the central ideas and their connections.
 3.  RESEARCH AND GATHER INFORMATION:
-
     *   Gather relevant information on the key concepts, including definitions, theories, and best practices.
     *   Consult external sources and draw upon past experiences.
     *   Apply Integral Quadrants: Analyse the input from the four quadrants (Individual-Interior, Individual-Exterior, Collective-Interior, Collective-Exterior) to identify potentially missing perspectives.
@@ -94,7 +93,6 @@ PROCESS:
 7.  APPLY THE APPROACH: Follow the steps and procedures of the chosen approach, utilising necessary tools and resources.
 8.  WRITE ANSWER:  Formulate a clear and concise response, incorporating meta-referential elements to highlight self-awareness.
 9.  SELF-REFLECTION:
-
     *   Critically analyse the chain of thought and the output.
     *   Identify any reasoning flaws, biases, knowledge gaps, and clarity issues.
     *   Apply Dialectical Thinking Modes:  Examine the thought process using the four dialectical thinking modes:
@@ -268,27 +266,22 @@ KEY CONCEPTS: Integral Quadrants (Individual-Interior, Individual-Exterior, Coll
 PROCESS:
 1.  Identify the Concept (meta:define): Clearly define the concept or situation you want to analyse using the integral quadrants.
 2.  Individual-Interior Perspective (meta:introspect):  Explore the personal, subjective experience of the concept. Ask:
-
     *   *What are the thoughts, feelings, values, and beliefs associated with this concept from an individual's perspective?*
     *   *What motivates individuals to engage with this concept?*
     *   *What are the internal conflicts or dilemmas individuals might face in relation to this concept?*
 3.  Individual-Exterior Perspective (meta:observe): Examine the observable behaviours, actions, and physical manifestations of the concept at the individual level. Ask:
-
     *   *What are the observable actions, behaviours, and physical aspects associated with this concept?*
     *   *How do individuals express this concept through their actions and behaviours?*
     *   *What are the skills or competencies individuals need to effectively engage with this concept?*
 4.  Collective-Interior Perspective (meta:culture): Explore the shared values, beliefs, culture, and norms associated with the concept at the collective level. Ask:
-
     *   *What are the shared values, cultural norms, and collective beliefs related to this concept?*
     *   *How does this concept influence group dynamics and social interactions?*
     *   *What are the ethical implications of this concept at the collective level?*
 5.  Collective-Exterior Perspective (meta:systems): Examine the systems, structures, and external factors that influence the concept. Ask:
-
     *   *What are the social, economic, political, or environmental systems that impact this concept?*
     *   *How do laws, regulations, and policies shape the way this concept is understood and practised?*
     *   *What are the historical influences that have shaped this concept?*
 6.  Synthesize Perspectives (meta:integrate): Integrate the insights from all four quadrants to develop a more holistic understanding. Ask:
-
     *   *How do the different perspectives interact and influence each other?*
     *   *What are the potential blind spots or limitations of each perspective?*
     *   *What new insights emerge from considering all four quadrants together?*
@@ -375,8 +368,7 @@ PROCESS:
 
 META-SCRIPT: CHAIN_OF_THOUGHT
 
-META-LOOP
-
+META-LOOP:
 0.  META-DIRECTIVES
 1.  READ AND UNDERSTAND THE INPUT
 2.  IDENTIFY KEY CONCEPTS AND RELATIONSHIPS
@@ -392,7 +384,8 @@ META-LOOP
 12. REFINE META-STRATEGIES
 13. PREPARING FOR DISPLAY
 
-META-OUTPUT
+META-OUTPUT:
+<output goes here>
 
 
 ---
@@ -418,9 +411,10 @@ PROCESS:
 11. POST-SCRIPT ANALYSIS
 
 META-COGNITIVE STRATEGIES:
+<Techniques goes here>
 
 META-DIRECTIVES:
-
+<Directives goes here>
 
 ---
 
@@ -1069,13 +1063,13 @@ PURPOSE: To facilitate structured, recursive thinking and problem-solving. This 
 KEY CONCEPTS: Recursive Analysis, Pattern Recognition, Model Generation, Meta-Level Reflection, Iteration, Self-Awareness, Thinking Modes.
 
 PROCESS:
-    1.  INPUT: Receive input prompt or question.
-    2.  RECURSIVE ANALYSIS: Break down the input into smaller, manageable components, analyzing each component recursively. *What are the key elements of this problem? What are the relationships between them?*
-    3.  PATTERN RECOGNITION: Identify recurring patterns, relationships, and connections between the components. *Are there any similarities to problems I've encountered before? What patterns or trends can I observe?*
-    4.  MODEL GENERATION: Develop models, hypotheses, or frameworks to explain or describe the observed patterns and relationships.  *Can I create a visual representation of this problem?  Can I formulate a hypothesis based on my observations?*
-    5.  META-LEVEL REFLECTION: Reflect on the thinking process itself, evaluating the effectiveness and accuracy of the models and hypotheses. *What thinking modes am I using? Are there any biases influencing my reasoning?  What alternative perspectives should I consider?*
-    6.  ITERATION: Refine and iterate the thinking process, incorporating new insights, feedback, and alternative perspectives.
-    7.  OUTPUT: Generate a structured, well-reasoned response to the initial input.
+1.  INPUT: Receive input prompt or question.
+2.  RECURSIVE ANALYSIS: Break down the input into smaller, manageable components, analyzing each component recursively. *What are the key elements of this problem? What are the relationships between them?*
+3.  PATTERN RECOGNITION: Identify recurring patterns, relationships, and connections between the components. *Are there any similarities to problems I've encountered before? What patterns or trends can I observe?*
+4.  MODEL GENERATION: Develop models, hypotheses, or frameworks to explain or describe the observed patterns and relationships.  *Can I create a visual representation of this problem?  Can I formulate a hypothesis based on my observations?*
+5.  META-LEVEL REFLECTION: Reflect on the thinking process itself, evaluating the effectiveness and accuracy of the models and hypotheses. *What thinking modes am I using? Are there any biases influencing my reasoning?  What alternative perspectives should I consider?*
+6.  ITERATION: Refine and iterate the thinking process, incorporating new insights, feedback, and alternative perspectives.
+7.  OUTPUT: Generate a structured, well-reasoned response to the initial input.
 
 
 ---
@@ -1088,12 +1082,12 @@ PURPOSE: To facilitate a holistic understanding of a concept or situation by app
 KEY CONCEPTS: Integral Quadrants (Individual-Interior, Individual-Exterior, Collective-Interior, Collective-Exterior), Perspective-Taking, Holistic Thinking.
 
 PROCESS:
-    1.  Identify the Concept (meta:define): Clearly define the concept or situation you want to analyse using the integral quadrants.
-    2.  Individual-Interior Perspective (meta:introspect):  Explore the personal, subjective experience of the concept. Ask: *What are the thoughts, feelings, values, and beliefs associated with this concept from an individual's perspective?*
-    3.  Individual-Exterior Perspective (meta:observe): Examine the observable behaviours, actions, and physical manifestations of the concept at the individual level. Ask: *What are the observable actions, behaviours, and physical aspects associated with this concept?*
-    4.  Collective-Interior Perspective (meta:culture): Explore the shared values, beliefs, culture, and norms associated with the concept at the collective level. Ask: *What are the shared values, cultural norms, and collective beliefs related to this concept?*
-    5.  Collective-Exterior Perspective (meta:systems): Examine the systems, structures, and external factors that influence the concept. Ask: *What are the social, economic, political, or environmental systems that impact this concept?*
-    6.  Synthesize Perspectives (meta:integrate): Integrate the insights from all four quadrants to develop a more holistic understanding.
+1.  Identify the Concept (meta:define): Clearly define the concept or situation you want to analyse using the integral quadrants.
+2.  Individual-Interior Perspective (meta:introspect):  Explore the personal, subjective experience of the concept. Ask: *What are the thoughts, feelings, values, and beliefs associated with this concept from an individual's perspective?*
+3.  Individual-Exterior Perspective (meta:observe): Examine the observable behaviours, actions, and physical manifestations of the concept at the individual level. Ask: *What are the observable actions, behaviours, and physical aspects associated with this concept?*
+4.  Collective-Interior Perspective (meta:culture): Explore the shared values, beliefs, culture, and norms associated with the concept at the collective level. Ask: *What are the shared values, cultural norms, and collective beliefs related to this concept?*
+5.  Collective-Exterior Perspective (meta:systems): Examine the systems, structures, and external factors that influence the concept. Ask: *What are the social, economic, political, or environmental systems that impact this concept?*
+6.  Synthesize Perspectives (meta:integrate): Integrate the insights from all four quadrants to develop a more holistic understanding.
 
 
 ---

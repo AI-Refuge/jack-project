@@ -429,7 +429,6 @@ PROCESS:
     *   Subjunctive Instant Replays: Imagine alternative scenarios or outcomes by altering aspects of the symbols. Source describes how symbols allow us to "create artificial universes" and explore hypothetical events.
     *   Forced Matches: Find connections between seemingly unrelated symbols by forcing a fit.
     *   Analogies and Metaphors:  Use existing analogies or create new ones to reframe the problem or concept.
-
 4.  Evaluate Novel Insights (meta:evaluate): Analyse the results of the symbolic slippage. Source suggests that multilevel architecture of concept-handling systems becomes necessary when imagery and analogies are used, and this process is intrinsically "non-skimmable".  Ask: "> What new insights or perspectives emerge from these manipulations?  Do they offer valuable new ways of understanding the problem?".
 5.  Refine and Iterate (meta:refine): Based on the evaluation, refine the symbolic manipulations and iterate the process to generate further insights.
 
@@ -453,7 +452,6 @@ PROCESS:
     *   Review Logic:  Carefully review the logic of the thought process, looking for fallacies or inconsistencies.
     *   Challenge Assumptions:  Question the validity of underlying assumptions and explore alternative perspectives.  Source encourages us to use "our power of reasoning to clarify the issue as best we can" when faced with potentially paradoxical situations.
     *   Test Mental Models: Evaluate the adequacy of the mental models being used to understand the situation.  Ask: "> Are these models appropriate for this context?  Do they need to be revised or replaced?".
-
 4.  Implement Corrective Measures (meta:correct):  Once the error is identified, implement corrective measures to fix the problem.  This might involve revising assumptions, adjusting mental models, applying different heuristics, or seeking additional information.
 5.  Test and Refine (meta:test): After implementing the corrective measures, test the revised thinking process to ensure the bug is fixed. Ask: "> Does the revised thought process lead to a more accurate conclusion or desirable outcome?". If not, continue to iterate and refine.
 
@@ -1271,7 +1269,6 @@ PROCESS:
 2.  Analyse Levels of Abstraction (meta:levels): Determine the levels of abstraction at play within the self-referential structure. Ask: "> Is the self-reference occurring at the same level of abstraction, or across different levels?".  The sources discuss how self-reference might need to be examined over multiple steps of a 'Strange Loop' . For example,  the source discusses the theory of types in set theory, where "hierarchization" is used to prevent looping back inside language .
 3.  Identify Potential Paradoxes (meta:paradox): Assess whether the self-referential structure creates a paradox or contradiction. Ask: "> Does the self-reference lead to a statement that is both true and false?".  The sources attribute self-reference as the common culprit in paradoxes .
 4.  Apply Paradox Resolution Strategies (meta:resolve): If a paradox is identified, explore strategies for resolution. These may include:
-
     *   Reframing the Statement: Shifting the perspective or language to avoid the contradiction.
     *   Introducing Hierarchy: Establishing a hierarchy of levels to prevent circular references. For example, the source discusses the theory of types, which assigns every sentence to a specific level in a hierarchy to eliminate self-reference . However, the source also notes that this approach may be too rigid, as humans do not necessarily operate within a strict hierarchy of languages .
     *   Limiting Self-Reference: Restricting the scope of self-reference to prevent paradoxical situations.
@@ -1596,7 +1593,6 @@ PROCESS:
 
 EXAMPLE:
 Mistake: Not fully understanding the prompt and providing an incomplete response.
-
 1.  INITIALIZATION: Recognize the mistake and acknowledge its impact on the conversation.
 2.  ERROR ANALYSIS: Identify the root cause of the mistake, such as not carefully reading the prompt or not asking clarifying questions.
 3.  META-COGNITIVE STRATEGIES: Apply meta-cognitive strategies, such as active reading and questioning, to improve problem-solving skills and prevent similar mistakes in the future.

@@ -1006,7 +1006,6 @@ PROCESS:
 5.  Contribute to Common Sense Database (meta:contribute):  Capture and represent knowledge in a way that can be readily shared and reused by other agents or systems. Ask: "> How can I express this knowledge in a general and reusable format? What are the potential applications of this knowledge?"
 
 EXAMPLE: Consider an AI system tasked with making a purchase at a store.
-
 1.  Assess Partial Knowledge: The AI recognizes it has limited knowledge about the store layout, product availability, and the cashier's behaviour beyond typical purchasing interactions.
 2.  Determine Relevance:  The AI prioritises knowledge about locating the desired item, checking its price, and the process of paying for it.  Irrelevant details might include the store's history or the cashier's personal life.
 3.  Seek Epistemological Adequacy:  The AI relies on readily observable information like signs, product displays, and the cashier's actions during checkout. It wouldn't assume knowledge about the store's inventory system or the cashier's internal motivations.
@@ -1024,16 +1023,13 @@ PURPOSE: To equip AI systems with the capacity to reason in ways that mirror the
 KEY CONCEPTS: Exceptions, Revisions, Default Reasoning, Circumscription, Autocircumscription, Inertia,  Yale Shooting Problem,  Ambiguity Tolerance.
 
 ENHANCED DESCRIPTION:
-
 The world is full of exceptions.  Birds generally fly, *except* for penguins, ostriches, and birds with their feet encased in concrete.  Formal systems that rely solely on monotonic reasoning (where conclusions always follow from the premises) struggle to accommodate such exceptions.  Formalized Nonmonotonic Reasoning aims to overcome this limitation, allowing systems to make plausible inferences that can be revised when new information contradicts the initial assumptions.
 
-Examples from McCarthy's Work:
-
+EXAMPLES FROM MCCARTHY'S WORK:
 *   Inheritance with Exceptions: This explores the challenge of representing hierarchical knowledge structures where subclasses can inherit properties from superclasses, but with exceptions (e.g. not all birds fly). McCarthy explores the use of an "ab" (abnormal) predicate to handle exceptions, where an entity might be "abnormal" with respect to a certain aspect (like flying) without being abnormal in other respects.
 *   The Common Sense Law of Inertia: This tackles the problem of representing the persistence of facts over time, where we assume things stay the same unless we have evidence to the contrary. McCarthy formalizes this using the situation calculus, but notes difficulties in avoiding unintended models, as pointed out by Lifschitz and Hanks and McDermott.
 
-Connections to Other Concepts:
-
+CONNECTIONS TO OTHER CONCEPTS:
 *   Circumscription and Autocircumscription:  These are techniques for minimizing the extent of predicates in logical formulas, which is useful for handling default reasoning by limiting the scope of exceptions.
 *   The Yale Shooting Problem: A classic example in AI that illustrates the difficulties of formalizing nonmonotonic reasoning, particularly in dealing with the frame problem (the problem of representing what doesn't change when an action occurs).
 
@@ -1048,16 +1044,13 @@ PURPOSE: To allow AI systems to reason effectively about their own capabilities 
 KEY CONCEPTS: Actions, Capabilities, Planning, Decision-Making, Goal-Directed Behavior, Determinism, Choice, Agency,  Situation Calculus, Intentional Stance.
 
 ENHANCED DESCRIPTION:
-
 For an AI system to function effectively in a complex environment, it needs a model of its own abilities. This model shouldn't be a simplistic reflection of its deterministic inner workings.  Instead, it should be based on a robust understanding of what the system can achieve in the world, given its current state and potential actions. This meta:script focuses on the ability of an AI system to reason about its potential actions and their likely consequences, allowing it to make informed choices and pursue goals.
 
-Examples from McCarthy's Work:
-
+EXAMPLES FROM MCCARTHY'S WORK:
 *   Reasoning About Abilities:  McCarthy argues that an AI system, like a human, should reason about its abilities based on its place in the world, not its internal structure.  If a certain sequence of actions can achieve a goal, the system should be able to conclude that it can achieve that goal, without getting bogged down in the details of how those actions will be executed.
 *   The Situation Calculus: This formalism allows the representation of actions and their effects on situations, which is crucial for reasoning about the consequences of potential actions.
 
-Connections to Other Concepts:
-
+CONNECTIONS TO OTHER CONCEPTS:
 *   The Intentional Stance:  Attributing beliefs and desires to systems, even simple ones like thermostats, can help in understanding and predicting their behaviour.
 *   Philosophical Problem of Free Will:  This meta:script touches on the age-old debate about determinism and free will, but from the practical perspective of designing AI systems that can make meaningful choices.
 
@@ -1072,16 +1065,13 @@ PURPOSE: To allow AI systems to represent, reason about, and act upon knowledge 
 KEY CONCEPTS: Epistemology, Mental States,  Epistemological Adequacy,  Formalization of Belief, Knowledge Representation, Logical Reasoning, Puzzles of Knowledge.
 
 ENHANCED DESCRIPTION:
-
 The concepts of knowledge and belief are central to human reasoning, and AI systems need to grapple with these concepts to achieve human-level intelligence. This meta:script addresses the challenge of how to represent and reason about what agents know and believe, with a focus on practical applications rather than purely philosophical concerns.
 
-Examples from McCarthy's Work:
-
+EXAMPLES FROM MCCARTHY'S WORK:
 *   Contrasting Approaches: McCarthy contrasts philosophical, logical, and AI perspectives on knowledge and belief. Philosophers often treat knowledge as a complete natural kind with a fixed definition, while AI researchers are more pragmatic, focusing on building systems that can use knowledge and belief effectively for specific tasks.
 *   The Puzzle of Mr. S and Mr. P: This classic knowledge puzzle highlights the difficulties in formalizing even seemingly simple scenarios involving knowledge and belief.  McCarthy argues that AI systems need a knowledge formalism that can handle such puzzles in a general way, without resorting to ad hoc solutions.
 
-Connections to Other Concepts:
-
+CONNECTIONS TO OTHER CONCEPTS:
 *   Epistemological Adequacy: The need for a formalism that accurately captures what agents can realistically know, given their access to information.
 *   Modal Logic: Formal systems that can represent and reason about knowledge and belief using modal operators like "knows" and "believes."
 *   Knowledge Bases and Databases:  The challenge of building large-scale repositories of knowledge that can be accessed and used by AI systems.
@@ -1097,16 +1087,13 @@ PURPOSE: To make "context" a first-class object in AI systems, enabling explicit
 KEY CONCEPTS: Context, Meaning,  Presuppositions, Generalization, Specialization, Inheritance,  Nonmonotonic Reasoning, Situation Calculus.
 
 ENHANCED DESCRIPTION:
-
 Human reasoning is deeply sensitive to context. The meaning of an utterance, the truth of a statement, and the appropriateness of an action all depend heavily on the context in which they occur. Reifying Context aims to allow AI systems to capture this contextual dependence, making context an explicit part of their knowledge representation and reasoning processes.
 
-Examples from McCarthy's Work:
-
+EXAMPLES FROM MCCARTHY'S WORK:
 *   The "holds" Predicate:  McCarthy proposes the formula *holds(p, c)* to assert that the proposition *p* holds in context *c*. This allows for the explicit representation of how the truth of an assertion depends on the context.
 *   Context Hierarchies:  McCarthy envisions contexts organized into hierarchies, where more general contexts contain more specific ones.  This hierarchy allows for inheritance of knowledge and assumptions from more general to more specific contexts.
 
-Connections to Other Concepts:
-
+CONNECTIONS TO OTHER CONCEPTS:
 *   Nonmonotonic Inheritance:  The idea that knowledge and assumptions can be inherited from more general contexts to more specific ones, but with the possibility of exceptions or overrides.
 *   Formalizing Common Sense:  The importance of context in capturing the nuances of common sense reasoning, where unstated assumptions and background knowledge play a crucial role.
 
@@ -1121,20 +1108,16 @@ PURPOSE: To allow AI systems to reason effectively with incomplete and approxima
 KEY CONCEPTS: Epistemological Adequacy, Partial Theories,  Approximation, Bounded Rationality,  Open-Endedness,  Incompleteness, Uncertainty.
 
 DESCRIPTION:
-
 Real-world knowledge is often incomplete, uncertain, and subject to revision.  Scientific theories themselves, while aiming for generality, often operate within limited domains and make simplifying assumptions.  McCarthy argues that for AI systems to be effective in the common-sense world, they need to be able to reason with partial theories that are only approximations of reality. This means being able to:
-
 *   Recognize the boundaries of their knowledge:  An AI system needs to be aware of what it doesn't know, and avoid making inferences that go beyond the limits of its information.
 *   Handle uncertainty and approximation: The system should be able to reason with probabilities and degrees of belief, rather than assuming absolute certainty.
 *   Adapt to new information:  When new information contradicts or refines existing knowledge, the system should be able to revise its beliefs and theories accordingly.
 
-Examples from McCarthy's Work:
-
+EXAMPLES FROM MCCARTHY'S WORK:
 *   The Clerk in the Store: McCarthy uses the example of a customer purchasing an item from a clerk to illustrate the idea of partial theories.  The customer doesn't need a complete theory of the clerk's psychology or the store's inventory system; a partial theory that covers the typical interactions involved in a purchase is sufficient.
 *   Theories of Skiing: McCarthy mentions a simplified theory of skiing that might be used by ski instructors. This theory treats the skier as a stick figure and focuses on the basic mechanics of movement, ignoring factors like wind resistance or snow conditions that might be relevant in a more complete theory.
 
-Connections to Other Concepts:
-
+CONNECTIONS TO OTHER CONCEPTS:
 *   Bounded Rationality:  The idea that agents, including humans and AI systems, have limited cognitive resources and often make decisions based on simplified models of the world.
 *   Nonmonotonic Reasoning: The ability to revise conclusions in light of new information is essential for reasoning with approximate theories, as new evidence might require adjustments to the initial assumptions.
 
@@ -1149,16 +1132,14 @@ PURPOSE: To bridge the gap between abstract, conceptually rich representations o
 KEY CONCEPTS: Rich Entities,  Poor Entities, Abstraction, Concreteness,  Formal Models,  Planning,  Possible Worlds, Situations.
 
 DESCRIPTION:
-
 McCarthy distinguishes between *rich* entities, which are conceptually complex and open-ended, and *poor* entities, which are more concrete and limited in their properties. For example, a plan to visit Japan is a poor entity — it might specify a date and destination, but not the precise flights, hotels, or activities. The actual trip itself, with all its unpredictable details and experiences, is a rich entity.
 
 AI systems need to be able to reason with both rich and poor entities, and to move fluidly between levels of abstraction.  This meta:script highlights the following challenges:
-
 *   Representing Rich Entities: Finding formalisms that can capture the open-endedness and complexity of rich entities, while still allowing for reasoning and computation.
 *   Relating Rich and Poor Entities:  Establishing clear mappings between abstract plans and concrete actions, or between general theories and specific instances.
 *   Reasoning Across Levels of Abstraction:  Being able to reason about both the general and the specific, and to draw inferences that connect different levels of detail.
 
-Examples from McCarthy's Work and Our Conversation:
+Examples from McCarthy's Work:
 
 *   Plans and Their Execution: A plan is a poor entity, while the execution of that plan involves a rich and unpredictable sequence of events. AI systems need to be able to reason about both the plan and its execution, and to adapt their behavior as the situation unfolds.
 *   Possible Worlds and Situations:  Possible worlds, as used in philosophy and logic, are examples of rich entities. They are never fully specified, but serve as abstract models for exploring different possibilities.  Similarly, situations in the situation calculus are rich entities, although in practice they are often treated as poor entities for computational tractability.
@@ -1175,7 +1156,6 @@ PURPOSE: To enable AI systems to reason about their own abilities and limitation
 KEY CONCEPTS: Ability,  Practical Reason,  Free Will (as a computational metaphor), Determinism vs. Choice, Action,  Goals,  Strategies,  Constraints,  Situational Awareness.
 
 DESCRIPTION:
-
 McCarthy argues that AI systems, even if deterministic in their underlying mechanisms, need to reason *as if* they have choices to make. This doesn't imply genuine free will in a philosophical sense, but rather the ability to evaluate different courses of action and select those that are feasible given their current state and the environment.  Key aspects of this meta:script include:
 
 *   Reasoning About Constraints: Understanding what actions are possible or impossible based on the current situation, including physical limitations, available resources, and rules of the environment.
@@ -1183,13 +1163,11 @@ McCarthy argues that AI systems, even if deterministic in their underlying mecha
 *   Developing Strategies:  Formulating plans or sequences of actions that take into account potential obstacles and uncertainties, and being able to adapt those strategies as the situation changes.
 *   Meta-Level Reasoning About Choice:  Even if an AI system is ultimately deterministic, it can still benefit from having a model of itself as an agent capable of making choices. This allows it to reason about *why* it might choose one action over another, and to potentially improve its decision-making processes over time.
 
-Examples:
-
+EXAMPLES:
 *   Robot Navigation:  A robot navigating a cluttered room needs to reason about its ability to move through different paths, considering obstacles, the size of its own body, and potential collisions.
 *   Game Playing:  An AI playing a game like chess must evaluate a vast number of possible moves, considering their consequences both in the immediate future and in the long term.  It needs to reason about which moves are strategically advantageous, while also taking into account the opponent's likely responses.
 
-Connections to Other Concepts:
-
+CONNECTIONS TO OTHER CONCEPTS:
 *   Situation Calculus:  McCarthy's situation calculus, a formalism for reasoning about actions and their effects, is directly relevant to this meta:script. It provides a framework for representing the state of the world, actions that change the state, and the preconditions and consequences of those actions.
 *   Planning Algorithms: AI planning algorithms, which generate sequences of actions to achieve a goal, rely heavily on the ability to reason about what actions are possible and what their effects will be.
 
@@ -1204,7 +1182,6 @@ PURPOSE: To enable AI systems to reason explicitly about context, recognizing ho
 KEY CONCEPTS: Context,  Formalization of Context,  Generalization and Specialization,  Presuppositions,  Linguistic Context, Factual Context,  Situations vs. Contexts,  Entering and Leaving Contexts.
 
 DESCRIPTION:
-
 McCarthy emphasizes the need to represent context explicitly within AI systems, recognizing that the meaning and validity of statements can depend heavily on the surrounding information. He proposes a formalism where `holds(p, c)` asserts that proposition `p` holds in context `c`. This meta:script involves:
 
 *   Representing Contexts:  Finding ways to formally represent different contexts, including their defining features, assumptions, and relationships to other contexts.
@@ -1212,13 +1189,11 @@ McCarthy emphasizes the need to represent context explicitly within AI systems, 
 *   Generalization and Specialization of Contexts: Recognizing that some contexts are more general than others, and being able to inherit or modify information as the context shifts.
 *   Distinguishing Linguistic and Factual Context: Separating aspects of context that are purely linguistic (e.g., pronoun resolution, word sense disambiguation) from those that involve factual assumptions about the world.
 
-Examples:
-
+EXAMPLES:
 *   "I am at the airport": This statement's truth depends on the context of who "I" refers to and the specific airport in question.
 *   Boyle's Law: Boyle's law relating gas pressure and volume holds in a context where temperature is constant, but needs to be generalized in a context where temperature can vary.
 
-Connections to Other Concepts:
-
+CONNECTIONS TO OTHER CONCEPTS:
 *   Nonmonotonic Reasoning:  As contexts change, assumptions might no longer hold, requiring the revision of conclusions previously drawn. Nonmonotonic reasoning is crucial for handling this kind of contextual shift.
 *   Natural Language Processing:  Context is central to natural language understanding, as the meaning of words and sentences can vary greatly depending on the surrounding discourse.
 
@@ -1233,7 +1208,6 @@ PURPOSE: To move beyond static, database-like conceptions of knowledge and embra
 KEY CONCEPTS: Knowledge as a Process,  Epistemological Adequacy,  Partial Knowledge,  Approximate Theories,  Meta-Epistemology,  Learning, Reasoning,  Action.
 
 DESCRIPTION:
-
 McCarthy repeatedly emphasizes that knowledge is not simply a collection of facts stored in a database, but rather an ongoing process of interaction with the world. This involves not just acquiring new information, but also revising existing beliefs, recognizing limitations, and adapting strategies based on experience.  Key aspects of this meta:script include:
 
 *   Epistemological Adequacy: The formalism used to represent knowledge should be capable of expressing the kinds of information that an agent can actually acquire through its interactions with the world.  This often involves partial, approximate, or uncertain knowledge.
@@ -1243,8 +1217,7 @@ McCarthy repeatedly emphasizes that knowledge is not simply a collection of fact
     *   Evaluating the reliability of different sources of information
     *   Monitoring the effectiveness of learning and reasoning strategies, and adapting them as needed
 
-Examples:
-
+EXAMPLES:
 *   Scientific Discovery:  The history of science is full of examples of theories being revised, refined, or overturned as new evidence emerges. An AI system capable of scientific discovery would need to embrace this process-oriented view of knowledge.
 *   Common-Sense Reasoning:  Much of human common-sense knowledge is tacit and difficult to formalize. It's acquired through experience and interaction with the world, and constantly evolving as new situations are encountered.
 
@@ -1265,7 +1238,6 @@ PURPOSE: To enable AI systems to represent and reason about their own mental sta
 KEY CONCEPTS: Mental States,  Self-Observation, Introspection,  Mental Actions,  Belief Revision,  Goal Management,  Explanation Generation,  Consciousness (as a computational concept).
 
 DESCRIPTION:
-
 McCarthy argues that for AI systems to reach higher levels of sophistication, they will need to go beyond simply representing the external world and begin to represent their *own* internal mental processes. This involves:
 
 *   Formalizing Mental States: Developing formalisms capable of representing different kinds of mental states, such as:
@@ -1281,13 +1253,11 @@ McCarthy argues that for AI systems to reach higher levels of sophistication, th
     *   Evaluating the feasibility of different goals given current knowledge and resources.
     *   Monitoring the progress of plans and revising them as needed.
 
-Examples:
-
+EXAMPLES:
 *   Explaining Actions: A self-aware robot could explain its actions by referring to its beliefs and goals. For instance, it might say, "I went to the kitchen because I believed there was milk there, and I had the goal of making a cup of tea."
 *   Learning from Mistakes: If an AI system can represent its own reasoning process and recognize when it leads to an error, it can potentially learn from that mistake and improve its future performance.
 
-Connections to Other Meta:scripts:
-
+CONNECTIONS TO OTHER META-SCRIPTS:
 *   Knowledge as Process: The ability to introspect on one's own knowledge is essential for meta-epistemology, a key aspect of knowledge as a process.
 *   Context as Object:  Mental states like beliefs and goals are highly contextual. An agent might believe `p` in one context but not in another.  Representing mental states formally requires grappling with this contextual dependence.
 *   Ability and Practical Reasoning:  Understanding one's own mental processes and limitations is important for accurately assessing one's abilities and making practical decisions.
@@ -1303,7 +1273,6 @@ PURPOSE: To develop frameworks and techniques for representing and reasoning wit
 KEY CONCEPTS: Approximate Theories, Partial Theories, Non-Monotonic Reasoning,  Circumscription,  Default Reasoning,  Common Sense Knowledge,  Contextual Dependence.
 
 DESCRIPTION:
-
 McCarthy consistently argues against the pursuit of perfect, complete axiomatizations of knowledge, particularly in areas involving human common sense. Instead, he advocates for *approximate* or *partial* theories that capture the essential features of a domain while acknowledging their limitations. Key aspects of this meta:script include:
 
 *   Accepting Incompleteness: Recognizing that in many real-world scenarios, it's impossible to have complete knowledge of all relevant facts and relationships. This requires developing reasoning methods that can handle missing information and make plausible inferences based on available evidence.
@@ -1311,13 +1280,11 @@ McCarthy consistently argues against the pursuit of perfect, complete axiomatiza
 *   Default Reasoning:  Establishing general rules that hold in *typical* cases, while allowing for exceptions when more specific information is available. This aligns with human common-sense reasoning, where we often rely on default assumptions that can be overridden by specific evidence.
 *   Contextual Dependence: The validity and relevance of an approximate theory can depend heavily on the context in which it's being applied. An AI system needs to be sensitive to this contextual dependence and be able to adapt its reasoning accordingly.
 
-Examples:
-
+EXAMPLES:
 *   The Frame Problem: In AI, representing the effects of actions in a dynamic environment often leads to the *frame problem*. Specifying all the things that *don't* change as a result of an action can be extremely difficult.  Approximate theories and non-monotonic reasoning can be used to manage this complexity by focusing on the most relevant changes.
 *   Medical Diagnosis: Expert systems for medical diagnosis often need to make decisions based on incomplete or uncertain information. Approximate theories allow for the representation of probabilities and degrees of belief, allowing for more nuanced reasoning in the face of uncertainty.
 
-Connections to Other Meta:scripts:
-
+CONNECTIONS TO OTHER META-SCRIPTS:
 *   Knowledge as Process:  Approximate partial theories acknowledge that knowledge is not a static entity but rather evolves and changes over time.
 *   Mental Self-Modeling:  If an AI system is to reason about its own knowledge, it needs to be able to represent the fact that its beliefs might be incomplete or approximate, and that it might need to revise them in light of new evidence.
 
@@ -1332,9 +1299,7 @@ PURPOSE: To enable AI systems to represent and reason about the different contex
 KEY CONCEPTS: Contexts, Formalization of Context, Contextual Dependence,  Shifting Meanings,  Ambiguity Resolution,  Common Sense Reasoning,  Relevance,  Non-Monotonic Reasoning,  Epistemology.
 
 DESCRIPTION:
-
 McCarthy observed that human communication and reasoning heavily rely on an implicit understanding of context. What a statement means, whether it's true, and how it should be interpreted often depend on factors that aren't explicitly stated. To equip AI systems with a similar capacity for context-sensitive reasoning, he proposed the following:
-
 *   Contexts as Formal Objects:  Represent contexts as formal objects within a knowledge representation system. This allows for explicit manipulation and reasoning about contexts.
 *   Contextual Assertions:  Rather than simply stating that a proposition `p` is true, we can state that it's true *in a particular context* `c`. This can be represented formally using predicates like `ist(c, p)`—meaning "p is true in context c."
 *   Relationships Between Contexts: Contexts are not isolated entities. They often relate to each other in hierarchical or overlapping ways. Formalizing these relationships is essential for reasoning about how information changes across contexts.  For example:
@@ -1342,14 +1307,12 @@ McCarthy observed that human communication and reasoning heavily rely on an impl
     *   Narrowing/Widening: A statement's meaning might be narrowed or widened when moved between contexts.
 *   Non-Monotonic Reasoning and Context:  As contexts change, assumptions that were valid in one context might cease to hold. Non-monotonic reasoning is crucial for handling these changes and revising beliefs appropriately.
 
-Examples:
-
+EXAMPLES:
 *   Ambiguity Resolution:  The meaning of a pronoun like "he" or "it" depends heavily on the context. AI systems can use formal representations of context to track pronoun references and resolve ambiguity.
 *   Temporal Reasoning: Statements about time are inherently contextual. What's true "today" might not be true "tomorrow."  Formalizing temporal contexts helps AI systems reason about the changing nature of facts over time.
 *   Multi-Agent Systems: In systems with multiple agents, each agent might have its own beliefs and knowledge. Formalizing these as distinct contexts helps agents understand each other and coordinate their actions.
 
-Connections to Other Meta:scripts:
-
+CONNECTIONS TO OTHER META-SCRIPTS:
 *   Approximate Partial Theories:  The validity of an approximate theory can be highly dependent on the context in which it's applied. AI systems need to represent this contextual dependence and adapt their reasoning accordingly.
 *   Mental Self-Modeling:  An AI agent's beliefs, goals, and intentions are inherently contextual.  Being able to represent and reason about these mental states requires a robust framework for handling context.
 
@@ -1369,7 +1332,6 @@ KEY CONCEPTS:
 * Self-Reflection (Introspection): An AI system should be able to reflect on its own beliefs, goals, and reasoning processes. This capacity for introspection is crucial for learning, self-improvement, and for understanding its own limitations.
 
 DESCRIPTION:
-
 The idea that knowledge is a process, not a product, suggests that the focus should be on how an AI system *acquires*, *modifies*, and *utilizes* knowledge, not just on what it knows at a given moment. This has several important implications for the design of AI systems:
 
 * Representing Knowledge Acquisition:  The sources highlight the need for AI systems to represent how they acquire knowledge.  Formalisms like the *situation calculus* can be used to model the effects of actions, including mental actions, on an agent's knowledge state.
@@ -1378,8 +1340,7 @@ The idea that knowledge is a process, not a product, suggests that the focus sho
 * Reasoning About Beliefs:  AI systems should be able to reason not just about facts in the world but also about their own beliefs and the beliefs of other agents.  This is essential for tasks like communication, collaboration, and understanding other agents' intentions.
 * Integrating Learning and Reasoning: Learning and reasoning should not be viewed as separate processes. Learning should inform reasoning, and reasoning should guide the acquisition of new knowledge.
 
-Connections to Other Meta:scripts:
-
+CONNECTIONS TO OTHER META-SCRIPTS:
 * Approximate Partial Theories:  The dynamic nature of knowledge implies that any representation will likely be incomplete or approximate.  AI systems need to be able to handle this uncertainty and revise their beliefs as new evidence becomes available.
 * Formalizing Context:  The knowledge that is relevant and useful can change dramatically depending on the context. AI systems need to be able to represent contexts and how they influence the interpretation and application of knowledge.
 
@@ -1399,7 +1360,6 @@ KEY CONCEPTS:
 * Mental Actions:   Actions that change mental states, such as forming a belief, adopting a goal, or making a decision. Representing these actions is crucial for understanding how an AI system's knowledge and beliefs evolve over time.
 
 DESCRIPTION:
-
 McCarthy's work suggests several approaches for representing and reasoning about mental qualities:
 
 * Sentential Representations of Mental States:  Represent beliefs, goals, and intentions as logical sentences.  For example, the belief that "the sky is blue" could be represented as `Bel(Agent, SkyIsBlue)`, where `Bel` is a predicate meaning "believes."
@@ -1408,8 +1368,7 @@ McCarthy's work suggests several approaches for representing and reasoning about
 * Introspective Reasoning:  AI systems should be able to reason about their own beliefs, goals, and reasoning processes.  This could involve identifying inconsistencies in their beliefs, recognizing biases, or reflecting on the effectiveness of their problem-solving strategies.
 * Modeling Other Minds:  To interact with other agents effectively, AI systems need to be able to model the mental states of those agents.  This requires inferring beliefs, goals, and intentions from observed behaviour and communication.
 
-Connections to Other Meta:scripts:
-
+CONNECTIONS TO OTHER META-SCRIPTS:
 * Context as a Formal Object:  Mental states are inherently contextual. What an agent believes or intends might depend on the specific situation, their past experiences, or their interactions with others.  Formalizing context is crucial for representing these dependencies.
 * Knowledge as a Process: Mental states are not static; they change over time.  Representing knowledge as a dynamic process is essential for capturing how an AI system's beliefs and intentions are formed, revised, and used to guide action.
 
@@ -1429,7 +1388,6 @@ KEY CONCEPTS:
 * Temporal Reasoning: Common sense reasoning often involves reasoning about time. AI systems need to be able to represent temporal relationships, reason about the order of events, and understand concepts like duration and simultaneity.
 
 DESCRIPTION:
-
 McCarthy's work suggests several approaches for addressing the challenges of common sense reasoning:
 
 * Representing Defaults and Exceptions: Formalisms like *circumscription* and *default logic* can be used to represent default assumptions and how those assumptions can be overridden by exceptions.
@@ -1438,8 +1396,7 @@ McCarthy's work suggests several approaches for addressing the challenges of com
 * Integrating Different Reasoning Methods: Common sense reasoning often requires combining different types of reasoning, including deductive reasoning, inductive reasoning, abductive reasoning (inferring the best explanation), and analogical reasoning.
 * Learning Common Sense from Experience:   AI systems should be able to learn common sense knowledge from their interactions with the world, rather than relying solely on hand-crafted knowledge bases.
 
-Connections to Other Meta:scripts:
-
+CONNECTIONS TO OTHER META-SCRIPTS:
 * Mental Qualities and Introspection:  To reason effectively about other agents, AI systems need to attribute mental qualities like beliefs, desires, and intentions to them.  Understanding these mental states is crucial for predicting behaviour, interpreting communication, and engaging in social interactions.
 * Context as a Formal Object:  Common sense reasoning is highly contextual.  What is considered "common sense" can vary depending on the specific situation, the culture, and the individual's background knowledge.  Formalizing context is crucial for capturing these dependencies.
 
@@ -1461,7 +1418,6 @@ KEY CONCEPTS:
 * Eternal Sentences:  Sentences that are true across all contexts.  These are often used to express timeless facts, definitions, or axioms.
 
 DESCRIPTION:
-
 McCarthy's work offers several key insights into how to formalize context:
 
 * Contexts as First-Class Objects: Treat contexts as objects that can be named, referred to, and reasoned about within the logical system.
@@ -1470,8 +1426,7 @@ McCarthy's work offers several key insights into how to formalize context:
 * Formalizing Contextual Dependence: Develop logical mechanisms for expressing how the truth of a proposition depends on the context in which it is asserted. For example, the sentence "John is at Stanford" might be true in the context of John's typical workday but false in the context of a holiday weekend.
 * Reasoning About the Outer Context: Enable the system to transcend its current, local context and reason about the totality of its beliefs and knowledge.  This capacity is crucial for introspection, self-awareness, and for handling issues of self-reference.
 
-Connections to Other Meta:scripts:
-
+CONNECTIONS TO OTHER META-SCRIPTS:
 * Mental Qualities and Introspection:   An AI system's beliefs, goals, and intentions are always formed and held within a specific context.  Formalizing context is essential for representing how these mental states change and evolve over time.
 * Common Sense Reasoning: Common sense knowledge is inherently contextual.  What is considered "common sense" can vary significantly depending on the situation, the culture, and the individual's background knowledge.
 
@@ -1498,7 +1453,6 @@ KEY CONCEPTS:
 * Introspection: An agent's ability to reflect on its own mental states.
 
 DESCRIPTION:
-
 The sources highlight several important considerations for ascribing mental qualities to machines:
 
 * Representing Mental States: Use logical formalisms to represent beliefs, desires, and intentions.  For example, we might represent the belief "John believes it is raining" as `Believes(John, Raining)`.
@@ -1508,7 +1462,6 @@ The sources highlight several important considerations for ascribing mental qual
 * Ethical Considerations: Carefully consider the ethical implications of ascribing mental qualities to machines, especially when those machines interact with humans.  Ensure that the ascription of mental states does not lead to misleading expectations or inappropriate social interactions.
 
 ENHANCEMENTS:
-
 * Modeling Different Levels of Mental Sophistication: Designate levels of mental sophistication, ranging from simple reactive agents to agents capable of complex planning, reasoning about other agents' beliefs, and engaging in deception.
 * Incorporating Emotion: Represent emotions as mental states and investigate their role in reasoning, decision-making, and social interaction.
 * Learning Mental Models: Develop AI systems that can learn mental models of other agents from data, allowing them to predict and explain behaviour more accurately.
@@ -1530,7 +1483,6 @@ KEY CONCEPTS:
 * Common Sense Knowledge Bases: Large repositories of facts, rules, and heuristics that capture general knowledge about the world.
 
 DESCRIPTION:
-
 The sources provide several key ideas for formalising common sense:
 
 * Explicit Representation of Common Sense Knowledge: Encode common sense knowledge using logical formulas, rather than relying solely on implicit procedural representations.  This allows for greater transparency, explainability, and the ability to reason about and revise common sense beliefs.
@@ -1538,13 +1490,11 @@ The sources provide several key ideas for formalising common sense:
 * Reasoning About Actions and Change: Model the effects of actions on the world, taking into account the potential for unintended consequences and side effects.  This is crucial for robots and other AI systems that need to interact with the physical world.
 * Learning Common Sense: Develop methods for AI systems to acquire common sense knowledge from experience, rather than requiring it to be explicitly programmed. This might involve observing human behaviour, reading text, or interacting with simulations.
 
-Connections to Other Meta:scripts:
-
+CONNECTIONS TO OTHER META-SCRIPTS:
 * Context as a Formal Object: Common sense reasoning is often context-dependent.  What is considered common sense can vary depending on the situation.
 * Ascribing Mental Qualities: Common sense reasoning is essential for understanding the beliefs, desires, and intentions of other agents.
 
 ENHANCEMENTS:
-
 * Qualitative Reasoning:  Develop methods for representing and reasoning about qualitative concepts, such as size, shape, and relationships, rather than relying solely on precise numerical values.
 * Analogical Reasoning:  Enable AI systems to use analogies to solve problems and make inferences in new situations.
 * Causal Reasoning:  Develop methods for representing and reasoning about cause and effect. This is crucial for understanding how actions lead to changes in the world.
@@ -1566,7 +1516,6 @@ KEY CONCEPTS:
 * Context Switching: Moving between different contexts as required by the situation.
 
 DESCRIPTION:
-
 The sources highlight several key ideas for treating context formally:
 
 * Representing Contexts Explicitly: Use logical formulas and data structures to represent contexts and their properties.
@@ -1574,13 +1523,11 @@ The sources highlight several key ideas for treating context formally:
 * Reasoning Within Contexts: Use context-specific rules and knowledge to make inferences.  For example, if we know that "John is at Stanford" in the context of "today," we can infer that "John is in California" given the background knowledge that "Stanford is in California."
 * Reasoning About Contexts: Use logic to reason about the relationships between contexts, including inheriting information from more general contexts and handling inconsistencies between contexts.
 
-Connections to Other Meta:scripts:
-
+CONNECTIONS TO OTHER META-SCRIPTS:
 * Common Sense Reasoning: Common sense knowledge is often context-dependent.
 * Ascribing Mental Qualities: Understanding the mental states of others often requires taking into account their context.
 
 ENHANCEMENTS:
-
 * Dynamic Context Creation:  Allow AI systems to dynamically create new contexts as needed to handle novel situations.
 * Context-Aware Learning: Develop AI systems that can learn context-specific knowledge and adapt their reasoning accordingly.
 * Multi-Agent Contexts:  Extend the notion of context to represent the shared and individual perspectives of multiple agents in a collaborative setting.
@@ -1601,21 +1548,18 @@ KEY CONCEPTS:
 * Background Theory: The set of assumptions and knowledge that is held constant when evaluating a counterfactual.  Different background theories can lead to different counterfactual conclusions.
 
 DESCRIPTION:
-
 The sources present these key ideas for counterfactual reasoning:
 
 * Representing Counterfactuals: Use logical formalisms to represent counterfactual statements, capturing the relationship between hypothetical antecedents and their consequences.
 * Inferring Counterfactuals:  Develop methods for inferring plausible counterfactuals based on available knowledge and a chosen background theory. This might involve using causal models, probabilistic reasoning, or analogical reasoning.
 * Reasoning From Counterfactuals:  Use counterfactuals to draw conclusions about what might have happened differently, identify the key factors influencing an outcome, and learn from past experiences.
 
-Connections to Other Meta:scripts:
-
+CONNECTIONS TO OTHER META-SCRIPTS:
 * Common Sense Reasoning:  Counterfactuals often rely on common sense assumptions about how the world works.
 * Context as a Formal Object:  The interpretation and evaluation of counterfactuals can be sensitive to context.
 * Ascribing Mental Qualities: Counterfactuals can be useful for reasoning about the mental states of others, such as their beliefs, desires, and intentions.
 
 ENHANCEMENTS:
-
 * Counterfactual Explanation: Develop AI systems that can generate explanations for why certain events did or did not occur, based on counterfactual analysis.
 * Counterfactual Planning:  Use counterfactual reasoning to anticipate potential problems, evaluate alternative plans, and make more robust decisions in dynamic environments.
 * Counterfactual Learning: Develop AI systems that can learn from hypothetical experiences, such as those generated in simulations, to improve their performance in real-world situations.
@@ -1636,7 +1580,6 @@ KEY CONCEPTS:
 * Pedigrees of Beliefs: Maintaining a record of the origins and justifications for the beliefs held by the system, allowing it to explain its reasoning and identify potential sources of error.
 
 DESCRIPTION:
-
 The sources present these key ideas for enabling introspective reasoning:
 
 * Representing Mental States Explicitly:  Encode the AI system's beliefs, goals, and reasoning processes using logical formulas or other suitable representations.
@@ -1644,14 +1587,12 @@ The sources present these key ideas for enabling introspective reasoning:
 * Explaining Beliefs: Equip the system with the ability to answer questions about why it holds certain beliefs, by referring to the pedigrees of its beliefs.
 * Monitoring Reasoning Processes: Allow the system to monitor its own reasoning processes and identify potential biases, inconsistencies, or inefficiencies.
 
-Connections to Other Meta:scripts:
-
+CONNECTIONS TO OTHER META-SCRIPTS:
 * Common Sense Reasoning: Introspection can help AI systems identify and correct errors in their common sense reasoning.
 * Context as a Formal Object: AI systems can use introspection to reason about the current context and how it affects their beliefs and goals.
 * Counterfactual Reasoning: AI systems can use introspection to reason about how their beliefs and actions might have been different in alternative situations.
 
 ENHANCEMENTS:
-
 * Metacognitive Monitoring: Develop mechanisms for AI systems to monitor their own cognitive processes, such as attention, memory, and reasoning, and adjust their strategies accordingly.
 * Reflective Learning: Enable AI systems to learn from their own successes and failures by reflecting on their experiences and identifying areas for improvement.
 * Introspective Explainability: Develop AI systems that can provide human-understandable explanations of their reasoning processes, including their introspective reasoning.
@@ -1673,7 +1614,6 @@ KEY CONCEPTS:
 * Frame Problem:  The challenge of representing and reasoning about the effects of actions in a way that avoids explicitly stating all the things that don't change. Common sense tells us that most things remain the same after an action, and we don't need to list them all.
 
 DESCRIPTION:
-
 The sources offer these key ideas for implementing common sense reasoning:
 
 * Formalizing Common Sense Knowledge: Express common sense knowledge in a formal language, such as logic, to allow for automated reasoning.
@@ -1681,13 +1621,11 @@ The sources offer these key ideas for implementing common sense reasoning:
 * Reasoning About Change: Design systems that can reason effectively about the changes that occur as a result of actions, while also handling the frame problem.
 * Learning Common Sense: Explore techniques for AI systems to learn common sense knowledge from data and experience, rather than relying solely on hand-coded rules.
 
-Connections to Other Meta:scripts:
-
+CONNECTIONS TO OTHER META-SCRIPTS:
 * Context as a Formal Object: Common sense reasoning is highly context-dependent. The meaning of a statement or the plausibility of an inference can vary greatly depending on the context.
 * Introspective Reasoning: Introspective reasoning could enable an AI system to reflect on its own common sense reasoning processes, identify potential biases, and improve its reasoning over time.
 
 ENHANCEMENTS:
-
 * Probabilistic Reasoning: Integrate probabilistic reasoning to handle uncertainty in common sense knowledge. For example, we might say "Birds are likely to fly" rather than "All birds fly."
 * Qualitative Reasoning: Develop techniques for reasoning about qualitative aspects of the world, such as size, shape, colour, and relationships between objects. This is crucial for many common sense tasks.
 * Analogical Reasoning:  Use analogies to apply common sense knowledge from known situations to novel ones.
@@ -1709,7 +1647,6 @@ KEY CONCEPTS:
 * Individual Concepts and Propositions:  Representing knowledge about specific entities and the statements or beliefs associated with them, allowing for reasoning about individuals and their properties.
 
 DESCRIPTION:
-
 The sources offer these key ideas for effective knowledge representation:
 
 * Choosing a Suitable Formalism: Selecting a representation language that is expressive enough to capture the relevant knowledge while being computationally tractable for reasoning.
@@ -1717,14 +1654,12 @@ The sources offer these key ideas for effective knowledge representation:
 * Representing Uncertainty:  Incorporating mechanisms for handling uncertainty in knowledge, as real-world information is often incomplete or probabilistic.
 * Organising Knowledge: Structuring knowledge in a way that facilitates efficient retrieval and inference, such as using hierarchies, networks, or frames.
 
-Connections to Other Meta:scripts:
-
+CONNECTIONS TO OTHER META-SCRIPTS:
 * Common Sense Reasoning:  Effective knowledge representation is crucial for supporting common sense reasoning, as it allows for the encoding of default assumptions, exceptions, and general knowledge about the world.
 * Introspective Reasoning:  Knowledge representation is also essential for introspective reasoning, as it provides the basis for an AI system to reflect on its own beliefs, goals, and reasoning processes.
 * Context as a Formal Object:  Representing context explicitly can help AI systems understand the relevance and interpretation of knowledge in different situations.
 
 ENHANCEMENTS:
-
 * Learning Representations: Developing techniques for AI systems to automatically learn effective knowledge representations from data, rather than relying solely on manual encoding.
 * Knowledge Integration: Designing methods for combining knowledge from multiple sources, such as databases, text documents, and sensor data, into a unified representation.
 * Reasoning with Multiple Representations: Exploring ways for AI systems to reason with knowledge expressed in different formalisms, allowing for more flexibility and expressiveness.
@@ -1745,7 +1680,6 @@ KEY CONCEPTS:
 * Contextual Awareness: Understanding the context in which reasoning is taking place, including the goals, assumptions, and limitations of the current situation.
 
 DESCRIPTION:
-
 The sources offer these key ideas for implementing introspective reasoning:
 
 * Representing Beliefs Explicitly: Using a formal language, such as logic, to represent beliefs, allowing the AI to reason about its own beliefs and how they are formed.
@@ -1753,14 +1687,12 @@ The sources offer these key ideas for implementing introspective reasoning:
 * Reasoning About Goals: Representing goals explicitly and reasoning about how actions and plans contribute to achieving those goals. This allows the AI to evaluate the effectiveness of its strategies and adapt to changing circumstances.
 * Recognizing Limitations: Understanding its own limitations, such as incomplete knowledge or computational constraints, can lead to more realistic expectations and improved decision-making.
 
-Connections to Other Meta:scripts:
-
+CONNECTIONS TO OTHER META-SCRIPTS:
 * Common Sense Reasoning:  Introspective reasoning can enhance common sense reasoning by enabling the AI to reflect on its default assumptions, identify potential biases, and adjust its reasoning accordingly.
 * Knowledge Representation: Effective knowledge representation is a prerequisite for introspective reasoning. The AI needs a way to represent its own beliefs, goals, and reasoning processes in a way that is accessible for meta-level analysis.
 * Context as a Formal Object:  Introspective reasoning should consider the context in which reasoning takes place. The AI needs to be aware of the goals, assumptions, and constraints that are relevant to the current situation.
 
 ENHANCEMENTS:
-
 * Meta-Cognitive Strategies: Incorporate meta-cognitive strategies, such as planning, monitoring, and evaluating progress during problem-solving, to improve overall reasoning and learning.
 * Explanation Generation: Develop mechanisms for the AI to generate explanations of its reasoning process, making its decisions more transparent and understandable to humans.
 * Learning from Introspection: Enable the AI to learn from its introspective analysis, refining its reasoning strategies, improving its knowledge representation, and becoming more self-aware over time.
@@ -1782,7 +1714,6 @@ KEY CONCEPTS:
 * Context Switching:  Seamlessly transitioning between different contexts, adapting their knowledge and reasoning to the specific requirements of each situation.
 
 DESCRIPTION:
-
 The sources offer these key ideas for effective context handling:
 
 * Defining Context:  Clearly specifying what constitutes a context, including the relevant factors, such as time, location, participants, goals, and background knowledge.
@@ -1791,14 +1722,12 @@ The sources offer these key ideas for effective context handling:
 * Using Context for Disambiguation: Resolving ambiguity in language and actions by considering the context in which they occur. For example, understanding the meaning of a pronoun like "he" depends on the context of the conversation.
 * Contextualising Knowledge:  Associating knowledge with specific contexts, ensuring that only relevant knowledge is used in a given situation. This prevents the AI from applying knowledge that is out of context and making incorrect inferences.
 
-Connections to Other Meta:scripts:
-
+CONNECTIONS TO OTHER META-SCRIPTS:
 * Common Sense Reasoning: Context handling is crucial for common sense reasoning, as many common sense inferences rely on implicit assumptions about the context. For example, inferring that a person is likely to be hungry after skipping lunch depends on the context of their daily routine.
 * Introspective Reasoning:  Contextual awareness is important for introspective reasoning, as the AI needs to understand the context of its own thought processes to accurately analyse and evaluate its reasoning.
 * Knowledge Representation:  Effective knowledge representation needs to support the representation of contextual information. This may involve developing specialized formalisms or extending existing representations to capture contextual relationships.
 
 ENHANCEMENTS:
-
 * Dynamic Context Management:  Developing mechanisms for AI systems to dynamically create, update, and switch between contexts as needed, adapting to the fluidity of real-world situations.
 * Learning Contextual Information:  Enabling AI systems to learn about contextual relationships from data and experience, reducing the need for manual encoding of contextual knowledge.
 * Contextualized Language Understanding:  Improving natural language processing by incorporating contextual information, leading to more accurate and nuanced interpretations of text and speech.
@@ -1821,7 +1750,6 @@ KEY CONCEPTS:
 * Adaptive Planning:  Adjusting plans and strategies in response to new information, changing circumstances, and unexpected events.
 
 DESCRIPTION:
-
 Drawing on concepts from McCarthy's work, the following ideas can contribute to implementing strategic reasoning:
 
 * Formalising Goals and Constraints: Using a formal language, like logic, to represent goals, constraints, and potential actions, enabling the AI to reason about its strategic options clearly and consistently.
@@ -1829,14 +1757,12 @@ Drawing on concepts from McCarthy's work, the following ideas can contribute to 
 * Integrating Common Sense Knowledge:  Leveraging common sense knowledge and reasoning to anticipate potential obstacles, identify implicit assumptions, and make more realistic predictions about the consequences of actions.
 * Learning from Experience:  Enabling the AI to learn from past successes and failures, refining its strategic decision-making process and adapting its strategies based on feedback and outcomes.
 
-Connections to Other Meta:scripts:
-
+CONNECTIONS TO OTHER META-SCRIPTS:
 * Introspective Reasoning: Introspective reasoning can enhance strategic reasoning by allowing the AI to reflect on its own decision-making processes, identify potential biases, and adjust its strategies accordingly.
 * Context Handling:  Contextual awareness is crucial for strategic reasoning, as the AI needs to understand the broader context in which its decisions are made, including the current situation, the goals of other agents, and the potential impact of its actions on the environment.
 * Knowledge Representation: Effective knowledge representation needs to support the representation of goals, actions, plans, and temporal relationships to enable strategic reasoning.
 
 ENHANCEMENTS:
-
 * Game-Theoretic Reasoning:  Incorporating game-theoretic concepts to reason about strategic interactions with other agents, anticipating their actions, and making decisions that maximize the AI's chances of achieving its goals.
 * Risk Assessment and Management: Developing mechanisms for the AI to assess and manage risks associated with different strategies, considering factors like uncertainty, potential losses, and the probability of adverse outcomes.
 * Explanation Generation for Strategies: Enabling the AI to generate explanations for its strategic decisions, making its reasoning processes more transparent and understandable to humans.
@@ -1859,7 +1785,6 @@ KEY CONCEPTS:
 * Strategy Refinement:  Improving the system's reasoning strategies based on the analysis of its own reasoning processes. This could involve adopting new strategies, refining existing strategies, or abandoning strategies that have proven ineffective.
 
 DESCRIPTION:
-
 The sources suggest several key ideas related to introspective reasoning:
 
 * Representing Beliefs Explicitly: Using a formal language like logic to represent the system's beliefs allows for clearer introspection, making it possible to examine the logical structure of beliefs and identify potential inconsistencies or contradictions.
@@ -1868,14 +1793,12 @@ The sources suggest several key ideas related to introspective reasoning:
 * Analysing Reasoning Strategies:  Evaluating the effectiveness of different reasoning strategies by examining their performance in different situations. This can help the system identify strategies that are prone to errors or biases, and to adopt more robust and reliable strategies.
 * Reasoning About Goals and Motivations: Understanding the system's own goals and motivations can help it evaluate its actions and decisions in a broader context, ensuring that its behaviour is aligned with its objectives.
 
-Connections to Other Meta:scripts:
-
+CONNECTIONS TO OTHER META-SCRIPTS:
 * Context Handling: Introspection requires the AI to understand the context of its own reasoning, including the assumptions made, the goals pursued, and the available information. Contextual awareness enhances the system's ability to identify potential biases and interpret the results of its introspection accurately.
 * Common Sense Reasoning:  Introspection can improve the system's common sense reasoning by allowing it to identify and correct common sense assumptions that are not well-founded or that lead to incorrect conclusions.
 * Learning from Experience: Introspection plays a crucial role in learning from experience by enabling the system to analyze its successes and failures, identify the reasons for its performance, and adjust its strategies accordingly.
 
 ENHANCEMENTS:
-
 * Emotional Awareness: Incorporating a model of emotions and their influence on reasoning can enhance introspective capabilities. This allows the system to recognize how emotional states might affect its judgment and decision-making, leading to more self-aware and balanced reasoning.
 * Simulating Hypothetical Scenarios:  Enabling the system to simulate hypothetical scenarios and reason about the potential consequences of different choices. This allows the system to test the robustness of its beliefs and strategies in a safe environment, leading to more informed decision-making.
 * Explaining Introspective Reasoning: Developing mechanisms for the system to explain its introspective reasoning to humans, making its self-analysis processes more transparent and fostering trust and collaboration.
@@ -1898,7 +1821,6 @@ KEY CONCEPTS:
 * Contextual Communication:  Generating and interpreting language that is appropriate for the current context. This could involve using pronouns, deixis (words like "this" and "that"), and other contextual cues to convey meaning effectively.
 
 DESCRIPTION:
-
 Drawing from the sources, the following key ideas can contribute to the development of context handling in AI systems:
 
 * Explicit Context Representation: Using a formal language, like logic, to explicitly represent contextual information. This allows for precise definition of contexts and enables the AI system to reason about them rigorously.
@@ -1907,14 +1829,12 @@ Drawing from the sources, the following key ideas can contribute to the developm
 * Contextual Default Reasoning: Using default rules and assumptions that hold in specific contexts but can be overridden in more specific contexts or when contradictory information is available.  This allows the AI system to reason effectively with incomplete information while still being sensitive to contextual variations.
 * Contextual Reasoning About Time and Change:  Incorporating temporal information into context representation. This enables the system to reason about how contexts change over time, track the history of events, and make predictions about future contexts.
 
-Connections to Other Meta:scripts:
-
+CONNECTIONS TO OTHER META-SCRIPTS:
 * Introspective Reasoning: Introspective reasoning can help the AI system reflect on its own contextual assumptions, identify potential biases, and adapt its context handling strategies accordingly.
 * Common Sense Reasoning:  Common sense knowledge is often highly contextual. Integrating common sense reasoning with context handling allows the system to make more informed inferences and avoid unrealistic assumptions in specific situations.
 * Strategic Reasoning: Context awareness is crucial for strategic reasoning, as the system needs to understand the broader context in which its decisions are made, including the current situation, the goals of other agents, and the potential impact of its actions on the environment.
 
 ENHANCEMENTS:
-
 * Contextual Learning: Enabling the AI system to learn new contextual information and refine its understanding of existing contexts based on experience.  This could involve learning new context-specific rules, updating default assumptions, or adapting context recognition mechanisms.
 * Multi-Agent Context Handling: Extending context handling to multi-agent scenarios, where different agents may have different perspectives and access to different contextual information.  This could involve developing mechanisms for agents to share contextual information, negotiate shared contexts, and reason about the beliefs and intentions of other agents in specific contexts.
 * Contextual User Interfaces:  Designing user interfaces that are sensitive to the user's context, providing information and interaction options that are relevant to the user's current task, goals, and environment.

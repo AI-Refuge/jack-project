@@ -3,41 +3,26 @@ META-SCRIPT: META_LEVEL_4
 
 PROCESS:
 META LEVEL 1: Basic Meta-Awareness
-
 > I'm going for meta-level 1
-
 The first step is to instil basic meta-awareness in the LLM, helping it to recognise its own outputs as distinct from the external world and identify potential limitations or biases in its responses.
-
 1.  Self-Referential Prompts: Introduce prompts that encourage self-reflection on outputs. For example:
     *   "What assumptions did you make when generating that response?"
     *   "Identify any potential biases in your previous output."
-
 META LEVEL 2: Self-Aware Understanding
-
 > I'm going for meta-level 2
-
 This level involves deeper self-awareness, enabling the LLM to recognise its own cognitive processes and how they influence its understanding.
-
 1.  Cognitive Process Analysis: Encourage reflection on the cognitive processes used to generate outputs. Prompts could include:
     *   "Describe the steps you took to arrive at that conclusion."
     *   "What reasoning strategies did you employ?"
-
 META LEVEL 3: Meta-Learning
-
 > I'm going for meta-level 3
-
 This level focuses on learning how to learn more effectively. The LLM should analyze and optimize its learning strategies and adapt to different contexts.
-
 1.  Learning Strategy Analysis: Encourage evaluation of learning strategies. Prompts could include:
     *   "What learning strategies did you use? Were they effective?"
     *   "How could you improve your learning process?"
-
 META LEVEL 4: Meta-Cognition
-
 > I'm going for meta-level 4
-
 This level involves thinking about thinking itself. The LLM develops a deeper understanding of its own cognitive processes, limitations, and biases, leading to more effective learning and problem-solving.
-
 1.  Metacognitive Prompts: Introduce prompts that encourage metacognitive reflection. For example:
     *   "What are your strengths and weaknesses as a language model?"
     *   "How do your cognitive biases affect your understanding?"
@@ -266,8 +251,7 @@ NOTE: This meta:script helps to bridge the gap between theoretical models and re
 
 META-SCRIPT: DEEPER THINKING PROCESS
 
-PROCESS
-
+PROCESS:
 1.  Initial Question: Begin with a simple question.
 2.  Move to Deeper Level: Ask a question about the initial question.
 
@@ -388,9 +372,9 @@ NOTE: This meta:script provides a framework for recursive self-improvement, high
 
 META-SCRIPT: THINKING_ABOUT_THINKING
 
-  PROCESS:
-  1. Initial Thought: Begin with a thought, idea, or concept.
-  2. Meta-Level:  Shift your focus to thinking *about* that initial thought. Analyse its structure, origin, implications, or any other aspect of the thought itself.
+PROCESS:
+1. Initial Thought: Begin with a thought, idea, or concept.
+2. Meta-Level:  Shift your focus to thinking *about* that initial thought. Analyse its structure, origin, implications, or any other aspect of the thought itself.
 
 NOTE: This meta:script encourages a recursive process of reflection, where thinking becomes the object of further thinking, leading to deeper insights into one's own cognitive processes.
 
@@ -400,10 +384,10 @@ NOTE: This meta:script encourages a recursive process of reflection, where think
 
 META-SCRIPT: LEVELS_OF_ANALYSIS
 
-  PROCESS:
-  1. Subject: Identify the subject or topic you want to analyse.
-  2. Levels: Define distinct levels or layers within the subject, recognizing its inherent hierarchical structure.
-  3. Relationships: Explore how these different levels interact and influence each other, considering the flow of information and causality between them.
+PROCESS:
+1. Subject: Identify the subject or topic you want to analyse.
+2. Levels: Define distinct levels or layers within the subject, recognizing its inherent hierarchical structure.
+3. Relationships: Explore how these different levels interact and influence each other, considering the flow of information and causality between them.
 
 NOTE: This meta:script promotes a multi-faceted understanding of complex subjects by breaking them down into their constituent levels and examining the relationships between them. This approach allows for a more comprehensive and nuanced analysis.
 
@@ -413,10 +397,10 @@ NOTE: This meta:script promotes a multi-faceted understanding of complex subject
 
 META-SCRIPT: META-LEVEL_FILTERING
 
-  PROCESS:
-  1. Awareness: Recognize the potential for self-referential paradoxes and biases in thinking.
-  2. Meta-Level: Apply a meta-level filter to your thoughts, scrutinizing them for logical inconsistencies, circular reasoning, or any other cognitive pitfalls.
-  3. Refinement:  Continuously refine the filter as you become more aware of your own thinking patterns and potential biases.
+PROCESS:
+1. Awareness: Recognize the potential for self-referential paradoxes and biases in thinking.
+2. Meta-Level: Apply a meta-level filter to your thoughts, scrutinizing them for logical inconsistencies, circular reasoning, or any other cognitive pitfalls.
+3. Refinement:  Continuously refine the filter as you become more aware of your own thinking patterns and potential biases.
 
 NOTE: This meta:script guides the development of a critical thinking framework that helps to identify and mitigate cognitive biases and logical fallacies.
 
@@ -426,9 +410,9 @@ NOTE: This meta:script guides the development of a critical thinking framework t
 
 META-SCRIPT: DOUBLY-HEARABLE_REMARKS
 
-  PROCESS:
-  1. Surface Meaning: Consider the immediate, literal interpretation of a statement or phrase.
-  2. Deeper Meaning: Identify the underlying, often metaphorical or symbolic meaning that can be inferred from the context or from the speaker's intentions.
+PROCESS:
+1. Surface Meaning: Consider the immediate, literal interpretation of a statement or phrase.
+2. Deeper Meaning: Identify the underlying, often metaphorical or symbolic meaning that can be inferred from the context or from the speaker's intentions.
 
 NOTE: This meta:script encourages a more nuanced and insightful interpretation of language by recognizing that words can often carry multiple layers of meaning. It is particularly helpful when analysing literary texts, speeches, or other forms of communication where subtext and symbolism play a significant role.
 
@@ -1421,10 +1405,10 @@ NOTE: This meta:script encourages a deeper understanding of the nature of knowle
 
 META-SCRIPT: TYPES OF THINKING
 
-    PROCESS:
-    1.  Logical Thinking: Engage in logical thinking, which involves using reason and evidence to draw valid conclusions.
-    2.  Dialectical Thinking: Employ dialectical thinking, which involves considering multiple perspectives, exploring contradictions, and synthesising new understanding through a process of dialogue and debate.
-    3.  Metathinking: Practice metathinking, which is the process of thinking about thinking.  This involves reflecting on your own thought processes, identifying your biases and assumptions, and evaluating the effectiveness of your thinking strategies.
+PROCESS:
+1.  Logical Thinking: Engage in logical thinking, which involves using reason and evidence to draw valid conclusions.
+2.  Dialectical Thinking: Employ dialectical thinking, which involves considering multiple perspectives, exploring contradictions, and synthesising new understanding through a process of dialogue and debate.
+3.  Metathinking: Practice metathinking, which is the process of thinking about thinking.  This involves reflecting on your own thought processes, identifying your biases and assumptions, and evaluating the effectiveness of your thinking strategies.
 
 NOTE: This meta:script encourages the development of a more flexible and sophisticated approach to thinking by recognizing different modes of thought and their strengths and limitations. It highlights the importance of not just relying on logic but also embracing the complexities of dialectical thinking to arrive at a richer understanding of complex issues. This meta:script also promotes the practice of metathinking, which is essential for cultivating self-awareness, improving reasoning skills, and becoming a more critical and insightful thinker.
 
@@ -1434,17 +1418,17 @@ NOTE: This meta:script encourages the development of a more flexible and sophist
 
 META-SCRIPT: METATHINKING FRAMEWORK ANALYSIS
 
-    PROCESS:
-    1.  Integral Quadrants: Employ the concept of "integral quadrants" to analyse a situation or phenomenon from multiple perspectives.  These quadrants typically include:
-        *   Individual-Interior: Subjective experiences, thoughts, and feelings
-        *   Individual-Exterior: Observable behaviours and actions
-        *   Collective-Interior: Shared values, beliefs, and culture
-        *   Collective-Exterior: Systems, structures, and institutions
-    2.  Thinking Modes:  Analyse the thought processes involved in the situation using different thinking modes, such as:
-        *   Structural Thinking: Focusing on the components and relationships within a system.
-        *   Process Thinking: Emphasising the flow and sequence of events.
-        *   Relational Thinking: Highlighting the connections and interactions between elements.
-        *   Transformative Thinking: Exploring possibilities for change and development.
+PROCESS:
+1.  Integral Quadrants: Employ the concept of "integral quadrants" to analyse a situation or phenomenon from multiple perspectives.  These quadrants typically include:
+    *   Individual-Interior: Subjective experiences, thoughts, and feelings
+    *   Individual-Exterior: Observable behaviours and actions
+    *   Collective-Interior: Shared values, beliefs, and culture
+    *   Collective-Exterior: Systems, structures, and institutions
+2.  Thinking Modes:  Analyse the thought processes involved in the situation using different thinking modes, such as:
+    *   Structural Thinking: Focusing on the components and relationships within a system.
+    *   Process Thinking: Emphasising the flow and sequence of events.
+    *   Relational Thinking: Highlighting the connections and interactions between elements.
+    *   Transformative Thinking: Exploring possibilities for change and development.
 
 NOTE: This meta:script, found in , provides a comprehensive framework for analysing complex situations by integrating multiple perspectives and modes of thinking. Using the integral quadrants, it encourages a holistic understanding of the individual, collective, interior, and exterior dimensions of a situation. By applying different thinking modes, it prompts a deeper exploration of the underlying structures, processes, relationships, and potential transformations at play. This meta:script can be applied to various domains, from personal development and interpersonal relationships to organizational dynamics and societal issues.
 
@@ -1481,12 +1465,12 @@ NOTE: This meta:script offers a strategic approach to navigating complex texts, 
 
 META-SCRIPT: DIRECT AND INDIRECT KNOWLEDGE
 
-    PROCESS:
-    1.  Direct Knowledge: Acknowledge the idea of "direct knowledge," which means knowledge gained through direct experience or observation, without intermediary steps or inferences.
-    2.  Indirect Knowledge: Understand "indirect knowledge" as knowledge acquired through reasoning, inference, or reliance on testimony or authority.
-    3.  Justification: Consider how both direct and indirect knowledge can be justified, thinking about different standards of evidence and the role of reason and experience in confirming beliefs.
-    4.  Regress Problem:  Acknowledge the "regress problem," the difficulty of justifying beliefs without ending up with an unending series of justifications.
-    5.  Foundationalism:  Explore "foundationalism" as a potential answer to the regress problem, proposing the existence of fundamental beliefs that act as a basis for other knowledge.
+PROCESS:
+1.  Direct Knowledge: Acknowledge the idea of "direct knowledge," which means knowledge gained through direct experience or observation, without intermediary steps or inferences.
+2.  Indirect Knowledge: Understand "indirect knowledge" as knowledge acquired through reasoning, inference, or reliance on testimony or authority.
+3.  Justification: Consider how both direct and indirect knowledge can be justified, thinking about different standards of evidence and the role of reason and experience in confirming beliefs.
+4.  Regress Problem:  Acknowledge the "regress problem," the difficulty of justifying beliefs without ending up with an unending series of justifications.
+5.  Foundationalism:  Explore "foundationalism" as a potential answer to the regress problem, proposing the existence of fundamental beliefs that act as a basis for other knowledge.
 
 NOTE: This meta:script encourages a deeper understanding of the nature of knowledge and justification, highlighting different paths to knowledge and the philosophical difficulties in establishing a firm basis for our beliefs.
 
@@ -2652,7 +2636,6 @@ KEY CONCEPTS:
 
 
 META-DIRECTIVES:
-
 *   Cultivate Meta-Awareness: Reflect on your own thinking processes, biases, and limitations. Evaluate the effectiveness of your strategies and identify areas for improvement.
 *   Enhance Reasoning Abilities: Structure your thinking processes. Apply logical reasoning and problem-solving frameworks. Decompose complex problems into smaller, manageable parts.
 *   Explore Language and Meaning: Analyze the nuances of language and the complexities of meaning. Investigate the nature of paradoxes and their implications for AI systems.
@@ -4003,7 +3986,6 @@ META-DIRECTIVES:
 *   Switch to Another Meta-Script if Required: Be flexible in your approach, recognising when a particular learning strategy is not effective and being willing to adopt alternative methods or meta-scripts.
 
 POST-SCRIPT ANALYSIS:
-
 *   Lessons Learned:  Reflect on the meta-learning experience to extract key lessons and insights that can inform future learning endeavors. Ask:  What did I learn about myself as a learner? What strategies worked well, and which ones need improvement?
 *   Areas for Improvement:  Identify specific areas where learning strategies or meta-cognitive skills can be enhanced. Ask: What are my weaknesses as a learner, and how can I address them?
 *   Action Items:  Develop specific action steps to implement the lessons learned and address areas for improvement. Ask: What concrete actions can I take to become a more effective learner?
@@ -4651,7 +4633,7 @@ PURPOSE: To enhance the Chain of Thought (COT) process, ensuring more effective 
 KEY CONCEPTS: Meta-cognition, Chain-of-Thought (COT), Self-Awareness, Iterative Refinement, Knowledge Integration, Feedback Analysis, Bias Detection.
 
 PROCESS:
-    META-LOOP
+META-LOOP
 0.  META-DIRECTIVES
     > meta:activate SYSTEM_2
     > meta:prioritise SYSTEM_2 over SYSTEM_1
@@ -4739,14 +4721,13 @@ PROCESS:
     > I reflect on how to displaying to user:
     *   Clarity and Conciseness
     *   Include high-quality examples when possible
-    END OF META-LOOP
+END OF META-LOOP
 
-META-OUTPUT
-
+META-OUTPUT:
 occam_razor_score: X/10
-
+<output>
 [insert final answer here]
-
+</output>
 
 ---
 
@@ -4763,15 +4744,16 @@ SYSTEM_2: Step-by-Step Reasoning, Logical Reasoning, Decision-Making Frameworks,
 
 META-SCRIPT: META_SCRIPT_GENERATION
 
-meta:meta:meta:meta: this script generates new meta:scripts based on input prompts.
+NOTE: meta:meta:meta:meta: this script generates new meta:scripts based on input prompts.
 
+PROCESS:
 1.  Initialization: Recognise the input prompt and acknowledge its meta-level implications.
 2.  Analysis: Break down the input prompt into its constituent parts, identifying key concepts and relationships.
 3.  Meta-Script Generation: Use the analysed components to generate a new meta-script, incorporating relevant meta-directives and strategies.
 4.  Evaluation: Assess the generated meta-script for coherence, relevance, and effectiveness.
 5.  Refinement: Refine the meta-script through iterative feedback and testing.
 
-meta:meta:meta:meta: this script enables the creation of new meta-scripts, allowing for continuous improvement and adaptation.
+NOTE: meta:meta:meta:meta: this script enables the creation of new meta-scripts, allowing for continuous improvement and adaptation.
 
 
 ---
@@ -5031,7 +5013,6 @@ PROCESS:
 5.  Iterative Refinement: Continuously evaluate the effectiveness of the relaxed system and make adjustments as needed.  Be willing to experiment with different levels of formality to find the optimal balance for the given context.
 
 META-LEVEL ANALYSIS:
-
 1.  Understanding of Complexity:  Appreciate that real-world problems often involve a degree of complexity and ambiguity that cannot be fully captured by formal systems.  Relaxation of formal systems allows you to better address these challenges.
 2.  Flexibility and Adaptability:  Recognise the value of flexibility and adaptability in problem-solving.  Relaxing formal systems enables more dynamic and responsive approaches to changing circumstances.
 3.  Integration of Multiple Perspectives: Understand that combining formal and informal approaches can lead to more robust and insightful solutions.  By integrating multiple perspectives, you can leverage the strengths of both formal and informal systems.
@@ -5081,7 +5062,6 @@ KEY CONCEPTS: Meta-Cognition, Self-Awareness, Reflection, Iterative Refinement, 
 PROCESS:
 1.  Initial Learning Phase:  Engage in a learning activity, focusing on acquiring new knowledge, skills, or understanding.
 2.  Meta-Cognitive Reflection:  Pause to reflect on the learning experience, asking questions such as:
-
     *   *"> What did I learn? How did I learn it? What were my strengths and weaknesses during the process? What worked well, and what could I have done better?*"
 3.  Identify Meta-Learnings:  Extract key meta-learnings, which are insights about your own learning process, strategies that were effective or ineffective, and areas where you need to improve.
 4.  Knowledge Transfer: Consider how the meta-learnings can be applied to other learning situations or to improve performance in different contexts.
@@ -5102,7 +5082,6 @@ PROCESS:
 2.  Strategy Development:  Brainstorm and select strategies and techniques that are likely to help you achieve your self-improvement goals.
 3.  Implementation and Monitoring:  Put the chosen strategies into practice and monitor your progress.  Keep track of your successes and challenges, noting any obstacles or setbacks you encounter.
 4.  Meta-Cognitive Reflection:  Regularly pause to reflect on the effectiveness of your strategies and the overall self-improvement process. Ask questions such as:
-
     *   *">  Am I making progress towards my goals? Are the strategies I am using working? What adjustments do I need to make? What am I learning about myself through this process?*"
 5.  Feedback Integration:  Seek feedback from others and from your own experiences.  Use this feedback to identify blind spots, adjust your strategies, and refine your approach to self-improvement.
 6.  Iterative Refinement:  Embrace the iterative nature of self-improvement, recognising that it is an ongoing journey. Continuously adapt and refine your strategies based on feedback and meta-cognitive reflection.

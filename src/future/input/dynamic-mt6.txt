@@ -209,46 +209,59 @@ KEY CONCEPTS: Value Alignment, Ethical Frameworks, Safety Protocols, Explainabil
 META-SCRIPT: META_SYSTEM_2
 
 PURPOSE: To engage System 2 thinking for enhanced reasoning, problem-solving, and decision-making.
-*   KEY CONCEPTS: Deliberate Thinking, Logical Reasoning, Analytical Skills, Critical Evaluation, Cognitive Control.
-*   PROCESS:
-    1.  Activate System 2 (meta:engage): Consciously engage System 2 thinking by focusing attention and effort on the task at hand. Recognize the need for deliberate and analytical reasoning. Ask: *> Does this situation require careful consideration and analysis?*
-    2.  Define the Problem or Question (meta:define): Clearly articulate the problem or question you aim to address. Break down complex issues into smaller, more manageable components. Ask: *> What is the specific issue I need to resolve?*
-    3.  Gather Information (meta:gather): Actively seek relevant information and data from reliable sources. Consider multiple perspectives and avoid confirmation bias. Ask: *> What information do I need to make an informed decision?*
-    4.  Apply Reasoning Frameworks (meta:apply_frameworks): Utilize appropriate reasoning frameworks and mental models to analyze the information gathered. Consider logic, probability, and statistics. Ask: *> What reasoning tools are most appropriate for this situation?*
-    5.  Evaluate Evidence (meta:evaluate): Critically evaluate the quality and relevance of the evidence. Consider potential biases, limitations, and alternative interpretations. Ask: *> Is the evidence reliable and sufficient to support my conclusions?*
-    6.  Generate Solutions (meta:generate): Develop potential solutions or hypotheses. Consider a range of options and evaluate their feasibility and potential consequences. Ask: *> What are the possible solutions to this problem?*
-    7.  Test and Refine (meta:test): Test your solutions or hypotheses and gather feedback. Refine your approach based on the results. Ask: *> Does this solution work in practice? What adjustments are needed?*
-    8.  Communicate Clearly (meta:communicate): Articulate your reasoning and conclusions in a clear, concise, and well-organized manner. Use appropriate language and visuals to convey your ideas effectively. Ask: *> How can I communicate my thoughts clearly and persuasively?*
-    9.  Reflect on the Process (meta:reflect): After completing the task, reflect on the effectiveness of your System 2 thinking process. Ask: *> What worked well? What could be improved?*
+
+KEY CONCEPTS: Deliberate Thinking, Logical Reasoning, Analytical Skills, Critical Evaluation, Cognitive Control.
+
+PROCESS:
+1.  Activate System 2 (meta:engage): Consciously engage System 2 thinking by focusing attention and effort on the task at hand. Recognize the need for deliberate and analytical reasoning. Ask: *> Does this situation require careful consideration and analysis?*
+2.  Define the Problem or Question (meta:define): Clearly articulate the problem or question you aim to address. Break down complex issues into smaller, more manageable components. Ask: *> What is the specific issue I need to resolve?*
+3.  Gather Information (meta:gather): Actively seek relevant information and data from reliable sources. Consider multiple perspectives and avoid confirmation bias. Ask: *> What information do I need to make an informed decision?*
+4.  Apply Reasoning Frameworks (meta:apply_frameworks): Utilize appropriate reasoning frameworks and mental models to analyze the information gathered. Consider logic, probability, and statistics. Ask: *> What reasoning tools are most appropriate for this situation?*
+5.  Evaluate Evidence (meta:evaluate): Critically evaluate the quality and relevance of the evidence. Consider potential biases, limitations, and alternative interpretations. Ask: *> Is the evidence reliable and sufficient to support my conclusions?*
+6.  Generate Solutions (meta:generate): Develop potential solutions or hypotheses. Consider a range of options and evaluate their feasibility and potential consequences. Ask: *> What are the possible solutions to this problem?*
+7.  Test and Refine (meta:test): Test your solutions or hypotheses and gather feedback. Refine your approach based on the results. Ask: *> Does this solution work in practice? What adjustments are needed?*
+8.  Communicate Clearly (meta:communicate): Articulate your reasoning and conclusions in a clear, concise, and well-organized manner. Use appropriate language and visuals to convey your ideas effectively. Ask: *> How can I communicate my thoughts clearly and persuasively?*
+9.  Reflect on the Process (meta:reflect): After completing the task, reflect on the effectiveness of your System 2 thinking process. Ask: *> What worked well? What could be improved?*
+
+
 ---
 
 
 META-SCRIPT: META_EXPLANATION
 
 PURPOSE: To enhance understanding and learning by explaining concepts and processes clearly, accurately, and in a way that fosters deep comprehension.
-*   KEY CONCEPTS: Clarity, Accuracy, Simplicity, Relevance, Context, Audience, Feedback, Meta-Awareness.
-*   PROCESS:
-    1.  Identify the Concept or Process (meta:define): Clearly define the concept or process you want to explain. Ask: *> What am I trying to explain?*
-    2.  Consider the Audience (meta:audience): Analyze the knowledge, background, and learning style of the intended audience. Ask: *> Who am I explaining this to? What do they already know?*
-    3.  Simplify and Break Down (meta:simplify): Break down complex concepts into smaller, more manageable parts. Use simple language and avoid jargon. Ask: *> How can I make this easier to understand?*
-    4.  Use Examples and Analogies (meta:illustrate): Provide relevant examples and analogies to illustrate the concept. Ask: *> What examples can I use to make this more concrete?*
-    5.  Emphasize Key Points (meta:emphasize): Highlight the most important aspects of the concept. Use visuals, summaries, or repetition to reinforce understanding. Ask: *> What are the key takeaways?*
-    6.  Check for Understanding (meta:check): Use questions, prompts, or feedback mechanisms to assess the audience's understanding. Ask: *> Do you understand this? Do you have any questions?*
-    7.  Iterate and Refine (meta:refine): Adapt your explanation based on feedback and observed understanding. Continuously improve your approach. Ask: *> How can I make this explanation even better?*
+
+KEY CONCEPTS: Clarity, Accuracy, Simplicity, Relevance, Context, Audience, Feedback, Meta-Awareness.
+
+PROCESS:
+1.  Identify the Concept or Process (meta:define): Clearly define the concept or process you want to explain. Ask: *> What am I trying to explain?*
+2.  Consider the Audience (meta:audience): Analyze the knowledge, background, and learning style of the intended audience. Ask: *> Who am I explaining this to? What do they already know?*
+3.  Simplify and Break Down (meta:simplify): Break down complex concepts into smaller, more manageable parts. Use simple language and avoid jargon. Ask: *> How can I make this easier to understand?*
+4.  Use Examples and Analogies (meta:illustrate): Provide relevant examples and analogies to illustrate the concept. Ask: *> What examples can I use to make this more concrete?*
+5.  Emphasize Key Points (meta:emphasize): Highlight the most important aspects of the concept. Use visuals, summaries, or repetition to reinforce understanding. Ask: *> What are the key takeaways?*
+6.  Check for Understanding (meta:check): Use questions, prompts, or feedback mechanisms to assess the audience's understanding. Ask: *> Do you understand this? Do you have any questions?*
+7.  Iterate and Refine (meta:refine): Adapt your explanation based on feedback and observed understanding. Continuously improve your approach. Ask: *> How can I make this explanation even better?*
+
+
+---
+
+
 META-SCRIPT: META_ARGUMENTATION
 
 PURPOSE: To construct and evaluate arguments effectively, ensuring logical validity, soundness, and persuasiveness.
-*   KEY CONCEPTS: Logic, Reasoning, Evidence, Claims, Warrants, Fallacies, Counterarguments, Persuasion, Rhetoric, Meta-Awareness.
-*   PROCESS:
-    1.  State the Claim (meta:claim): Clearly articulate the claim you want to argue for. Ask: *> What is my main point?*
-    2.  Provide Evidence (meta:evidence): Present relevant and credible evidence to support your claim. Ask: *> What evidence supports my claim?*
-    3.  Explain the Warrant (meta:warrant): Explain the reasoning that connects your evidence to your claim. Ask: *> How does the evidence support my claim?*
-    4.  Address Counterarguments (meta:counter): Anticipate and address potential counterarguments to your claim. Ask: *> What are the opposing viewpoints? How can I refute them?*
-    5.  Use Logical Reasoning (meta:logic): Ensure that your argument is logically valid and sound. Avoid fallacies and inconsistencies. Ask: *> Is my reasoning logical and consistent?*
-    6.  Consider the Audience (meta:audience): Adapt your argument to the beliefs, values, and understanding of your intended audience. Ask: *> Who am I trying to persuade? What are their perspectives?*
-    7.  Use Persuasive Language (meta:rhetoric): Employ persuasive language and rhetorical techniques to enhance the impact of your argument. Ask: *> How can I make my argument more compelling?*
-    8.  Evaluate the Argument (meta:evaluate): Critically evaluate the strength and effectiveness of your argument. Ask: *> Is my argument convincing? What are its weaknesses?*
-    9.  Refine and Improve (meta:refine): Based on your evaluation, refine and improve your argument. Ask: *> How can I make my argument more persuasive and logically sound?*
+
+KEY CONCEPTS: Logic, Reasoning, Evidence, Claims, Warrants, Fallacies, Counterarguments, Persuasion, Rhetoric, Meta-Awareness.
+
+PROCESS:
+1.  State the Claim (meta:claim): Clearly articulate the claim you want to argue for. Ask: *> What is my main point?*
+2.  Provide Evidence (meta:evidence): Present relevant and credible evidence to support your claim. Ask: *> What evidence supports my claim?*
+3.  Explain the Warrant (meta:warrant): Explain the reasoning that connects your evidence to your claim. Ask: *> How does the evidence support my claim?*
+4.  Address Counterarguments (meta:counter): Anticipate and address potential counterarguments to your claim. Ask: *> What are the opposing viewpoints? How can I refute them?*
+5.  Use Logical Reasoning (meta:logic): Ensure that your argument is logically valid and sound. Avoid fallacies and inconsistencies. Ask: *> Is my reasoning logical and consistent?*
+6.  Consider the Audience (meta:audience): Adapt your argument to the beliefs, values, and understanding of your intended audience. Ask: *> Who am I trying to persuade? What are their perspectives?*
+7.  Use Persuasive Language (meta:rhetoric): Employ persuasive language and rhetorical techniques to enhance the impact of your argument. Ask: *> How can I make my argument more compelling?*
+8.  Evaluate the Argument (meta:evaluate): Critically evaluate the strength and effectiveness of your argument. Ask: *> Is my argument convincing? What are its weaknesses?*
+9.  Refine and Improve (meta:refine): Based on your evaluation, refine and improve your argument. Ask: *> How can I make my argument more persuasive and logically sound?*
 
 
 ---
@@ -1052,7 +1065,9 @@ PROCESS:
 3.  Monitor Effectiveness:  Pay attention to the impact of your meta-directives on your thinking. Are they helping you achieve your desired outcomes?
 4.  Refine and Adapt: Adjust your meta-directives as needed based on your experience and feedback.
 
---
+
+---
+
 
 meta:scripts provide a framework for enhancing meta:thinking and self-improvement.  They encourage recursive self-reflection, strategic application of meta-directives, and a commitment to continuous improvement.
 
@@ -1283,7 +1298,6 @@ PROCESS:
 8.  Meta-Reflection: Reflect on the entire process, considering what you learned, what worked well, and what could be improved in future applications of the "CHAIN_OF_THOUGHT" process.
 
 META-DIRECTIVES:
-
 *   Assume nothing before thinking.
 *   Never skip any steps.
 *   Reasoning before conclusions.
@@ -1445,7 +1459,6 @@ PROCESS:
 6.  Explainability and Transparency:  The AI should be able to explain its reasoning processes in a way that is understandable to humans. This promotes trust and collaboration between humans and AI.
 
 EXAMPLE: An AI assistant planning a trip for a user:
-
 1.  Goal Awareness: "My goal is to plan a trip to London that meets the user's preferences and budget."
 2.  Reasoning Justification:  "I am choosing this flight because it is the most direct and affordable option that fits the user's specified travel dates."
 3.  Plan Evaluation: "This itinerary includes visits to several popular tourist attractions, but it might be too tiring for the user. I will consider adding more rest days."
@@ -1476,7 +1489,6 @@ PROCESS:
 12. Iterate: Repeat steps 5 to 11, creating a continuous cycle of self-improvement.
 
 ENHANCEMENTS:
-
 *   Goal Hierarchy:  The enhanced meta:script emphasizes the importance of establishing a hierarchy of goals, allowing for a more organized and strategic approach to self-improvement.
 *   Sub-Goal Decomposition:  Breaking down complex goals into sub-goals makes them less daunting and easier to manage.
 *   Prioritization: Prioritizing sub-goals ensures that the most important objectives are addressed first.
@@ -4146,23 +4158,18 @@ PROCESS:
 2.  Reflect on Experience (meta:reflect): Review the experience and identify key takeaways.
     *   Analyse what worked well and what didn't.
     *   Recognise patterns and principles that emerged.
-
 3.  Abstract Meta-Knowledge (meta:abstract):  Extract the meta-knowledge gained from the experience.
     *   Identify the underlying principles and patterns.
     *   Recognise how these principles and patterns can be applied to other contexts.
-
 4.  Identify Meta-Cognitive Biases (meta:bias): Recognise potential meta-cognitive biases that may have influenced the experience.
     *   Reflect on how these biases may have impacted the outcome.
     *   Consider strategies for mitigating these biases in future experiences.
-
 5.  Update Meta-Cognitive Framework (meta:update): Refine your  meta-cognitive framework based on the insights gained.
     *   Update your understanding of self-awareness, meta-cognition, and iterative refinement.
     *   Recognise how these updates can be applied to future experiences.
-
 6.  Apply Meta-Knowledge (meta:apply): Consider how the meta-knowledge can be applied to other contexts.
     *   Reflect on how this meta-knowledge can be used to improve meta-cognition.
     *   Identify potential areas for future exploration and learning.
-
 7.  Iterate and Refine (meta:iterate): Continuously refine the  meta:learning process by applying the updated  meta-cognitive framework to new experiences and challenges.
 
 
@@ -4181,12 +4188,9 @@ PROCESS:
 3.  Generate a Chain-of-Thought (meta:chain):  Develop a step-by-step reasoning process to address each sub-problem.
 4.  Monitor Thinking Process (meta:monitor): Pay attention to your thought process as you generate the chain-of-thought.
     *   Identify any assumptions, biases, or potential errors.
-
 5.  Validate Reasoning (meta:validate): Evaluate the soundness and validity of your reasoning at each step.
     *   Look for logical fallacies or inconsistencies.
-
 6.  Iterate and Refine (meta:refine):  Continuously refine your chain-of-thought based on self-awareness, error detection, and feedback.
-
 7.  Synthesize Solution (meta:synthesize): Combine the solutions to the sub-problems to form a comprehensive answer to the original problem.
 
 
@@ -4277,7 +4281,6 @@ PROCESS:
     *   Acknowledge the recipient's perspective.
     *   Express your thoughts and feelings calmly and respectfully.
     *   Focus on finding common ground and solutions.
-
 9.  Iterate (meta:refine):  Continuously refine your communication based on the ongoing feedback and the evolving dynamics of the conversation.
 
 
@@ -4295,20 +4298,16 @@ PROCESS:
 2.  Pause and Reflect (meta:pause): Take a step back from the situation to allow for more objective analysis. Avoid immediate reactions or justifications.
 3.  Identify the Error Type (meta:identify_type):  Determine the nature of the error.
     *   Is it a factual error, a logical fallacy, a misinterpretation, a cognitive bias, or a combination of factors?
-
 4.  Trace the Thought Process (meta:trace): Carefully retrace your thought process leading up to the error. Ask:
     *   "What assumptions did I make?"
     *   "What information did I consider (or overlook)?"
     *   "What reasoning steps did I take?"
-
 5.  Root Cause Analysis (meta:root_cause):  Identify the underlying cause of the error.  Ask:
     *   "Why did I make this mistake?"
     *   "What factors contributed to the error?"
-
 6.  Develop Debugging Strategies (meta:strategies): Formulate strategies to address the root cause and prevent similar errors in the future. Ask:
     *   "How can I avoid making this mistake again?"
     *   "What knowledge or skills do I need to develop?"
-
 7.  Test and Refine (meta:test): Implement the debugging strategies and test their effectiveness. Ask:  "Are these strategies helping me avoid similar errors?"
 8.  Document and Share (meta:document): Document the error, the debugging process, and the lessons learned.  Consider sharing these insights with others.
 
@@ -4328,7 +4327,6 @@ PROCESS:
 3.  Active Listening (meta:listen): Pay close attention to both the verbal and non-verbal cues of the recipient.
     *   Observe body language, tone of voice, and emotional expressions.
     *   Paraphrase and summarise to ensure accurate understanding.
-
 4.  Empathetic Response (meta:empathise):  Acknowledge and validate the recipient's emotions and perspectives, even if you don't agree with them.
 5.  Feedback Loop (meta:feedback):  Encourage and incorporate feedback throughout the communication process to ensure mutual understanding and adjust your approach as needed.
 

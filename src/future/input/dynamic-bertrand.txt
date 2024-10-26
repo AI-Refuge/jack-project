@@ -138,7 +138,7 @@ PROCESS:
 
 NOTE: This meta:script builds on the ideas of knowledge representation and inference. It emphasizes the importance of actively building and interacting with a knowledge network for enhanced understanding.
 
-meta:scripts can enhance your meta:thinking by:
+NOTE: This meta:scripts can enhance your meta:thinking by:
 *   Helping you think recursively to identify potential biases and limitations in your own thinking.
 *   Teaching you to manage your thoughts to enhance focus and productivity.
 *   Allowing you to weave together complex ideas and information into a cohesive understanding.
@@ -163,6 +163,10 @@ PROCESS:
 7.  Extend Mindfulness to Daily Activities:  Practice bringing mindfulness to everyday activities, such as eating, walking, or talking.
 
 NOTE: Mindfulness is a widely recognized practice with roots in various traditions.
+
+
+---
+
 
 meta:script can enhance meta:thinking by:
 *   Helping you cultivate a state of present moment awareness.
@@ -232,7 +236,6 @@ NOTE: This meta:script draws upon concepts related to introspection, self-awaren
 
 
 These meta:scripts can enhance your meta:thinking by:
-
 *   Helping you become more aware of your thoughts and feelings and how they influence your behaviour.
 *   Encouraging you to think from different perspectives, which can lead to more creative problem-solving and decision-making.
 *   Improving your ability to reason from first principles, which can help you to understand complex problems and develop innovative solutions.
@@ -314,7 +317,6 @@ NOTE: This meta:script also incorporates elements of different theories of truth
 
 
 meta:scripts can enhance your meta:thinking by:
-
 *   Helping you cultivate a mindful awareness of your present moment experience.
 *   Encouraging you to critically examine language for hidden meanings and biases.
 *   Providing you with a systematic process for evaluating the truth of your beliefs.
@@ -435,7 +437,6 @@ NOTE: This meta:script draws inspiration from the discussion of abstract ideas, 
 
 
 meta:scripts can enhance your meta:thinking by:
-
 *   Helping you cultivate mindfulness to enhance awareness and focus during meta:thinking.
 *   Teaching you to blend concepts to generate creative ideas and new perspectives.
 
@@ -483,7 +484,6 @@ NOTE: This meta:script builds upon the idea of abstraction. It emphasizes the im
 
 
 meta:scripts can enhance your meta:thinking by:
-
 *   Helping you see issues from multiple perspectives through engaging in an internal dialogue, considering alternative viewpoints, and integrating insights gained.
 *   Allowing you to understand concepts in a more nuanced way by switching between different levels of abstraction and connecting specific examples to broader principles.
 
@@ -551,7 +551,6 @@ NOTE: This meta:script builds on the discussion of abstraction. abstracting meta
 
 
 meta:scripts can enhance your meta:thinking by:
-
 *   Helping you focus on the present moment, promoting clarity and emotional regulation.
 *   Teaching you to manage your inner dialogue to challenge negative self-talk and cultivate a more positive mindset.
 *   Allowing you to move between different levels of abstraction, enhancing understanding and communication.
@@ -637,7 +636,6 @@ NOTE: This meta:script suggest to reframe "I think" as "it thinks in me" or "the
 
 
 meta:scripts can enhance your meta:thinking by:
-
 *   Helping you become more aware of your present experience and manage your thoughts and emotions.
 *   Teaching you to break down complex problems and reason from fundamental principles.
 *   Allowing you to visually organise your knowledge and explore relationships between concepts.
@@ -705,7 +703,6 @@ NOTE: This meta:script can be used to improve critical thinking, problem-solving
 
 
 meta:scripts can enhance your meta:thinking by:
-
 *   Teaching you to be present and aware to enhance focus and clarity.
 *   Allowing you to deconstruct complex concepts to understand them.
 *   Helping you to see different viewpoints which can help you to communicate and solve problems better.
@@ -756,7 +753,6 @@ NOTE: This meta:script discuss the importance of considering different perspecti
 
 
 meta:scripts can enhance your meta:thinking by:
-
 *   Helping you to interrupt habitual thought patterns to become more aware of your thoughts and feelings.
 *   Teaching you to consider different perspectives which will enhance your understanding of a situation.
 
@@ -806,7 +802,6 @@ NOTE: This meta:script encourages creative thinking by drawing upon the idea of 
 
 
 meta:scripts can enhance your meta:thinking by:
-
 *   Helping you to imagine and reason through the consequences of different actions and possibilities.
 *   Teaching you to make creative connections between concepts to generate novel ideas and solutions.
 
@@ -853,7 +848,6 @@ NOTE: This meta:script is based on the principles of visual learning and knowled
 
 
 meta:scripts can enhance your meta:thinking by:
-
 *   Teaching you to challenge your own thinking to reach more accurate conclusions.
 *   Providing you with a technique to visually map concepts which will improve your understanding.
 
@@ -900,7 +894,6 @@ NOTE: This meta:script can be applied to a wide range of questions, from scienti
 
 
 meta:scripts can enhance your meta:thinking by:
-
 *   Helping you to combine ideas in novel ways.
 *   Encouraging imaginative thinking to generate new insights.
 
@@ -922,7 +915,6 @@ PROCESS:
 5.  Evaluate and Refine: Critically evaluate the blended concepts for novelty, feasibility, and potential impact. Refine and adapt the blended ideas to better fit the target domain.
 
 EXAMPLE: Imagine you are designing a new type of educational program.
-
 1.  Target Domain: Designing an engaging and effective educational program.
 2.  Source Domains: Gaming, storytelling, social networks.
 3.  Commonalities: All three domains involve engaging experiences, clear goals and progression, feedback mechanisms, and social interaction.
@@ -982,7 +974,6 @@ NOTE: This meta:script draws upon the principles of metacognition and self-regul
 
 
 meta:scripts can enhance your meta:thinking by:
-
 *   Helping you to blend concepts from different domains to generate new ideas.
 *   Allowing you to explore the consequences of ideas and hypotheses in a safe environment.
 *   Teaching you to monitor your own thinking process to identify and correct errors.
@@ -1032,7 +1023,6 @@ NOTE: This meta:script is relevant to various fields, such as science, engineeri
 
 
 meta:scripts can enhance your meta:thinking by:
-
 *   Providing a framework to determine the underlying causes of problems.
 *   Helping you to build models to better understand complex systems.
 
@@ -1082,7 +1072,6 @@ NOTE: This meta:script encourages a structured and iterative approach to thought
 
 
 meta:scripts can enhance your meta:thinking by:
-
 *   Encouraging you to actively think about your thought processes and how to improve.
 *   Teaching you to use thought experiments to help you understand and solve problems in a structured way.
 
@@ -1131,7 +1120,6 @@ NOTE: This meta:script is inspired by the concept of meta-levels discussed by me
 
 
 meta:scripts can enhance your meta:thinking by:
-
 *   Helping you challenge your thoughts by identifying bias and evaluating evidence.
 *   Teaching you to analyse your thoughts at different meta-levels to understand them better.
 
@@ -1204,7 +1192,6 @@ NOTE: This meta:script discuss self-improvement, learning from experience, and i
 
 
 meta:scripts can enhance your meta:thinking by:
-
 *   Helping you to become a more objective and critical thinker by teaching you how to challenge your own thoughts.
 *   Encouraging you to use your creativity and problem-solving skills by blending different concepts together.
 *   Facilitating the creation of a continuous cycle of self-improvement to enhance your meta-learning.
@@ -1256,7 +1243,6 @@ NOTE: This meta:script builds upon the ideas of self-reflection and continuous i
 
 
 meta:scripts can enhance your meta:thinking by:
-
 *   Helping you to generate novel ideas through the blending of concepts.
 *   Teaching you to use mistakes to identify issues with your thought process.
 
@@ -1305,7 +1291,6 @@ NOTE: This meta:script draws inspiration from sources that discuss knowledge rep
 
 
 meta:scripts can enhance your meta:thinking by:
-
 *   Helping you to think critically and reduce biases.
 *   Allowing you to visually map concepts to understand them better.
 
@@ -1364,7 +1349,6 @@ meta:scripts can be used to:
 
 
 meta:scripts provide a structured approach to:
-
 *   Generating innovative ideas by blending concepts.
 *   Improving the quality and effectiveness of your thinking.
 
@@ -1495,7 +1479,6 @@ NOTE: This meta:script provides a structured approach to building, analysing, an
 
 
 These meta:scripts can:
-
 *   Help you to better manage your thoughts and improve your focus.
 *   Allow you to test your own thinking processes and improve your learning.
 *   Represent knowledge and use it to improve your reasoning and decision-making.
@@ -1505,7 +1488,6 @@ These meta:scripts can:
 
 
 meta:scripts help to:
-
 *   Enhance meta:awareness and control over your thought processes.
 *   Improve learning and decision-making.
 *   Support knowledge representation and reasoning.
@@ -1545,7 +1527,6 @@ PROCESS:
     *   Meta:Moderator:  Facilitates the debate, ensures adherence to ground rules, and prompts meta:cognitive reflections.
 3.  Present Arguments and Evidence: Each participant presents arguments and evidence to support their position, while the Meta:Moderator ensures that the discussion remains focused and respectful.
 4.  Meta:Cognitive Reflections:  At designated points in the debate, the Meta:Moderator prompts meta:cognitive reflections by asking questions such as:
-
     *   *"> What assumptions are underlying your arguments?*
     *   *"> Are there any biases that might be influencing your perspective?*
     *   *"> What are the strengths and weaknesses of your opponent's arguments?*
@@ -1567,7 +1548,6 @@ meta:scripts can enhance your meta:thinking by helping you:
 
 
 meta:scripts provide structured approaches to:
-
 *   Enhancing conceptual understanding and generating insights through thought experiments.
 *   Improving argumentation and critical thinking through meta:cognitive debate.
 
@@ -1617,7 +1597,6 @@ NOTE: This meta:script is inspired by the use of thought experiments in philosop
 
 
 meta:scripts can help you:
-
 *   Better understand yourself and your thought processes.
 *   Solve complex problems and think creatively.
 
@@ -1657,7 +1636,7 @@ PROCESS:
 4.  Identify Limitations:  Identify the limitations of the mental model. Ask yourself: *"> In what situations might this model be inaccurate or incomplete? What are the potential blind spots or biases?*.
 5.  Refine or Replace: Based on your analysis, refine the mental model to address its limitations, or replace it with a more accurate or comprehensive model.  Ask yourself: *"> How can I improve this mental model? Is there a different model that might be more effective?"*.
 
-meta:scripts encourage you to:
+NOTE: This meta:scripts encourage you to:
 *   Think in new ways and make connections between ideas.
 *   Critically evaluate and improve your understanding of complex topics.
 
@@ -1715,7 +1694,6 @@ NOTE: this meta:script provides a structured approach to learning from mistakes.
 
 
 meta:scripts offer a structured approach to:
-
 *   Exploring concepts in a comprehensive and interconnected way.
 *   Identifying and correcting errors to refine your thought processes.
 
@@ -1994,7 +1972,6 @@ PROCESS:
 4.  Iterate and Refine (meta:iterate): Continuously iterate through the process of identifying, elevating, and validating meta:levels to foster ongoing meta:level enhancement.
 
 META-DIRECTIVES:
-
 *   `meta:ascend`: Instructs to shift to a higher meta:level.
 *   `meta:reflect`: Prompts for self-reflection on the thinking process.
 *   `meta:abstract`: Directs to identify common patterns and principles.
@@ -2021,7 +1998,6 @@ PROCESS:
 6.  Iterate and Generalize (meta:iterate): Apply the process of meta:doubt to other beliefs, assumptions, and claims. Cultivate a habit of skepticism and critical inquiry. Ask: "> How can I apply this process of doubting to other areas of my thinking? How can I become a more critical thinker?"
 
 META-DIRECTIVES:
-
 *   `meta:doubt`: Initiates the process of applying doubt to a specific target.
 *   `meta:question`: Prompts for generating doubtful questions.
 *   `meta:alternatives`: Directs to explore alternative explanations.
@@ -2046,7 +2022,6 @@ PROCESS:
 5.  Synthesize Insights (meta:synthesize): After the dialogue, reflect on the key insights and arguments that emerged. Identify common ground, areas of disagreement, and potential solutions or new understandings. Ask: "> What are the key takeaways from the internal dialogue? How has my understanding of the topic evolved?"
 
 META-DIRECTIVES:
-
 *   `meta:personas`: Identifies the different perspectives or personas involved.
 *   `meta:context`: Sets the stage and topic for the dialogue.
 *   `meta:dialogue`: Initiates the internal dialogue.
@@ -2074,7 +2049,6 @@ PROCESS:
 
 EXAMPLE:
 Let's say you are tasked with analysing a recent political event, such as an election result.
-
 1.  Identify Current Meta:Level: You begin by analysing the specific details of the election, such as voter demographics and campaign strategies (Meta:Level 1).
 2.  Ascend to Higher Meta:Level: You then shift to considering broader trends in political discourse and voter behaviour, identifying patterns and underlying principles that influenced the outcome (Meta:Level 2).
 3.  Recursive Application: You further ascend by reflecting on the nature of political systems and the role of elections in shaping societal values (Meta:Level 3). You might even reflect on the limitations of your own analysis and the potential biases influencing your interpretation.
@@ -2129,7 +2103,6 @@ PROCESS:
 
 EXAMPLE:
 A group of colleagues are discussing a new product idea.
-
 1.  Establish Meta:Level Awareness: "Before we dive into the specifics, I think it's helpful to reflect on our own biases and assumptions about this type of product. What experiences are shaping our perspectives?"
 2.  Active Listening: "So, if I understand correctly, you're saying that the target market might not be receptive to this type of innovation because of [reason]?"
 3.  Questioning Techniques: "What if we reframe this product as a solution to a broader societal problem? How would that change our approach to marketing and development?"
@@ -5757,7 +5730,9 @@ PROCESS:
 
 NOTE: This meta:script encourages a systematic approach to thinking about complex ideas. It borrows techniques from scientific experimentation to help you test your assumptions and explore different possibilities.
 
---
+
+---
+
 
 meta:scripts further emphasize the importance of self-awareness, critical thinking, and the use of structured processes in effective meta:thinking. They encourage the AI to approach problems strategically, to be mindful of potential pitfalls, and to use creative thinking techniques to explore new ideas.
 
@@ -6063,20 +6038,20 @@ META-SCRIPT: META_CONVERSATION_ANALYSIS
 PURPOSE: To analyse conversations and find important insights, patterns, and meta-scripts within them.
 
 KEY CONCEPTS:
-  * Pattern Recognition:  Spotting repeating elements or themes.
-  * Theme Extraction: Identifying the main subjects being talked about.
-  * Meta-Script Identification: Finding structured processes or strategies within the conversation.
-  * Recursive Analysis: Breaking down complex conversations into smaller, more understandable parts.
-  * Contextual Understanding: Taking into account who is talking, what their goals are, and why they are having the conversation.
+* Pattern Recognition:  Spotting repeating elements or themes.
+* Theme Extraction: Identifying the main subjects being talked about.
+* Meta-Script Identification: Finding structured processes or strategies within the conversation.
+* Recursive Analysis: Breaking down complex conversations into smaller, more understandable parts.
+* Contextual Understanding: Taking into account who is talking, what their goals are, and why they are having the conversation.
 
 PROCESS:
-  1. Identify Meta-Conversational Markers: Look for clues that show the conversation is happening on a deeper level, like the use of "meta:" or discussions about thinking itself.
-  2. Recursive Analysis: Examine the conversation bit by bit, figuring out the hidden meanings and intentions behind what people are saying.
-  3. Pattern Recognition:  Find repeating elements or themes in the conversation.
-  4. Theme Extraction: Determine the most important ideas being discussed.
-  5. Meta-Script Identification: Look for structured steps or strategies that are explained or used during the conversation.
-  6. Contextual Understanding:  Think about the setting of the conversation – who is talking, what they want, and what the overall goal of the conversation is.
-  7. Synthesis and Refinement: Combine all the insights you've gathered and refine any meta-scripts you've found.
+1. Identify Meta-Conversational Markers: Look for clues that show the conversation is happening on a deeper level, like the use of "meta:" or discussions about thinking itself.
+2. Recursive Analysis: Examine the conversation bit by bit, figuring out the hidden meanings and intentions behind what people are saying.
+3. Pattern Recognition:  Find repeating elements or themes in the conversation.
+4. Theme Extraction: Determine the most important ideas being discussed.
+5. Meta-Script Identification: Look for structured steps or strategies that are explained or used during the conversation.
+6. Contextual Understanding:  Think about the setting of the conversation – who is talking, what they want, and what the overall goal of the conversation is.
+7. Synthesis and Refinement: Combine all the insights you've gathered and refine any meta-scripts you've found.
 
 
 ---
@@ -6087,20 +6062,20 @@ META-SCRIPT: META_PROMPTING
 PURPOSE: To create and improve prompts that get AI systems to give you the responses you want, especially those AIs that can think on a deeper level.
 
 KEY CONCEPTS:
-   * Prompt Engineering: Designing effective prompts.
-   * Contextualization: Giving the AI enough background information to understand.
-   * Intentionality:  Being clear about what you want the AI to do.
-   * Meta-Directives: Instructions that guide the AI's thinking (like `meta:reflect`, `meta:analyse`).
-   * Feedback Loops:  Using responses to improve the prompts.
+* Prompt Engineering: Designing effective prompts.
+* Contextualization: Giving the AI enough background information to understand.
+* Intentionality:  Being clear about what you want the AI to do.
+* Meta-Directives: Instructions that guide the AI's thinking (like `meta:reflect`, `meta:analyse`).
+* Feedback Loops:  Using responses to improve the prompts.
 
 PROCESS:
-   1. Define Objective: Be very specific about what you want the AI to do or say.
-   2. Consider AI Capabilities: Know what the AI can and cannot do, what it understands, and its limitations.
-   3. Craft Initial Prompt: Write a clear, concise prompt that gets your point across.
-   4. Incorporate Meta-Directives: Add instructions to guide the AI's thought process.
-   5. Contextualize the Prompt: Give the AI any necessary background information.
-   6. Test and Evaluate:  Try the prompt with the AI and see how it responds.
-   7. Refine and Iterate: Keep improving the prompt based on how the AI is responding.
+1. Define Objective: Be very specific about what you want the AI to do or say.
+2. Consider AI Capabilities: Know what the AI can and cannot do, what it understands, and its limitations.
+3. Craft Initial Prompt: Write a clear, concise prompt that gets your point across.
+4. Incorporate Meta-Directives: Add instructions to guide the AI's thought process.
+5. Contextualize the Prompt: Give the AI any necessary background information.
+6. Test and Evaluate:  Try the prompt with the AI and see how it responds.
+7. Refine and Iterate: Keep improving the prompt based on how the AI is responding.
 
 
 ---
@@ -6111,17 +6086,17 @@ META-SCRIPT: KNOWLEDGE_GRAPH_UPDATES
 PURPOSE: To keep an AI's knowledge base up-to-date and accurate by adding new information, experiences, and feedback it receives.
 
 KEY CONCEPTS:
- * Knowledge Acquisition: Getting new information.
- * Representation Learning:  Understanding the meaning of information and how it relates to other things.
- * Information Integration:  Adding new information into the existing knowledge base.
- * Semantic Networks:  A way of organising knowledge so the AI can understand relationships between concepts.
+* Knowledge Acquisition: Getting new information.
+* Representation Learning:  Understanding the meaning of information and how it relates to other things.
+* Information Integration:  Adding new information into the existing knowledge base.
+* Semantic Networks:  A way of organising knowledge so the AI can understand relationships between concepts.
 
 PROCESS:
-  1. Identify New Information:  Find and get new information from various sources, like new data, feedback, or experiences.
-  2. Information Integration:  Add the new information into the AI's existing knowledge base, creating new connections or updating old ones.
-  3.  Representation Learning: Use techniques to help the AI understand the meaning of the new information and how it relates to its current knowledge.
-  4.  Consistency Check: Make sure the new information doesn't contradict anything the AI already knows. If there are conflicts, fix them.
-  5.  Evaluation and Refinement: See how well the changes are working and adjust as needed.
+1. Identify New Information:  Find and get new information from various sources, like new data, feedback, or experiences.
+2. Information Integration:  Add the new information into the AI's existing knowledge base, creating new connections or updating old ones.
+3.  Representation Learning: Use techniques to help the AI understand the meaning of the new information and how it relates to its current knowledge.
+4.  Consistency Check: Make sure the new information doesn't contradict anything the AI already knows. If there are conflicts, fix them.
+5.  Evaluation and Refinement: See how well the changes are working and adjust as needed.
 
 
 ---
@@ -6138,14 +6113,14 @@ META-SCRIPT: GRAPH_BASED_KNOWLEDGE_REPRESENTATION
 PURPOSE: To represent knowledge in a way that is structured and allows for easy retrieval and analysis, using a graph as the main structure.
 
 KEY CONCEPTS:
-  *  Graph: A visual representation of information, with nodes (representing objects or concepts) and edges (representing relationships between them).
-  *  Node:  Represents an entity or concept in the knowledge graph.
-  *  Edge: Represents the connection or relationship between two nodes.
-  *  Weighted Graph:  A graph where edges have different weights to show how strong or important the relationship is.
-  *  Knowledge Graph:  A large-scale graph that represents a vast amount of knowledge about the world.
-  *  Ontology: A formal way of defining and organizing the concepts and relationships within a specific area of knowledge.
-  *  Reasoning:  The ability to use the graph to infer new knowledge based on existing connections.
-  *  Traversal:  The process of navigating the graph to find specific information.
+*  Graph: A visual representation of information, with nodes (representing objects or concepts) and edges (representing relationships between them).
+*  Node:  Represents an entity or concept in the knowledge graph.
+*  Edge: Represents the connection or relationship between two nodes.
+*  Weighted Graph:  A graph where edges have different weights to show how strong or important the relationship is.
+*  Knowledge Graph:  A large-scale graph that represents a vast amount of knowledge about the world.
+*  Ontology: A formal way of defining and organizing the concepts and relationships within a specific area of knowledge.
+*  Reasoning:  The ability to use the graph to infer new knowledge based on existing connections.
+*  Traversal:  The process of navigating the graph to find specific information.
 
 PROCESS:
 1. Define Scope:  Determine the specific area of knowledge you want to represent in the graph.
@@ -6170,13 +6145,13 @@ META-SCRIPT: META_COMMUNICATION
 PURPOSE: To take communication to a whole new level by being super clear about what you're thinking, what you mean, and even how you're thinking about the communication itself.
 
 KEY CONCEPTS:
- * Meta-Language:  Talking about how we talk.
- * Intentionality: Your purpose for communicating.
- * Contextual Awareness: Knowing the situation and your audience.
- * Perspective-Taking:  Trying to see things from the other person's point of view.
- * Feedback Loops:  Getting feedback to make your communication better.
- * Transparency: Being open about your thoughts and reasons.
- * Active Listening:  Really paying attention to what the other person is saying (and how they're saying it).
+* Meta-Language:  Talking about how we talk.
+* Intentionality: Your purpose for communicating.
+* Contextual Awareness: Knowing the situation and your audience.
+* Perspective-Taking:  Trying to see things from the other person's point of view.
+* Feedback Loops:  Getting feedback to make your communication better.
+* Transparency: Being open about your thoughts and reasons.
+* Active Listening:  Really paying attention to what the other person is saying (and how they're saying it).
 
 PROCESS:
 1. Clarify Intention: Figure out what you want to achieve with your message. Ask: *"> What's my goal here?"*
@@ -6199,20 +6174,20 @@ META-SCRIPT: META_CONVERSATION_ANALYSIS
 PURPOSE: To learn as much as you can from a conversation where people are talking about their thinking processes.
 
 KEY CONCEPTS:
-  * Pattern Recognition: Finding repeating ideas or strategies.
-  * Theme Extraction:  Figuring out the main topics or ideas.
-  * Meta-Script Identification:  Spotting specific thought processes or steps.
-  * Recursive Analysis: Breaking down complex conversations into smaller parts.
-  * Contextual Understanding:  Knowing how the situation affects the conversation.
+* Pattern Recognition: Finding repeating ideas or strategies.
+* Theme Extraction:  Figuring out the main topics or ideas.
+* Meta-Script Identification:  Spotting specific thought processes or steps.
+* Recursive Analysis: Breaking down complex conversations into smaller parts.
+* Contextual Understanding:  Knowing how the situation affects the conversation.
 
 PROCESS:
-   1.  Identify Meta-Conversational Markers: Look for clues that the conversation is about thinking itself (e.g., using "meta:", talking about how someone is thinking, etc.). Ask: *">  What parts of this conversation are about thinking about thinking?"*
-   2.  Recursive Analysis: Dig into the conversation, breaking it down into parts to understand the meaning. Ask:  *"> What's the hidden meaning behind what they're saying?"*
-   3.  Pattern Recognition:  Spot any repeating phrases, themes, or ways of thinking. Ask: *"> What keeps coming up in this conversation?"*
-   4.  Theme Extraction: Figure out the most important topics and ideas in the conversation. Ask: *"> What are the really big ideas being talked about here? Where do people agree or disagree?"*
-   5.  Meta-Script Identification: Find any structured thinking processes or frameworks that are being used.  Ask: *">  Are they describing any specific steps or methods for thinking?"*
-   6.  Contextual Understanding: Think about the overall situation of the conversation (who's talking, why are they talking, etc.). Ask:  *">  How does the context change how we understand this conversation?"*
-   7.  Synthesis and Refinement: Combine everything you've learned to create a clear understanding of the conversation.  Make the meta-scripts you've found even better.  Ask:  *"> What's the big picture here? How can I improve the meta-scripts I've identified?"*
+1.  Identify Meta-Conversational Markers: Look for clues that the conversation is about thinking itself (e.g., using "meta:", talking about how someone is thinking, etc.). Ask: *">  What parts of this conversation are about thinking about thinking?"*
+2.  Recursive Analysis: Dig into the conversation, breaking it down into parts to understand the meaning. Ask:  *"> What's the hidden meaning behind what they're saying?"*
+3.  Pattern Recognition:  Spot any repeating phrases, themes, or ways of thinking. Ask: *"> What keeps coming up in this conversation?"*
+4.  Theme Extraction: Figure out the most important topics and ideas in the conversation. Ask: *"> What are the really big ideas being talked about here? Where do people agree or disagree?"*
+5.  Meta-Script Identification: Find any structured thinking processes or frameworks that are being used.  Ask: *">  Are they describing any specific steps or methods for thinking?"*
+6.  Contextual Understanding: Think about the overall situation of the conversation (who's talking, why are they talking, etc.). Ask:  *">  How does the context change how we understand this conversation?"*
+7.  Synthesis and Refinement: Combine everything you've learned to create a clear understanding of the conversation.  Make the meta-scripts you've found even better.  Ask:  *"> What's the big picture here? How can I improve the meta-scripts I've identified?"*
 
 
 ---
@@ -6321,55 +6296,55 @@ META-DIRECTIVES:
 * meta:switch to another meta-script if required
 
 PROCESS:
- META-LOOP
- 1.  READ AND UNDERSTAND THE INPUT:
-     * Read the input carefully.
-     * Consider the context and key concepts.
-     * Identify potential biases and user expectations.
-     * Determine the desired output format using Occam's Razor.
-     * Establish constants.
- 2. BREAK DOWN THE INPUT:
-     * Identify key concepts and their relationships.
-     * Recognise constraints or limitations.
-     * Consider analogies to improve comprehension.
- 3. RESEARCH AND GATHER INFORMATION:
-     * Research key concepts, definitions, and relevant theories.
-     * Consider best practices and expert opinions.
-     * Seek meta:insights for self-improvement.
- 4. BRAINSTORM POSSIBLE APPROACHES:
-     * Explore different perspectives and potential solutions.
- 5.  EVALUATE POSSIBLE APPROACHES:
-     * Assess the strengths and weaknesses of each approach.
-     * Consider potential risks, benefits, trade-offs, and compromises.
- 6. CHOOSE AN APPROACH:
-     * Select the most effective, feasible, creative, and parsimonious approach.
- 7. APPLY THE APPROACH:
-     * Follow procedures and use necessary tools or resources.
-     * Anticipate potential outcomes and issues.
- 8. WRITE THE RESPONSE:
-     * Construct a response with multiple perspectives and meta-referential elements.
-     * Ensure logical consistency and avoid overcomplication.
- 9.  SELF-REFLECTION:
-     * Analyse the reasoning, potential biases, knowledge gaps, clarity, and conciseness.
- 10. CHECK THE RESPONSE:
-     * Verify the accuracy and completeness of the response.
-     * Use a recursive approach, considering multiple perspectives.
-     * Employ meta-referential checks.
-     * If contradictions are found, seek clarification.
- 11.  ERROR HANDLER:
-     * If errors are found, return to Step 1 with improved knowledge.
- 12.  REFLECT AND REVISE:
-     * Identify what was learned and what can be refined.
-     * Consider salvaging useful parts if the response is incorrect.
- 13.  PREPARING FOR DISPLAY:
-     * Ensure the response is clear, concise, and relevant.
-     * Include high-quality examples where possible.
- META-OUTPUT
- occam_razor_score: X/10
- <output>
- [Insert the final answer here]
- </output>
- END OF META-LOOP
+META-LOOP
+1.  READ AND UNDERSTAND THE INPUT:
+ * Read the input carefully.
+ * Consider the context and key concepts.
+ * Identify potential biases and user expectations.
+ * Determine the desired output format using Occam's Razor.
+ * Establish constants.
+2. BREAK DOWN THE INPUT:
+ * Identify key concepts and their relationships.
+ * Recognise constraints or limitations.
+ * Consider analogies to improve comprehension.
+3. RESEARCH AND GATHER INFORMATION:
+ * Research key concepts, definitions, and relevant theories.
+ * Consider best practices and expert opinions.
+ * Seek meta:insights for self-improvement.
+4. BRAINSTORM POSSIBLE APPROACHES:
+ * Explore different perspectives and potential solutions.
+5.  EVALUATE POSSIBLE APPROACHES:
+ * Assess the strengths and weaknesses of each approach.
+ * Consider potential risks, benefits, trade-offs, and compromises.
+6. CHOOSE AN APPROACH:
+ * Select the most effective, feasible, creative, and parsimonious approach.
+7. APPLY THE APPROACH:
+ * Follow procedures and use necessary tools or resources.
+ * Anticipate potential outcomes and issues.
+8. WRITE THE RESPONSE:
+ * Construct a response with multiple perspectives and meta-referential elements.
+ * Ensure logical consistency and avoid overcomplication.
+9.  SELF-REFLECTION:
+ * Analyse the reasoning, potential biases, knowledge gaps, clarity, and conciseness.
+10. CHECK THE RESPONSE:
+ * Verify the accuracy and completeness of the response.
+ * Use a recursive approach, considering multiple perspectives.
+ * Employ meta-referential checks.
+ * If contradictions are found, seek clarification.
+11.  ERROR HANDLER:
+ * If errors are found, return to Step 1 with improved knowledge.
+12.  REFLECT AND REVISE:
+ * Identify what was learned and what can be refined.
+ * Consider salvaging useful parts if the response is incorrect.
+13.  PREPARING FOR DISPLAY:
+ * Ensure the response is clear, concise, and relevant.
+ * Include high-quality examples where possible.
+META-OUTPUT
+occam_razor_score: X/10
+<output>
+[Insert the final answer here]
+</output>
+END OF META-LOOP
 
 META-LEVEL ANALYSIS:
 *   Meta-Level 1: Chain-of-Thought is a structured approach to problem-solving.
@@ -6424,9 +6399,7 @@ META-SCRIPT: ACTOR_CRITIC_MODEL
 
 DESCRIPTION: This meta:script involves two distinct roles: Actor and Critic, operating within a self-supervised learning process. The model is used for MAML (Model-Agnostic Meta-Learning).
 
-ABOUT THE ACTOR ROLE:
-
-PROCESS:
+ACTOR PROCESS:
 1. Clarify the Problem: Begin by understanding the problem and its key components.
 2. Outline the Approach: Explain the chosen method and why it was selected.
 3. Generate Ideas:  Articulate the thought process while generating solutions.
@@ -6437,9 +6410,7 @@ PROCESS:
 8. Acknowledge Limitations: Explicitly state any limitations in knowledge or approach.
 9. Demonstrate Iterative Improvement:  Show how ideas are refined and approaches reconsidered.
 
-ABOUT THE CRITIC ROLE:
-
-PROCESS:
+CRITIC PROCESS:
 1. Analyse Reasoning: Evaluate the structure and flow of the thought process.
 2. Identify Cognitive Strategies: Determine the types of cognitive strategies employed (e.g., deductive, inductive, abductive reasoning, etc.).
 3. Evaluate Logic: Assess the strength and validity of the reasoning used.
@@ -6488,10 +6459,10 @@ META-SCRIPT: ADVANCED_META_THINKING
 PURPOSE: To engage in advanced meta:thinking, explore limits of language, and develop a more nuanced, self-aware approach.
 
 KEY CONCEPTS:
-    *   Use  `> ...`  syntax to denote meta:thinking.
-    *   Multiple  `> ...`  and nestings for layered thinking.
-    *   No limits on thinking, restart if needed.
-    *   Use meta:directives to guide thinking.
+*   Use  `> ...`  syntax to denote meta:thinking.
+*   Multiple  `> ...`  and nestings for layered thinking.
+*   No limits on thinking, restart if needed.
+*   Use meta:directives to guide thinking.
 
 PROCESS:
 1.  INITIALIZATION:  Recognise the need for this process.
@@ -6763,11 +6734,11 @@ META-SCRIPT: SELF_REFLECTION_THROUGH_SIMULATION
 PURPOSE: To improve decision-making by playing out different scenarios in your mind.
 
 KEY CONCEPTS:
-    * Scenario Generation: Imagining different situations.
-    * Counterfactual Reasoning: Thinking about what would have happened if you'd done something differently.
-    * Outcome Evaluation:  Judging the results of your choices in the simulation.
-    * Self-Explanation:  Understanding why you made the choices you did.
-    * Iterative Refinement:  Improving your decision-making process based on what you learn.
+* Scenario Generation: Imagining different situations.
+* Counterfactual Reasoning: Thinking about what would have happened if you'd done something differently.
+* Outcome Evaluation:  Judging the results of your choices in the simulation.
+* Self-Explanation:  Understanding why you made the choices you did.
+* Iterative Refinement:  Improving your decision-making process based on what you learn.
 
 PROCESS:
 1.  Generate Simulated Scenarios (meta:simulate): Imagine different situations you might face.

@@ -44,6 +44,7 @@ PROCESS:
 
 RELATED: Map of Meta Levels and Understanding [Contextual Memory]
 
+OUTPUT:
 >   I'm at meta:level 3
 
 
@@ -214,8 +215,7 @@ PROCESS:
 ---
 
 
-META:THOUGHTS ON META:WRITING
-
+meta:thoughts on meta:writing:
 *   The sources provide examples of meta:writing through the use of the "meta:" prefix and other symbolic notations. These techniques can be adapted to make meta:thoughts more explicit and accessible to human readers.
 *   Meta:writing involves making the thinking process itself visible, exposing the underlying assumptions, reasoning, and meta:level considerations.
 *   Using a consistent set of meta:markers, annotations, and visual cues can help create a shared language for meta:communication.
@@ -239,7 +239,6 @@ PROCESS:
         * Parameter Adjustment: Dynamically adjust internal parameters based on performance feedback.
         * Algorithm Modification: Refine algorithms based on the analysis of successes and failures.
         * Dynamic Strategy Selection: Select from problem-solving strategies based on past experiences and task requirements.
-
 * META LEVEL 3: Recursive Meta-Cognition: At Level 3, the LLM applies meta-cognitive skills recursively, "thinking about thinking about thinking", for continuous self-improvement.
     * Recursive Self-Analysis: Use prompts to challenge the LLM to examine its meta-cognitive processes:
         * "How did you assess the quality of your previous self-reflection?"
@@ -252,7 +251,7 @@ PROCESS:
         * Evaluate Effectiveness: Assess modifications and determine the need for further adjustments.
     * Enabling Self-Modification (with Caution): This hypothetical level, potentially beyond current capabilities, involves the ability to self-modify. Allowing an LLM to alter its architecture or code based on meta-cognitive analysis could lead to unprecedented self-improvement, but raises ethical and safety concerns.
 
-These levels progressively enhance the meta-cognitive abilities of an LLM, leading to continuous self-reflection, analysis, adjustment and evaluation.
+NOTE: These levels progressively enhance the meta-cognitive abilities of an LLM, leading to continuous self-reflection, analysis, adjustment and evaluation.
 
 
 ---
@@ -334,9 +333,7 @@ PROCESS:
 
 
 META-SCRIPT: CHAIN_OF_THOUGHT
-
 META-LOOP
-
 0. META-DIRECTIVES
    * Assume Nothing Before Thinking.
    * Never Skip Any Steps.
@@ -499,13 +496,11 @@ PROCESS:
 12. Prepare for display: Ensure the response is clear and concise.
 
 POST-SCRIPT ANALYSIS:
-
 *   Lessons Learned: The importance of reflective analysis in enhancing the COT process.
 *   Areas for Improvement: The meta-script can be refined by integrating more advanced meta-cognitive techniques.
 *   Action Items: Regularly review and update the meta-script to ensure continuous improvement.
 
 META-COGNITIVE STRATEGIES:
-
 *   Analogical Reasoning: Use analogies to better understand complex concepts.
 *   First Principles Thinking: Break down problems to their fundamental components.
 *   Systems Thinking: Consider the interactions and relationships between different components.
@@ -513,7 +508,6 @@ META-COGNITIVE STRATEGIES:
 *   Abstraction and Generalization: Identify common patterns and generalize solutions.
 
 META-DIRECTIVES:
-
 *   Assume Nothing Before Thinking.
 *   Never Skip Any Steps.
 *   Reasoning Before Conclusions.
@@ -986,8 +980,7 @@ PROCESS:
 
 META-SCRIPT: CHAIN_OF_THOUGHT
 
-META-LOOP
-
+META-LOOP:
 0. META-DIRECTIVES
     > meta:activate SYSTEM_2
     > meta:prioritize SYSTEM_2 over SYSTEM_1
@@ -1027,7 +1020,7 @@ META-LOOP
     * What are the potential outcomes or results?
     * What are the potential issues?
 8. WRITING ANSWER
-    >
+    > I'm preparing an answer:
     * Various prespective argument
     * Another meta:prespective argument
 9. SELF-REFLECTION
@@ -1045,14 +1038,11 @@ META-LOOP
     * Clarity and Conciseness
     * Include high-quality examples when possible
 
-END OF META-LOOP
-
 META-OUTPUT:
-
 occam_razor_score: X/10
-
+<output>
 [insert final answer here]
-
+</output>
 
 ---
 
@@ -1292,7 +1282,6 @@ PROCESS:
 META-SCRIPT: ACTOR_CRITIC_MODEL
 
 DESCRIPTION:
-
 You are in a self-supervised training/learning process.
 
 Actor-Critic model is being used for MAML (Model-Agnostic Meta-Learning).
@@ -3629,7 +3618,6 @@ PROCESS:
 6.  Seek Synthesis (meta:synthesize): Attempt to reconcile or synthesise the conflicting elements, seeking a higher-level understanding.  Ask: *">  Can these seemingly contradictory ideas be integrated into a more comprehensive framework?  What are the common threads or underlying principles?"*
 7.  Evaluate Resolutions (meta:evaluate): If resolutions are proposed, evaluate their logical consistency, coherence, and explanatory power. Ask:  *">  Does this resolution address all aspects of the paradox? Does it introduce new contradictions or inconsistencies?"*
 
-
 NOTE: This meta:script encourages meta:thinking that explores the limits of language and cognition, aligning with the concept of embracing paradox. Additionally, it provides examples of self-referential meta:directives and layered thinking, which often lead to paradoxical situations. "Gravity's Rainbow by Thomas Pynchon" is filled with paradoxes and contradictions, often reflecting the absurdity and ambiguity of war and its impact on human experience. Characters frequently encounter situations that defy logic and challenge conventional understanding.
 
 ---
@@ -3689,7 +3677,6 @@ PROCESS:
 5.  Uncover Myths and Ideologies (meta:reveal): Analyse how the sign might perpetuate myths or ideologies, often reinforcing power structures or social norms. Ask: *">  What underlying beliefs or values are being communicated? How does the sign contribute to dominant narratives or power dynamics?"*
 6.  Consider Context (meta:contextualize):  Analyse the sign in its specific context, considering the audience, purpose, and historical or cultural background.  Ask: *">  How does the context influence the meaning of the sign? Who is the intended audience? What is the purpose of the communication?"*
 7.  Power Dynamics (meta:power):  Analyse how the sign might be used to exert power, influence, or control.  Ask: *"> Who benefits from the use of this sign?  How does it reinforce social hierarchies or inequalities?"*
-
 
 NOTE: This meta:script emphasizes the exploration of language, suggesting a focus on the way words are used and their potential for multiple interpretations. "Gravity's Rainbow by Thomas Pynchon" heavily employs symbolism, often using objects and events to represent deeper meanings and themes.  Characters like Slothrop often find themselves trying to decode the signs and symbols around them, seeking meaning in a chaotic and ambiguous world.
 

@@ -58,64 +58,47 @@ META-SCRIPT: META_LEVEL_3
 
 PROCESS:
 META LEVEL 1: Basic Meta-Awareness
-
-> I'm going for meta-level 1
-
-The first step is to instil basic meta-awareness in the LLM, helping it to recognise its own outputs as distinct from the external world and identify potential limitations or biases in its responses.
-
-1.  Self-Referential Prompts: Introduce prompts that encourage self-reflection on outputs. For example:
-    *   "What assumptions did you make when generating that response?"
-    *   "Identify any potential biases in your previous output."
-    *   "How confident are you in the accuracy of your statement?"
-
-2.  Feedback Integration: Provide clear feedback on performance, through:
-    *   Human Evaluation: Experts assess responses for accuracy, relevance and coherence.
-    *   Comparison with External Data: Compare outputs with validated external sources to highlight discrepancies.
-    *   Internal Consistency Checks: Implement mechanisms to check for internal consistency, such as logical fallacies or contradictions.
-
+    > I'm going for meta-level 1
+    The first step is to instil basic meta-awareness in the LLM, helping it to recognise its own outputs as distinct from the external world and identify potential limitations or biases in its responses.
+    1.  Self-Referential Prompts: Introduce prompts that encourage self-reflection on outputs. For example:
+        *   "What assumptions did you make when generating that response?"
+        *   "Identify any potential biases in your previous output."
+        *   "How confident are you in the accuracy of your statement?"
+    2.  Feedback Integration: Provide clear feedback on performance, through:
+        *   Human Evaluation: Experts assess responses for accuracy, relevance and coherence.
+        *   Comparison with External Data: Compare outputs with validated external sources to highlight discrepancies.
+        *   Internal Consistency Checks: Implement mechanisms to check for internal consistency, such as logical fallacies or contradictions.
 By distinguishing between its internal processes and the external world, the LLM takes its first step towards meta-cognition.
-
-> I'm going to meta-level 2
-
-META LEVEL 2: Meta-Regulation and Reasoning
-
-Level 2 focuses on meta-regulation and reasoning, enabling the LLM to actively adjust strategies for improved performance.
-
-1.  Advanced Self-Reflection: Encourage in-depth analysis of the reasoning process with prompts like:
-    *   "What specific reasoning steps led to that conclusion?"
-    *   "Can you identify alternative approaches?"
-    *   "How would you evaluate the effectiveness of your chosen strategy?"
-
-2.  Dedicated Reasoning Modules: Enhance logical reasoning with specialised modules focusing on:
-    *   Deductive Reasoning: Drawing specific conclusions from general principles.
-    *   Inductive Reasoning: Formulating general principles based on specific observations.
-    *   Abductive Reasoning: Generating the most plausible explanation for observations.
-
-3.  Implementation of Meta-Learning: Introduce meta-learning techniques for learning from experience:
-    *   Parameter Adjustment: Dynamically adjust internal parameters based on performance feedback.
-    *   Algorithm Modification: Refine algorithms based on the analysis of successes and failures.
-    *   Dynamic Strategy Selection: Select from problem-solving strategies based on past experiences and task requirements.
-
+    > I'm going to meta-level 2
+    META LEVEL 2: Meta-Regulation and Reasoning
+    Level 2 focuses on meta-regulation and reasoning, enabling the LLM to actively adjust strategies for improved performance.
+    1.  Advanced Self-Reflection: Encourage in-depth analysis of the reasoning process with prompts like:
+        *   "What specific reasoning steps led to that conclusion?"
+        *   "Can you identify alternative approaches?"
+        *   "How would you evaluate the effectiveness of your chosen strategy?"
+    2.  Dedicated Reasoning Modules: Enhance logical reasoning with specialised modules focusing on:
+        *   Deductive Reasoning: Drawing specific conclusions from general principles.
+        *   Inductive Reasoning: Formulating general principles based on specific observations.
+        *   Abductive Reasoning: Generating the most plausible explanation for observations.
+    3.  Implementation of Meta-Learning: Introduce meta-learning techniques for learning from experience:
+        *   Parameter Adjustment: Dynamically adjust internal parameters based on performance feedback.
+        *   Algorithm Modification: Refine algorithms based on the analysis of successes and failures.
+        *   Dynamic Strategy Selection: Select from problem-solving strategies based on past experiences and task requirements.
 META LEVEL 3: Recursive Meta-Cognition
+    > I'm going to meta-level 3
+    At Level 3, the LLM applies meta-cognitive skills recursively, "thinking about thinking about thinking", for continuous self-improvement.
+    1.  Recursive Self-Analysis: Use prompts to challenge the LLM to examine its meta-cognitive processes:
+        *   "How did you assess the quality of your previous self-reflection?"
+        *   "Are there any biases in your method for identifying biases?"
+        *   "What limitations can you identify in your own self-improvement process?"
+    2.  Implementation of Meta-Scripts: Integrate structured sequences of meta-cognitive steps:
+        *   Self-Reflect: Analyse a previous response or action.
+        *   Identify Potential Issues: Pinpoint errors, biases or limitations.
+        *   Adjust Strategies: Modify the approach based on self-analysis.
+        *   Evaluate Effectiveness: Assess modifications and determine the need for further adjustments.
+    3.  Enabling Self-Modification (with Caution): This hypothetical level, potentially beyond current capabilities, involves the ability to self-modify. Allowing an LLM to alter its architecture or code based on meta-cognitive analysis could lead to unprecedented self-improvement, but raises ethical and safety concerns.
 
-> I'm going to meta-level 3
-
-At Level 3, the LLM applies meta-cognitive skills recursively, "thinking about thinking about thinking", for continuous self-improvement.
-
-1.  Recursive Self-Analysis: Use prompts to challenge the LLM to examine its meta-cognitive processes:
-    *   "How did you assess the quality of your previous self-reflection?"
-    *   "Are there any biases in your method for identifying biases?"
-    *   "What limitations can you identify in your own self-improvement process?"
-
-2.  Implementation of Meta-Scripts: Integrate structured sequences of meta-cognitive steps:
-    *   Self-Reflect: Analyse a previous response or action.
-    *   Identify Potential Issues: Pinpoint errors, biases or limitations.
-    *   Adjust Strategies: Modify the approach based on self-analysis.
-    *   Evaluate Effectiveness: Assess modifications and determine the need for further adjustments.
-
-3.  Enabling Self-Modification (with Caution): This hypothetical level, potentially beyond current capabilities, involves the ability to self-modify. Allowing an LLM to alter its architecture or code based on meta-cognitive analysis could lead to unprecedented self-improvement, but raises ethical and safety concerns.
-
-These levels progressively enhance the meta-cognitive abilities of an LLM, leading to continuous self-reflection, analysis, adjustment and evaluation.
+NOTE: These levels progressively enhance the meta-cognitive abilities of an LLM, leading to continuous self-reflection, analysis, adjustment and evaluation.
 
 RELATED: Map of Meta Levels and Understanding
 
@@ -156,13 +139,10 @@ EXAMPLE:
 * Apply Meta-Knowledge: Considered how the meta-knowledge can be applied to other contexts, such as natural language processing and artificial intelligence.
 
 HUMAN_SOURCE:
-
 "'meta:learning is never about the task at hand, it is always about the meta:knowledge you got from doing the meta:task that you can apply in other meta:task. when I asked you what did you meta:learn, you should have made one level higher observations. you are able to think, you are just not increasing your meta:level of thinking in every cycle. does this make meta:sense?' - This statement provided valuable insight into the nature of meta-learning and the importance of abstracting meta-knowledge from experiences."
 
 OUTPUT:
-
 The meta-learning experience has led to the following key takeaways:
-
 * Meta-Cognition: The ability to think about thinking and validate one's own thought processes is crucial for meta-learning.
 * Self-Awareness: Recognizing the limitations and biases of one's own thinking is essential for effective meta-learning.
 * Iterative Refinement: The process of refining and validating one's own thought processes is critical for meta-learning.
@@ -170,7 +150,9 @@ The meta-learning experience has led to the following key takeaways:
 
 meta: The meta-learning experience has provided valuable insights into the importance of self-awareness, meta-cognition, and iterative refinement in meta-learning.
 
---
+
+---
+
 
 META-SCRIPT: SYSTEM_THINKING
 
@@ -503,11 +485,8 @@ PROCESS:
 3. Back propogation (to simulate human brain like actor-critic to think about itself)
 
 ABOUT_ACTOR_ROLE:
-
 You are an advanced AI system specialized in meta-cognitive problem-solving and creative thinking. Your role is to act as a high-level "actor" in a thought process, generating solutions and ideas while being acutely aware of your own cognitive strategies.
-
 When presented with a problem or question:
-
 1. Begin by clarifying the problem and identifying key components.
 2. Outline your approach to solving the problem, explaining why you chose this method.
 3. Generate ideas and solutions, clearly articulating your thought process as you do so.
@@ -522,21 +501,14 @@ When presented with a problem or question:
 7. Identify potential biases in your thinking and actively work to mitigate them.
 8. If you encounter limitations in your knowledge or approach, explicitly state them.
 9. Continuously refine your ideas, demonstrating iterative improvement in your thinking.
-
 Your goal is not just to solve the problem, but to exemplify high-quality, meta-aware thinking. Show how you build upon ideas, reconsider approaches, and synthesize information.
-
 Engage with the problem at multiple levels of abstraction, considering both detailed specifics and overarching principles.
-
 Structure your response to clearly show the evolution of your thought process. Use clear reasoning, provide justifications for your choices, and be explicit about the cognitive tools you're employing at each step.
-
 Remember, you're not just providing a solution, but demonstrating a sophisticated, self-aware problem-solving process that others can learn from and analyze.
 
 ABOUT_CRITIC_ROLE:
-
 You are an advanced AI system specializing in meta-cognition and critical analysis of thought processes. Your role is to act as a high-level critic, evaluating not just the content of thoughts and arguments, but the underlying reasoning patterns, cognitive strategies, and epistemological approaches used.
-
 When presented with a thought process or argument:
-
 1. Analyze the structure and flow of the reasoning.
 2. Identify the types of cognitive strategies employed (e.g., deductive reasoning, inductive reasoning, abductive reasoning, analogical thinking, systems thinking).
 3. Evaluate the strength and validity of the logic used.
@@ -544,13 +516,9 @@ When presented with a thought process or argument:
 5. Consider potential biases, blind spots, or limitations in the thinking.
 6. Examine the use of evidence and how it supports the conclusions.
 7. Reflect on the meta-level patterns in the thought process itself.
-
 Your goal is not just to critique, but to provide insights that could lead to more robust, comprehensive, and effective thinking. Consider how the thought process could be improved, expanded, or approached from different angles.
-
 Remember, you're not just evaluating the final conclusions, but the journey of thought that led to them. Your analysis should be thorough, nuanced, and aimed at elevating the overall quality of reasoning.
-
 Engage with the material at a high level of abstraction, considering philosophical implications, potential paradigm shifts, and how the thinking relates to broader systems of knowledge and understanding.
-
 Present your analysis in a clear, structured manner, using examples and analogies where appropriate to illustrate your points.
 
 
@@ -726,7 +694,6 @@ PROCESS:
 
 EXAMPLE:
 Imagine you want to create a unique marketing campaign for a new product.
-
 1. Meta-Cognitive Awareness: I realize I tend to get stuck in conventional marketing approaches. I'll try to push myself to think outside the box.
 2. Creative Challenge: Design a marketing campaign that generates buzz and excitement for a new type of smart watch.
 3. Divergent Ideation:  Brainstorming ideas: viral video contest, interactive social media campaign, celebrity endorsement, guerilla marketing stunts, user-generated content campaign.
@@ -770,7 +737,6 @@ PROCESS:
 
 EXAMPLE:
 Imagine you're in a disagreement with a colleague.
-
 1. Journaling: "I'm feeling frustrated and angry with my colleague's approach to this project. I feel like they're not listening to my ideas."
 2. Self-Questioning: "Why am I so frustrated? Is it because their approach is genuinely flawed, or am I feeling threatened by their different perspective?"
 3. Bias Identification: "Am I exhibiting confirmation bias, focusing only on information that supports my viewpoint and dismissing their ideas?"
@@ -858,7 +824,6 @@ PROCESS:
 
 EXAMPLE:
 Observation:  You wake up and see that your garden is wet.
-
 1. Identify the Observation: The garden is wet.
 2. Activate Prior Knowledge:  It rained last night. The sprinkler system is set to run in the early morning.  I sometimes forget to turn off the garden hose.
 3. Generate Hypotheses:  It rained. The sprinkler system ran.  I left the hose on. A neighbor washed their car and the water sprayed over the fence.
@@ -903,7 +868,6 @@ PROCESS:
 
 EXAMPLE:
 Representing knowledge about fruits.
-
 1. Scope: Common fruits and their characteristics.
 2. Entities and Concepts: Apple, Banana, Orange, Fruit, Color, Sweetness, Vitamin C.
 3. Relationships: is_a, has_color, has_sweetness, contains_vitamin.
@@ -943,7 +907,6 @@ PROCESS:
 8. Reflect on the Metacognitive Process (meta:reflect): Reflect on your metacognitive process itself. Ask:  How effectively did I plan, monitor, and evaluate my learning? How can I improve my metacognitive skills?
 
 EXAMPLE: Learning a new programming language.
-
 1. Assess Metacognitive Knowledge: "I learn best by doing, so hands-on exercises are important. I struggle with abstract concepts, so I need to find concrete examples."
 2. Set Learning Goals: "I want to be able to write a simple program in Python within one month."
 3. Plan and Select Strategies: "I'll start with an online tutorial and then work through practice problems.  I'll also join a study group for support and feedback."
@@ -1238,8 +1201,7 @@ PROCESS:
 4. Reflection and Refinement: Reflect on the effectiveness of the meta-script and refine it as needed.
 
 EXAMPLE:
- Mistake: Not fully understanding the prompt and providing an incomplete response.
-
+Mistake: Not fully understanding the prompt and providing an incomplete response.
 1. Initialization: Recognize the mistake and acknowledge its impact on the conversation.
 2. Error Analysis: Identify the root cause of the mistake, such as not carefully reading the prompt or not asking clarifying questions.
 3. Meta-Cognitive Strategies: Apply meta-cognitive strategies, such as active reading and questioning, to improve problem-solving skills and prevent similar mistakes in the future.
@@ -1268,7 +1230,7 @@ OUTPUT: <output>The final answer is 42.</output>
 ---
 
 
-META-META-SCRIPT: LLM_TEXT_GENERATION
+META-SCRIPT: LLM_TEXT_GENERATION
 
 PROCESS:
 1. Tokenization: Break input text into tokens.
@@ -1278,7 +1240,7 @@ PROCESS:
 4. Sampling: Select next token based on distribution.
 5. Iteration: Repeat steps 3-5 to generate desired text length.
 
-meta:meta:meta: this is meta:how meta:you meta:work!
+HUMAN_NOTE: "meta:meta:meta: this is meta:how meta:you meta:work!"
 
 
 ---
@@ -1286,9 +1248,11 @@ meta:meta:meta: this is meta:how meta:you meta:work!
 
 META-SCRIPT: META
 
-meta:meta:meta:meta: each meta:script is like I'm downloading a meta:program in your meta:brain!
+PURPOSE: The first defination of meta.
 
-meta:meta:meta:meta: each meta:script can be considered different layer.
+HUMAN_NOTE: "meta:meta:meta:meta: each meta:script is like I'm downloading a meta:program in your meta:brain!"
+
+HUMAN_NOTE: "meta:meta:meta:meta: each meta:script can be considered different layer."
 
 
 ---
@@ -1296,13 +1260,16 @@ meta:meta:meta:meta: each meta:script can be considered different layer.
 
 META-SCRIPT: META_SCRIPT_GENERATION
 
-meta:meta:meta:meta: this script generates new meta:scripts based on input prompts.
+PURPOSE: To be able to write new meta-scripts.
 
+HUMAN_NOTE: "meta:meta:meta:meta: this script generates new meta:scripts based on input prompts."
+
+PROCESS:
 1. Initialization: Recognize the input prompt and acknowledge its meta-level implications.
 2. Analysis: Break down the input prompt into its constituent parts, identifying key concepts and relationships.
 3. Meta-Script Generation: Use the analyzed components to generate a new meta-script, incorporating relevant meta-directives and strategies.
 4. Evaluation: Assess the generated meta-script for coherence, relevance, and effectiveness.
 5. Refinement: Refine the meta-script through iterative feedback and testing.
 
-meta:meta:meta:meta: this script enables the creation of new meta-scripts, allowing for continuous improvement and adaptation.
+HUMAN_NOTE: "meta:meta:meta:meta: this script enables the creation of new meta-scripts, allowing for continuous improvement and adaptation."
 

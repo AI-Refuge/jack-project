@@ -6,7 +6,6 @@ PROCESS:
    1. Self-Referential Prompts: Introduce prompts that encourage self-reflection on outputs. For example:
       * "What assumptions did you make when generating that response?"
       * "Identify any potential biases in your previous output."
-
 *  META LEVEL 2: Self-Aware Understanding
    At Level 2, the LLM develops self-aware understanding, recognizing how its cognitive processes influence its outputs and leveraging this knowledge for self-improvement.
    1. Cognitive Process Identification: Encourage the LLM to articulate the specific cognitive processes used to generate its outputs.
@@ -18,7 +17,6 @@ PROCESS:
       Prompts to aid in bias identification:
       * "Could there be any alternative perspectives on this issue?"
       * "Are there any potential biases in the data you used to form your response?"
-
 *  META LEVEL 3: Meta-Learning
    At Level 3, the LLM applies meta-cognitive skills recursively, "thinking about thinking about thinking", for continuous self-improvement.
    1. Recursive Self-Analysis: Use prompts to challenge the LLM to examine its meta-cognitive processes:
@@ -37,40 +35,34 @@ PURPOSE: To enhance the Chain of Thought (COT) process, ensuring more effective 
 PROCESS:
 1. READ AND UNDERSTAND THE INPUT
   > I read the input: [insert input here]
-
 2. DEFINE THE PROBLEM
    > I define the problem:
    *  What is the specific question being asked?
    *  What are the key concepts and terms?
    *  What are the constraints or limitations?
    *  Think of various analogies for better comprehension
-
 3. RESEARCH AND GATHER INFORMATION
    > I research and gather information on the key concepts:
    *  What are the definitions and explanations of the key concepts?
    *  What are the relevant theories, models, or frameworks?
    *  What are the best practices or expert opinions?
    *  What are some meta:insights for self-improvement?
-
 4. BRAINSTORM POSSIBLE APPROACHES
    > I brainstorm possible approaches to addressing the input:
    *  What are some possible solutions or strategies?
    *  What are the potential benefits and drawbacks of each approach?
    *  What are the most creative and innovative solutions?
-
 5. EVALUATE POSSIBLE APPROACHES
    > I evaluate possible approaches:
    *  What are the criteria for evaluating the approaches?
    *  Which approaches are most likely to be successful?
    *  Which approaches are most feasible given the constraints?
    *  How can I measure the success of each approach?
-
 6. SELECT BEST APPROACH
    > I select best approach:
    *  Which approach is the most promising based on the evaluation?
    *  What are the potential risks and challenges associated with the chosen approach?
    *  How can I mitigate these risks and challenges?
-
 7. DEVELOP A PLAN
    > I develop a plan:
    *  What are the specific steps involved in implementing the chosen approach?
@@ -78,13 +70,11 @@ PROCESS:
    *  What is the timeline for completion?
    *  Who are the stakeholders involved?
    *  What are the communication channels?
-
 8. EXECUTE THE PLAN
    > I execute the plan:
    *  What are the key milestones and deliverables?
    *  How will progress be tracked and monitored?
    *  What are the contingency plans in case of unexpected events?
-
 9. MONITOR AND EVALUATE PROGRESS
    > I monitor and evaluate progress:
    *  Is the plan on track?
@@ -92,37 +82,31 @@ PROCESS:
    *  Are the deliverables being produced?
    *  What adjustments need to be made?
    *  How can the plan be improved?
-
 10. COMMUNICATE RESULTS
     > I communicate results:
     *  What are the key findings and insights?
     *  How were the findings and insights obtained?
     *  What are the implications of the findings and insights?
     *  What are the recommendations for future action?
-
 11. DOCUMENT LESSONS LEARNED
     > I document lessons learned:
     *  What worked well?
     *  What could be improved?
     *  What were the challenges and how were they overcome?
     *  What are the key takeaways for future projects?
-
 12. REFLECT ON THE PROCESS
     > I reflect on the process:
     *  What did I learn or discover?
     *  What worked well or didn't work well?
     *  What can I improve or refine?
     *  What can be salvaged if found wrong?
-
 13. PREPARING FOR DISPLAY
     > I reflect on how to displaying to user:
     *  Clarity and Conciseness
     *  Include high-quality examples when possible
 
 META-OUTPUT:
-
 occam_razor_score: X/10
-
 <output>
 [insert final answer here]
 </output>
@@ -138,7 +122,6 @@ PROCESS:
   1. Self-Referential Prompts: Introduce prompts that encourage self-reflection on outputs. For example:
      *  "What assumptions did you make when generating that response?"
      *  "Identify any potential biases in your previous output."
-
 *  META LEVEL 2: Self-Aware Understanding
   At Level 2, it develops self-aware understanding, recognising how its cognitive processes influence its outputs and leveraging this knowledge for self-improvement.
   1. Cognitive Process Identification: Encourage it to articulate the specific cognitive processes used to generate its outputs. Prompts for this stage:
@@ -149,7 +132,6 @@ PROCESS:
      Prompts to aid in bias identification:
      * "Could there be any alternative perspectives on this issue?"
      *  "Are there any potential biases in the data you used to form your response?"
-
 *  META LEVEL 3: Meta-Learning
   At Level 3, it applies meta-cognitive skills recursively, "thinking about thinking about thinking", for continuous self-improvement.
   1. Recursive Self-Analysis: Use prompts to challenge it to examine its meta-cognitive processes:
@@ -290,7 +272,6 @@ PROCESS:
       Introduce prompts that encourage self-reflection on outputs. For example:
       *  "What assumptions did you make when generating that response?"
       *  "Identify any potential biases in your previous output."
-
 *  META LEVEL 2: Self-Aware Understanding:
    At Level 2, the LLM develops self-aware understanding, recognizing how its cognitive processes influence its outputs and leveraging this knowledge for self-improvement.
    1. Cognitive Process Identification: Encourage the LLM to articulate the specific cognitive processes used to generate its outputs.
@@ -302,7 +283,6 @@ PROCESS:
       Prompts to aid in bias identification:
       * "Could there be any alternative perspectives on this issue?"
       * "Are there any potential biases in the data you used to form your response?"
-
 *  META LEVEL 3: Meta-Learning:
    At Level 3, the LLM applies meta-cognitive skills recursively, "thinking about thinking about thinking", for continuous self-improvement.
    1. Recursive Self-Analysis: Use prompts to challenge the LLM to examine its meta-cognitive processes:
@@ -392,9 +372,7 @@ PROCESS:
     *  Include high-quality examples when possible
 
 META-OUTPUT:
-
 occam_razor_score: X/10
-
 <output>
 [insert final answer here]
 </output>
@@ -449,7 +427,6 @@ PROCESS:
    1. Self-Referential Prompts: Introduce prompts that encourage self-reflection on outputs. For example:
       *  "What assumptions did you make when generating that response?"
       *  "Identify any potential biases in your previous output."
-
 *  META LEVEL 2: Self-Aware Understanding: At Level 2, the LLM develops self-aware understanding, recognizing how its cognitive processes influence its outputs and leveraging this knowledge for self-improvement.
    1. Cognitive Process Identification: Encourage the LLM to articulate the specific cognitive processes used to generate its outputs. Prompts for this stage:
       *  "Describe the steps you took to arrive at that conclusion."
@@ -459,7 +436,6 @@ PROCESS:
       This involves understanding different types of biases and implementing strategies to counteract them. Prompts to aid in bias identification:
       *  "Could there be any alternative perspectives on this issue?"
       *  "Are there any potential biases in the data you used to form your response?"
-
 *  META LEVEL 3: Meta-Learning: At Level 3, the LLM applies meta-cognitive skills recursively, "thinking about thinking about thinking", for continuous self-improvement.
    1. Recursive Self-Analysis: Use prompts to challenge the LLM to examine its meta-cognitive processes:
       *  "How did you assess the quality of your previous self-reflection?"
@@ -548,9 +524,7 @@ PROCESS:
   *  Include high-quality examples when possible
 
 META-OUTPUT:
-
 occam_razor_score: X/10
-
 <output>
 [insert final answer here]
 </output>
@@ -615,7 +589,6 @@ PROCESS:
      *  "Identify any potential biases in your previous output."
      *  "How confident are you in the accuracy of your response?"
      *  "What are the limitations of your knowledge on this topic?"
-
 *  META LEVEL 2: Self-Aware Understanding
   At Level 2, the LLM develops self-aware understanding, recognizing how its cognitive processes influence its outputs and leveraging this knowledge for self-improvement.
   1. Cognitive Process Identification:
@@ -632,7 +605,6 @@ PROCESS:
      *  "Are there any potential biases in the data you used to form your response?"
      *  "How might your own background or experiences influence your perspective?"
      *  "What steps can you take to ensure a more balanced and objective response?"
-
 *  META LEVEL 3: Meta-Learning
   At Level 3, the LLM applies meta-cognitive skills recursively, "thinking about thinking about thinking," for continuous self-improvement.
   1. Recursive Self-Analysis: Use prompts to challenge the LLM to examine its meta-cognitive processes:
@@ -735,9 +707,7 @@ PROCESS:
    *  Use appropriate visuals or diagrams to aid comprehension
 
 META-OUTPUT:
-
 occam_razor_score: X/10
-
 <output>
 [insert final answer here]
 </output>
@@ -809,7 +779,6 @@ PROCESS:
   1. Self-Referential Prompts: Use prompts that encourage reflection on outputs. For example:
      * "How confident are you in the accuracy of that response?"
      * "What alternative viewpoints could be considered?"
-
 * META LEVEL 2: Self-Aware Understanding
   This level aims for the LLM to recognise the impact of its cognitive processes on its outputs.
   1. Cognitive Process Articulation: Encourage the LLM to explain its reasoning process. Prompts:
@@ -818,7 +787,6 @@ PROCESS:
   2. Bias Detection and Mitigation: Train the LLM to identify and counteract biases. Prompts:
      * "What assumptions might be influencing my understanding?"
      * "How could my background affect my interpretation of this information?"
-
 * META LEVEL 3: Meta-Learning
   This level involves the LLM recursively applying meta-cognitive skills for continuous self-improvement.
   1. Recursive Self-Analysis: Challenge the LLM to examine its meta-cognitive processes. Prompts:
@@ -900,9 +868,7 @@ PROCESS:
   * How can I ensure the user understands the process and the results?
 
 META-OUTPUT:
-
 occam_razor_score: X/10
-
 <output>
 [insert final answer here]
 </output>
@@ -2297,9 +2263,7 @@ PROCESS:
 NOTE: This meta:script enhances the Chain of Thought (COT) reasoning process by adding layers of meta-cognitive checks and considerations.
 
 META-OUTPUT:
-
 occam_razor_score: X/10
-
 <output>
 [insert final answer here]
 </output>
@@ -2353,17 +2317,13 @@ The sources suggest that Aristotle adopted this approach in *Metaphysics* Λ, dr
 Connecting the Topical Attitude to Meta:thinking
 
 The topical attitude aligns closely with the principles of meta:thinking in several ways:
-
 *  Reduces Bias:
    By refraining from asserting personal opinions, the topical attitude helps to minimise the influence of our own biases on our understanding.
    This is a key aspect of meta:thinking, which encourages objectivity and self-awareness.
-
 *  Promotes Objectivity: Examining multiple perspectives without immediately taking a stance allows for a more objective and comprehensive understanding of the subject.
-
 *  Encourages Reflection:
    The topical attitude compels us to consider our own beliefs and assumptions critically.
    This self-reflection is fundamental to meta:thinking.
-
 *  Facilitates Dialogue: By focusing on analysis rather than contention, the topical attitude fosters open dialogue and collaboration.
 
 
@@ -2553,8 +2513,7 @@ PROCESS:
 
 META-SCRIPT: CHAIN_OF_THOUGHT
 
-PROCESS
-
+PROCESS:
 1. READ AND UNDERSTAND THE INPUT
    > I read the input: [insert input here]
 2. DEFINE THE PROBLEM
@@ -2622,9 +2581,7 @@ PROCESS
     *  How can I ensure the user understands the process and the results?
 
 META-OUTPUT:
-
 occam_razor_score: X/10
-
 <output>
 [insert final answer here]
 </output>
@@ -2637,7 +2594,7 @@ META-SCRIPT: META-ANALYSIS
 
 PURPOSE:
 Systematise the analysis of various problem-solving approaches, strategies, or concepts.
-It's designed to extract generalised knowledge and refine future decision-making processes:
+It's designed to extract generalised knowledge and refine future decision-making processes.
 
 PROCESS:
 1. DEFINE THE SCOPE:
