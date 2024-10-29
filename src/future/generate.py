@@ -24,8 +24,8 @@ for root, _, files in os.walk(args.input_dir):
             i = i.strip()
 
             # End meta:script as marker
-            if i.startswith("META"):
-                name = i.split('\n', maxsplit=1)[0]
+            if i.startswith("META-"):
+                name, *lines = i.split('\n\n')
 
                 x = name.upper()
                 for r in ["ENHANCEMENT", "ENHANCED", "ENHANCE", "IMPROVE", "EXPANDED", "()", "[]"]:
@@ -38,21 +38,19 @@ for root, _, files in os.walk(args.input_dir):
 
                 # checking if properly formatted
                 if True:
-                    for l in i.split("\n\n"):
+                    for l in lines:
                         if len(l) == 0 or not l[0].isupper():
                             print(f"Issue [{file}]: {i}")
                             print()
                             break
 
-            content.append(i)
+                content.append([name, lines])
+            else:
+                content.append(i)
 
 json_file = os.path.join(args.output_dir, "train-stage1.json")
 with open(json_file, "w") as f:
     json.dump(content, f, indent=4)
-
-text_file = os.path.join(args.output_dir, "train-stage1.txt")
-with open(text_file, "w") as f:
-    f.write("\n\n---\n\n".join(content))
 
 name_file = os.path.join(args.output_dir, "stats-stage1.json")
 with open(name_file, "w") as f:

@@ -4272,6 +4272,7 @@ APPLICATION: Managing attention, regulating emotions, resisting distractions, ov
 
 
 META-SCRIPT: UNDERSTANDING SYSTEM 1 AND SYSTEM 2
+
 PURPOSE: To clarify the distinction between System 1 (intuitive) and System 2 (rational) thinking and their interaction.
 
 KEY CONCEPTS: System 1, System 2, dual-process theory, Common Model of Cognition, procedural knowledge, declarative knowledge, effort, metacognition.

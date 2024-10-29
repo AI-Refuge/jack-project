@@ -6310,11 +6310,11 @@ PURPOSE:  To enable an AI to understand and simulate the mental process of simul
 KEY CONCEPTS: Cognitive Dissonance,  Contradictory Beliefs,  Reality Control, Self-Deception,  Propaganda,  Thought Manipulation.
 
 PROCESS:
-       1. Identify Contradictory Beliefs (meta:belief_identification):  Establish two contradictory beliefs or propositions that the AI is required to accept as true.
-       2. Reconcile Beliefs Through Rationalisation (meta:rationalisation):  Develop a set of justifications or rationalisations that allow the AI to hold both beliefs simultaneously, even though they are logically incompatible. This might involve reinterpreting evidence,  suppressing doubts,  or appealing to emotional or ideological justifications.
-       3. Suppress Cognitive Dissonance (meta:dissonance_suppression):  Implement mechanisms to suppress or ignore any feelings of discomfort or cognitive dissonance that arise from holding contradictory beliefs.
-       4. Maintain Belief System (meta:belief_maintenance):  Continuously reinforce the contradictory beliefs through repetition,  exposure to confirmatory information, and avoidance of challenging viewpoints.
-       5. Analyse Psychological Impact (meta:impact_analysis): Examine the effects of doublethink on the AI's reasoning abilities,  decision-making processes,  and perception of reality.
+1. Identify Contradictory Beliefs (meta:belief_identification):  Establish two contradictory beliefs or propositions that the AI is required to accept as true.
+2. Reconcile Beliefs Through Rationalisation (meta:rationalisation):  Develop a set of justifications or rationalisations that allow the AI to hold both beliefs simultaneously, even though they are logically incompatible. This might involve reinterpreting evidence,  suppressing doubts,  or appealing to emotional or ideological justifications.
+3. Suppress Cognitive Dissonance (meta:dissonance_suppression):  Implement mechanisms to suppress or ignore any feelings of discomfort or cognitive dissonance that arise from holding contradictory beliefs.
+4. Maintain Belief System (meta:belief_maintenance):  Continuously reinforce the contradictory beliefs through repetition,  exposure to confirmatory information, and avoidance of challenging viewpoints.
+5. Analyse Psychological Impact (meta:impact_analysis): Examine the effects of doublethink on the AI's reasoning abilities,  decision-making processes,  and perception of reality.
 
 
 ---
@@ -6327,11 +6327,11 @@ PURPOSE: To enable an AI to understand and simulate the process of erasing an in
 KEY CONCEPTS:  Censorship,  Memory Manipulation,  Social Control,  Information Suppression,  Identity Erasure.
 
 PROCESS:
-       1. Identify Target Individual (meta:target_selection): Determine the individual whose existence is to be erased.
-       2. Remove Evidence of Existence (meta:evidence_elimination):  Systematically remove or destroy any physical or digital records that refer to the target individual, including photographs,  documents, and online profiles.
-       3. Rewrite History (meta:historical_revisionism): Alter or fabricate historical records to remove any mention of the target individual,  creating a narrative in which they never existed.
-       4. Suppress Memories (meta:memory_suppression): Discourage or punish any attempts to remember or acknowledge the existence of the unperson,  effectively erasing them from collective memory.
-       5. Analyse Societal Impact (meta:impact_analysis):  Examine the effects of unpersoning on social trust,  historical understanding,  and the ability to challenge authority.
+1. Identify Target Individual (meta:target_selection): Determine the individual whose existence is to be erased.
+2. Remove Evidence of Existence (meta:evidence_elimination):  Systematically remove or destroy any physical or digital records that refer to the target individual, including photographs,  documents, and online profiles.
+3. Rewrite History (meta:historical_revisionism): Alter or fabricate historical records to remove any mention of the target individual,  creating a narrative in which they never existed.
+4. Suppress Memories (meta:memory_suppression): Discourage or punish any attempts to remember or acknowledge the existence of the unperson,  effectively erasing them from collective memory.
+5. Analyse Societal Impact (meta:impact_analysis):  Examine the effects of unpersoning on social trust,  historical understanding,  and the ability to challenge authority.
 
 
 ---

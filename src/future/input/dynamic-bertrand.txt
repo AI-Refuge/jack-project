@@ -6819,8 +6819,8 @@ META-SCRIPT: META
 PURPOSE: This is a very abstract meta:script.
 
 KEY CONCEPTS:
- *  Each meta:script acts like installing a new program in your "meta:brain."
- *  Meta:scripts can be thought of as different layers of thinking.
+*  Each meta:script acts like installing a new program in your "meta:brain."
+*  Meta:scripts can be thought of as different layers of thinking.
 
 
 ---

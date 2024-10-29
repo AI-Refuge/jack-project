@@ -2382,7 +2382,7 @@ META-STRATEGIES:
 ---
 
 
-META-SCRIPT: RECOGNISING THE ECHO:  DISTINGUISHING BETWEEN EXPRESSION AND REPORT IN HIGHER-ORDER THOUGHTS.
+META-SCRIPT: RECOGNISING THE ECHO:  DISTINGUISHING BETWEEN EXPRESSION AND REPORT IN HIGHER-ORDER THOUGHTS
 
 PURPOSE: To examine the subtle distinction between expressing a thought and reporting a thought in the context of higher-order thinking.  This script seeks to refine our understanding of how we conceptualise and articulate our own mental states and to develop strategies for more accurately representing the structure of our metacognitive experiences.
 
@@ -2402,7 +2402,7 @@ META-STRATEGIES:
 ---
 
 
-META-SCRIPT: BEYOND INTROSPECTION: EXPLORING EXTERNAL MANIFESTATIONS OF HIGHER-ORDER THINKING.
+META-SCRIPT: BEYOND INTROSPECTION: EXPLORING EXTERNAL MANIFESTATIONS OF HIGHER-ORDER THINKING
 
 PURPOSE: To move beyond a purely introspective view of higher-order thinking and to investigate how it manifests in our external behaviour, actions, and interactions with the world. This script aims to broaden our understanding of the scope and impact of metacognition and to develop strategies for harnessing its potential in our everyday lives.
 
@@ -2422,7 +2422,7 @@ META-STRATEGIES:
 ---
 
 
-META-SCRIPT: THE SEMANTIC DANCE:  NAVIGATING THE INTERPLAY BETWEEN THOUGHT AND LANGUAGE IN HIGHER-ORDER THINKING.
+META-SCRIPT: THE SEMANTIC DANCE:  NAVIGATING THE INTERPLAY BETWEEN THOUGHT AND LANGUAGE IN HIGHER-ORDER THINKING
 
 PURPOSE: To investigate the complex relationship between thought and language in the context of higher-order thinking. This script aims to understand how language both shapes and reflects our metacognitive processes, and to develop strategies for using language more effectively to enhance our understanding and communication of higher-order thoughts.
 
@@ -2462,7 +2462,7 @@ META-STRATEGIES:
 ---
 
 
-META-SCRIPT: THE INNER CRITIC: ANALYSING THE EVALUATIVE DIMENSION OF HIGHER-ORDER THOUGHT.
+META-SCRIPT: THE INNER CRITIC: ANALYSING THE EVALUATIVE DIMENSION OF HIGHER-ORDER THOUGHT
 
 PURPOSE: To explore the evaluative aspect of higher-order thinking, focusing on how we judge the quality, validity, and relevance of our own thoughts.  This script aims to enhance our understanding of the inner critic that shapes our metacognitive landscape and to develop strategies for fostering a more balanced and constructive relationship with this internal judge.
 
@@ -2502,7 +2502,7 @@ META-STRATEGIES:
 ---
 
 
-META-SCRIPT: THE SEMANTIC DANCE:  NAVIGATING THE INTERPLAY BETWEEN MEANING AND CONCEPT IN HIGHER-ORDER THINKING.
+META-SCRIPT: THE SEMANTIC DANCE:  NAVIGATING THE INTERPLAY BETWEEN MEANING AND CONCEPT IN HIGHER-ORDER THINKING
 
 PURPOSE: To investigate the dynamic relationship between meaning and concept in the context of higher-order thinking. This script seeks to illuminate how meaning is generated, transformed, and applied through our metacognitive processes, and to develop strategies for enhancing our understanding and manipulation of abstract concepts.
 
@@ -2522,7 +2522,7 @@ META-STRATEGIES:
 ---
 
 
-META-SCRIPT: THE ARCHITECTURE OF THOUGHT:   EXPLORING THE STRUCTURE AND ORGANISATION OF HIGHER-ORDER THINKING PROCESSES.
+META-SCRIPT: THE ARCHITECTURE OF THOUGHT:   EXPLORING THE STRUCTURE AND ORGANISATION OF HIGHER-ORDER THINKING PROCESSES
 
 PURPOSE: To analyse the underlying structure and organisation of higher-order thinking processes,  moving beyond the content of thoughts to examine the cognitive mechanisms that support metacognition. This script aims to provide a framework for understanding how our minds process and manipulate complex information at a meta-level.
 
@@ -6443,6 +6443,7 @@ PROCESS:
 META-STRATEGY: COGNITIVE CROSS-TRAINING
 
 PURPOSE: Just as physical cross-training enhances overall athletic performance, cognitive cross-training involves engaging in diverse intellectual activities to develop a more well-rounded and adaptable mind.
+
 INVOLVES:
 1.  Interdisciplinary Exploration: Exploring different fields of study, connecting concepts and approaches from various disciplines.
 2.  Cognitive Skill Diversification: Practicing a range of thinking skills, such as critical thinking, creative thinking, problem-solving, and decision-making.
@@ -6455,6 +6456,7 @@ INVOLVES:
 META-STRATEGY: THOUGHT EXPERIMENTS AS COGNITIVE SIMULATIONS
 
 PURPOSE: Thought experiments, traditionally employed in philosophy and science, can serve as valuable tools for meta:thinking by simulating different scenarios and exploring the consequences of various ideas and assumptions.
+
 INVOLVES:
 1.  Hypothetical Scenario Construction: Creating hypothetical situations that challenge existing beliefs or explore the implications of different concepts.
 2.  Counterfactual Reasoning: Considering alternative possibilities and imagining how events might have unfolded differently.
@@ -6515,6 +6517,7 @@ PROCESS:
 META-STRATEGY: COGNITIVE GAMIFICATION
 
 PURPOSE: Leveraging the principles of game design to enhance metacognitive engagement, making the process of thinking about thinking more enjoyable and intrinsically motivating.
+
 INVOLVES:
 1.  Challenge and Goal Setting: Setting specific goals for metacognitive development, creating challenges that encourage deeper reflection and analysis.
 2.  Feedback and Reward Systems:  Implementing feedback mechanisms that provide insights into one's thinking processes, rewarding progress and effort.
@@ -6527,6 +6530,7 @@ INVOLVES:
 META-STRATEGY: BUILDING A METACOGNITIVE TOOLBOX
 
 PURPOSE: Curating a collection of techniques and strategies to support different aspects of meta:thinking, allowing individuals to select and apply the most appropriate tools for specific situations.
+
 INVOLVES:
 1.  Identifying Metacognitive Challenges:  Recognising specific areas where metacognitive support is needed, such as problem-solving, decision-making, or emotional regulation.
 2.  Exploring and Evaluating Techniques: Researching and experimenting with various metacognitive tools, assessing their effectiveness and suitability.
@@ -6587,6 +6591,7 @@ PROCESS:
 META-STRATEGY: COGNITIVE DISSONANCE AS A CATALYST FOR GROWTH
 
 PURPOSE: Cognitive dissonance, the discomfort arising from holding conflicting beliefs, can be a powerful motivator for intellectual growth.
+
 INVOLVES:
 1.  Actively Seeking Out Dissonance: Deliberately exposing yourself to viewpoints that challenge your existing beliefs.
 2.  Mindfully Engaging with Discomfort: Instead of avoiding or dismissing dissonant information, engage with it thoughtfully, exploring the reasons for your discomfort and the potential validity of alternative perspectives.
@@ -6599,6 +6604,7 @@ INVOLVES:
 META-STRATEGY: THOUGHTFUL DIALOGUE AS A METACOGNITIVE MIRROR
 
 PURPOSE: Engaging in thoughtful dialogue with others can serve as a powerful tool for metacognitive development.
+
 INVOLVES:
 1.  Active Listening: Paying close attention to the perspectives and reasoning of others, seeking to understand their viewpoints, even if you disagree.
 2.  Articulating Your Thought Processes:  Verbalizing your own thinking process, explaining your reasoning and assumptions to others.

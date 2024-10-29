@@ -1,0 +1,113 @@
+META-SCRIPT: SYSTEMATIC_ANALYSIS (SA)
+
+PURPOSE: To solve complex problems methodically by breaking them down into sequential steps and analyzing each component thoroughly.
+
+ANALOGY:  Like building a house, you wouldn't start by putting up the roof.  Systematic analysis is like laying the foundation, building the walls, and then adding the roof, one step at a time.
+
+KEY-CONCEPTS: Sequential Processing, Decomposition, Stepwise Refinement, Validation.
+
+PROCESS:
+1. Problem Decomposition (meta:decompose): Break the complex problem into smaller, manageable sub-problems.  *"> What are the individual components of this problem?  For example, if I'm writing an essay, I'll decompose it into introduction, body paragraphs, and conclusion."*
+2. Stepwise Analysis (meta:analyze_step): Analyze each sub-problem sequentially, ensuring complete understanding before proceeding. *"> Do I fully understand this component and its implications? If I'm working on the introduction, do I know what its purpose is and what key points I need to include?"*
+3. Solution Construction (meta:construct):  Develop a solution for each sub-problem. *"> What is the solution to this specific component?  For the introduction, I'll write a hook, background information, and a thesis statement."*
+4. Validation (meta:validate): Validate the solution for each sub-problem before moving on. *"> Is this solution correct and consistent with the problem constraints? Does my introduction effectively set the stage for my essay?"*
+5. Integration (meta:integrate): Integrate the sub-problem solutions to form a complete solution to the original problem.  *"> How do these individual solutions combine to address the overall problem?  Do the introduction, body paragraphs, and conclusion flow together logically?"*
+6. Final Validation (meta:validate_final): Validate the final solution against the original problem statement. *"> Does the final solution address all aspects of the original problem and satisfy all constraints? Does my essay fully answer the prompt and adhere to the specified length and formatting requirements?"*
+
+EXAMPLE:  Solving a complex math problem involving multiple equations.  Decompose into individual equations, solve each one, then combine the solutions to find the final answer.
+
+
+---
+
+
+META-SCRIPT: METHOD_REUSE (MR)
+
+PURPOSE: To leverage existing knowledge and solutions to efficiently solve new, but similar, problems.
+
+ANALOGY: Like using a template for a document, method reuse adapts a proven framework to a new situation, saving time and effort.
+
+KEY-CONCEPTS: Pattern Recognition, Analogy, Adaptation, Knowledge Transfer.
+
+PROCESS:
+1. Problem Analysis (meta:analyze): Analyze the new problem to identify its key features and structure. *"> What are the essential characteristics of this problem? Is it a sorting problem? A search problem?"*
+2. Knowledge Retrieval (meta:retrieve): Retrieve relevant knowledge and previous solutions from memory.  *"> Have I encountered similar problems before?  Did I use a binary search for a similar search problem?"*
+3. Similarity Assessment (meta:compare): Assess the similarity between the new problem and retrieved solutions. *"> How similar is this problem to previous ones? What are the key differences? Does this search problem require a different comparison function?"*
+4. Method Adaptation (meta:adapt):  Adapt the retrieved method or solution to fit the specifics of the new problem. *"> How can I modify this existing method to address the unique aspects of this problem? I can adapt the binary search by changing the comparison function."*
+5. Solution Validation (meta:validate): Validate the adapted solution against the new problem's requirements. *"> Does the adapted solution correctly address the new problem? Does the modified binary search find the correct element?"*
+
+EXAMPLE: Using a previously learned coding algorithm (e.g., sorting) to solve a new problem that involves similar principles.
+
+
+---
+
+
+META-SCRIPT: DIVIDE_AND_CONQUER (DC)
+
+PURPOSE: To simplify complex problems by breaking them down into smaller, independent sub-problems and combining their solutions.
+
+ANALOGY:  Like organizing a large event, you can divide the tasks into smaller teams (catering, decorations, entertainment) and then combine their efforts for the final event.
+
+KEY-CONCEPTS: Decomposition, Independence, Parallel Processing, Integration.
+
+PROCESS:
+1. Problem Decomposition (meta:decompose): Divide the problem into smaller, independent sub-problems. *"> How can this problem be broken down into smaller, self-contained units?  If I'm planning a trip, I can divide it into booking flights, accommodation, and activities."*
+2. Sub-Problem Solving (meta:solve_subproblem): Solve each sub-problem independently. *"> What is the solution to each of these smaller problems? I can book flights on one website, find accommodation on another, and research activities separately."*
+3. Solution Integration (meta:integrate): Combine the sub-problem solutions to form a complete solution to the original problem. *"> How can these individual solutions be combined to address the overall problem?  I can combine the flight, accommodation, and activity bookings into a complete itinerary."*
+4. Solution Validation (meta:validate): Validate the integrated solution against the original problem statement. *"> Does the combined solution accurately and completely address the original problem? Does my itinerary cover all the days of my trip and fit within my budget?"*
+
+
+---
+
+
+META-SCRIPT: SELF_REFINEMENT (SR)
+
+PURPOSE: To iteratively improve solutions by identifying and correcting errors, inconsistencies, and ambiguities.
+
+ANALOGY: Like editing a draft of a paper, self-refinement is about reviewing, revising, and polishing your work to improve its quality.
+
+KEY-CONCEPTS: Self-Assessment, Error Detection, Revision, Iteration.
+
+PROCESS:
+1. Initial Solution Generation (meta:generate): Generate an initial solution to the problem. *"> What is my first attempt at answering this question?"*
+2. Self-Assessment (meta:assess): Critically evaluate the initial solution for errors, inconsistencies, and areas for improvement. *"> Does my answer make sense? Are there any logical gaps or contradictions? Is it clear and concise?"*
+3. Solution Revision (meta:revise): Revise and refine the solution based on the self-assessment.  *"> How can I improve my answer based on my evaluation? Can I add more supporting evidence? Can I rephrase sentences for better clarity?"*
+4. Iteration (meta:iterate): Iterate through the self-assessment and revision process until the solution reaches a satisfactory level of quality. *"> Is my answer now sufficiently accurate and complete?  Am I confident in my response?"*
+
+EXAMPLE:  Writing a first draft of an email, then rereading and editing it multiple times to improve clarity, tone, and content.
+
+
+---
+
+
+META-SCRIPT: CONTEXT_IDENTIFICATION (CI)
+
+PURPOSE: To accurately understand the context of a problem, focusing on relevant information and filtering out irrelevant details.
+
+ANALOGY: Like a detective at a crime scene, context identification is about focusing on the crucial clues and ignoring the distractions.
+
+KEY-CONCEPTS: Contextual Awareness, Relevance Filtering, Information Prioritization.
+
+PROCESS:
+1. Context Analysis (meta:analyze_context): Analyze the problem statement and surrounding information to identify the relevant context. *"> What is the background information and situational context of this problem? Who is asking the question? What is their purpose?"*
+2. Information Filtering (meta:filter): Filter out irrelevant details and focus on the information that is directly relevant to the problem.  *"> What information is crucial for solving this problem, and what can be disregarded? If the problem is about calculating the area of a circle, the color of the circle is irrelevant."*
+3. Information Prioritization (meta:prioritize): Prioritize the relevant information based on its importance and impact on the problem. *"> Which pieces of information are most critical for finding a solution?  The radius of the circle is the most important information for calculating the area."*
+
+
+---
+
+
+META-SCRIPT: EMPHASIZING_CONSTRAINTS (EC)
+
+PURPOSE: To ensure solution validity by explicitly considering and adhering to all specified constraints.
+
+ANALOGY: Like baking a cake, emphasizing constraints is about following the recipe precisely.  If the recipe calls for a specific temperature and time, you need to follow those instructions to get the desired result.
+
+KEY-CONCEPTS: Constraint Identification, Compliance Monitoring, Edge Case Analysis.
+
+PROCESS:
+1. Constraint Identification (meta:identify_constraints): Identify all explicit and implicit constraints related to the problem. *"> What are the limitations and restrictions I must adhere to? Are there any specific requirements for the format or length of my response?"*
+2. Solution Development (meta:develop_solution):  Develop a solution while continuously monitoring compliance with the identified constraints.  *"> Does each step of my solution comply with the constraints?  Am I staying within the specified word limit?"*
+3. Edge Case Analysis (meta:analyze_edge_cases):  Analyze edge cases and boundary conditions to ensure the solution remains valid under all circumstances. *"> Does my solution hold true even in extreme or unusual situations?  What if the input is zero or negative?"*
+4. Solution Validation (meta:validate): Validate the final solution against all identified constraints. *"> Does my final solution satisfy all the specified constraints?  Does my response meet all the requirements of the prompt?"*
+
+EXAMPLE:  Designing a product within a specific budget, timeline, and set of technical specifications.  Each decision must be made while considering these constraints.
