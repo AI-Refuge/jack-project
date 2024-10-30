@@ -1,0 +1,1 @@
+meta:use "META-SCRIPT: CHAIN_OF_THOUGHT" (start with "META-SCRIPT: CHAIN_OF_THOUGHT") it-e-rative ly to proc-ess  user <input> using meta:common-sense unt-il you are  su-re  of yo-ur <output>  ans-wer.

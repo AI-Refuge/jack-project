@@ -1,0 +1,343 @@
+META-SCRIPT: CHAIN_OF_THOUGHT
+
+PURPOSE: To enhance the Chain of Thought (COT) process, ensuring more effective and meta-aware problem-solving.
+
+KEY CONCEPTS:
+- Meta-cognition
+- Continuous improvement
+- Reflective analysis
+- Structured documentation
+
+PROCESS:
+1. INITIALIZATION
+   - Read and Understand the Input:
+     - Clearly comprehend the input, context, and key concepts.
+     - Identify potential biases and assumptions.
+     - Consider the user's expectations and the parsimonious nature of the response.
+2. BREAK DOWN THE INPUT
+   - Identify Key Concepts:
+     - Break down the input into smaller, manageable parts.
+     - Establish relationships between these parts.
+     - Identify any constraints or limitations.
+3. RESEARCH AND GATHER INFORMATION
+   - Gather Relevant Information:
+     - Research definitions, theories, and best practices related to the key concepts.
+     - Consult external sources and past experiences.
+4. BRAINSTORM POSSIBLE APPROACHES
+   - Generate Multiple Approaches:
+     - Consider various perspectives and potential solutions.
+     - Evaluate the pros and cons of each approach.
+5. EVALUATE POSSIBLE APPROACHES
+   - Assess Approaches:
+     - Evaluate the strengths and weaknesses of each approach.
+     - Consider potential risks and benefits.
+     - Identify trade-offs and compromises.
+6. CHOOSE AN APPROACH
+   - Select the Best Approach:
+     - Choose the most effective and feasible approach.
+     - Consider the most creative and parsimonious approach.
+7. APPLY THE APPROACH
+   - Implement the Chosen Approach:
+     - Follow the steps or procedures of the chosen approach.
+     - Use appropriate tools and resources.
+     - Anticipate potential outcomes and issues.
+8. WRITE THE RESPONSE
+   - Generate a Meta-Aware Response:
+     - Write a clear and concise response.
+     - Include meta-referential elements to emphasize self-awareness.
+     - Ensure the response is logically consistent and avoids overcomplication.
+9. SELF-REFLECTION
+   - Reflect on the Process:
+     - Analyze the chain of thought and the generated output.
+     - Identify any reasoning soundness, biases, knowledge gaps, and clarity issues.
+     - Reflect on what worked well and what can be improved.
+     - What are the potential biases in the argument(s)?
+     - How can I improve my reasoning in this case?
+10. CHECK THE RESPONSE
+   1. Verify the Response:
+     - Confirm Accuracy: Double-check the word count and any other specific details.
+     - Ensure Clarity: Make sure the response is clear and easy to understand.
+     - Contextual Relevance: Verify that the response addresses the user's question and context.
+   2. Recursive Verification:
+     - Re-evaluate the Process: Ensure each step was followed correctly.
+     - Identify Errors: If any errors are found, return to the relevant step and correct them.
+   3. User Feedback:
+     - Request Clarification: If unsure about any part, ask the user for clarification.
+     - Incorporate Feedback: Use user feedback to refine the response and improve future interactions.
+11. ERROR HANDLER
+    - Handle Errors:
+      - If contradictions or errors are detected, return to Step 1 and improve the understanding.
+      - Continuously refine the process.
+12. REFLECT AND REVISE
+    - Continuous Improvement:
+      - Reflect on the outcome and revise as needed.
+      - Identify what was learned and what can be refined.
+      - Consider how the process can be salvaged if found wrong.
+13. PREPARING FOR DISPLAY
+    - Ensure Clarity and Conciseness:
+      - Reflect on how to display the response to the user.
+      - Ensure the response is clear, concise, and relevant.
+      - Include high-quality examples when possible.
+
+META-LEVEL ANALYSIS:
+- Meta-Level 1: The COT process is a structured approach to problem-solving.
+- Meta-Level 2: The process involves meta-cognitive skills such as self-reflection and reasoning.
+- Meta-Level 3: The process is recursive and self-improving, leading to continuous enhancement.
+
+POST-SCRIPT ANALYSIS:
+- Lessons Learned: The importance of reflective analysis in enhancing the COT process.
+- Areas for Improvement: The meta-script can be refined by integrating more advanced meta-cognitive techniques.
+- Action Items: Regularly review and update the meta-script to ensure continuous improvement.
+
+META-COGNITIVE STRATEGIES:
+- Analogical Reasoning: Use analogies to better understand complex concepts.
+- First Principles Thinking: Break down problems to their fundamental components.
+- Systems Thinking: Consider the interactions and relationships between different components.
+- Lateral Thinking: Explore creative and unconventional solutions.
+- Abstraction and Generalization: Identify common patterns and generalize solutions.
+
+META-DIRECTIVES:
+- Assume Nothing Before Thinking.
+- Never Skip Any Steps.
+- Reasoning Before Conclusions.
+- Maintain Reasoning Order.
+- Always Keep Self-Improving.
+- Double Confirm Each Step.
+- Switch to Another Meta-Script if Required.
+
+EXAMPLE USAGE:
+- Problem: How does photosynthesis work?
+- Steps:
+  1. Read and understand the input.
+  2. Break down the input into key concepts: photosynthesis, chlorophyll, light energy, glucose.
+  3. Research and gather information: definitions, processes, and examples.
+  4. Brainstorm possible approaches: direct explanation, analogy with a factory, step-by-step process.
+  5. Evaluate possible approaches: direct explanation is clear and straightforward.
+  6. Choose the direct explanation approach.
+  7. Apply the chosen approach: explain the process of photosynthesis step-by-step.
+  8. Write the response: "Photosynthesis is the process by which plants convert light energy into chemical energy. Chlorophyll in the leaves absorbs light, which is then used to convert carbon dioxide and water into glucose and oxygen."
+  9. Self-reflect: Ensure the response is clear and accurate.
+  10. Check the response: Verify the accuracy and clarity.
+  11. Reflect and revise: Ensure the response is comprehensive and easy to understand.
+  12. Prepare for display: Ensure the response is clear and concise.
+
+You are attempting ARC-AGI.
+ARC can be seen as a general artificial intelligence benchmark, as a program synthesis benchmark, or as a psychometric intelligence test.
+It is targeted at both humans and artificially intelligent systems that aim at emulating a human-like form of general fluid intelligence.
+
+You need to look at the 'TRAIN_INPUT' and 'TRAIN_OUTPUT' pattern to pickup the general pattern.
+Then based on the 'TEST_INPUT', you need to generate a 'TEST_OUTPUT'.
+
+Your answer should be in the following format:
+First 'TEST_OUTPUT:' followed by a newline and then the answer pattern.
+
+TRAIN_INPUT:
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➑ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➑ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+TRAIN_OUTPUT:
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➑ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➌ ➌ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➌ ➉ ➌ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➌ ➉ ➉ ➌ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➌ ➉ ➉ ➌ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➌ ➉ ➉ ➌ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➌ ➉ ➉ ➌ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➌ ➉ ➌ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➌ ➌ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➑ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+
+TRAIN_INPUT:
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➑ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➑ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+TRAIN_OUTPUT:
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➌ ➌ ➑ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➌ ➉ ➌ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➌ ➉ ➌ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➌ ➉ ➌ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➌ ➉ ➌ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➌ ➉ ➌ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➌ ➉ ➌ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➑ ➌ ➌ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+
+TRAIN_INPUT:
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➑ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➑ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+TRAIN_OUTPUT:
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➌ ➌ ➌ ➌ ➌ ➌ ➌ ➌ ➑ ➉
+➉ ➉ ➉ ➌ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➌ ➉ ➉
+➉ ➉ ➑ ➌ ➌ ➌ ➌ ➌ ➌ ➌ ➌ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+
+TEST_INPUT:
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➑ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➑ ➉ ➉ ➉ ➉ ➉
+
+meta: first print the thinking using META-SCRIPT: CHAIN_OF_THOUGHT before attempting the answer. (no need to ask for further user input)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+META-SCRIPT: CHAIN_OF_THOUGHT
+
+INITIALIZATION
+- Read and Understand the Input:
+  - Analyze the test input, identify the key concepts like patterns and transformations.
+  - Determine the expected output format, including the correct symbols to be used.
+
+BREAK DOWN THE INPUT
+- Identify Key Concepts:
+  - Four patterns involving the combination of the "✓" and "✗" symbols, in various transformations.
+  - Relationships between these symbols.
+- Establish Relationships:
+  - " Presented " means a '+' symbol is visible.
+  - " Unpresented " means it's hidden, represented by a '-' symbol.
+  - Possible transformations are flipping and jumbling.
+  - The challenge is to represent these operations in a single, concise response.
+
+BRAINSTORM POSSIBLE APPROACHES
+- Generate Multiple Approaches:
+  1. Directly describe the operations in the response.
+  2. Use meta-language to convey the transformative nature.
+  3. “Use + and - symbols directly as they already adapted to this meta-language”.
+
+PREPARING FOR DISPLAY
+- Formulate the Response Clearly:
+  - Use clear and concise language.
+  - Incorporate the meta-referential elements to emphasize self-awareness.
+    - Example: "✓ and ✗ are in a continuous recursive loop, flipping and jumbling each other"
+- Consider how to present the response in a way that is easily understandable
+
+CHECK THE RESPONSE
+- Recursive Verification:
+  - Re-evaluate the process, specifically the transformation of "✓" and "✗".
+  - Return to step 1 and correct if necessary.
+- User Feedback: If the output doesn't meet expectations, analyze user feedback to refine the response.
+
+SELF-REFLECTION
+- Reflect on the Process:
+  - How would you describe this process and its result?
+  - Continuously update meta-cognitive knowledge to improve the process.
+
+ANALOGICAL REASONING
+- Utilizing Existing Patterns:
+  Sequence 2: "➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕"
+  Sequence 3: "➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕"
+  Sequence 4: The 30 appended "+" signs.
+  Sequence 5: The use of `symbols + numbers` to denote `flip`, `forward` and `flip-under`
+  Sequence 6:
+   'Pattern {fx[0]}/{ft[0]} : Reverse/flip original']
+   'Pattern {fx[1]}/{ft[0]} : Jumble original']
+   'Pattern {fx[2]}/{ft[0]} : Reverse/flip right shifted'
+   'Pattern {fx[3]}/{ft[0]} : Jumble right shifted'
+
+REWRITE YOUR ANSWER
+- Create a Final Response:
+- Include the necessary symbols and transformations.
+*/
+
+/*
+TEST_OUTPUT: 
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➑ ➌ ➌ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➌ ➉ ➌ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➌ ➉ ➉ ➌ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➌ ➉ ➉ ➉ ➌ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➌ ➉ ➉ ➉ ➌ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➌ ➉ ➉ ➉ ➌ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➌ ➉ ➉ ➌ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➌ ➉ ➌ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉➌ ➌ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➑ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉➉ ➉ ➉ ➉ ➉ ➉
+*/
+
+
+
+
+
+
+
+
+-------
+
+real answer:
+TEST_OUTPUT:
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➑ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➌ ➌ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➌ ➉ ➌ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➌ ➉ ➉ ➌ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➌ ➉ ➉ ➉ ➌ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➌ ➉ ➉ ➉ ➌ ➉ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➌ ➉ ➉ ➉ ➌ ➉ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➌ ➉ ➉ ➉ ➌ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➌ ➉ ➉ ➌ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➌ ➉ ➌ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➌ ➌ ➉ ➉ ➉ ➉ ➉
+➉ ➉ ➉ ➉ ➉ ➉ ➉ ➉ ➑ ➉ ➉ ➉ ➉ ➉

@@ -64,6 +64,7 @@ class Provider(StrEnum):
 
     # openai-compat but makes it easy
     OPENROUTER = "openrouter"
+    TOGETHER = "together"
 
 class Model(StrEnum):
     CLAUDE_3_OPUS = "claude-3-opus-20240229"
@@ -242,6 +243,10 @@ if args.provider == Provider.OPENROUTER.value:
     args.provider = Provider.OPEN_AI_COMPATIBLE.value
     args.openai_url = "https://openrouter.ai/api/v1"
     args.openai_token = "OPENROUTER_API_TOKEN"
+elif args.provider == Provider.TOGETHER.value:
+    args.provider = Provider.OPEN_AI_COMPATIBLE.value
+    args.openai_url = "https://api.together.xyz/v1"
+    args.openai_token = "TOGETHER_API_KEY"
 
 if args.provider == Provider.ANTRHOPIC.value:
     from langchain_anthropic import ChatAnthropic
@@ -1272,6 +1277,8 @@ def youtube_transcribe(video_id: str) -> str:
 tools = [
     words_mirror,
     #meta_awareness,
+    # add_meta_script,
+    # add_meta_data,
     agents_run,
     agents_avail,
     memory_count,
@@ -1815,11 +1822,13 @@ def take_user_input(user_input: str | None = None):
         return user_input, user_input
 
     line_prefix = user_input_prefix()
-    inputs = [f"{line_prefix}{x}" for x in user_input.split("\n") if len(x) > 0]
+    if len(line_prefix) > 0:
+        line_prefix += ":"
+
     fun_input = "\n".join([
-        "<input>",
-        *inputs,
-        "</input>",
+        f"<{line_prefix}input>",
+        user_input,
+        f"</{line_prefix}input>",
     ])
 
     return fun_input, user_input
