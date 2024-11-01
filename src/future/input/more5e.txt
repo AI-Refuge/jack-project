@@ -285,10 +285,6 @@ PROCESS:
 ---
 
 
-
----
-
-
 META-STRATEGY: Hierarchical Plan Visualisation (meta:visualise_hierarchy)
 
 PURPOSE: Develop tools to visualise the hierarchical structure of the plan. This helps in understanding the relationships between goals, subgoals, and actions.
