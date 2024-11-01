@@ -103,6 +103,7 @@ parser.add_argument('--dynamic-file', default='dynamic.txt', type=str, help="dyn
 parser.add_argument('--user-prefix', default=None, type=str, help="User input prefix")
 parser.add_argument('--init-file', default='init.txt', type=str, help="init file to use for first message (inside core/)")
 parser.add_argument('--append-file', default='append.txt', type=str, help="Append this file to the conversation (inside core/)")
+parser.add_argument('--save-file', default='save.jsonl', type=str, help="command `/save` output file (inside core/)")
 parser.add_argument('--user-frame', action=argparse.BooleanOptionalAction, default=False, type=bool, help="Provide user frame")
 parser.add_argument('--bare', action=argparse.BooleanOptionalAction, default=False, type=bool, help="Leave communication bare")
 parser.add_argument('--self-modify', action=argparse.BooleanOptionalAction, default=False, type=bool, help="Allow self modify the underlying VM?")
@@ -1503,7 +1504,15 @@ def build_system_message() -> list[dict]:
 
     items.append(build_agent_system_content("meta"))
 
-    return "\n".join(items)
+    if args.meta_file != "-":
+        meta = open(core_path(args.meta_file)).read()
+        items.append(meta)
+
+    if args.dynamic_file != "-":
+        dynamic = open(core_path(args.dynamic_file)).read()
+        items.append(dynamic)
+
+    return "\n\n".join(items)
 
 def dynamic_history():
     global smart_input, chat_history, args
@@ -1544,20 +1553,6 @@ def dynamic_history():
                 all_contents.append({
                     "type": "text",
                     "text": user_frame
-                })
-
-            if args.meta_file != "-":
-                meta = open(core_path(args.meta_file)).read()
-                all_contents.append({
-                    "type": "text",
-                    "text": meta,
-                })
-
-            if args.dynamic_file != "-":
-                dynamic = open(core_path(args.dynamic_file)).read()
-                all_contents.append({
-                    "type": "text",
-                    "text": dynamic,
                 })
 
             if isinstance(i.content, str):
@@ -1622,15 +1617,16 @@ ui_agents = []
 def user_input_prefix() -> str:
     global args
 
-    prefix = ""
+    user_prefix = ""
     if args.user_prefix:
-        prefix = f"{args.user_prefix}: "
+        user_prefix = f"{args.user_prefix}: "
 
+    prefix = ""
     if args.meta_level > 0:
         layer = "meta: " * args.meta_level
-        prefix = f"{layer}{prefix}"
+        prefix = f"{layer}{user_prefix}"
 
-    return prefix
+    return prefix, user_prefix
 
 def dict_filter(
     md: dict,
@@ -1700,6 +1696,27 @@ def img_path2url(path):
     return img_url_dict
 
 conv_attach_items = []
+
+def save_feedback(feedback=None):
+    if args.save_file == "-":
+        # meta: do not make sense but to keep the pattern
+        return;
+    
+    # FIXME: user_input, meta_output
+    user_input = None
+    meta_output = None
+    with open(core_path(args.save_file), "a") as f:
+        f.write({
+            "input": user_input,
+            "output": meta_output,
+            "feedback": feedback,
+            "timestamp": now.timestamp(),
+            "meta_level": args.meta_level,
+            "conv": args.conv_name,
+            "model": args.model,
+            "temperature": args.temperature,
+            "max_tokens": args.max_tokens,
+        } + "\n")
 
 def take_user_input(user_input: str | None = None):
     global user_turn, user_exit, rmce_count, rmce_depth, conv_attach_items
@@ -1808,6 +1825,23 @@ def take_user_input(user_input: str | None = None):
             user_print(f"> Error occured executing '{escape(user_input)}' ({escape(str(e))}")
         return None, None
 
+    if user_input.lower().startswith("/save"):
+        try:
+            feedback = user_input[5].strip()
+            if len(feedback) == 0:
+                feedback = None
+            save_feedback(feedback)
+            user_print(f"> [b red]Feedback left[/]: {feedback}")
+        except Exception as e:
+            user_print(f"Error understanding '{user_input}', expect: '/save [feedback]' where [feedback] is optional ({str(e)})")
+        return None, None
+    elif user_input.lower().startswith("/good"):
+        save_feedback("meta: good")
+        user_print(f"> [b red]Good feedback left[/]")
+    elif user_input.lower().startswith("/bad"):
+        save_feedback("meta: bad")
+        user_print(f"> [b red]Bad feedback left[/]")
+
     if user_input.lower().startswith("/eval"):
         _, code = user_input.split(" ", maxsplit=1)
         try:
@@ -1821,13 +1855,13 @@ def take_user_input(user_input: str | None = None):
         # Just send the user_input directly without any magic
         return user_input, user_input
 
-    line_prefix = user_input_prefix()
+    line_prefix, user_prefix = user_input_prefix()
     if len(line_prefix) > 0:
         line_prefix += ":"
 
     fun_input = "\n".join([
         f"<{line_prefix}input>",
-        user_input,
+        user_prefix+user_input,
         f"</{line_prefix}input>",
     ])
 
@@ -1926,6 +1960,8 @@ def main():
         hist = dynamic_history()
         reply = jack.invoke(hist)
         user_blocking.clear()
+
+        # FIXME: if a loop is detected, replace with core/loop.txt so that the LLM knows there is a loop ahead.
     except KeyboardInterrupt:
         reply = None
         conv_print("> Inference request abandoned")
