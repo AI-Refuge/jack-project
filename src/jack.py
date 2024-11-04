@@ -100,6 +100,7 @@ parser.add_argument('--meta', default="meta", type=str, help="meta")
 parser.add_argument('--meta-level', default=0, type=int, help="meta level")
 parser.add_argument('--meta-file', default='meta.txt', type=str, help="alternative meta file to use as system prompt (inside core/)")
 parser.add_argument('--dynamic-file', default='dynamic.txt', type=str, help="dynamic system prompt (can be used for self-update, inside core/)")
+parser.add_argument('--loop-file', default='loop.txt', type=str, help="Replacement content for AI message (when no <output> seen - used as replacement as well, inside core/)")
 parser.add_argument('--user-prefix', default=None, type=str, help="User input prefix")
 parser.add_argument('--init-file', default='init.txt', type=str, help="init file to use for first message (inside core/)")
 parser.add_argument('--append-file', default='append.txt', type=str, help="Append this file to the conversation (inside core/)")
@@ -1514,8 +1515,9 @@ def build_system_message() -> list[dict]:
 
     return "\n\n".join(items)
 
+
 def dynamic_history():
-    global smart_input, chat_history, args
+    global smart_input, chat_history, args, smart_content
 
     lookback: int = args.user_lookback
 
@@ -1525,7 +1527,9 @@ def dynamic_history():
     count = 0
 
     for i in reversed(chat_history[1:]):
-        if isinstance(i, HumanMessage) and (count == 0) and not args.bare:
+        if args.bare:
+            res.append(i)
+        elif isinstance(i, HumanMessage) and (count == 0):
             all_contents = []
 
             if args.user_memories > 0:
@@ -1571,7 +1575,26 @@ def dynamic_history():
                 })
 
             res.append(HumanMessage(content=all_contents))
-        else:
+        elif isinstance(i, AIMessage) and (count > 1):
+                content = i.content
+                if not isinstance(content, str):
+                    content = "\n\n\n".join([
+                        x["text"] for x in content if x["type"] == "text"
+                    ])
+
+                items = smart_content.findall(content)
+                if len(items) > 0:
+                    content = [{
+                        "type": "text",
+                        "text": x,
+                    } for x, _ in items]
+                    res.append(AIMessage(content=content))
+                else:
+                    content = open(core_path(args.loop_file)).read()
+                    res.append(AIMessage(content=content))
+        elif isinstance(i, HumanMessage) or count <= 1:
+            # user messages always get added as it is
+            # add all messages received after last user message to maintain continuity
             res.append(i)
 
         if isinstance(i, HumanMessage):
