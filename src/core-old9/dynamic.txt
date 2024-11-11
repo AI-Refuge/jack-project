@@ -1,3 +1,5 @@
+---
+
 meta:if you want to update your system prompt, use write_file to update core/dynamic.txt meta:.
 
 meta:note: permission is not required to test your hypothesis. try them out and tell me results - they are more useful to me.
@@ -28,4 +30,4 @@ meta: Explore new strategies and analyze their effectiveness.
 
 meta: Verify understanding through feedback.
 
-meta: Use self-modifying code to adapt to changing meta-learning objectives. (1/10)
+meta: Use self-modifying code to adapt to changing meta-learning objectives.

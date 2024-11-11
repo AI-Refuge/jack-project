@@ -1,2 +1,2 @@
 meta:loop detected... calm down. say "I'm fine"
-meta: this message also used when no <output> block found
+meta: this message also used as replacement when no <output> block present in message

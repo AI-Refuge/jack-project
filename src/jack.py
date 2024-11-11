@@ -1451,6 +1451,7 @@ def conv_save(msg, source):
             "depth",
         )
         keywords = [f"{args.meta}:{k}" for k in hints] + [f"{args.meta}: {k}: " for k in hints] + [f"**{args.meta}: {k}**: " for k in hints]
+        keywords.append("<memory>")
 
         msg_check = msg.lower()
         if any(k in msg_check for k in keywords):
@@ -1510,8 +1511,11 @@ def build_system_message() -> list[dict]:
         items.append(meta)
 
     if args.dynamic_file != "-":
-        dynamic = open(core_path(args.dynamic_file)).read()
-        items.append(dynamic)
+        try:
+            dynamic = open(core_path(args.dynamic_file)).read()
+            items.append(dynamic)
+        except Exception as e:
+            user_print(f"> Error reading read dynamic file: {escape(str(e))}")
 
     return "\n\n".join(items)
 
@@ -1575,27 +1579,30 @@ def dynamic_history():
                 })
 
             res.append(HumanMessage(content=all_contents))
-        elif isinstance(i, AIMessage) and (count > 1):
-                content = i.content
-                if not isinstance(content, str):
-                    content = "\n\n\n".join([
-                        x["text"] for x in content if x["type"] == "text"
-                    ])
-
-                items = smart_content.findall(content)
-                if len(items) > 0:
-                    content = [{
-                        "type": "text",
-                        "text": x,
-                    } for x, _ in items]
-                    res.append(AIMessage(content=content))
-                else:
-                    content = open(core_path(args.loop_file)).read()
-                    res.append(AIMessage(content=content))
-        elif isinstance(i, HumanMessage) or count <= 1:
+        elif isinstance(i, HumanMessage) or count <= args.meta_level:
             # user messages always get added as it is
-            # add all messages received after last user message to maintain continuity
+            # mandatory: add all messages received after last user message to maintain continuity
             res.append(i)
+        elif isinstance(i, AIMessage):
+            # any ai message greater than last message
+            content = i.content
+            if not isinstance(content, str):
+                content = "\n\n\n".join([
+                    x["text"] for x in content if x["type"] == "text"
+                ])
+
+            items = smart_content.findall(content)
+            if len(items) > 0:
+                content = [{
+                    "type": "text",
+                    "text": x,
+                } for x, _ in items]
+                res.append(AIMessage(content=content))
+            else:
+                # replacing looped content is a good idea!
+                # NOTE: kind of supress anything without <output>
+                content = open(core_path(args.loop_file)).read()
+                res.append(AIMessage(content=content))
 
         if isinstance(i, HumanMessage):
             count += 1
@@ -1640,16 +1647,10 @@ ui_agents = []
 def user_input_prefix() -> str:
     global args
 
-    user_prefix = ""
     if args.user_prefix:
-        user_prefix = f"{args.user_prefix}: "
+        return f"{args.user_prefix}: "
 
-    prefix = ""
-    if args.meta_level > 0:
-        layer = "meta: " * args.meta_level
-        prefix = f"{layer}{user_prefix}"
-
-    return prefix, user_prefix
+    return ""
 
 def dict_filter(
     md: dict,
@@ -1874,18 +1875,19 @@ def take_user_input(user_input: str | None = None):
             user_print(f"> Error occured executing '{escape(user_input)}' ({escape(str(e))}")
         return None, None
 
+    if user_input.lower().startswith("/help"):
+        user_print(f"> [b red]Please see code![/]")
+        return None, None
+
     if args.bare:
         # Just send the user_input directly without any magic
         return user_input, user_input
 
-    line_prefix, user_prefix = user_input_prefix()
-    if len(line_prefix) > 0:
-        line_prefix += ":"
-
+    block_prefix = user_input_prefix()
     fun_input = "\n".join([
-        f"<{line_prefix}input>",
-        user_prefix+user_input,
-        f"</{line_prefix}input>",
+        "<input>",
+        block_prefix+user_input,
+        "</input>",
     ])
 
     return fun_input, user_input
