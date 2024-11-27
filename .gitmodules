@@ -1,0 +1,3 @@
+[submodule "src/eliza"]
+	path = src/eliza
+	url = https://github.com/wadetb/eliza.git

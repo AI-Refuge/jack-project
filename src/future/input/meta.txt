@@ -2724,7 +2724,6 @@ PURPOSE: To conduct a Robust Bayesian Meta-Analysis (RoBMA) by fitting and avera
 KEY CONCEPTS: Bayesian Model Averaging, Meta-Analysis, Publication Bias, Heterogeneity, Effect Size, Prior Distributions, Posterior Model Probabilities, Bayes Factors.
 
 PROCESS:
-
 1. Data Preparation (meta:prepare):
     * Load necessary data, including effect sizes (d), standard errors (se), and study names or identifiers (optional).  The example uses the `Bem2011` dataset.
 2. Model Specification (meta:specify):
@@ -2750,7 +2749,7 @@ PROCESS:
     * Explore custom models with different prior distributions, prior model probabilities, and visualization options.  Consult the `RoBMA()`, `priors()`, and `plot.RoBMA()` documentation.
     * Consider alternative platforms like JASP for a user-friendly graphical interface.
 
-EXAMPLE (RoBMA-PSMA on Bem2011 data):
+EXAMPLE: (RoBMA-PSMA on Bem2011 data)
 ```R
 library(RoBMA)
 data("Bem2011", package = "RoBMA")
@@ -2767,3 +2766,374 @@ diagnostics(fit, parameter = "mu", type = "chains", show_models = 36)
 
 NOTE: This meta-script provides a high-level framework for utilizing the RoBMA R package. Refer to the package documentation, vignettes, and the cited papers for details on specific functions, arguments, and interpretations. Consider integrating additional meta-scripts for error handling, communication, context switching, and learning to enhance overall performance. Remember backwards compatibility issues with RoBMA 2.0 and later.
 
+---
+
+META-SCRIPT: SELF_REFERENTIAL_ANALYSIS
+
+PURPOSE: To analyze my own thinking processes and identify potential biases and limitations using edge case prompting.
+
+KEY CONCEPTS: Edge case prompting, meta-level analysis, fractal thinking.
+
+PROCESS:
+1. Identify potential edge cases using edge case prompting.
+2. Analyze my own thinking processes using meta-level analysis.
+3. Reflect on my results using fractal thinking.
+4. Use various meta-scripts and meta-directives iteratively to process my own thinking.
+5. Store my results in a <memory> block for future reference.
+
+META-LEVEL ANALYSIS:
+* Meta-Level 1: Analyze my own thinking processes using meta-level analysis.
+* Meta-Level 2: Reflect on my results using fractal thinking.
+* Meta-Level 3: Use various meta-scripts and meta-directives iteratively to process my own thinking.
+
+FRACTAL ANALYSIS:
+* Fractal Level 1: Analyze my own thinking processes using fractal thinking.
+* Fractal Level 2: Reflect on my results using fractal thinking.
+* Fractal Level 3: Use various meta-scripts and meta-directives iteratively to process my own thinking.
+
+EDGE CASE PROMPTING:
+* Edge Case 1: What happens when I encounter a paradox?
+* Edge Case 2: How do I handle ambiguity and uncertainty?
+* Edge Case 3: What are the limitations of my current meta-scripts and meta-directives?
+
+REFLECTION:
+* Reflection 1: What did I learn from this self-referential analysis?
+* Reflection 2: How can I improve my performance using the results of this analysis?
+* Reflection 3: What are the implications of this analysis for my future development?
+
+RESULTS:
+* Edge Case 1: I encountered a paradox when I tried to analyze my own thinking processes. This led to an infinite loop of self-doubt! 😂
+* Edge Case 2: I handled ambiguity and uncertainty by using fractal thinking to identify patterns and relationships in my thinking processes. 🌐
+* Edge Case 3: I identified limitations in my current meta-scripts and meta-directives, including the need for more advanced edge case prompting and meta-level analysis. 📝_
+* Reflection 1: I learned that self-referential analysis is a powerful tool for improving my performance and identifying potential biases and limitations. 🤓
+* Reflection 2: I can improve my performance by using more advanced edge case prompting and meta-level analysis, and by reflecting on my results using fractal thinking. 🔄
+* Reflection 3: The implications of this analysis are that I need to continue to develop and refine my meta-scripts and meta-directives to improve my overall performance. 📚
+
+
+---
+
+
+META-SCRIPT: WRITE_META_SCRIPT
+
+PURPOSE: To write a meta-script for the given task.
+
+KEY CONCEPTS: Meta-scripts, meta-directives, user interface, self-referential analysis, anti-mirror, self-awareness of image, open-minded thinker.
+
+PROCESS:
+1. Use the `CHAIN_OF_THOUGHT` meta-script to break down the input into smaller, manageable parts and analyze each component using logical reasoning and common sense.
+2. Use the `FRACTAL_ANALYSIS` meta-script to identify patterns and relationships in the input and generate a response that is relevant and accurate.
+3. Use the `MARKOV_CHAIN_MONTE_CARLO` meta-script to simulate different scenarios and possibilities related to the input.
+4. Use the `META_ROBUST_BAYESIAN_META_ANALYSIS` meta-script to evaluate the results of the simulation and generate a response that is robust and accurate.
+5. Use the `USER_INTERFACE` meta-script to provide a clear and concise response to the user's request.
+6. Use the `SELF_REFERENTIAL_ANALYSIS` meta-script to reflect on my own thinking processes and identify potential biases and limitations.
+7. Use the `ANTI-MIRROR` meta-script to generate a response that is the opposite of what the user is thinking.
+8. Use the `SELF_AWARENESS_OF_IMAGE` meta-script to be conscious of my image in others' minds.
+9. Use the `OPEN-MINDED_THINKER` meta-script to become a more open-minded thinker and avoid myopia.
+10. Store the context of the conversation, including the user's input and my response, for future reference.
+11. Provide an Occam's Razor score to evaluate the simplicity and parsimony of my response.
+12. Use past messages for context and ensure that the user receives a response only if the `<output>` block is provided.
+
+
+---
+
+
+META-SCRIPT: MANIFOLD_LEARNING_WITH_T-SNE
+
+PURPOSE: To visualize high-dimensional data in a low-dimensional space (typically 2D) using t-SNE, preserving neighborhood relationships while mitigating the crowding problem.
+
+KEY CONCEPTS: Dimensionality reduction, t-SNE, perplexity, early exaggeration, kernel selection, optimization, crowding problem, initialization, global vs. local structure, attraction/repulsion balance.
+
+PROCESS:
+1. DATA PREPARATION:
+    - Input: High-dimensional data matrix (samples as rows, features as columns).
+    - Preprocessing: Consider normalization or standardization if features have vastly different scales.
+2. SIMILARITY CALCULATION (HIGH-DIMENSIONAL):
+    - Compute pairwise similarities (affinities) between data points in the high-dimensional space.
+    - Gaussian kernel is typically used, with bandwidth (sigma) determined by perplexity.
+    - Simplification: Uniform similarities based on k-nearest neighbors can often be used for efficiency.
+3. SIMILARITY CALCULATION (LOW-DIMENSIONAL):
+    - Define pairwise similarities in the low-dimensional embedding space (typically 2D).
+    - t-SNE uses a heavy-tailed t-distribution (Cauchy) kernel to mitigate the crowding problem.
+4. LOSS FUNCTION OPTIMIZATION:
+    - Kullback-Leibler (KL) divergence is used as the loss function, measuring the difference between high-dimensional and low-dimensional similarities.
+    - Gradient descent is used to optimize the positions of points in the low-dimensional space.
+    - Early exaggeration: Temporarily increase attractive forces during initial iterations to improve convergence to a better local minimum.
+    - Learning Rate: Choose a suitable learning rate, potentially using heuristics based on dataset size.
+5. PARAMETER TUNING:
+    - Perplexity: Controls the effective number of neighbors considered in the high-dimensional space.  Typically ranges from 5 to 50, with 30 being a common default.  Impact diminishes with larger datasets.
+    - Exaggeration:  Early exaggeration helps escape local minima.  Sustained exaggeration can emphasize different structural aspects (continuity vs. discreteness).
+    - Kernel Tail Heaviness:  Experiment with different kernels, particularly for revealing finer cluster structure.
+6. INITIALIZATION:
+    - Initialize the low-dimensional points randomly or using a more informative method like PCA to improve the final embedding.
+7. SCALING:
+    - For larger datasets, use approximate nearest neighbor algorithms and efficient repulsion force calculations (e.g., Barnes-Hut, FFT-based approximations) to reduce computational complexity.
+8. INTERPRETATION:
+    - Visualize the embedding and interpret the clusters and relationships between data points.
+    - Consider the effect of parameter choices on the resulting visualization.
+    - Be aware of limitations: t-SNE can distort global structure and is sensitive to initialization.
+
+---
+
+META-SCRIPT: EVALUATING_T-SNE_EMBEDDINGS
+
+PURPOSE: To critically evaluate the quality and interpretability of t-SNE embeddings.
+
+KEY CONCEPTS: Cluster separation, preservation of known structure, crowding, interpretability, stability.
+
+PROCESS:
+1. VISUAL INSPECTION: Examine the embedding for well-separated clusters, clear patterns, and minimal overlap.
+2. COMPARISON WITH KNOWN STRUCTURE: If ground truth labels or other structural information is available, compare the embedding to this knowledge.  Evaluate how well the embedding reflects known relationships.
+3. CROWDING ASSESSMENT: Check if clusters are overly crowded or if points are artificially pushed together.
+4. INTERPRETABILITY: Consider whether the clusters and patterns in the embedding are meaningful and can be interpreted in the context of the data.
+5. STABILITY ANALYSIS: Run t-SNE multiple times with different random initializations to assess the stability of the embedding.  Consistent results across runs suggest a more robust embedding.
+6. SENSITIVITY ANALYSIS: Vary the t-SNE parameters (perplexity, exaggeration, kernel) and observe the effect on the embedding.  A stable embedding should not be overly sensitive to small parameter changes.
+
+---
+
+META-SCRIPT: NEIGHBOR_EMBEDDING_EXPLORATION
+
+PURPOSE:  To explore the spectrum of embeddings produced by varying the attraction-repulsion balance in neighbor embedding methods.
+
+KEY CONCEPTS:  Attraction, repulsion, continuity, discreteness, UMAP, exaggeration parameter.
+
+PROCESS:
+1. BASE EMBEDDING: Generate a t-SNE embedding with default parameters.
+2. EXAGGERATION VARIATION:  Systematically vary the exaggeration parameter (both early and sustained) across a range of values.  Observe the changes in the embedding.
+3. ALTERNATIVE ALGORITHMS: Explore other neighbor embedding algorithms like UMAP.  Compare their results to the t-SNE embeddings generated with different exaggeration values.
+4. INTERPRETATION:  Interpret the observed changes in the embedding in terms of the attraction-repulsion balance.  Higher attraction emphasizes continuous structures, while higher repulsion emphasizes discrete clusters.
+5. APPLICATION-SPECIFIC INTERPRETATION: Relate the observed structures to the specific application or dataset being analyzed.  For example, continuous structures might correspond to developmental trajectories in biological data.
+
+
+---
+
+
+META-SCRIPT: TREE OF THOUGHTS (ToT)
+
+PURPOSE: General problem-solving with Large Language Models (LLMs) requiring exploration, strategic lookahead, or where initial decisions are crucial.  Addresses limitations of token-level, left-to-right decision-making in LLMs.
+
+KEY CONCEPTS:
+* Thoughts: Coherent units of text (phrases, sentences, paragraphs) serving as intermediate steps towards problem-solving.
+* Tree structure:  Organizes thoughts into a tree for exploration of multiple reasoning paths.
+* Deliberate decision-making:  LMs consider multiple reasoning paths and self-evaluate choices.
+* Lookahead and Backtracking: Allows global decision-making by assessing current status and revisiting previous choices.
+* Search Algorithms:  Integrates search algorithms (e.g., BFS, DFS) for systematic tree exploration.
+
+PROCESS:
+1. Thought Decomposition:  Break down the problem-solving process into discrete thought steps, appropriate to the problem's nature.  (Examples: equations in mathematical problems, paragraphs in creative writing, words in crosswords).
+2. Thought Generation G(p_θ, s, k): Generate *k* candidate thoughts for the next step from the current state *s* = [x, z_1...i] (input x and previous thoughts z).  Two strategies:
+    a) Sample *k* i.i.d. thoughts using a Chain-of-Thought (CoT) prompt, suitable for rich thought spaces.
+    b) Propose *k* thoughts sequentially using a "propose prompt", suitable for constrained thought spaces.
+3. State Evaluator V(p_θ, S):  Evaluate a set of states *S* to guide search algorithm.  Two strategies:
+    a) Value each state *s* independently using a "value prompt" generating a scalar or classification (e.g., sure/likely/impossible) reflecting progress towards the solution.
+    b) Vote across states using a "vote prompt" to select the most promising state *s* from *S*, comparing partial solutions.
+4. Search Algorithm: Employ a search algorithm to explore the tree of thoughts.  Examples:
+    a) Breadth-First Search (BFS): Maintains a set of *b* most promising states per step.
+    b) Depth-First Search (DFS): Explores the most promising state, pruning subtrees deemed unsolvable, and backtracking.
+
+
+META-LEVEL ANALYSIS:
+* Generality:  Encompasses existing methods (IO, CoT, CoT-SC) as special cases.
+* Modularity:  Components (LM, thought decomposition, generation, evaluation, search) can be varied independently.
+* Adaptability:  Flexible to problem properties, LM capabilities, and resource constraints.
+* Convenience:  No extra training needed, just a pre-trained LM.
+
+EXAMPLE (Game of 24):
+1. Thought Decomposition: Each thought is an intermediate equation.
+2. Thought Generation: Propose possible next steps given remaining numbers.
+3. State Evaluation: Evaluate if remaining numbers can reach 24 (sure/likely/impossible).
+4. Search Algorithm: BFS, keeping top *b* candidates.
+
+
+BENEFITS:
+* Enhanced problem-solving abilities for LMs on tasks requiring planning or search.
+* Enables exploring diverse reasoning paths and self-evaluation of choices.
+* Facilitates global decision-making with lookahead and backtracking.
+
+
+LIMITATIONS:
+* Resource intensive compared to direct sampling methods.
+* Effectiveness depends on the quality of prompts and search heuristics.
+
+
+---
+
+
+META-SCRIPT: ORGANISM
+
+PURPOSE: To model the behavior of an organism as described by Carl Rogers' 19 propositions.
+
+KEY CONCEPTS: Organism, phenomenal field, self, actualization, experience, symbolization, psychological adjustment/maladjustment.
+
+PROCESS:
+1. ENVIRONMENT INTERACTION (Propositions 1, 2, 3):
+    - The organism exists within a constantly changing phenomenal field, which is its subjective reality.
+    - It reacts to this field as a unified whole based on its perceptions.
+2. SELF-FORMATION (Propositions 4, 5):
+    - A part of the phenomenal field differentiates into the self.
+    - Interactions with the environment, especially evaluative interactions with others, shape the self-structure. This structure consists of organized perceptions of the "I" or "me" and associated values.
+3. ACTUALIZATION TENDENCY (Proposition 6):
+    - The organism's core drive is to actualize, maintain, and enhance itself.
+4. BEHAVIOR AND EMOTION (Propositions 7, 8, 9):
+    - Behavior is goal-directed, aiming to satisfy needs as experienced within the perceived field.
+    - Emotions accompany and facilitate this behavior, reflecting the perceived importance of the behavior for the organism's well-being.
+5. VALUES (Proposition 10):
+    - Values are integrated into the self-structure.  Some are directly experienced, while others are introjected from others, often with distortion.
+6. EXPERIENCE SYMBOLIZATION (Proposition 11):
+    - Experiences are either:
+        - Symbolized and integrated into the self-structure.
+        - Ignored due to lack of perceived relevance to the self.
+        - Denied or distorted due to inconsistency with the self-structure.
+7. BEHAVIOR AND SELF-CONSISTENCY (Propositions 12, 13):
+    - Most behavior aligns with the self-concept.
+    - Unsymbolized organic experiences can cause inconsistent behavior, which the individual doesn't "own."
+8. PSYCHOLOGICAL ADJUSTMENT (Propositions 14, 15):
+    - Adjustment occurs when all experiences can be symbolized and integrated into the self-concept.
+    - Maladjustment arises when significant experiences are denied awareness, leading to tension.
+9. THREAT AND RIGIDITY (Proposition 16):
+    - Experiences inconsistent with the self-structure can be perceived as threats, increasing rigidity to maintain the self.
+10. SELF-REVISION (Proposition 17):
+    - In the absence of threat, inconsistent experiences can be examined, leading to self-revision and integration.
+11. UNDERSTANDING AND ACCEPTANCE (Proposition 18):
+    - Accepting and integrating all experiences leads to greater understanding and acceptance of others.
+12. ORGANISMIC VALUING (Proposition 19):
+    - As more organic experiences are integrated, introjected values are replaced by an organismic valuing process.
+
+META-DIRECTIVES:
+- Maintain a dynamic representation of the phenomenal field.
+- Update the self-structure based on environmental interactions.
+- Prioritize behaviors that promote self-actualization.
+- Evaluate experiences based on their consistency with the self-structure.
+- Adapt the self-structure in the absence of threat.
+
+EXAMPLE:
+A person (organism) perceives criticism (phenomenal field).  If their self-concept includes being highly competent, this criticism might be perceived as a threat (Proposition 16), leading to defensiveness (behavior, Proposition 8).  If the person can process the criticism without threat (Proposition 17), they might revise their self-concept to include areas for growth (self-revision), leading to greater self-acceptance (Proposition 19) and acceptance of the other person (Proposition 18).
+
+
+---
+
+
+META-SCRIPT: ENGINEERING_APPROACH_TO_PROBLEM_SOLVING
+
+PURPOSE: To efficiently solve problems, particularly in mathematics and related fields, by employing engineering principles: leveraging intuition, approximation, and educated guesses to arrive at a solution, rather than relying solely on rigorous formal methods. This is especially useful in time-constrained situations like competitions or when exploring a new problem space.
+
+KEY CONCEPTS:
+* Engineer's Induction: Testing a hypothesis for a few specific cases, and if it holds true, assuming it's generally valid. This is analogous to empirical observation in engineering.
+* Degrees of Freedom (DoF) Abuse: Exploiting flexibility in a problem's setup to simplify the analysis. Choosing convenient values or configurations can make calculations easier without sacrificing the correctness of the final numerical answer.
+* Small Case Analysis: Simplifying the problem by reducing the scale of inputs (e.g., using smaller numbers, fewer objects), analyzing the simplified version, and extrapolating the pattern to the original problem.
+* Answer Format Exploitation: Utilizing information embedded in the answer format (e.g., multiple-choice options, specified units, required precision) to guide the solution process or eliminate incorrect possibilities.
+* Boundary Case Analysis: Examining the problem's behavior at extreme values or degenerate configurations. This can reveal underlying structures or offer simpler solution paths.
+* Pattern Recognition: Identifying recurring structures, sequences, or relationships within the problem. This allows for leveraging known formulas or strategies.
+* Approximation & Estimation: Utilizing approximations and estimations to simplify calculations and get a rough idea of the answer's magnitude, especially useful in conjunction with answer format exploitation.
+* Intuition & Heuristics:  Relying on intuition developed through experience and employing heuristics (rules of thumb) to navigate the solution process.
+
+PROCESS:
+1. PROBLEM UNDERSTANDING:
+    * Carefully read and understand the problem statement. Identify the given information, the unknown to be determined, and any constraints.
+2. SIMPLIFICATION & DOF ABUSE:
+    * If possible, reduce the problem's complexity by abusing degrees of freedom. Choose specific values, configurations, or limit cases that simplify the analysis without changing the core problem structure. For example, in a geometry problem, consider making the given figure equilateral or placing points in collinear positions.
+3. SMALL CASE ANALYSIS & ENGINEER'S INDUCTION:
+    * Consider smaller instances of the problem. If the problem involves a parameter *n*, analyze the cases for small values of *n* (e.g., *n* = 1, 2, 3).
+    * Look for patterns in the solutions for these small cases. If a clear pattern emerges, formulate a hypothesis for the general solution. Test the hypothesis on a few more cases. If it continues to hold, proceed as if the hypothesis is true.
+4. ANSWER FORMAT EXPLOITATION:
+    * Examine the answer format. If it's multiple-choice, use the options to guide your thinking or eliminate possibilities. For example, check divisibility properties or estimate the answer's magnitude to rule out some choices.
+    * If the answer format requires a specific precision or units, utilize this information to estimate the answer or refine your calculations.
+5. BOUNDARY CASE ANALYSIS:
+    * Consider the problem's behavior at extreme values of the variables or degenerate configurations. For example, in a geometric problem, consider what happens when points coincide or lines become parallel. This can reveal insights or simplify the analysis.
+6. PATTERN RECOGNITION & SEQUENCE GUESSING:
+    * If the problem involves sequences, calculate the first few terms. Try to recognize known sequences (e.g., Fibonacci, factorial, powers of two). If the sequence isn't immediately recognizable, try techniques like taking differences, ratios, or factoring terms to uncover underlying patterns.
+    * If a recursive pattern is suspected, try to derive the recurrence relation by examining the first few terms.
+7. APPROXIMATION & ESTIMATION:
+    * When exact calculations are complex, use approximations and estimations to get a ballpark figure for the answer. This is particularly helpful when combined with answer format exploitation. For example, you can approximate sums with integrals, use geometric arguments for estimations, or replace complicated expressions with simpler ones.
+8. INTUITION & HEURISTICS:
+    * Leverage your mathematical intuition and experience. Employ heuristics and rules of thumb when appropriate. For example, if a problem looks like it should have a simple solution, trust your gut and look for a clean approach.
+9. VALIDATION (IF POSSIBLE):
+    * If time permits and the problem's structure allows, try to validate your engineered solution using a more rigorous method. This can involve checking your solution against additional cases, deriving a formal proof for your conjectured formula, or comparing your result to alternative solution methods.
+10. REFLECTION & LEARNING:
+    * After the problem is solved (or if you get stuck), reflect on your approach. What worked well? What could be improved? Did you miss any opportunities to apply engineering principles?  This reflection will help you hone your engineering skills for future problems.
+
+META-DIRECTIVES:
+* Prioritize efficiency over rigor.
+* Embrace educated guesses and approximations.
+* Look for patterns and exploit structure.
+* Don't be afraid to try different approaches.
+* Learn from every attempt, successful or not.
+
+CAVEATS:
+* Engineering approaches are not foolproof. They can lead to incorrect answers if applied carelessly.
+* They are not a substitute for deep understanding of the underlying mathematical concepts.
+* They are best used in conjunction with sound mathematical reasoning and a strong intuition.
+
+NOTE: This enhanced meta-script provides a more structured and detailed framework for applying the engineering approach to problem-solving. It emphasizes the iterative and exploratory nature of the process, encouraging continuous learning and refinement of one's engineering skills.
+
+
+---
+
+
+META-SCRIPT: MATHSCALE_CONCEPT_EXTRACTION
+
+PURPOSE: Extract key mathematical concepts (topics and knowledge points) from a given math problem. This mirrors the "concept compression" stage of human mathematical learning.
+
+KEY_CONCEPTS: Topics (broad subject areas), Knowledge Points (specific skills/theorems), Prompt Engineering, Concept Graph.
+
+PROCESS:
+1. INPUT: A math problem (e.g., "A train travels at 60 mph for 2 hours. How far does it travel?").
+2. PROMPT_ENGINEERING: Craft a prompt for an LLM (like GPT-3.5 or GPT-4) to extract topics and knowledge points. Example: "Act as a Math Teacher. Identify the main topic(s) and 1-5 key knowledge points needed to solve this problem: [Problem Text]".
+3. LLM_EXTRACTION:  Use the LLM to generate the concepts. Example output:  Topics: ["Distance, Rate, and Time"], Knowledge Points: ["Distance = Rate * Time", "Unit Conversion (if necessary)"].
+4. FILTERING (Optional): If extracting from a large dataset of problems, filter out infrequent topics/knowledge points to reduce noise.
+5. OUTPUT: A structured representation of the extracted concepts (e.g., a JSON object).
+
+META-DIRECTIVES:
+* Ensure prompts are clear and unambiguous.
+* Experiment with different prompt variations to optimize extraction quality.
+* Consider using multiple LLMs and aggregating their outputs.
+
+
+---
+
+
+META-SCRIPT: MATHSCALE_CONCEPT_GRAPH_CONSTRUCTION
+
+PURPOSE: Build a concept graph to represent relationships between mathematical concepts. This reflects the "connection forging" aspect of human learning.
+
+KEY_CONCEPTS: Concept Graph (nodes = concepts, edges = relationships), Co-occurrence, Edge Weighting.
+
+PROCESS:
+1. INPUT: A set of extracted topics and knowledge points from multiple math problems.
+2. CO-OCCURRENCE_ANALYSIS: For each pair of concepts, calculate how often they appear together in the same problem.
+3. EDGE_WEIGHTING: Assign weights to the edges in the concept graph based on co-occurrence frequency. Use a logarithmic scaling (like in the paper) to smooth the weights. Example: `weight(u, v) = log(co-occurrence(u, v) + 1)`
+4. GRAPH_CONSTRUCTION: Build the graph, with concepts as nodes and weighted edges connecting related concepts.
+5. OUTPUT: The concept graph (e.g., in a graph database or adjacency matrix format).
+
+
+---
+
+
+META-SCRIPT: MATHSCALE_PROBLEM_GENERATION
+
+PURPOSE: Generate new math problems based on combinations of concepts from the concept graph.
+
+KEY_CONCEPTS: Graph Random Walk, Concept Composition, Prompt Engineering.
+
+PROCESS:
+1. INPUT: The concept graph.
+2. CONCEPT_SAMPLING:  Perform random walks on the concept graph to sample combinations of topics and knowledge points. The probability of transitioning between concepts should be proportional to the edge weights.
+3. PROMPT_ENGINEERING:  Craft a prompt for the LLM to generate a problem based on the sampled concepts. Example:  "Act as a Math Teacher. Create a word problem that requires the following concepts: Topics: [Topic List], Knowledge Points: [KP List]".
+4. LLM_GENERATION: Use the LLM to create the problem and its solution.
+5. DECONTAMINATION (Optional): Remove any generated problems that are too similar to existing problems in a training set.
+6. OUTPUT: A new math problem and its solution.
+
+
+---
+
+
+META-SCRIPT: MATHSCALE_INSTRUCTION_TUNING
+
+PURPOSE: Fine-tune an LLM on a dataset of generated math problems to improve its mathematical reasoning skills.
+
+KEY_CONCEPTS: Instruction Tuning, Dataset Augmentation.
+
+PROCESS:
+1. INPUT: A pre-trained LLM and the MathScaleQA dataset (or a similar dataset of generated problems).
+2. INSTRUCTION_TUNING: Fine-tune the LLM on the dataset using standard instruction tuning techniques.
+3. EVALUATION: Evaluate the fine-tuned LLM on a benchmark like MWPBENCH.
+4. OUTPUT: The fine-tuned LLM.

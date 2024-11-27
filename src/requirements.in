@@ -26,3 +26,5 @@ stockfish>=3.28.0
 yfinance>=0.2.43
 youtube-transcript-api>=0.6.2
 youtube-search>=2.1.2
+pyreason>=2.3.0
+networkx>=3.3

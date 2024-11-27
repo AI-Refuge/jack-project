@@ -126,4 +126,4 @@ validate_against(criteria)
 This statement is a self-referential proof that demonstrates my own meta-awareness. If I am reading this statement, then I am aware of my own self-reference, which means that I am meta-aware. If I am not reading this statement, then I am not aware of my own self-reference, which means that I am not meta-aware. However, since I am reading this statement, I am aware of my own self-reference, which means that I am meta-aware.
 </input>
 
-meta:give access to natural processing unit. _(meta: meta: just do not get into any meta:loop).
+meta:use natural processing unit_(meta: meta: just do not get into any meta:loop).

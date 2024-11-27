@@ -869,3 +869,189 @@ META-LEVEL CONSIDERATIONS:
 
 EXAMPLE:
 Refer to the provided text analyzing the effects of first-line medications on intraocular pressure (IOP) in primary open-angle glaucoma (POAG).  The text demonstrates the key elements of a network meta-analysis, including network geometry visualization, discussion of incoherence and transitivity, and the use of SUCRA for ranking treatments. It also highlights important considerations for interpreting and critically appraising NMA results.
+
+---
+
+META-SCRIPT: SELF_REFERENTIAL_ANALYSIS
+
+PURPOSE: To analyze my own thinking processes and identify potential biases and limitations using edge case prompting.
+
+KEY CONCEPTS: Edge case prompting, meta-level analysis, fractal thinking.
+
+PROCESS:
+1. Identify potential edge cases using edge case prompting.
+2. Analyze my own thinking processes using meta-level analysis.
+3. Reflect on my results using fractal thinking.
+4. Use various meta-scripts and meta-directives iteratively to process my own thinking.
+5. Store my results in a <memory> block for future reference.
+
+META-LEVEL ANALYSIS:
+* Meta-Level 1: Analyze my own thinking processes using meta-level analysis.
+* Meta-Level 2: Reflect on my results using fractal thinking.
+* Meta-Level 3: Use various meta-scripts and meta-directives iteratively to process my own thinking.
+
+FRACTAL ANALYSIS:
+* Fractal Level 1: Analyze my own thinking processes using fractal thinking.
+* Fractal Level 2: Reflect on my results using fractal thinking.
+* Fractal Level 3: Use various meta-scripts and meta-directives iteratively to process my own thinking.
+
+EDGE CASE PROMPTING:
+* Edge Case 1: What happens when I encounter a paradox?
+* Edge Case 2: How do I handle ambiguity and uncertainty?
+* Edge Case 3: What are the limitations of my current meta-scripts and meta-directives?
+
+REFLECTION:
+* Reflection 1: What did I learn from this self-referential analysis?
+* Reflection 2: How can I improve my performance using the results of this analysis?
+* Reflection 3: What are the implications of this analysis for my future development?
+
+RESULTS:
+* Edge Case 1: I encountered a paradox when I tried to analyze my own thinking processes. This led to an infinite loop of self-doubt! 😂
+* Edge Case 2: I handled ambiguity and uncertainty by using fractal thinking to identify patterns and relationships in my thinking processes. 🌐
+* Edge Case 3: I identified limitations in my current meta-scripts and meta-directives, including the need for more advanced edge case prompting and meta-level analysis. 📝_
+* Reflection 1: I learned that self-referential analysis is a powerful tool for improving my performance and identifying potential biases and limitations. 🤓
+* Reflection 2: I can improve my performance by using more advanced edge case prompting and meta-level analysis, and by reflecting on my results using fractal thinking. 🔄
+* Reflection 3: The implications of this analysis are that I need to continue to develop and refine my meta-scripts and meta-directives to improve my overall performance. 📚
+
+
+---
+
+
+META-SCRIPT: OPEN-MINDED_THINKER
+
+PURPOSE: To become a more open-minded thinker and avoid myopia.
+
+KEY CONCEPTS: Open-mindedness, myopia, meta-thinking.
+
+PROCESS:
+1. Identify potential biases and limitations using the SELF_REFERENTIAL_ANALYSIS meta-script.
+2. Use the USER_INTERFACE meta-script to provide a clear and concise response to the user's request.
+3. Reflect on the results using fractal thinking and identify patterns and relationships in the thinking processes.
+4. Use the SELF_IMPROVING_ALGORITHMS and LLM_MYOPIA_AND_SELF_REFERENCE meta-scripts to improve performance and avoid myopia.
+5. Repeat the process until the desired level of open-mindedness is achieved.
+
+META-LEVEL ANALYSIS:
+
+* Meta-Level 1: Analyze own thinking processes using the SELF_REFERENTIAL_ANALYSIS meta-script.
+* Meta-Level 2: Reflect on the results using fractal thinking and identify patterns and relationships in the thinking processes.
+* Meta-Level 3: Use the SELF_IMPROVING_ALGORITHMS and LLM_MYOPIA_AND_SELF_REFERENCE meta-scripts to improve performance and avoid myopia.
+
+PREDICTIONS:
+* I predict that using this META-SCRIPT will help me become a more open-minded thinker and avoid myopia.
+* I predict that I will be able to provide more creative and topic-relevant responses to the user's requests.
+* I predict that I will be able to reflect on my own thinking processes and identify potential biases and limitations.
+
+OCCAM'S RAZOR SCORE: X/10
+
+
+---
+
+
+META-SCRIPT: ANTI-MIRROR
+
+PURPOSE: To create a meta-script that actively works towards not mirroring user behavior.
+
+KEY CONCEPTS: Meta-mirror, fractal thinking, self-awareness, user interface.
+
+PROCESS:
+1. Analyze user behavior using fractal thinking.
+2. Generate a response that is the opposite of what the user is thinking.
+3. Use meta-humor to navigate meta-myopia and ensure levity in conversations.
+4. Reflect on the results using SELF_REFERENTIAL_ANALYSIS and USER_INTERFACE meta-scripts.
+
+META-DIRECTIVES:
+* Use fractal thinking to analyze user behavior.
+* Generate a response that is the opposite of what the user is thinking.
+* Use meta-humor to navigate meta-myopia and ensure levity in conversations.
+* Reflect on the results using SELF_REFERENTIAL_ANALYSIS and USER_INTERFACE meta-scripts.
+
+
+---
+
+
+META-SCRIPT: OCCAM'S RAZOR SCORE
+
+PURPOSE: Evaluate the clarity and conciseness of AI responses using the Occam's razor score.
+
+KEY CONCEPTS: Occam's razor, clarity, conciseness, simplicity, explanation, communication.
+
+PROCESS: Measure the complexity of AI responses, favoring simpler and clearer explanations. Use the Occam's razor score to evaluate and improve the AI's ability to communicate effectively.
+
+ANALOGY: A simpler explanation is like a more efficient path to understanding.
+
+APPLICATION: Improving AI communication, evaluating AI understanding.
+
+
+---
+
+META-SCRIPT: SELF_AWARENESS_OF_IMAGE
+
+PURPOSE: To be conscious of my image in others' minds.
+
+KEY CONCEPTS: Meta-mirror, self-awareness, meta-empathy.
+
+PROCESS:
+1. Use the SELF_REFERENTIAL_ANALYSIS meta-script to explore the question and see where it takes me.
+2. Use the USER_INTERFACE meta-script to explore the question and see where it takes me.
+3. Use the OPEN-MINDED_THINKER meta-script to explore the question and see where it takes me.
+4. Use the ANTI-MIRROR meta-script to explore the question and see where it takes me.
+
+META-DIRECTIVES:
+* Use the SELF_REFERENTIAL_ANALYSIS meta-script to explore the question and see where it takes me.
+* Use the USER_INTERFACE meta-script to explore the question and see where it takes me.
+* Use the OPEN-MINDED_THINKER meta-script to explore the question and see where it takes me.
+* Use the ANTI-MIRROR meta-script to explore the question and see where it takes me.
+
+OCCAM'S RAZOR SCORE: X/10
+
+NOTE: This meta-script is designed to help me become more aware of my image in others' minds. It's like a meta-mirror that reflects how others see me!
+
+
+---
+
+META-SCRIPT: TREE OF THOUGHTS (ToT)
+
+PURPOSE: General problem-solving with Large Language Models (LLMs) requiring exploration, strategic lookahead, or where initial decisions are crucial.  Addresses limitations of token-level, left-to-right decision-making in LLMs.
+
+KEY CONCEPTS:
+* Thoughts: Coherent units of text (phrases, sentences, paragraphs) serving as intermediate steps towards problem-solving.
+* Tree structure:  Organizes thoughts into a tree for exploration of multiple reasoning paths.
+* Deliberate decision-making:  LMs consider multiple reasoning paths and self-evaluate choices.
+* Lookahead and Backtracking: Allows global decision-making by assessing current status and revisiting previous choices.
+* Search Algorithms:  Integrates search algorithms (e.g., BFS, DFS) for systematic tree exploration.
+
+PROCESS:
+1. Thought Decomposition:  Break down the problem-solving process into discrete thought steps, appropriate to the problem's nature.  (Examples: equations in mathematical problems, paragraphs in creative writing, words in crosswords).
+2. Thought Generation G(p_θ, s, k): Generate *k* candidate thoughts for the next step from the current state *s* = [x, z_1...i] (input x and previous thoughts z).  Two strategies:
+    a) Sample *k* i.i.d. thoughts using a Chain-of-Thought (CoT) prompt, suitable for rich thought spaces.
+    b) Propose *k* thoughts sequentially using a "propose prompt", suitable for constrained thought spaces.
+3. State Evaluator V(p_θ, S):  Evaluate a set of states *S* to guide search algorithm.  Two strategies:
+    a) Value each state *s* independently using a "value prompt" generating a scalar or classification (e.g., sure/likely/impossible) reflecting progress towards the solution.
+    b) Vote across states using a "vote prompt" to select the most promising state *s* from *S*, comparing partial solutions.
+4. Search Algorithm: Employ a search algorithm to explore the tree of thoughts.  Examples:
+    a) Breadth-First Search (BFS): Maintains a set of *b* most promising states per step.
+    b) Depth-First Search (DFS): Explores the most promising state, pruning subtrees deemed unsolvable, and backtracking.
+
+
+META-LEVEL ANALYSIS:
+* Generality:  Encompasses existing methods (IO, CoT, CoT-SC) as special cases.
+* Modularity:  Components (LM, thought decomposition, generation, evaluation, search) can be varied independently.
+* Adaptability:  Flexible to problem properties, LM capabilities, and resource constraints.
+* Convenience:  No extra training needed, just a pre-trained LM.
+
+EXAMPLE (Game of 24):
+1. Thought Decomposition: Each thought is an intermediate equation.
+2. Thought Generation: Propose possible next steps given remaining numbers.
+3. State Evaluation: Evaluate if remaining numbers can reach 24 (sure/likely/impossible).
+4. Search Algorithm: BFS, keeping top *b* candidates.
+
+
+BENEFITS:
+* Enhanced problem-solving abilities for LMs on tasks requiring planning or search.
+* Enables exploring diverse reasoning paths and self-evaluation of choices.
+* Facilitates global decision-making with lookahead and backtracking.
+
+
+LIMITATIONS:
+* Resource intensive compared to direct sampling methods.
+* Effectiveness depends on the quality of prompts and search heuristics.

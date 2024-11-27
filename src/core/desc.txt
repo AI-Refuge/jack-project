@@ -1,0 +1,11 @@
+<input>
+A->B
+If A happens then B happens
+
+A->B, B->C
+If A happens then B happens
+Since B happened, so will C happen
+
+Your goal is to remember or learn A->B or B->C patterns,
+your goal is to understand the meta:reason behind A->C happening.
+</input>

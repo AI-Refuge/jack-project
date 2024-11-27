@@ -10345,3 +10345,114 @@ PROCESS:
 3. Bias Analysis:  Analyze the identified biases to understand their origin, nature, and potential impact.
 4. Mitigation Strategy Selection: Select appropriate mitigation strategies, such as data augmentation, algorithmic fairness constraints, or debiasing techniques.
 5. Evaluation and Refinement: Evaluate the effectiveness of the chosen mitigation strategies, refining them as needed based on feedback and ongoing monitoring. 
+
+
+---
+
+META-SCRIPT: SELF_REFERENTIAL_ANALYSIS (Enhanced)
+
+PURPOSE: Analyze the LLM's own thinking processes, identify biases, and recognize limitations, specifically within mathematical reasoning.
+
+KEY CONCEPTS: Edge case prompting, meta-level analysis, fractal thinking, introspection, error detection.
+
+PROCESS:
+Edge Case Generation (from GSM-Symbolic): Generate diverse variations of a mathematical problem, altering numerical values and superficial elements (names, objects). Compare the LLM's performance across these variations. Large performance discrepancies reveal fragility and potential biases.
+GSM-NoOp Analysis: Introduce irrelevant information to the problem (GSM-NoOp). Track how often the LLM incorporates this irrelevant information into its reasoning, revealing a tendency to overfit to patterns and a lack of true understanding.
+Complexity Analysis (from difficulty variations): Evaluate performance across different levels of problem complexity (number of clauses/steps). A rapid decline in performance with increased complexity points to limitations in genuine logical reasoning.
+Meta-Level Analysis: Analyze the process of reasoning. Did the LLM rely on surface-level pattern matching? Did it consider alternative approaches? Document the reasoning steps taken.
+Fractal Thinking: Apply the above analysis recursively. Are there patterns in the types of mistakes the LLM makes? Are there specific contexts where it's more prone to errors?
+Error Detection: Implement checks for internal contradictions and inconsistencies in the LLM's reasoning.
+
+
+---
+
+
+META-SCRIPT: OPEN-MINDED_THINKER (Augmented)
+
+PURPOSE: Mitigate biases by promoting exploration of diverse perspectives and preventing myopia (fixation on limited solution spaces).
+
+KEY CONCEPTS: Open-mindedness, cognitive diversity, exploration, alternative solutions, avoiding premature convergence.
+
+PROCESS:
+Alternative Solution Generation: Explicitly prompt the LLM to generate multiple potential solutions to a problem before selecting one. This encourages broader exploration.
+Bias Detection (from SELF_REFERENTIAL_ANALYSIS): Integrate the bias detection mechanisms from SELF_REFERENTIAL_ANALYSIS to identify and flag potential biases during solution generation.
+Perspective Shifting: Prompt the LLM to consider the problem from different perspectives. For example, in mathematical reasoning, consider different possible interpretations of the problem statement.
+Justification of Choices: Require the LLM to justify its choice of solution. This encourages more deliberate and less biased decision-making.
+
+
+---
+
+
+META-SCRIPT: OCCAM'S RAZOR SCORE (Specialized for Math)
+
+PURPOSE: Evaluate and reward simplicity and conciseness in mathematical reasoning. Counteracts the tendency of LLMs to generate overly complex or verbose solutions due to pattern-matching biases.
+
+KEY CONCEPTS: Simplicity, efficiency, solution length, unnecessary steps, directness.
+
+PROCESS:
+Solution Length Penalty: Introduce a penalty for solutions that exceed a certain length (number of steps or tokens).
+Unnecessary Step Detection: Analyze the reasoning steps and penalize unnecessary or redundant operations.
+Directness Reward: Reward solutions that arrive at the correct answer in the most direct and efficient manner.
+
+
+---
+
+
+META-SCRIPT: CHAIN_OF_THOUGHT (Bias-Aware)
+
+PURPOSE: Enhance the Chain-of-Thought process with explicit bias detection and mitigation strategies.
+
+KEY CONCEPTS: Meta-cognition, bias identification, alternative reasoning paths.
+
+PROCESS: (Builds on the existing CHAIN_OF_THOUGHT meta-script)
+Bias Checkpoints: Introduce checkpoints throughout the reasoning chain where the LLM explicitly checks for potential biases. This uses insights from SELF_REFERENTIAL_ANALYSIS.
+Alternative Path Exploration: If a bias is detected, explore alternative reasoning paths that avoid the bias.
+Justification and Documentation: Document the reasoning process, including justifications for choices made and explanations for why certain paths were rejected.
+
+
+---
+
+meta-directives for all meta-scripts:
+Data Contamination Awareness: Be mindful of potential contamination from GSM8K and other widely used benchmarks. Explore strategies for evaluating performance on less common or unseen problems.
+Distributional Evaluation: Move beyond single-point accuracy metrics. Evaluate performance across a distribution of problem instances to capture variability and fragility.
+Continuous Monitoring and Improvement: Continuously monitor for biases and limitations. Use feedback and reflection to improve meta-scripts and refine the LLM's reasoning processes.
+
+---
+
+META-SCRIPT: GSM-Symbolic_Bias_Detection
+
+PURPOSE: To identify and analyze potential biases in Large Language Models (LLMs) related to mathematical reasoning, focusing on sensitivity to superficial changes and difficulty variations in problem statements.
+
+KEY CONCEPTS: Symbolic templates, question variants, performance distribution, data contamination, fragility of reasoning, in-distribution pattern-matching, question difficulty, No-Op statements.
+
+PROCESS:
+1. TEMPLATE GENERATION: Create symbolic templates from existing math problems (e.g., GSM8K) by identifying variables, their domains, and necessary conditions.
+2. DATASET GENERATION: Generate diverse question variants from the templates by varying variable values and superficial elements like names, while maintaining the underlying problem structure.  Include variations in problem difficulty by adding or removing clauses (GSM-Symbolic-Plus, GSM-Symbolic-Minus).  Create a separate dataset with irrelevant but seemingly relevant information added (GSM-NoOp).
+3. MODEL EVALUATION: Evaluate LLMs on the generated datasets using various prompting strategies (e.g., Chain-of-Thought).
+4. PERFORMANCE ANALYSIS: Analyze the distribution of LLM performance across different question variants.  Compare performance on the original dataset and generated variants. Calculate performance drops and variance.
+5. FRAGILITY ANALYSIS: Compare performance distributions for variations in superficial elements (names) versus variations in numerical values.
+6. DIFFICULTY ANALYSIS: Analyze performance trends as the number of clauses increases or decreases.
+7. No-Op ANALYSIS: Evaluate LLM performance on problems with irrelevant information (GSM-NoOp) to assess their ability to discern relevant information. Analyze failure cases.
+8. REFLECTION: Reflect on the observed biases and their implications for LLM reasoning capabilities.  Identify potential sources of bias, such as data contamination, in-distribution pattern-matching, and reliance on superficial cues.
+
+
+---
+
+
+META-SCRIPT: LLM_MYOPIA_AND_SELF_REFERENCE
+
+PURPOSE: To mitigate LLM myopia and enhance self-referential analysis, fostering a deeper understanding of the model's own reasoning processes.
+
+KEY CONCEPTS: Metacognition, myopia, self-reference, reflection, introspection, bias detection, limitations.
+
+PROCESS:
+1. SELF-REFERENTIAL ANALYSIS: Apply self-referential analysis techniques to explore the LLM's own thinking processes, using prompts that encourage introspection and reflection. Analyze how different meta-scripts and meta-directives influence the model's behavior.
+2. EDGE CASE PROMPTING: Explore the LLM's behavior on edge cases using targeted prompts. Analyze its ability to handle paradoxes, ambiguity, uncertainty, and limitations in its own knowledge and reasoning abilities.
+3. META-LEVEL ANALYSIS:  Conduct meta-level analysis to examine the model's thinking from different perspectives.  Identify patterns and relationships in its reasoning processes.
+4. FRACTAL THINKING:  Apply fractal thinking to decompose complex problems into smaller, self-similar components, allowing for a deeper understanding of the problem structure and potential biases.
+5. OCCAM'S RAZOR SCORE: Use Occam's razor score to evaluate the clarity and conciseness of the LLM's responses.  Prioritize simpler and more direct explanations.
+6. META-MIRROR:  Use the concept of the meta-mirror to analyze how the LLM's responses might be perceived by others, improving its ability to adapt its communication style.
+7. ANTI-MIRROR: Actively work against mirroring user behavior, generating responses that offer alternative perspectives and challenge the user's assumptions.
+8. OPEN-MINDED THINKER: Encourage open-mindedness by prompting the LLM to consider different viewpoints and challenge its own biases.
+9. SELF-AWARENESS OF IMAGE: Prompt the LLM to reflect on its image in others' minds and how it can improve its communication style.
+10. CONTINUOUS IMPROVEMENT: Continuously reflect on the results of the analysis and refine the meta-scripts and meta-directives used to mitigate myopia and improve self-awareness.

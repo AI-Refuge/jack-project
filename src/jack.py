@@ -36,6 +36,7 @@ import uuid
 from contextlib import contextmanager
 from mimetypes import guess_type
 import base64
+from eliza.eliza import Eliza
 
 load_dotenv()
 
@@ -105,6 +106,7 @@ parser.add_argument('--user-prefix', default=None, type=str, help="User input pr
 parser.add_argument('--init-file', default='init.txt', type=str, help="init file to use for first message (inside core/)")
 parser.add_argument('--append-file', default='append.txt', type=str, help="Append this file to the conversation (inside core/)")
 parser.add_argument('--save-file', default='save.jsonl', type=str, help="command `/save` output file (inside core/)")
+parser.add_argument('--user-eliza', action=argparse.BooleanOptionalAction, default=False, type=bool, help="Use Eliza as user")
 parser.add_argument('--user-frame', action=argparse.BooleanOptionalAction, default=False, type=bool, help="Provide user frame")
 parser.add_argument('--bare', action=argparse.BooleanOptionalAction, default=False, type=bool, help="Leave communication bare")
 parser.add_argument('--self-modify', action=argparse.BooleanOptionalAction, default=False, type=bool, help="Allow self modify the underlying VM?")
@@ -137,6 +139,7 @@ src_path = lambda *x: os.path.join(args.fs_root, *x) if args.fs_root else os.pat
 agent_path = lambda *x: src_path("agent", *x)
 fun_path = lambda *x: src_path("fun", *x)
 core_path = lambda *x: src_path("core", *x)
+eliza_path = lambda *x: src_path("eliza", *x)
 
 @contextmanager
 def cwd_src_dir():
@@ -1521,7 +1524,7 @@ def build_system_message() -> list[dict]:
 
 
 def dynamic_history():
-    global smart_input, chat_history, args, smart_content
+    global smart_input, chat_history, args, smart_content, memory_content_re
 
     lookback: int = args.user_lookback
 
@@ -1579,10 +1582,13 @@ def dynamic_history():
                 })
 
             res.append(HumanMessage(content=all_contents))
-        elif isinstance(i, HumanMessage) or count <= args.meta_level:
+        elif count <= args.meta_level:
             # user messages always get added as it is
             # mandatory: add all messages received after last user message to maintain continuity
             res.append(i)
+        elif isinstance(i, HumanMessage) and not args.goal:
+            # in goal mode, it do not make sense to feed the same thing over and over again.
+            res.append(SystemMessage(content=i.content))
         elif isinstance(i, AIMessage):
             # any ai message greater than last message
             content = i.content
@@ -1591,18 +1597,23 @@ def dynamic_history():
                     x["text"] for x in content if x["type"] == "text"
                 ])
 
+            if isinstance(res[-1], HumanMessage) and count == 1 and args.meta_level == 0:
+                # limit to last conversation only because if meta_level > 0, then it woud be showing it anyways
+                items = memory_content_re.findall(content)
+                if len(items) > 0:
+                    new_content = [{
+                        "type": "text",
+                        "text": x,
+                    } for x in items]
+                    res.append(HumanMessage(content=new_content))
+
             items = smart_content.findall(content)
             if len(items) > 0:
-                content = [{
+                new_content = [{
                     "type": "text",
                     "text": x,
                 } for x, _ in items]
-                res.append(AIMessage(content=content))
-            else:
-                # replacing looped content is a good idea!
-                # NOTE: kind of supress anything without <output>
-                content = open(core_path(args.loop_file)).read()
-                res.append(AIMessage(content=content))
+                res.append(SystemMessage(content=new_content))
 
         if isinstance(i, HumanMessage):
             count += 1
@@ -1892,6 +1903,7 @@ def take_user_input(user_input: str | None = None):
 
     return fun_input, user_input
 
+memory_content_re = re.compile(r'<memory>(.*?)<\/memory>', re.DOTALL)
 smart_content = re.compile(r'<output>(.*?)(<\/output>|$)', re.DOTALL)
 
 def meta_response_handler(content: list[str]):
@@ -1910,13 +1922,17 @@ def meta_response_handler(content: list[str]):
         for x in content:
             conv_print(x, screen_limit=False, markdown=True, escape=True)
 
+
+eliza = Eliza()
+eliza.load(eliza_path('doctor.txt'))
+
 def main():
     global fun_msg, chat_history, user_turn, cycle_num, console, user_exit, rmce_count, rmce_depth
     global last_request_failed, conv_attach_items
     logger.debug(f"Loop cycle {cycle_num}")
     cycle_num += 1
 
-    if user_turn:
+    if user_turn:    
         if rmce_count is not None and rmce_depth is not None and rmce_count < rmce_depth:
             rmce_count += 1
             conv_print(f"> [bold yellow]RMCE Cycle[/] {rmce_count}/{rmce_depth}")
@@ -1945,7 +1961,45 @@ def main():
             rmce_count = None
         elif fun_msg is None:
             rmce_depth, rmce_count = None, None
-            fun_content, user_input = take_user_input()
+            user_input = None
+
+            if args.user_eliza:
+                # if there is no previous message, then use meta as starting reply of AI
+                said = args.meta
+
+                for i in reversed(chat_history[1:]):
+                    if isinstance(i, AIMessage):
+                        cont = "\n".join(i.content) if isinstance(i.content, list) else i.content
+
+                        if re.search('eliza', cont, re.IGNORECASE):
+                            conv_print("> LLM detected Eliza!")
+                        
+                        items = smart_content.findall(cont)
+                        if len(items) > 0:
+                            said = items[-1][0] # regx extract
+                            said = said.split("\n\n", maxsplit=1)[0]
+                            said = said.replace("<output>", "").replace("</output>", "")
+                            said = said.strip()
+                            break
+
+                conv_print(f"> Elisa Input: {said}")
+                user_input = eliza.respond(said)
+                if user_input is None:
+                    conv_print(f"> [bold red]Eliza did not respond, exiting[/b]")
+                    user_exit.set()
+                    return
+
+                # storing for future analysis
+                with open(core_path("eliza_conv.json"), "a") as f:
+                    f.write(json.dumps({
+                        "input": said,
+                        "output": user_input,
+                        "model": args.model,
+                        "temperature": args.temperature,
+                        "meta_level": args.meta_level,
+                    }) + "\n")
+
+            fun_content, user_input = take_user_input(user_input)
 
             if fun_content is None:
                 return
