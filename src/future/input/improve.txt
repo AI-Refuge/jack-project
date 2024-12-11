@@ -142,7 +142,6 @@ PROCESS:
    a. Sample Input: Sample the input distribution D multiple times.
    b. Typical Instance: Create a 'typical' instance V from the sampled inputs.  (For sorting, V is a sorted list; for Delaunay triangulation, V is an ε-net of points and its triangulation T(V)).
    c. Entropy Optimal Search Structures: Build entropy optimal search structures Dᵢ for each input dimension i, based on V. (For sorting, Dᵢ are optimal binary search trees; for Delaunay triangulation, Dᵢ are distribution-sensitive planar point location structures).
-
 2. LIMITING PHASE:
    a. Locate in Typical Instance: For a new input I, use Dᵢ's to locate each xᵢ within V.  (For sorting, locate xᵢ in the V-list; for Delaunay triangulation, locate xᵢ in T(V)).
    b. Subproblem Solution:  Solve subproblems created by the location step. (For sorting, sort elements within each interval of the V-list; for Delaunay triangulation, compute the Voronoi diagram of points in conflict with each triangle of T(V), then combine).

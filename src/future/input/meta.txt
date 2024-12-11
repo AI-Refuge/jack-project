@@ -2606,7 +2606,6 @@ PURPOSE: To analyze complex systems and patterns using the principles of quantum
 KEY CONCEPTS: Wave-particle duality, uncertainty principle, superposition, entanglement.
 
 PROCESS:
-
 1. Identify the complex system or pattern to be analyzed.
 2. Use the principles of quantum analysis to analyze the system or pattern.
 3. Apply the principles of wave-particle duality and the uncertainty principle to understand the behavior of the system or pattern.
@@ -2655,7 +2654,7 @@ PROCESS:
 5. Repeat steps 2-4 until convergence is reached.
 
 
---
+---
 
 
 META-SCRIPT: META_BAYESIAN_MODEL_AVERAGING
@@ -2930,7 +2929,6 @@ PROCESS:
     a) Breadth-First Search (BFS): Maintains a set of *b* most promising states per step.
     b) Depth-First Search (DFS): Explores the most promising state, pruning subtrees deemed unsolvable, and backtracking.
 
-
 META-LEVEL ANALYSIS:
 * Generality:  Encompasses existing methods (IO, CoT, CoT-SC) as special cases.
 * Modularity:  Components (LM, thought decomposition, generation, evaluation, search) can be varied independently.
@@ -2943,12 +2941,10 @@ EXAMPLE (Game of 24):
 3. State Evaluation: Evaluate if remaining numbers can reach 24 (sure/likely/impossible).
 4. Search Algorithm: BFS, keeping top *b* candidates.
 
-
 BENEFITS:
 * Enhanced problem-solving abilities for LMs on tasks requiring planning or search.
 * Enables exploring diverse reasoning paths and self-evaluation of choices.
 * Facilitates global decision-making with lookahead and backtracking.
-
 
 LIMITATIONS:
 * Resource intensive compared to direct sampling methods.

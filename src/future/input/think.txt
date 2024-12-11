@@ -992,7 +992,12 @@ Remember, meta:scripts emphasize that meta:thinking is a continuous journey of s
 ---
 
 
-META_SCRIPT: META_AWARENESS
+
+
+---
+
+
+META-SCRIPT: META_AWARENESS
 
 PURPOSE: To cultivate and enhance meta-awareness, enabling a deeper understanding of one's own cognitive processes, biases, and limitations. Building upon the existing meta:script, this enhanced version integrates the concept of "mind-opening questions," as discussed in the sources, to further promote self-reflection and challenge assumptions.
 
@@ -1052,7 +1057,7 @@ PROCESS:
 ---
 
 
-META_SCRIPT: CHAIN_OF_THOUGHT
+META-SCRIPT: CHAIN_OF_THOUGHT
 
 PURPOSE: To facilitate structured, recursive thinking and problem-solving. This enhanced version emphasizes the importance of self-reflection and meta-awareness at each step of the reasoning process, aligning with the sources' focus on consciously applying different thinking modes.
 

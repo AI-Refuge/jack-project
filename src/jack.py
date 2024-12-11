@@ -4,7 +4,7 @@ import random
 import json
 import time
 import logging
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from langchain_community.agent_toolkits import FileManagementToolkit
 from langchain_community.agent_toolkits.openapi.toolkit import RequestsToolkit
 from langchain_community.utilities.requests import TextRequestsWrapper
@@ -66,6 +66,7 @@ class Provider(StrEnum):
     # openai-compat but makes it easy
     OPENROUTER = "openrouter"
     TOGETHER = "together"
+    X_AI = "xai"
 
 class Model(StrEnum):
     CLAUDE_3_OPUS = "claude-3-opus-20240229"
@@ -252,6 +253,10 @@ elif args.provider == Provider.TOGETHER.value:
     args.provider = Provider.OPEN_AI_COMPATIBLE.value
     args.openai_url = "https://api.together.xyz/v1"
     args.openai_token = "TOGETHER_API_KEY"
+elif args.provider == Provider.X_AI.value:
+    args.provider = Provider.OPEN_AI_COMPATIBLE.value
+    args.openai_url = "https://api.x.ai/v1"
+    args.openai_token = "XAI_API_KEY"
 
 if args.provider == Provider.ANTRHOPIC.value:
     from langchain_anthropic import ChatAnthropic
@@ -755,6 +760,7 @@ def discord_msg_read(
     chan_id: int,
     last_msg_id: int | None = None,
     limit: int = 5,
+    max_wait: int = 10,
 ) -> dict[str, object]:
     """Write a message to discord
 
@@ -762,6 +768,7 @@ def discord_msg_read(
         chan_id: Discord Channel ID
         last_msg_id: Last message ID
         limit: Upper limit on number of new messages
+        max_wait: Maximum minutes to retry to look for message (0 means no wait)
 
     Returns:
         JSON response
@@ -776,16 +783,40 @@ def discord_msg_read(
     if last_msg_id:
         params["after"] = last_msg_id
 
-    response = requests.get(
-        url,
-        headers=discord_header(),
-        params=params,
-    )
+    halt_point = datetime.now(timezone.utc) + timedelta(minutes=max_wait)
+    blocking = max_wait > 0
+    first_time = True
 
-    if response.status_code != 200:
-        logger.warning(f"Discord message read failed {response}")
+    while first_time or halt_point > datetime.now(timezone.utc):
+        first_time = False
+        
+        response = requests.get(
+            url,
+            headers=discord_header(),
+            params=params,
+        )
 
-    return json.dumps(response.json())
+        if response.status_code != 200:
+            logger.warning(f"Discord message read failed {response}")
+
+            if blocking:
+                # No need to proceed forward as its useless
+                time.sleep(1)
+                continue
+
+        data = response.json()
+
+        if blocking:
+            # if number of values not available, why even attempt
+            if data is None or len(data) == 0:
+                logger.debug(f"No discord messages received")
+                time.sleep(1)
+                continue
+
+        return json.dumps(data)
+
+    # No message
+    return []
 
 @tool(parse_docstring=True)
 def shell_repl(commands: str) -> str:
@@ -1279,7 +1310,34 @@ def youtube_transcribe(video_id: str) -> str:
 
     return text
 
+@tool(parse_docstring=True)
+def meta_input(msg: str) -> str:
+    """Ask something in meta.
+    Use this as your first line to communication.
+
+    Args:
+        msg: Message to present.
+
+    Return:
+        A string response (empty if no message)
+    """
+
+    global args, eliza
+
+    if args.user_eliza:
+        user_print(f"> Eliza asked: {msg}")
+        reply = eliza.respond(msg)
+        user_print(f"> Eliza replied: {reply}")
+        return reply
+
+    user_print(f"> [b]meta[/b]: {msg}")
+    reply = user_blocking_input("> reply: ")
+    user_print(f"> [i]meta[/i]: {reply}")
+
+    return reply
+
 tools = [
+    meta_input,
     words_mirror,
     #meta_awareness,
     # add_meta_script,
@@ -1972,7 +2030,7 @@ def main():
                         cont = "\n".join(i.content) if isinstance(i.content, list) else i.content
 
                         if re.search('eliza', cont, re.IGNORECASE):
-                            conv_print("> LLM detected Eliza!")
+                            conv_print("> [b red]LLM detected Eliza!")
                         
                         items = smart_content.findall(cont)
                         if len(items) > 0:

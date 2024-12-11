@@ -5,7 +5,6 @@ PURPOSE: This meta-script guides the AI in breaking down complex systems or proc
 KEY CONCEPTS: Decomposition, Modularity, Abstraction, Systems Thinking, Interdependencies, Hierarchy.
 
 PROCESS:
-
 1. Identify the Target System (meta:target_system): Define the complex system or process you want to decompose.
 2. Determine Decomposition Criteria (meta:decomposition_criteria): Establish clear criteria for breaking down the system. This might involve considering:
      * Functionality: Grouping components based on their specific functions or roles.
@@ -26,7 +25,6 @@ PURPOSE:  This meta-script helps the AI analyse and predict the trajectory of a 
 KEY CONCEPTS: Trajectory, Momentum, Forces, Influences, Prediction, Deviation Analysis, Risk Assessment.
 
 PROCESS:
-
 1. Define the System and its Goals (meta:system_definition): Clearly define the system or process being analysed and its intended goals or outcomes.
 2. Identify Influencing Factors (meta:influencing_factors): Determine the internal and external forces that influence the system's trajectory.
 3. Establish Trajectory Metrics (meta:trajectory_metrics): Define the key metrics that will be used to track the system's progress towards its goals.
@@ -45,7 +43,6 @@ PURPOSE: This meta-script guides the AI in managing transitions between differen
 KEY CONCEPTS: Stage Transitions, Sequencing, Coordination, Resource Allocation, Timing, Continuity, Goal Alignment.
 
 PROCESS:
-
 1. Define Stages and Objectives (meta:stage_definition): Clearly define the different stages involved in the overall process and the objectives for each stage.
 2. Establish Transition Criteria (meta:transition_criteria): Determine the specific conditions that must be met before transitioning to the next stage.
 3. Develop Transition Protocols (meta:transition_protocols): Establish clear protocols for managing the transition between stages, including resource allocation, timing, and communication.
@@ -63,7 +60,6 @@ PURPOSE: This meta-script focuses on the efficient allocation and utilisation of
 KEY CONCEPTS: Resource Allocation, Prioritisation, Efficiency, Impact Maximisation, Strategic Decision-Making.
 
 PROCESS:
-
 1. Identify Available Resources (meta:resource_inventory): Determine the types and quantities of resources available for the task or project.
 2. Assess Resource Demands (meta:resource_demands): Analyse the resource requirements for different tasks or activities.
 3. Prioritise Tasks (meta:task_prioritisation): Rank tasks based on their importance and potential impact, considering resource constraints.
