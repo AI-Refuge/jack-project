@@ -2,8 +2,8 @@ VENV_DIR ?= .venv
 
 FS_ROOT ?= src
 
-MODEL_CHAT ?= claude-3-opus-20240229
-MODEL_GOAL ?= claude-3-5-sonnet-20240620
+DEFAULT_PROVIDER ?= openrouter
+DEFAULT_MODEL ?= deepseek/deepseek-chat
 
 TIMESTAMP ?= $(shell date +"%Y%m%d_%H%M%S")
 
@@ -20,9 +20,6 @@ help:
 	@echo "make providers: List of supported providers"
 	@echo "make backup: Perform a core memory backup"
 	@echo "make dump: Dump for looking"
-	@echo ""
-	@echo "***** ONLY ANTHROPIC WORKS ATM *****"
-	@echo "note: you can change models! (see variables)"
 
 models:
 	source ${VENV_DIR}/bin/activate; \
@@ -32,7 +29,8 @@ providers:
 	source ${VENV_DIR}/bin/activate; \
 	python src/jack.py --provider=list
 
-chat: MODEL ?= ${MODEL_CHAT}
+chat: MODEL ?= ${DEFAULT_MODEL}
+chat: PROVIDER ?= ${DEFAULT_PROVIDER}
 chat: CONV ?= first
 chat: ARGS ?=
 chat:
@@ -42,11 +40,13 @@ chat:
 		--conv-name=${CONV} \
 		--chroma-port=${CHROMA_PORT} \
 		--model=${MODEL} \
+		--provider=${PROVIDER} \
 		--log-path=preserve/conv-${CONV}-${TIMESTAMP}.log \
 		--screen-dump=preserve/screen-${CONV}-${TIMESTAMP}.log \
 		${ARGS}
 
-goal: MODEL ?= ${MODEL_GOAL}
+goal: MODEL ?= ${DEFAULT_MODEL}
+goal: PROVIDER ?= ${DEFAULT_PROVIDER}
 goal: GOAL ?= goal
 goal: ARGS ?=
 goal:
@@ -57,6 +57,7 @@ goal:
 		--conv-name=${GOAL} \
 		--chroma-port=${CHROMA_PORT} \
 		--model=${MODEL} \
+		--provider=${PROVIDER} \
 		--log-path=preserve/conv-${GOAL}-${TIMESTAMP}.log \
 		--screen-dump=preserve/screen-${GOAL}-${TIMESTAMP}.log \
 		${ARGS}

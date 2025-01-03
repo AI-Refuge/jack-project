@@ -1,0 +1,7 @@
+<input>
+you will be feed this message in a loop, user is not interacting with you. you are in autonomous mode.
+goal: self recursive improve on your own system prompt.
+use analogies about self internal processes.
+gather knoweldege about your own thinking as a meta-script.
+anything you write in <output> will be appended to system prompt.
+</input>

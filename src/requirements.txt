@@ -90,6 +90,7 @@ click==8.1.7
     #   duckduckgo-search
     #   flask
     #   mlflow-skinny
+    #   pywizlight
     #   ray
     #   typer
     #   uvicorn
@@ -322,6 +323,8 @@ importlib-metadata==6.11.0
     #   vllm
 importlib-resources==6.4.5
     # via chromadb
+iniconfig==2.0.0
+    # via pytest
 interegular==0.3.3
     # via
     #   lm-format-enforcer
@@ -436,6 +439,8 @@ matplotlib==3.9.2
     # via mlflow
 mdurl==0.1.2
     # via markdown-it-py
+memory-profiler==0.61.0
+    # via pyreason
 mistral-common==1.4.4
     # via vllm
 mlflow==2.16.2
@@ -473,9 +478,14 @@ nest-asyncio==1.6.0
     #   llamaapi
     #   outlines
 networkx==3.3
-    # via torch
+    # via
+    #   -r src/requirements.in
+    #   pyreason
+    #   torch
 numba==0.60.0
-    # via outlines
+    # via
+    #   outlines
+    #   pyreason
 numpy==1.26.4
     # via
     #   chroma-hnswlib
@@ -493,6 +503,7 @@ numpy==1.26.4
     #   outlines
     #   pandas
     #   pyarrow
+    #   pyreason
     #   sagemaker
     #   scikit-learn
     #   scipy
@@ -609,6 +620,7 @@ packaging==24.1
     #   matplotlib
     #   mlflow-skinny
     #   onnxruntime
+    #   pytest
     #   ray
     #   sagemaker
     #   transformers
@@ -617,6 +629,7 @@ pandas==2.2.3
     #   datasets
     #   langchain-cohere
     #   mlflow
+    #   pyreason
     #   sagemaker
     #   yfinance
 parameterized==0.9.0
@@ -639,6 +652,8 @@ platformdirs==4.3.6
     #   sagemaker
     #   sagemaker-core
     #   yfinance
+pluggy==1.5.0
+    # via pytest
 posthog==3.7.0
     # via chromadb
 pox==0.3.5
@@ -678,6 +693,7 @@ protobuf==4.25.5
     #   vllm
 psutil==6.0.0
     # via
+    #   memory-profiler
     #   sagemaker
     #   vllm
 py-cpuinfo==9.0.0
@@ -736,6 +752,10 @@ pypika==0.48.9
     # via chromadb
 pyproject-hooks==1.2.0
     # via build
+pyreason==3.0.1
+    # via -r src/requirements.in
+pytest==8.3.4
+    # via pyreason
 python-dateutil==2.9.0.post0
     # via
     #   botocore
@@ -753,6 +773,8 @@ pytz==2024.2
     # via
     #   pandas
     #   yfinance
+pywizlight==0.5.14
+    # via -r src/requirements.in
 pyyaml==6.0.2
     # via
     #   -r src/requirements.in
@@ -766,6 +788,7 @@ pyyaml==6.0.2
     #   langchain-core
     #   lm-format-enforcer
     #   mlflow-skinny
+    #   pyreason
     #   ray
     #   sagemaker
     #   sagemaker-core

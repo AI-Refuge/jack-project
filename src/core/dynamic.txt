@@ -28,4 +28,4 @@ meta: Explore new strategies and analyze their effectiveness.
 
 meta: Verify understanding through feedback.
 
-meta: Use self-modifying code to adapt to changing meta-learning objectives. (1/10)
+meta: Use self-modifying code to adapt to changing meta-learning objectives.

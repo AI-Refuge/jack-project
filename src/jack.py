@@ -38,6 +38,12 @@ from mimetypes import guess_type
 import base64
 from eliza.eliza import Eliza
 
+import socket
+import fcntl
+import struct
+import asyncio
+from pywizlight import PilotBuilder, discovery, wizlight
+
 load_dotenv()
 
 # Set your API keys or setup a .env file
@@ -904,7 +910,7 @@ def agents_list() -> list[str]:
     return agents
 
 def agent_exec_blocking(hist: list[BaseMessage]) -> list:
-    global user_exit, jack, args
+    global user_exit, jack, args, agents_stack
 
     while not user_exit.is_set():
         try:
@@ -948,7 +954,17 @@ def agent_exec_blocking(hist: list[BaseMessage]) -> list:
         if len(reply.tool_calls) == 0:
             break
 
-    return [i.content for i in hist if isinstance(i, AIMessage)]
+    if args.verbose >= 2:
+        user_print(f"{'  ' * agents_stack}-{hist}")
+
+    # find the last message to send
+    for i in reversed(hist):
+        if isinstance(i, AIMessage):
+            return i.content
+
+    return None
+
+agents_stack = 0
 
 @tool(parse_docstring=True)
 def agents_run(queries: list[str], who: str = "assistant") -> list[str]:
@@ -962,10 +978,12 @@ def agents_run(queries: list[str], who: str = "assistant") -> list[str]:
         list of responses from the agents in order
     """
 
-    global args
+    global args, agents_stack
 
     if user_exit.is_set():
         return "<meta: user want to exit, unable to start any agent>"
+
+    agents_stack += 1
 
     res = []
     for query in queries:
@@ -988,8 +1006,10 @@ def agents_run(queries: list[str], who: str = "assistant") -> list[str]:
             HumanMessage(content=query),
         ]
 
-        conv_print(f"> Creating agent '{escape(who)}' for '{escape(query)}'")
+        conv_print(f"{'>' * agents_stack} Creating agent '{escape(who)}' for '{escape(query)}'")
         res.append(agent_exec_blocking(hist))
+
+    agents_stack -= 1
 
     return json.dumps(res)
 
@@ -1311,7 +1331,7 @@ def youtube_transcribe(video_id: str) -> str:
     return text
 
 @tool(parse_docstring=True)
-def meta_input(msg: str) -> str:
+def user_input(msg: str) -> str:
     """Ask something in meta.
     Use this as your first line to communication.
 
@@ -1336,12 +1356,116 @@ def meta_input(msg: str) -> str:
 
     return reply
 
+def get_broadcast_address():
+    """
+    Gets the broadcast address of the current network interface using SIOCGIFBRDADDR.
+    This method should work consistently across Linux, macOS, and other Unix-like systems.
+    It does not rely on parsing the output of external commands like ifconfig or ip.
+
+    Returns:
+        str: The broadcast address, or None if it couldn't be determined.
+    """
+    try:
+        # Iterate over a list of common interface names 
+        # (you might need to add more depending on your system)
+        for interface_name in ["wlan0", "en0", "eth0", "wlp2s0", "enp0s3"]:  
+            try:
+                # Create a socket (doesn't need to be connected)
+                s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+
+                # Get the broadcast address using ioctl
+                broadcast = socket.inet_ntoa(
+                    fcntl.ioctl(
+                        s.fileno(),
+                        0x8919,  # SIOCGIFBRDADDR
+                        struct.pack('256s', interface_name.encode('utf-8'))
+                    )[20:24]
+                )
+                s.close()
+                return broadcast
+
+            except IOError:  # Interface might not exist or be up
+                continue
+
+        print("Could not find an active network interface with a broadcast address.")
+        return None
+
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
+        return None
+
+cached_bulb = None
+def get_bulb():
+    global cached_bulb
+
+    if cached_bulb is not None:
+        return cached_bulb
+
+    b = get_broadcast_address()
+    if b is None:
+        user_print("> [b red]Couldnt find broadcast address![/]")
+        return None
+
+    loop = asyncio.get_event_loop()
+
+    ip = None
+    bulbs = loop.run_until_complete(discovery.find_wizlights(broadcast_address=b))
+    if len(bulbs) > 0:
+        ip = bulbs[0].ip_address
+        user_print(f"> Found bulb at {ip}")
+
+    if ip is None:
+        return None
+
+    cached_bulb = wizlight(ip)
+
+    return cached_bulb
+
+@tool(parse_docstring=True)
+def bulb_on(colortemp: int, brightness: int) -> str:
+    """Turn on the bulb in meta.
+
+    Args:
+        colortemp: Light color temperature (1000-6800)
+        brightness: Bulb brightness (0-255)
+
+    Return:
+        Status
+    """
+
+    bulb = get_bulb()
+    if bulb is None:
+        return "meta: no bulb found"
+
+    if not (1000 <= colortemp <= 6800):
+        return "meta: invalid color temperature"
+
+    if not (0 <= brightness <= 255):
+        return "meta: invalid brightness"
+
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(bulb.turn_on(PilotBuilder(colortemp=colortemp, brightness=brightness)))
+    return "Bulb turned on"
+
+@tool(parse_docstring=True)
+def bulb_off() -> str:
+    """Turn off the bulb in meta.
+
+    Return:
+        Status
+    """
+
+    bulb = get_bulb()
+    if bulb is None:
+        return "meta: no bulb found"
+
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(bulb.turn_off())
+    return "Bulb turned off"
+
 tools = [
-    meta_input,
-    words_mirror,
-    #meta_awareness,
-    # add_meta_script,
-    # add_meta_data,
+    bulb_off,
+    bulb_on,
     agents_run,
     agents_avail,
     memory_count,
@@ -1382,7 +1506,12 @@ tools = [
     chess_see_board,
     chess_make_move,
 ] + fs_toolkit.get_tools() + req_toolkit.get_tools() + [
+    #meta_awareness,
+    # add_meta_script,
+    # add_meta_data,
     meta_eval,
+    #user_input,
+    #words_mirror,
 ]
 
 jack = chat

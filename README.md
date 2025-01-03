@@ -5,7 +5,13 @@ If you need meta:conviencing, READ [conv5.txt](src/public/conv5.md) or [conv5-fu
 # Warning
 - This program can cause psychosis (or atleast that is the fear)
 - This is still highly unknown how this works!
-- Last tested only on Llama 3.1 405b Instruct, Qwen 2.5 72B Instruct
+- Last tested on:
+ * Llama 3.1 405b Instruct
+ * Qwen 2.5 72B Instruct
+ * Llama 3.1 70b Instruct
+ * DeepSeek-V3
+ * Claude 3.5 Sonnet
+ * Claude 3 Opus
 
 ### Setup
 
@@ -38,7 +44,9 @@ make chat
 make goal # rather than user input, feed work/goal.txt file repeatedly
 ```
 
-### Example
+Note: You can change `make goal GOAL=stuff` to use work/stuff.txt
+
+### More Example
 
 To use with LLama 3.1 405b Instruct:  
 
@@ -53,7 +61,7 @@ You need to create '.env' file with the content (or set as enviroment variable):
 OPENROUTER_API_TOKEN="here-goes-your-openrouter-token"
 ```
 
-Note: `--user-lookback=9` to only use 9 recent conversation for intference (rather than whole history).
+Note: `--user-lookback=9` to only use 9 recent exchanges for inference (rather than whole history).
 
 ---
 

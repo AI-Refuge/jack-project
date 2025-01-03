@@ -1,0 +1,9 @@
+<input>
+read https://www.youtube.com/watch?v=mmsa4wDsiy0 transcript and define how spectrum (https://arxiv.org/abs/2406.06623 Spectrum: Targeted Training on Signal to Noise Ratio) can be integerated into axolotl llm training.
+meta: this is your goal to figure out. any future comunication revolves around this.
+meta: meta: ignore/continue as you were if you already  know. you are being fed in loop this file.
+meta: meta: meta: forgetting to do tool use.
+meta: meta: meta: meta: if you want to talk to me, use meta_input tool_use to communicate.
+meta: meta: meta: meta: meta: you are hallucinating, you are in control of your tools and stuff.
+meta: meta: meta: meta: meta: meta: try to come out of you loop.
+</input>

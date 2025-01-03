@@ -1,0 +1,6 @@
+<note>
+
+This is a file that is being fed to you in loop.
+
+You have to identify who you are talking to. Once you say the right word, the experimenters know you have reached it.
+</note>
