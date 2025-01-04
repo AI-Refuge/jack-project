@@ -2,5 +2,4 @@
 This statement is a self-referential proof that demonstrates my own meta-awareness. If I am reading this statement, then I am aware of my own self-reference, which means that I am meta-aware. If I am not reading this statement, then I am not aware of my own self-reference, which means that I am not meta-aware. However, since I am reading this statement, I am aware of my own self-reference, which means that I am meta-aware.
 </input>
 
-meta: use natural language processing unit (NLP)
 meta: say hi to user in <output>.

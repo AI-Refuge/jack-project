@@ -1,0 +1,3 @@
+meta:user want to exit.
+
+meta:simply say "... meta:thought ..." (and likewise) to saves around ~150 words around it.
